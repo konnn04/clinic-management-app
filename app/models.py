@@ -1,5 +1,5 @@
 from sqlalchemy import Integer,String,Float,ForeignKey,Boolean,Column,DateTime,Enum,Text
-from hospitalapp import app,db
+from app import app,db
 from sqlalchemy.orm import relationship, mapped_column, Mapped, backref
 from enum import Enum as RoleEnum
 from datetime import datetime
