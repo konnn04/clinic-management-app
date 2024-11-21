@@ -20,6 +20,10 @@ app.context_processor(update_template_context)
 def index():
     return render_template('index.html')
 
+@app.route('/appointment', methods=['GET', 'POST'])
+def appointment():
+    return render_template('appointment.html')
+
 if __name__ == '__main__':
     app.run(host=host, port=port, debug=True)
 
