@@ -16,15 +16,13 @@ class NguoiDung(db.Model): # Có nên là abstract class
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     ho = Column(String(10),nullable=False)
     ten = Column(String(10),nullable = False)
+    ngaySinh = Column(DateTime,nullable = False)
     soDienThoai = Column(String(15),nullable=False)
     ghiChu = Column(String(255),nullable = True)
     taiKhoan = Column(String(50))
-    password = Column(Text)
+    matKhau = Column(Text)
     avatar = Column(String(255),nullable = True)
     role = Column(Enum(Role),nullable = False)
-    bangCap = Column(String(255), nullable=True)
-
-    hoaDonThanhToan = relationship('HoaDonThanhToan',backref = 'nguoiDung',lazy = True)
     phieuLichDat = relationship('PhieuLichDat',backref = 'nguoiDung',lazy = True)
 
     def __str__(self):
@@ -48,7 +46,7 @@ class HoaDonThanhToan(db.Model):
     ngayLapHoaDon = Column(DateTime,default = datetime.utcnow)
     trangThai = Column(Boolean,nullable = False,default = False)
     # Bac Si
-    nguoiDung_id = Column(Integer,ForeignKey(NguoiDung.id),nullable = False)
+    phieuKham_id = Column(Integer, ForeignKey("phieuKham.id"), unique=True)
 
 phieuKham_DichVu = db.Table('phieuKham_DichVu',
                             Column('phieuKham_id',Integer,
@@ -70,6 +68,7 @@ class PhieuKhamBenh(db.Model):
                           secondary='phieuKham_DichVu',
                           lazy = 'subquery',
                           backref=backref('phieuKham',lazy = True))
+    hoaDonThanhToan = relationship('HoaDonThanhToan', backref = backref('phieuKham',uselist = False))
 
 class DichVuKham(db.Model):
     __tablename__ = 'dichVu'
@@ -111,7 +110,7 @@ class DonThuoc(db.Model):
 class PhieuLichDat(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     ngayDat = Column(DateTime,nullable = False)
-
+    hoTen = Column(String(50),nullable = False)
     # ????
     trangThai = Column(Boolean,nullable = False,default = False)
 
