@@ -1,0 +1,87 @@
+:root {
+    --primary-bg-color: #114084;
+    --secondary-bg-color: #3466aa;
+    --third-bg-color: #82b7dc;
+    --primary-text-color: #f1f1f1;
+    --text-holder-color: #808080
+    --dark-coler: #1c1c1c;
+}
+
+header {
+    background-color: #fff;
+    color: var(--primary-text-color);
+    padding: 10px 0;
+}
+
+nav{
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+    font-weight: 500;
+}
+
+nav a.active {
+    color: var(--third-bg-color);
+}
+
+ul.info i{
+    font-size: 1.8rem;
+    color: var(--primary-bg-color);
+}
+
+ul.info h5{
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--primary-bg-color);
+}
+
+ul.info p{
+    font-size: 1rem;
+    margin: 0;
+    color: var(--third-bg-color);
+    font-weight: 500;   
+}
+
+nav .order{
+    color: var(--primary-text-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.footer {
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+    padding: 30px 0;
+}
+
+.footer .footer-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.footer a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer input[type="email"] {
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.footer .btn {
+    border-radius: 5px;
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-text-color)
+}
+
+.footer .social-icons a {
+    color:var(--primary-text-color);
+    margin: 0 10px;
+    font-size: 20px;
+}
