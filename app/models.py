@@ -1,28 +1,29 @@
 from sqlalchemy import Integer,String,Float,ForeignKey,Boolean,Column,DateTime,Enum,Text
-from app import app,db
+from hospitalapp import app,db
 from sqlalchemy.orm import relationship, mapped_column, Mapped, backref
-from enum import Enum as E, unique
+from enum import Enum as RoleEnum
 from datetime import datetime
 
-class Role(E):
+class VaiTro(RoleEnum):
     ADMIN = 1
     BAC_SI = 2
     Y_TA = 3
     BENH_NHAN = 4
+    THU_NGAN = 5
 
 class NguoiDung(db.Model): # Có nên là abstract class
     # __abstract__ = True
     __tablename__ = 'nguoiDung'
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
-    ho = Column(String(10),nullable=False)
+    ho = Column(String(10),nullable=False,unique = True)
     ten = Column(String(10),nullable = False)
     ngaySinh = Column(DateTime,nullable = False)
-    soDienThoai = Column(String(15),nullable=False)
+    soDienThoai = Column(String(15),nullable=False,unique = True)
     ghiChu = Column(String(255),nullable = True)
-    taiKhoan = Column(String(50))
-    matKhau = Column(Text)
+    taiKhoan = Column(String(50),nullable = False,unique = True)
+    matKhau = Column(Text,nullable = False)
     avatar = Column(String(255),nullable = True)
-    role = Column(Enum(Role),nullable = False)
+    role = Column(Enum(VaiTro),nullable = False)
     phieuLichDat = relationship('PhieuLichDat',backref = 'nguoiDung',lazy = True)
 
     def __str__(self):
@@ -39,11 +40,11 @@ class QuyDinh(db.Model):
 
 class HoaDonThanhToan(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
-    ngayKham = Column(DateTime,default = datetime.utcnow)
+    ngayKham = Column(DateTime,default = datetime.utcnow,nullable=False)
     tienKham = Column(Float,nullable = False,default = 0.0)
     tienThuoc = Column(Float,nullable = False,default = 0.0)
     tongTien = Column(Float,nullable = False,default = 0.0)
-    ngayLapHoaDon = Column(DateTime,default = datetime.utcnow)
+    ngayLapHoaDon = Column(DateTime,default = datetime.utcnow,nullable=True)
     trangThai = Column(Boolean,nullable = False,default = False)
     # Bac Si
     phieuKham_id = Column(Integer, ForeignKey("phieuKham.id"), unique=True)
@@ -61,7 +62,7 @@ class PhieuKhamBenh(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     ngayKham = Column(DateTime,default = datetime.utcnow)
     trieuChung = Column(String(255),nullable = False)
-    duDoanLoaiBenh = Column(String(255))
+    duDoanLoaiBenh = Column(String(255),nullable = False)
     bacSi_id = Column(Integer,ForeignKey(NguoiDung.id),nullable = False)
     benhNhan_id = Column(Integer,ForeignKey(NguoiDung.id),nullable = False)
     dichvu = relationship('DichVuKham',
@@ -80,7 +81,7 @@ class DichVuKham(db.Model):
 class DanhMucThuoc(db.Model):
     __tablename__ = 'danhMucThuoc'
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
-    ten = Column(String(100),nullable = False)
+    ten = Column(String(100),nullable = False,unique=True)
     thuoc = relationship('Thuoc',backref = 'danhMucThuoc',lazy = True)
 
 class LoHang(db.Model):
@@ -93,7 +94,7 @@ class LoHang(db.Model):
 
 class Thuoc(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    ten = Column(String(100), nullable=False)
+    ten = Column(String(100), nullable=False,unique = True)
     nhaCungCap = Column(String(100), nullable=False)
     xuatXu = Column(String(100), nullable=False)
     donVi = Column(String(100), nullable=False)
@@ -120,5 +121,4 @@ class PhieuLichDat(db.Model):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-
 
