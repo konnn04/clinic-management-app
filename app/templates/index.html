@@ -1,9 +1,27 @@
 {% extends 'layouts/base.html' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
+    <section class="hero-section"
+             style="background: url('{{ url_for('static', filename='images/img_1.png') }}') no-repeat center center; background-size: cover;">
+        <div class="hero-content">
+            <p class="tagline">Caring for Life</p>
+            <h1><b>Leading the Way<br>in Medical Excellence</b></h1>
+            <button class="ourServices_btn" href = "#">Our Services</button>
+        </div>
+    </section>
+
+    <div class = "text-center">
+        <h5 style="color: #1F2B6C;"><b>Welcome to OU Hospital</b></h5>
+        <h3>A Great Place To Receive Care</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Quisque placerat scelerisque tortor ornare ornare. Convallis felis vitae tortor augue. Velit nascetur proin massa in. Consequat faucibus porttitor enim et.</p>
+        <a href="#" class="btn btn-primary" style="background-color: white;border: none;color : black";><b> Learn More &#10141</b></a>
+    </div>
+
+    <div class = "img2" style="background: url('{{ url_for( 'static',filename = "images/Blackdoctors_1.png" ) }}')">
+    </div>
 {% endblock %}
