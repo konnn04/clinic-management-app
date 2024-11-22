@@ -19,7 +19,6 @@ app.context_processor(update_template_context)
 @app.route('/')
 def index():
     return render_template('index.html')
-
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
     return render_template('appointment.html')

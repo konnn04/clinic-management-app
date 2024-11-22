@@ -1,2 +1,3 @@
 /venv
+app/templates/test.html
 app/__pycache__

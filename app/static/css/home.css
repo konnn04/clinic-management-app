@@ -1,84 +1,19 @@
-.hero-section {
-    position: relative;
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
+.greeting h1{
+    color: #1F2B6C;
+    font-family: "Yeseva One";
 }
 
-.tagline{
-    position: absolute;
-    width: 196px;
-    height: 21px;
-    left: 187px;
-    top: 327px;
-    font-family: "Segoe UI";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-
-    /* Secondary */
+.greeting h3{
+    font-family: "Work Sans", sans-serif;
     color: #159EEC;
 }
 
-h1{
-   position: absolute;
-    width: 519px;
-    height: 110px;
-    left: 186px;
-    top: 356px;
-    font-family: "Segoe UI";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 55px;
-
-    /* Primary */
-    color: #1F2B6C;
-}
-
-.ourServices_btn{
-    font-family: "Segoe UI";
-    justify-content: center;
+.greeting a.btn-primary{
+    align-content:center ;
+    border-radius: 20px;
+    background-color: #BFD2F8;
+    width : 170px;
+    height: 45px;
     border: none;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 13px 35px;
-    gap: 10px;
-
-    position: absolute;
-    left: 187px;
-    top: 498px;
-
-
-    /* Accent */
-    background: #BFD2F8;
-    border-radius: 50px;
-
-    width: 180px;
-    /*height: 19px;*/
-
-
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-
-    color: #1F2B6C;
-}
-
-.img2{
-    display: flex;
-    justify-self: center;
-    width: 992px;
-    height: 250px;
-    left: 187px;
-    top: 1086px;
+    color: black;
 }
