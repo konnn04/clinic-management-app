@@ -24,6 +24,10 @@ def index():
 def appointment():
     return render_template('appointment.html')
 
+@app.route('/staff', methods=['GET', 'POST'])
+def staff():
+    return render_template('staff/login.html')
+
 if __name__ == '__main__':
     app.run(host=host, port=port, debug=True)
 

@@ -1,0 +1,40 @@
+{% extends './layouts/base2.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/staff/login.css')}}">
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="row m-auto">
+        <div class="col-md-6">
+            <h1>OU Medical Staff</h1>
+            <p>Đăng nhập để quản lý lịch khám của bệnh nhân</p>
+            <hr>
+            <div class="logo w-50" >
+                <img src='{{url_for("static", filename="images/medical.gif")}}' alt="OU Medical Staff" class="w-100">
+            </div>
+        </div>
+        
+        <div class="col-md-6 d-flex">
+            <div class="m-auto w-75 my-3 border p-3 rounded">
+                <h2>Đăng nhập</h2>
+                <form action="/staff/login" method="POST" class="row g-3">
+                    <div class="mb-1">
+                        <label for="username" class="form-label">Tên đăng nhập</label>
+                        <input type="text" class="form-control" id="username" name="username" required placeholder="Tên đăng nhập">
+                    </div>
+                    <div class="mb-1">
+                        <label for="password" class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" name="password" required placeholder="Mật khẩu">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </form>
+            </div>            
+        </div>
+    </div>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
