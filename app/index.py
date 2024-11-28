@@ -1,5 +1,10 @@
 from flask import  render_template, request
-from app import app
+from app.admin import *
+from app import app, login_manager
+from flask_login import current_user, login_required, logout_user
+
+from app.models import NguoiDung
+
 host = '0.0.0.0'
 port = 5100
 
@@ -15,18 +20,33 @@ def update_template_context():
 
 app.context_processor(update_template_context)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return NguoiDung.query.get(int(user_id))
+
 # Các route được định nghĩa trong file này sẽ được gọi khi truy cập vào địa chỉ của server
 @app.route('/')
 def index():
     return render_template('index.html')
+
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
     return render_template('appointment.html')
 
 @app.route('/staff', methods=['GET', 'POST'])
-def staff():
+def login():
     return render_template('staff/login.html')
+
+@app.route('/doctor', methods=['GET', 'POST'])
+def doctor():
+    return render_template('doctor/index.html')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('layouts/404.html'), 404
+
 
 if __name__ == '__main__':
     app.run(host=host, port=port, debug=True)
+
 
