@@ -3,6 +3,8 @@ from app import app,db
 from sqlalchemy.orm import relationship, mapped_column, Mapped, backref
 from enum import Enum as RoleEnum
 from datetime import datetime
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class VaiTro(RoleEnum):
     ADMIN = 1
@@ -11,8 +13,7 @@ class VaiTro(RoleEnum):
     BENH_NHAN = 4
     THU_NGAN = 5
 
-class NguoiDung(db.Model): # Có nên là abstract class
-    # __abstract__ = True
+class NguoiDung(db.Model, UserMixin): 
     __tablename__ = 'nguoiDung'
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     ho = Column(String(10),nullable=False,unique = True)
