@@ -1,19 +1,82 @@
 from flask import  render_template, request
-from . import app
-# Define the host and port for the server
+from app import app, login_manager
+from flask_login import current_user, login_required, logout_user,login_user
+from app import utils
+import pdb
+
+from app.models import NguoiDung
+
 host = '0.0.0.0'
-port = 5000
+port = 5100
 
-# Create the Flask app
+def update_template_context():
+    return dict(
+        meta=dict(
+            title='Phòng mạch OU - Trang chủ',
+            description='Chào mừng bạn đến với Phòng mạch OU, nơi cung cấp dịch vụ chăm sóc sức khỏe tốt nhất cho bạn và gia đình.',
+            keywords='phòng mạch, phòng mạch OU, chăm sóc sức khỏe, bác sĩ, y tá, y khoa, y học, bệnh viện, bệnh tật, bệnh lý, thuốc, dược phẩm, y học cổ truyền, y học hiện đại, y học phương Đông, y học phương Tây, y học phổ thông, y học chuyên sâu, y học cấp cứu, y học phòng ngừa, y học gia đình, y học công cộng, y học cộng đồng, y học tư vấn, y học chăm sóc, y học tâm lý, y học thể chất, y học tinh thần, y học xã hội, y học môi trường, y học công nghệ, y học thông tin, y học truyền thông, y học giáo dục, y học đào tạo, y học nghiên cứu, y học phát triển, y học quản lý, y học hành vi, y học tư duy, y học sáng tạo, y học đổi mới, y học phát minh',
+            author='Duy Quang Trieu'
+        ),
+    )
 
-@app.route('/', methods=['GET','POST'])
+app.context_processor(update_template_context)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return NguoiDung.query.get(int(user_id))
+
+# Các route được định nghĩa trong file này sẽ được gọi khi truy cập vào địa chỉ của server
+@app.route('/')
 def index():
-    name = None
-    if request.method == 'POST':
-        name = request.form['name']
+    return render_template('index.html')
 
-    return render_template('hello.html', name = (name or 'Meow'))
+@app.route('/appointment', methods=['GET', 'POST'])
+def appointment():
+    return render_template('appointment.html')
+
+@app.route('/login', methods = ['GET','POST'])
+def patient_login():
+    err_msg = ""
+    if request.method.__eq__('POST'):
+        try:
+            username = request.form.get('username')
+            password = request.form.get('password')
+            user = utils.check_account(username, password)
+            if user:
+                login_user(user=user)
+                next = request.args.get('next', 'index')
+                return redirect(url_for(next))
+            else:
+                err_msg = 'Tên người dùng hoặc mật khẩu không chính xác !!!!!'
+
+        except Exception as ex:
+            import traceback
+            err_msg = "Đã xảy ra lỗi: " + str(ex)
+            # In traceback chi tiết ra console
+            traceback.print_exc()
+    return render_template('login.html',err_msg = err_msg)
+
+@app.route('/logout')
+def patient_logout():
+    logout_user()
+    return redirect(url_for('patient_login'))
+
+
+@app.route('/staff', methods=['GET', 'POST'])
+def login():
+    return render_template('staff/login.html')
+
+@app.route('/doctor', methods=['GET', 'POST'])
+def doctor():
+    return render_template('doctor/index.html')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('layouts/404.html'), 404
+
 
 if __name__ == '__main__':
+    from app.admin import *
     app.run(host=host, port=port, debug=True)
+
 

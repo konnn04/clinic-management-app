@@ -1,0 +1,70 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <h3 class="mb-4">Create Employee</h3>
+        <form>
+            <div class="row g-3">
+                <!-- Center Name -->
+                <div class="col-md-6">
+                    <label for="centerName" class="form-label">Center Name</label>
+                    <select id="centerName" class="form-select" required>
+                        <option selected disabled>Select Center Name</option>
+                        <option value="1">Center 1</option>
+                        <option value="2">Center 2</option>
+                    </select>
+                </div>
+
+                <!-- Email ID -->
+                <div class="col-md-6">
+                    <label for="emailId" class="form-label">Email ID</label>
+                    <input type="email" id="emailId" class="form-control" placeholder="Enter Email ID" required>
+                </div>
+
+                <!-- Verticals -->
+                <div class="col-md-6">
+                    <label for="verticals" class="form-label">Verticals</label>
+                    <select id="verticals" class="form-select" required>
+                        <option selected disabled>Choose vertical</option>
+                        <option value="1">Vertical 1</option>
+                        <option value="2">Vertical 2</option>
+                    </select>
+                </div>
+
+                <!-- Password -->
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter Password" required>
+                </div>
+
+                <!-- Center Code -->
+                <div class="col-md-6">
+                    <label for="centerCode" class="form-label">Center Code</label>
+                    <input type="text" id="centerCode" class="form-control" placeholder="Enter Center Code" required>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="col-md-6">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Enter Password" required>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="col-md-6">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="tel" id="phoneNumber" class="form-control" placeholder="Optional">
+                </div>
+
+                <!-- Area -->
+                <div class="col-md-6">
+                    <label for="area" class="form-label">Area</label>
+                    <input type="text" id="area" class="form-control" placeholder="Autofill but editable">
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

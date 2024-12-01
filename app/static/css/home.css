@@ -1,0 +1,19 @@
+.greeting h1{
+    color: #1F2B6C;
+    font-family: "Yeseva One";
+}
+
+.greeting h3{
+    font-family: "Work Sans", sans-serif;
+    color: #159EEC;
+}
+
+.greeting a.btn-primary{
+    align-content:center ;
+    border-radius: 20px;
+    background-color: #BFD2F8;
+    width : 170px;
+    height: 45px;
+    border: none;
+    color: black;
+}

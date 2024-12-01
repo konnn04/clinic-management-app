@@ -1,0 +1,93 @@
+{% extends 'layouts/base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="css/appointment.css">
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Đặt lịch khám</h1>
+        <p>Để đặt lịch khám, vui lòng điền vào mẫu sau:</p>
+    </div>
+    <div class="row">
+        <div class="appointment-form col-md-8">
+            <form action="/appointment" method="POST" class="row g-3">
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên">
+                    <label for="name">Họ và tên</label>
+                </div>
+                <div class="form-floating mb-3 col-md-6">
+                    <select name="gender" id="gender" value="1" class="form-select">
+                        <option value="1">Nam</option>
+                        <option value="0">Nữ</option>
+                    </select>
+                    <label for="gender">Giới tính</label>
+                </div>
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại">
+                    <label for="phone">Số điện thoại</label>
+                </div>
+                <div class="form-floating mb-3 col-md-6">
+                    <select class="form-select" name="date" id="date">
+                        <option value="2021-10-01">2021-10-01</option>
+                        <option value="2021-10-02">2021-10-02</option>
+                        <option value="2021-10-03">2021-10-03</option>
+                        <option value="2021-10-04">2021-10-04</option>
+                        <option value="2021-10-05">2021-10-05</option>
+                    </select>
+                    <label for="date">Ngày khám</label>
+                </div>
+                <div class="form-floating mb-3 col-md-6">
+                    <select class="form-select" name="time" id="time">
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                    </select>
+                    <label for="time">Giờ khám</label>
+                </div>
+                <!-- <div class="form-floating mb-3 col-md-6">
+                    <select class="form-select" name="doctor" id="doctor">
+                        <option value="1">Bác sĩ A</option>
+                        <option value="2">Bác sĩ B</option>
+                        <option value="3">Bác sĩ C</option>
+                        <option value="4">Bác sĩ D</option>
+                    </select>
+                    <label for="doctor">Bác sĩ</label>
+                </div>
+                <div class="form-floating mb-3 col-md-6">
+                    <select class="form-select" name="service" id="service">
+                        <option value="1">Khám tổng quát</option>
+                        <option value="2">Khám nội khoa</option>
+                        <option value="3">Khám ngoại khoa</option>
+                        <option value="4">Khám mắt</option>
+                    </select>
+                    <label for="service">Dịch vụ</label>
+                </div> -->
+                <div class="form-floating mb-3 col-md-12">
+                    <textarea class="form-control" id="note" name="note" placeholder="Ghi chú"></textarea>
+                    <label for="note">Ghi chú</label>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary w-100">Đặt lịch</button>
+                </div>
+            </form>
+        </div>
+        <div class="doctor-info col-md-4">
+            <img src="https://thuvienmeme.com/wp-content/uploads/2024/04/ca-nay-nang-meme-anh-da-den-bac-si.jpg" alt="" srcset="">
+            <h3>Bác sĩ A</h3>
+            <p>Chuyên khoa: Nội khoa</p>
+            <p>Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM</p>
+            <p>Điện thoại: 0123 456 789</p>
+        </div>
+    </div>
+
+    <div class="shedule">
+        
+    </div>
+            
+{% endblock %}
