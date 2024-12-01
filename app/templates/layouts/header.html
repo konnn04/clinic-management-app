@@ -52,6 +52,21 @@
                 <li class="navbar-item">
                     <a class="nav-link" href="#">Dịch vụ</a>
                 </li>
+
+
+                {% if current_user.is_authenticated %}
+                    <li class="navbar-item">
+                        <a class="nav-link text-success" href="{{ url_for('index') }}">Chào {{ current_user.taiKhoan }}</a>
+                    </li>
+
+                    <li class="navbar-item">
+                        <a class="nav-link text-danger" href="{{ url_for('patient_logout') }}">Đăng xuất</a>
+                    </li>
+                {% else %}
+                    <li class="navbar-item">
+                        <a class="nav-link" href="{{ url_for('patient_login') }}">Đăng nhập</a>
+                    </li>
+                {% endif %}
             </ul>
             <ul class="navbar-nav">
                 <li class="navbar-item">

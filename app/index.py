@@ -1,7 +1,8 @@
 from flask import  render_template, request
-from app.admin import *
 from app import app, login_manager
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required, logout_user,login_user
+from app import utils
+import pdb
 
 from app.models import NguoiDung
 
@@ -33,6 +34,34 @@ def index():
 def appointment():
     return render_template('appointment.html')
 
+@app.route('/login', methods = ['GET','POST'])
+def patient_login():
+    err_msg = ""
+    if request.method.__eq__('POST'):
+        try:
+            username = request.form.get('username')
+            password = request.form.get('password')
+            user = utils.check_account(username, password)
+            if user:
+                login_user(user=user)
+                next = request.args.get('next', 'index')
+                return redirect(url_for(next))
+            else:
+                err_msg = 'Tên người dùng hoặc mật khẩu không chính xác !!!!!'
+
+        except Exception as ex:
+            import traceback
+            err_msg = "Đã xảy ra lỗi: " + str(ex)
+            # In traceback chi tiết ra console
+            traceback.print_exc()
+    return render_template('login.html',err_msg = err_msg)
+
+@app.route('/logout')
+def patient_logout():
+    logout_user()
+    return redirect(url_for('patient_login'))
+
+
 @app.route('/staff', methods=['GET', 'POST'])
 def login():
     return render_template('staff/login.html')
@@ -47,6 +76,7 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
+    from app.admin import *
     app.run(host=host, port=port, debug=True)
 
 

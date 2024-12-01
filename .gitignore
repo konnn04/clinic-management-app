@@ -3,3 +3,4 @@ app/templates/test.html
 app/__pycache__
 .venv
 venv
+instance/
