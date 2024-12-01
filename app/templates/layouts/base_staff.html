@@ -12,13 +12,55 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <!-- local style -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/awesome.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base_staff.css')}}">
     {% block styles %} {% endblock %}
 </head>
 <body>
     
-    <main class="container d-flex justify-content-center my-4" style="height: 100vh;">
-        {% block content %}{% endblock %}
+    <main class="d-flex min-vh-100 p-3">
+        <div id="left-side">
+            <div class="logo">
+                <img src="{{url_for('static', filename='images/logo.png')}}" alt="OU Medical Staff">
+            </div>
+            <ul class="nav flex-column nav-func">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/" >
+                        <i class="fa-sharp-duotone fa-solid fa-grid-horizontal"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="fa-sharp-duotone fa-solid fa-calendar"></i>
+                        Our Patients
+                    </a>
+                </li>
+            </ul>
+    
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="fa-sharp-duotone fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="fa-sharp-duotone fa-solid fa-sign-out"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="main">
+            <div id="header">
+                <h1>Dashboard</h1>
+                <h4>Doctor</h4>
+            </div>
+            <div id="content">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
     </main>
 
 </body>
