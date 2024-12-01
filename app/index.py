@@ -37,9 +37,12 @@ def appointment():
 def login():
     return render_template('staff/login.html')
 
+# Doctor
 @app.route('/doctor', methods=['GET', 'POST'])
 def doctor():
     return render_template('doctor/index.html')
+
+
 
 @app.errorhandler(404)
 def page_not_found(e):
