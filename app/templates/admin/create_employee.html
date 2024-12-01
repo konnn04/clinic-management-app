@@ -1,0 +1,42 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Tạo Nhân Viên</title>#}
+{#    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">#}
+{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Tạo Nhân Viên</h1>#}
+{#    <form method="POST">#}
+{#        <label for="name">Tên:</label>#}
+{#        <input type="text" id="name" name="name" required>#}
+{##}
+{#        <label for="email">Email:</label>#}
+{#        <input type="email" id="email" name="email" required>#}
+{##}
+{#        <button type="submit">Tạo</button>#}
+{#    </form>#}
+{#</body>#}
+{#</html>#}
+
+
+{% extends 'admin/model/create.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center text-danger">TẠO NGƯỜI DÙNG MỚI</h1>
+
+    <!-- Form -->
+    <form method="post" enctype="multipart/form-data">
+        {{ lib.render_form(form, extra_classes="row g-3") }}
+
+        <!-- Nút Submit -->
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-primary">Tạo Người Dùng</button>
+            <a href="{{ url_for('.index_view') }}" class="btn btn-secondary">Quay Lại</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
