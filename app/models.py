@@ -13,6 +13,7 @@ class VaiTro(RoleEnum):
     BENH_NHAN = 4
     THU_NGAN = 5
 
+
 class NguoiDung(db.Model, UserMixin): 
     __tablename__ = 'nguoiDung'
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
