@@ -33,7 +33,6 @@ class CreateStaffView(BaseView):
                     raise ValueError("Vai trò không được để trống!")
                 role = VaiTro(int(roleValue))
                 if matKhau.strip().__eq__(xacNhanMK.strip()):
-                    print(ho, ten, matKhau, xacNhanMK)
                     utils.addUser(ho,ten,ngaySinh, soDienThoai, email, taiKhoan, matKhau, avatar, role)
                     return redirect(url_for('admin.index'))
                 else:
