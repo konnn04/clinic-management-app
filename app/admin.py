@@ -25,7 +25,7 @@ class CreateStaffView(BaseView):
             taiKhoan = request.form.get('tenTK')
             matKhau = request.form.get('matKhau')
             xacNhanMK = request.form.get('xacNhanMK')
-            avatar = request.files.get('avatar')
+            # avatar = request.files.get('avatar',"")
             roleValue = request.form.get('vaiTro')
 
             try:
@@ -33,7 +33,7 @@ class CreateStaffView(BaseView):
                     raise ValueError("Vai trò không được để trống!")
                 role = VaiTro(int(roleValue))
                 if matKhau.strip().__eq__(xacNhanMK.strip()):
-                    utils.addUser(ho,ten,ngaySinh, soDienThoai, email, taiKhoan, matKhau, avatar, role)
+                    utils.addUser(ho,ten,ngaySinh, soDienThoai, email, taiKhoan, matKhau, "", role)
                     return redirect(url_for('admin.index'))
                 else:
                     err_msg = "MAT KHAU KHONG KHOP!!!"

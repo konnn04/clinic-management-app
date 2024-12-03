@@ -18,7 +18,13 @@
         </div>
         
         <div class="col-md-6 d-flex">
+            
             <div class="m-auto w-75 my-3 border p-3 rounded">
+                {% if msg %}
+                <div class="alert alert-danger" role="alert">
+                    {{msg}}
+                </div>
+                {% endif %}
                 <h2>Đăng nhập</h2>
                 <form action="/staff/login" method="POST" class="row g-3">
                     <div class="mb-1">

@@ -127,4 +127,6 @@ class PhieuLichDat(db.Model):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-
+        ad = NguoiDung(ho = 'admin',ten = 'admin',ngaySinh = datetime.now(),soDienThoai = '0123456789',email = 'admin@admin.com',taiKhoan = 'admin',matKhau = generate_password_hash('admin'),role = VaiTro.ADMIN)
+        db.session.add(ad)
+        db.session.commit()
