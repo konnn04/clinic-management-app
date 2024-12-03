@@ -12,14 +12,74 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <!-- local style -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/awesome.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base_staff.css')}}">
     {% block styles %} {% endblock %}
 </head>
 <body>
     
-    <main class="container d-flex justify-content-center my-4" style="height: 100vh;">
-        {% block content %}{% endblock %}
+    <main class="d-flex min-vh-100 p-3 gap-3">
+        <div id="left-side" class="bd-round">
+            <div class="logo my-2 p-2" >
+                <img src="{{url_for('static', filename='images/logo.png')}}" alt="OU Medical Staff" class="w">
+            </div>
+            <ul class="nav flex-column nav-func">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{url_for('doctor')}}" >
+                        <i class="fa-sharp-duotone fa-solid fa-grid-horizontal me-3"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('patients_doctor')}}">
+                        <i class="fa-sharp-duotone fa-solid fa-calendar me-3"></i>
+                        Our Patients
+                    </a>
+                </li>
+            </ul>
+                
+            <ul class="nav flex-column nav-tool">
+                <h5>Account</h5>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="fa-sharp-duotone fa-solid fa-user me-3"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        <i class="fa-sharp-duotone fa-solid fa-sign-out me-3"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="main">
+            <div id="header" class="bd-round p-4 d-flex align-items-center justify-content-between" >
+                <div class="title">
+                    <h1>{% block title %}
+                        {% endblock %}</h1>
+                </div>
+                <div class="action">
+                    <h4>Doctor</h4>
+                </div>               
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="avt">
+                        <img src="https://png.pngtree.com/png-vector/20220709/ourmid/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_5809521.png" alt="" class="w">
+                    </div>
+                    <div class="info">
+                        <h5>Admin</h5>
+                        <h6>Role admin</h6>
+                    </div>
+                </div>
+            </div>
+            <div id="content" class="p-3">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

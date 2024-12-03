@@ -1,0 +1,102 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f1f1f1;
+}
+
+img.w{
+    width: 100%;
+}
+
+.bd-round{
+    border-radius: 1rem;
+}
+
+#left-side {
+    width: 300px;
+    background-color: #fff;
+    height: 90vh;
+}
+
+#left-side .nav-link{
+    color: #000;
+    padding: .8rem 2rem;
+    font-size: 1.1rem;
+}
+
+#left-side .nav-link:hover,
+#left-side .nav-link.active{
+    background-color: #00e1ff27;
+}
+
+#left-side .logo {
+    text-align: center;
+}
+
+#left-side .nav-func{
+    margin-top: 20px;
+}
+
+#left-side .nav{
+    height: 40%;
+}
+
+#left-side  ul.nav h5{
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0 2rem;
+}
+
+#main{
+    width: calc(100% - 300px);
+}
+
+#header{
+    background-color: #fff;
+    
+}
+
+#header h1{
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin: auto;
+}
+
+#header>div{
+    padding: 0 1rem;
+    height: 30px;
+    display: flex;
+}
+
+#header h4{
+    font-size: 1rem;
+    margin: auto 0;
+}
+
+#header .action{
+    flex: 1;
+    border-left: 1px solid #0000004f;
+    border-right: 1px solid #0000004f;
+}
+
+#header .info> *{
+    margin: 0
+}
+
+#header .info h6{
+    text-transform: uppercase;
+    color: rgb(0, 137, 190);
+    font-size: .8rem;
+}
+
+#header .avt{
+    width: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.box{
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 1rem;
+}

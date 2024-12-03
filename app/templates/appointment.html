@@ -13,11 +13,11 @@
         <div class="appointment-form col-md-8">
             <form action="/appointment" method="POST" class="row g-3">
                 <div class="form-floating mb-3 col-md-6">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" required>
                     <label for="name">Họ và tên</label>
                 </div>
                 <div class="form-floating mb-3 col-md-6">
-                    <select name="gender" id="gender" value="1" class="form-select">
+                    <select name="gender" id="gender" value="1" class="form-select" required>
                         <option value="1">Nam</option>
                         <option value="0">Nữ</option>
                     </select>
@@ -28,11 +28,11 @@
                     <label for="email">Email</label>
                 </div>
                 <div class="form-floating mb-3 col-md-6">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" required>
                     <label for="phone">Số điện thoại</label>
                 </div>
                 <div class="form-floating mb-3 col-md-6">
-                    <select class="form-select" name="date" id="date">
+                    <select class="form-select" name="date" id="date" required>
                         <option value="2021-10-01">2021-10-01</option>
                         <option value="2021-10-02">2021-10-02</option>
                         <option value="2021-10-03">2021-10-03</option>
@@ -42,7 +42,7 @@
                     <label for="date">Ngày khám</label>
                 </div>
                 <div class="form-floating mb-3 col-md-6">
-                    <select class="form-select" name="time" id="time">
+                    <select class="form-select" name="time" id="time" required>
                         <option value="08:00">08:00</option>
                         <option value="09:00">09:00</option>
                         <option value="10:00">10:00</option>

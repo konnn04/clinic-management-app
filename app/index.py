@@ -66,9 +66,14 @@ def patient_logout():
 def login():
     return render_template('staff/login.html')
 
+# Doctor
 @app.route('/doctor', methods=['GET', 'POST'])
 def doctor():
     return render_template('doctor/index.html')
+
+@app.route('/doctor/patients', methods=['GET', 'POST'])
+def patients_doctor():
+    return render_template('doctor/patients.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
