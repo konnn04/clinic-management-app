@@ -1,21 +1,21 @@
 from app.models import NguoiDung,VaiTro
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
+from datetime import datetime
 
-
-def check_account(username,password,role = VaiTro.BENH_NHAN):
-    user = NguoiDung.query.filter_by(taiKhoan=username, role=role).first()
-    if user and user.matKhau.__eq__(password):
+def check_account(username,password):
+    user = NguoiDung.query.filter_by(taiKhoan=username).first()
+    if user and check_password_hash(user.matKhau, password):
         return user
     else:
         return None
 
 
 def addUser(ho,ten,ngaySinh,soDienThoai,email,taiKhoan,matKhau,avatar,role = VaiTro.BENH_NHAN):
-    matKhau = generate_password_hash(matKhau,method='pbkdf2:sha512')
+    matKhau = generate_password_hash(matKhau)
     user = NguoiDung(ho = ho.strip(),
                      ten = ten.strip(),
-                     ngaySinh = ngaySinh,
+                     ngaySinh = datetime.strptime(ngaySinh, "%Y-%m-%d"),
                      soDienThoai = soDienThoai.strip(),
                      email = email.strip(),
                      taiKhoan = taiKhoan.strip(),

@@ -1,100 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Employee</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    {% if err_msg %}
-        <div class = "alert alert-danger">
-            <h4>{{ err_msg }}</h4>
-        </div>
-    {% endif %}
+{#{% extends 'templates/bootstrap4/admin/base.html' %}#}
+{% extends 'admin/base.html' %}
 
-    <div class="container mt-5">
-        <h3 class="mb-4">Tạo nhân viên</h3>
-        <form method="POST" action = {{ url_for('create_employee.index') }} enctype="multipart/form-data">
-            <div class="row g-3">
-                <!--Họ-->
-                <div class="col-md-6">
-                    <label for="ho" class="form-label">Họ</label>
-                    <input type="text" id="ho" class="form-control" name="ho" placeholder="Nhập họ nhân viên" required>
-                </div>
+{% block body %}
+<div class="container mt-5">
+    <h3 class="mb-4">Tạo nhân viên</h3>
+    <form method="POST" action = {{ url_for("create_employee.index") }} enctype="multipart/form-data">
+        <div class="row g-3">
+            <!--Họ-->
+            <div class="col-md-6">
+                <label for="ho" class="form-label">Họ</label>
+                <input type="text" id="ho" class="form-control" name="ho" placeholder="Nhập họ nhân viên" required>
+            </div>
 
 {#                Tên#}
-                <div class="col-md-6">
-                    <label for="ten" class="form-label">Tên</label>
-                    <input type="text" id="ten" class="form-control" name="ten" placeholder="Nhập tên nhân viên" required>
-                </div>
+            <div class="col-md-6">
+                <label for="ten" class="form-label">Tên</label>
+                <input type="text" id="ten" class="form-control" name="ten" placeholder="Nhập tên nhân viên" required>
+            </div>
 
 {#                Ngày sinh#}
-                    <div class="col-md-6">
-                        <label for="ngaySinh" class="form-label">Ngày sinh</label>
-                        <input type="date" id="ngaySinh" class="form-control" name="ngaySinh" placeholder="Nhập ngày sinh" required>
-                    </div>
+            <div class="col-md-6">
+                <label for="ngaySinh" class="form-label">Ngày sinh</label>
+                <input type="date" id="ngaySinh" class="form-control" name="ngaySinh" placeholder="Nhập ngày sinh" required>
+            </div>
 
 {#                Số điện thoại#}
-                <div class="col-md-6">
-                    <label for="soDienThoai" class="form-label">Số điện thoại</label>
-                    <input type="tel" id="soDienThoai" class="form-control" name="soDienThoai" placeholder="Nhập số điện thoại" required>
-                </div>
+            <div class="col-md-6">
+                <label for="soDienThoai" class="form-label">Số điện thoại</label>
+                <input type="tel" id="soDienThoai" class="form-control" name="soDienThoai" placeholder="Nhập số điện thoại" required>
+            </div>
 
 {#                Email#}
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" class="form-control" name="email" placeholder="Nhập email" required>
-                </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" name="email" placeholder="Nhập email" required>
+            </div>
 
 {#                tên tài khoản#}
-                <div class="col-md-6">
-                    <label for="tenTK" class="form-label">Tên tài khoản</label>
-                    <input type="text" id="tenTK" class="form-control" name = "tenTK" placeholder="Nhập tên tài khoản" required>
-                </div>
+            <div class="col-md-6">
+                <label for="tenTK" class="form-label">Tên tài khoản</label>
+                <input type="text" id="tenTK" class="form-control" name = "tenTK" placeholder="Nhập tên tài khoản" required>
+            </div>
 
 {#                Mật khẩu#}
-                <div class="col-md-6">
-                    <label for="matKhau" class="form-label">Mật khẩu</label>
-                    <input type="password" id="matKhau" class="form-control" name="matKhau" placeholder="Nhập mật khẩu" required>
-                </div>
+            <div class="col-md-6">
+                <label for="matKhau" class="form-label">Mật khẩu</label>
+                <input type="password" id="matKhau" class="form-control" name="matKhau" placeholder="Nhập mật khẩu" required>
+            </div>
 
 {#                Xác nhận mật khẩu#}
-                <div class="col-md-6">
-                    <label for="xacNhanMK" class="form-label">Xác nhận mật khẩu</label>
-                    <input type="password" id="xacNhanMK" class="form-control" name="xacNhanMK" placeholder="Xác nhân mật khẩu" required>
-                </div>
+            <div class="col-md-6">
+                <label for="xacNhanMK" class="form-label">Xác nhận mật khẩu</label>
+                <input type="password" id="xacNhanMK" class="form-control" name="xacNhanMK" placeholder="Xác nhân mật khẩu" required>
+            </div>
 
 {#                avatar#}
-                <div class="col-md-6">
-                    <label for="avatar" class="form-label">Chọn avatar</label>
-                    <input type="file" id="avatar" class="form-control" name="avatar" placeholder="Chọn avatar" required>
-                </div>
+            <div class="col-md-6">
+                <label for="avatar" class="form-label">Chọn avatar</label>
+                <input type="file" id="avatar" class="form-control" name="avatar" placeholder="Chọn avatar">
+            </div>
 
 
 {#                role#}
-                <div class="col-md-6">
-                    <label for="vaiTro" class="form-label">Vai trò</label>
-                    <select id="vaiTro" class="form-select" name = "vaiTro" required>
-                        <option selected disabled>Chọn vai trò</option>
-                        {%  for r in VaiTro %}
-                            {% if r.name != 'BENH_NHAN' %}
-                            <option value="{{ r.value }}">{{ r.name }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
+            <div class="col-md-6">
+                <label for="vaiTro" class="form-label">Vai trò</label>
+                <select id="vaiTro" class="form-select" name = "vaiTro" required>
+                    <option selected disabled>Chọn vai trò</option>
+                    {%  for r in VaiTro %}
+                        {% if r.name != 'BENH_NHAN' %}
+                        <option value="{{ r.value }}">{{ r.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
             </div>
+        </div>
 
-            <!-- Submit Button -->
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-        </form>
-    </div>
-
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        <!-- Submit Button -->
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

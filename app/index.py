@@ -1,10 +1,10 @@
 from flask import  render_template, request
-from app import app, login_manager
+from app import app, login_manager, roles_required
 from flask_login import current_user, login_required, logout_user,login_user
 from app import utils
 import pdb
 
-from app.models import NguoiDung
+from app.models import NguoiDung, VaiTro
 
 host = '0.0.0.0'
 port = 5100
@@ -34,6 +34,7 @@ def index():
 def appointment():
     return render_template('appointment.html')
 
+
 @app.route('/login', methods = ['GET','POST'])
 def patient_login():
     err_msg = ""
@@ -52,7 +53,7 @@ def patient_login():
         except Exception as ex:
             import traceback
             err_msg = "Đã xảy ra lỗi: " + str(ex)
-            # In traceback chi tiết ra console
+           # In traceback chi tiết ra console
             traceback.print_exc()
     return render_template('login.html',err_msg = err_msg)
 
@@ -62,13 +63,43 @@ def patient_logout():
     return redirect(url_for('patient_login'))
 
 
-@app.route('/staff', methods=['GET', 'POST'])
-def login():
-    return render_template('staff/login.html')
+@app.route('/staff')
+def staff():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    if current_user.role == VaiTro.ADMIN:
+        return redirect(url_for('admin.index'))
+    elif current_user.role == VaiTro.BAC_SI:
+        return redirect(url_for('doctor'))
+    else:
+        return redirect(url_for('index'))
 
+@app.route('/staff/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect('staff')
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = utils.check_account(username, password)
+        if user and user.role in [1, 2, 3, 5]:
+            login_user(user)
+            return redirect(url_for('staff'))
+        else:
+            return render_template('staff/login.html', msg='Sai tài khoản')
+        
+    return render_template('staff/login.html')
+# Doctor
 @app.route('/doctor', methods=['GET', 'POST'])
+@roles_required([VaiTro.BAC_SI])
 def doctor():
     return render_template('doctor/index.html')
+
+@app.route('/doctor/patients', methods=['GET', 'POST'])
+@roles_required([VaiTro.BAC_SI])
+def patients_doctor():
+    return render_template('doctor/patients.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

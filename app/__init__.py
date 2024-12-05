@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
+from functools import wraps
 import cloudinary
 
 
@@ -29,5 +30,14 @@ cloudinary.config(
     secure=True
 )
 
+def roles_required(roles):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if current_user.role not in roles:
+                return "You don't have permission to access this page"
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
 
 
