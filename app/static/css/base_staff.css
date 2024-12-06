@@ -24,7 +24,8 @@ img.w{
 }
 
 #left-side .nav-link:hover,
-#left-side .nav-link.active{
+#left-side .nav-link.active,
+#left-side li.active .nav-link{
     background-color: #00e1ff27;
 }
 
@@ -47,7 +48,7 @@ img.w{
 }
 
 #main{
-    width: calc(100% - 300px);
+    flex: 1;
 }
 
 #header{
@@ -104,4 +105,59 @@ img.w{
 .form-group label{
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+#left-side {
+    position: relative;
+}
+
+#left-side,
+#left-side *{
+    transition: all .3s;
+}
+
+#toggle-close{
+    position: absolute;
+    right: -1.2rem;
+    top: calc(50% - 1.2rem);
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #0000004f;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+#left-side:hover #toggle-close{
+    opacity: 1;
+}
+
+#left-side.close #toggle-close{
+    transform: rotate(-180deg);
+}
+
+#left-side.close{
+    width: 70px;
+}
+
+#left-side.close *{
+    font-size: 0!important;
+}
+
+#left-side.close i{
+    font-size: 1.5rem!important;
+    margin: 0!important;
+}
+
+
+#left-side.close li{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }

@@ -4,6 +4,8 @@
 
 {% set render_ctx = h.resolve_ctx() %}
 
+
+
 {% block content %}
 
   {% call lib.form_tag(action=url_for('.edit_view', id=request.args.get('id'), url=return_url)) %}

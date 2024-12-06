@@ -38,7 +38,7 @@ def appointment():
 @app.route('/logout')
 def patient_logout():
     logout_user()
-    return redirect(url_for('patient_login'))
+    return redirect(url_for('login'))
 
 
 @app.route('/staff')
@@ -76,16 +76,29 @@ def login():
 @app.route('/doctor', methods=['GET', 'POST'])
 @roles_required([VaiTro.BAC_SI])
 def doctor():
-    return render_template('doctor/index.html')
+    return render_template('doctor/index.html', doctor_menu = doctor_menu, index=0)
 
 @app.route('/doctor/patients', methods=['GET', 'POST'])
 @roles_required([VaiTro.BAC_SI])
 def patients_doctor():
-    return render_template('doctor/patients.html')
+    return render_template('doctor/patients.html', doctor_menu = doctor_menu, index=1)
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('layouts/404.html'), 404
+
+doctor_menu = [
+    {
+        'name': 'Thống kê',
+        'url_for': 'doctor',
+        'icon': 'fa fa-dashboard'
+    },
+    {
+        'name': 'Danh sách bệnh nhân',
+        'url_for': 'patients_doctor',
+        'icon': 'fa fa-users'
+    }
+]
 
 
 if __name__ == '__main__':

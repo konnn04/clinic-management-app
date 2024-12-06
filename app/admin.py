@@ -2,22 +2,30 @@ from . import app, admin, db
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from app.models import NguoiDung, VaiTro, Thuoc, LoHang, DanhMucThuoc
-from flask_admin import BaseView,expose
+from flask_admin import BaseView,expose, AdminIndexView
 from app import utils
 from flask_admin.model.template import EndpointLinkRowAction
 from flask_login import current_user, login_required, logout_user
 from flask import redirect, url_for, request,render_template,flash
 
 
-admin = Admin(app, name='Admin',template_mode='bootstrap4')
+
+
 
 class MyModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.role == VaiTro.ADMIN
+    
     list_template = 'admin/list.html'
     create_template = 'admin/create.html'
     edit_template = 'admin/edit.html'
     details_template = 'admin/details.html'
 
-class CreateStaffView(BaseView):
+class MyBaseView(BaseView):
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.role == VaiTro.ADMIN
+
+class CreateStaffView(MyBaseView):
     @expose('/', methods=['GET', 'POST'])
     def index(self, *args, **kwargs):
         err_msg = ""
@@ -41,7 +49,7 @@ class CreateStaffView(BaseView):
                     utils.addUser(ho,ten,ngaySinh, soDienThoai, email, taiKhoan, matKhau, "", role)
                     return redirect(url_for('admin.index'))
                 else:
-                    err_msg = "MAT KHAU KHONG KHOP!!!"
+                    err_msg = "Password not match"
             except Exception as ex:
                 import traceback
                 err_msg = "Đã xảy ra lỗi: " + str(ex)
@@ -104,13 +112,60 @@ class MedicineCategoryView(MyModelView):
         'thuoc' : 'Thuốc'
     }
 
-admin.add_view(UserView(NguoiDung, db.session,name = "Danh sách người dùng"))
-admin.add_view(CreateStaffView(name='Tạo nhân viên', endpoint='create_employee'))
+class MyAdminIndexView(AdminIndexView):
+    @expose('/')
+    def index(self):
+        if not current_user.is_authenticated or current_user.role != VaiTro.ADMIN:
+            return redirect(url_for('login'))
+        return super(MyAdminIndexView, self).index()
+    
+admin = Admin(
+    app, 
+    name='Admin', 
+    template_mode='bootstrap4', 
+    index_view=MyAdminIndexView(
+        name="Trang chủ", 
+        menu_icon_type='fa', 
+        menu_icon_value='fa-solid fa-home me-3'
+        )
+    )
+
+admin.add_view(UserView(
+    NguoiDung, 
+    db.session, 
+    name='Danh sách người dùng', 
+    menu_icon_type='fa', 
+    menu_icon_value='fa-solid fa-users me-3'
+    ))
+admin.add_view(CreateStaffView(
+    name='Tạo nhân viên', 
+    endpoint='create_employee', 
+    menu_icon_type='fa', 
+    menu_icon_value='fa-solid fa-user-plus me-3'
+))
 
 # Quản lý thuốc
-admin.add_view(MedicineView(Thuoc,db.session,name="Quản lý thuốc"))
-admin.add_view(ConsignmentView(LoHang,db.session,name = "Lô hàng"))
-admin.add_view(MedicineCategoryView(DanhMucThuoc,db.session, name = 'Danh mục thuốc'))
+admin.add_view(MedicineView(
+    Thuoc, 
+    db.session, 
+    name="Quản lý thuốc", 
+    menu_icon_type='fa', 
+    menu_icon_value='fa-solid fa-pills me-3'
+))
+admin.add_view(ConsignmentView(
+    LoHang, 
+    db.session, 
+    name="Lô hàng", 
+    menu_icon_type='fa', 
+    menu_icon_value='fa-solid fa-boxes me-3'
+))
+admin.add_view(MedicineCategoryView(
+    DanhMucThuoc, 
+    db.session, 
+    name='Danh mục thuốc', 
+    menu_icon_type='fa', 
+    menu_icon_value='fa-solid fa-th-list me-3'
+))
 
 
 
