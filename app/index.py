@@ -35,32 +35,10 @@ def appointment():
     return render_template('appointment.html')
 
 
-@app.route('/login', methods = ['GET','POST'])
-def patient_login():
-    err_msg = ""
-    if request.method.__eq__('POST'):
-        try:
-            username = request.form.get('username')
-            password = request.form.get('password')
-            user = utils.check_account(username, password)
-            if user:
-                login_user(user=user)
-                next = request.args.get('next', 'index')
-                return redirect(url_for(next))
-            else:
-                err_msg = 'Tên người dùng hoặc mật khẩu không chính xác !!!!!'
-
-        except Exception as ex:
-            import traceback
-            err_msg = "Đã xảy ra lỗi: " + str(ex)
-           # In traceback chi tiết ra console
-            traceback.print_exc()
-    return render_template('login.html',err_msg = err_msg)
-
 @app.route('/logout')
 def patient_logout():
     logout_user()
-    return redirect(url_for('patient_login'))
+    return redirect(url_for('login'))
 
 
 @app.route('/staff')
@@ -77,16 +55,24 @@ def staff():
 @app.route('/staff/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
+<<<<<<< HEAD
         return redirect(url_for('staff'))
+=======
+        return redirect('/staff')
+>>>>>>> 2a8266af91b98eded9084b7e2a710453825470c9
 
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        print(username)
+        print(password)
         user = utils.check_account(username, password)
         if user and user.role not in [VaiTro.BENH_NHAN]:
             login_user(user)
+            print("OK 2")
             return redirect(url_for('staff'))
         else:
+            print("Another bug")
             return render_template('staff/login.html', msg='Sai tài khoản')
         
     return render_template('staff/login.html')
@@ -104,16 +90,37 @@ def login():
 @login_required
 @roles_required([VaiTro.BAC_SI])
 def doctor():
+<<<<<<< HEAD
     return render_template('doctor/index.html', funcs= func[VaiTro.BAC_SI], index=1)
+=======
+    return render_template('doctor/index.html', doctor_menu = doctor_menu, index=0)
+>>>>>>> 2a8266af91b98eded9084b7e2a710453825470c9
 
 @app.route('/doctor/patients', methods=['GET', 'POST'])
 @roles_required([VaiTro.BAC_SI])
 def patients_doctor():
+<<<<<<< HEAD
     return render_template('doctor/patients.html', funcs= func[VaiTro.BAC_SI], index=2)
+=======
+    return render_template('doctor/patients.html', doctor_menu = doctor_menu, index=1)
+>>>>>>> 2a8266af91b98eded9084b7e2a710453825470c9
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('layouts/404.html'), 404
+
+doctor_menu = [
+    {
+        'name': 'Thống kê',
+        'url_for': 'doctor',
+        'icon': 'fa fa-dashboard'
+    },
+    {
+        'name': 'Danh sách bệnh nhân',
+        'url_for': 'patients_doctor',
+        'icon': 'fa fa-users'
+    }
+]
 
 
 func = {

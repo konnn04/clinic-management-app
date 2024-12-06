@@ -19,7 +19,11 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 
+<<<<<<< HEAD
 login_manager.login_view = '/staff/login'
+=======
+login_manager.login_view = 'staff/login'
+>>>>>>> 2a8266af91b98eded9084b7e2a710453825470c9
 
 app.config.MAX_PAGE = 12
 

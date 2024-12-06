@@ -1,0 +1,24 @@
+<script>
+    $('.nav-func a').addClass('ajax-link');
+    $('main a').addClass('ajax-link');
+    $(document).ready(function() {
+        $('a.ajax-link').click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            loadPage(url);
+        });
+    });
+    function loadPage(url) {
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function(data) {
+                $('body').html(data);
+                window.history.pushState({ path: url }, '', url);
+            },
+            error: function() {
+                alert('Failed to load page.');
+            }
+        });
+    }
+    </script>

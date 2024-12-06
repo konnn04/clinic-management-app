@@ -6,8 +6,10 @@ from datetime import datetime
 def check_account(username,password):
     user = NguoiDung.query.filter_by(taiKhoan=username).first()
     if user and check_password_hash(user.matKhau, password):
+        print("OK")
         return user
     else:
+        print("BUG")
         return None
 
 

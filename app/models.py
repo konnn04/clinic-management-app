@@ -109,6 +109,9 @@ class Thuoc(db.Model):
     danhMucThuoc_id = Column(Integer, ForeignKey(DanhMucThuoc.id), nullable=False)
     loHang_id = Column(Integer,ForeignKey("loHang.id"),unique = True)
 
+    def __str__(self):
+        return self.ten
+
 class DonThuoc(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     phieu_id = Column(Integer,ForeignKey(PhieuKhamBenh.id),nullable = False)
