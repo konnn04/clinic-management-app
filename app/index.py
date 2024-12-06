@@ -35,28 +35,6 @@ def appointment():
     return render_template('appointment.html')
 
 
-@app.route('/login', methods = ['GET','POST'])
-def patient_login():
-    err_msg = ""
-    if request.method.__eq__('POST'):
-        try:
-            username = request.form.get('username')
-            password = request.form.get('password')
-            user = utils.check_account(username, password)
-            if user:
-                login_user(user=user)
-                next = request.args.get('next', 'index')
-                return redirect(url_for(next))
-            else:
-                err_msg = 'Tên người dùng hoặc mật khẩu không chính xác !!!!!'
-
-        except Exception as ex:
-            import traceback
-            err_msg = "Đã xảy ra lỗi: " + str(ex)
-           # In traceback chi tiết ra console
-            traceback.print_exc()
-    return render_template('login.html',err_msg = err_msg)
-
 @app.route('/logout')
 def patient_logout():
     logout_user()
@@ -83,7 +61,7 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         user = utils.check_account(username, password)
-        if user and user.role in [1, 2, 3, 5]:
+        if user and user.role not in [VaiTro.BENH_NHAN]:
             login_user(user)
             return redirect(url_for('staff'))
         else:
