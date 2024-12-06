@@ -100,3 +100,8 @@ img.w{
     border-radius: 1rem;
     padding: 1rem;
 }
+
+.form-group label{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

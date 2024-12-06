@@ -1,7 +1,7 @@
 {#{% extends 'templates/bootstrap4/admin/base.html' %}#}
-{% extends 'admin/base.html' %}
+{% extends 'admin/base_admin.html' %}
 
-{% block body %}
+{% block content %}
 <div class="container mt-5">
     <h3 class="mb-4">Tạo nhân viên</h3>
     <form method="POST" action = {{ url_for("create_employee.index") }} enctype="multipart/form-data">

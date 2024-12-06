@@ -55,16 +55,20 @@ def staff():
 @app.route('/staff/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect('staff')
+        return redirect('/staff')
 
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        print(username)
+        print(password)
         user = utils.check_account(username, password)
         if user and user.role not in [VaiTro.BENH_NHAN]:
             login_user(user)
+            print("OK 2")
             return redirect(url_for('staff'))
         else:
+            print("Another bug")
             return render_template('staff/login.html', msg='Sai tài khoản')
         
     return render_template('staff/login.html')
