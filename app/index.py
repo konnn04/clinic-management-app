@@ -77,34 +77,57 @@ def staff():
 @app.route('/staff/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect('staff')
+        return redirect(url_for('staff'))
 
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
         user = utils.check_account(username, password)
-        if user and user.role in [1, 2, 3, 5]:
+        if user and user.role not in [VaiTro.BENH_NHAN]:
             login_user(user)
             return redirect(url_for('staff'))
         else:
             return render_template('staff/login.html', msg='Sai tài khoản')
         
     return render_template('staff/login.html')
+
+
+# Nurse
+
+# Admin
+
+
+# Cashier
+
 # Doctor
 @app.route('/doctor', methods=['GET', 'POST'])
+@login_required
 @roles_required([VaiTro.BAC_SI])
 def doctor():
-    return render_template('doctor/index.html')
+    return render_template('doctor/index.html', funcs= func[VaiTro.BAC_SI], index=1)
 
 @app.route('/doctor/patients', methods=['GET', 'POST'])
 @roles_required([VaiTro.BAC_SI])
 def patients_doctor():
-    return render_template('doctor/patients.html')
+    return render_template('doctor/patients.html', funcs= func[VaiTro.BAC_SI], index=2)
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('layouts/404.html'), 404
 
+
+func = {
+    VaiTro.BAC_SI:[{
+        "name": "Dashboard",
+        "icon": "fa-sharp-duotone fa-solid fa-grid-horizontal ",
+        "url_for": "doctor",
+    },
+    {
+        "name": "Patients",
+        "icon": "fa-sharp-duotone fa-solid fa-calendar ",
+        "url_for": "patients_doctor",
+    }],
+}
 
 if __name__ == '__main__':
     from app.admin import *

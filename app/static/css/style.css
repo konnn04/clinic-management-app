@@ -7,6 +7,12 @@
     --dark-coler: #1c1c1c;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 header {
     background-color: #fff;
     color: var(--primary-text-color);

@@ -19,7 +19,7 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 
-login_manager.login_view = 'login'
+login_manager.login_view = '/staff/login'
 
 app.config.MAX_PAGE = 12
 
@@ -40,4 +40,8 @@ def roles_required(roles):
         return wrapper
     return decorator
 
+def upload_file(file):
+    if file:
+        return cloudinary.uploader.upload(file, folder="phongkham")
+    return None
 

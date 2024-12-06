@@ -4,8 +4,14 @@
     Dashboard
 {% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/staff/doctor.css')}}">
+{% endblock %}
+
+
+
 {% block content %}
-    <div class="row p-0 justify-content-between">
+    <div class="row p-0 justify-content-between stat">
         <div class="box col-lg-4 col-md-4 col-12">
             <h5>PATIENS</h5>
             <canvas id="patiens_chart"></canvas>
@@ -14,9 +20,9 @@
             <h5>HEALING INDEX</h5>
             <canvas id="healing_chart"></canvas>
         </div>
-        <div class="box col-lg-3 col-md-3 col-12">
+        <div class="box col-lg-4 col-md-4 col-12">
             <h5>ALIMENT INDEX</h5>
-            <!-- <canvas id="aliment_chart"></canvas> -->
+            <canvas id="aliment_chart"></canvas>
         </div>
     </div>
 {% endblock %}
@@ -68,8 +74,8 @@
         }]
     };
 
-    ctx1.height = 300;
-    ctx2.height = 300;
+    // ctx1.height = 300;
+    // ctx2.height = 300;
     const chart2 = new Chart(ctx2, {
         type: 'line',
         data: data2,

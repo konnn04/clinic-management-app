@@ -22,19 +22,21 @@
             <div class="logo my-2 p-2" >
                 <img src="{{url_for('static', filename='images/logo.png')}}" alt="OU Medical Staff" class="w">
             </div>
-            <ul class="nav flex-column nav-func">
+            <!-- TASK -->
+            <ul class="nav flex-column nav-func"> 
+                {% for f in funcs %}
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{url_for('doctor')}}" >
-                        <i class="fa-sharp-duotone fa-solid fa-grid-horizontal me-3"></i>
-                        Dashboard
+                    <a class="nav-link     
+                    {% if loop.index == index %}
+                    active
+                    {% endif %}               
+                    " href="{{url_for(f.url_for)}}">
+                        <i class="{{f.icon}} me-3"></i>
+
+                    {{f.name}}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('patients_doctor')}}">
-                        <i class="fa-sharp-duotone fa-solid fa-calendar me-3"></i>
-                        Our Patients
-                    </a>
-                </li>
+                {% endfor %}
             </ul>
                 
             <ul class="nav flex-column nav-tool">
@@ -60,15 +62,15 @@
                         {% endblock %}</h1>
                 </div>
                 <div class="action">
-                    <h4>Doctor</h4>
+                    <h4>{{current_user.role.name}}</h4>
                 </div>               
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="avt">
-                        <img src="https://png.pngtree.com/png-vector/20220709/ourmid/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_5809521.png" alt="" class="w">
+                        <img src="{{current_user.avatar}}" alt="" class="w">
                     </div>
                     <div class="info">
-                        <h5>Admin</h5>
-                        <h6>Role admin</h6>
+                        <h5>{{current_user.taiKhoan}}</h5>
+                        <h6>{{current_user.role.name}}</h6>
                     </div>
                 </div>
             </div>

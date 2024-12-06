@@ -28,6 +28,7 @@ class NguoiDung(db.Model, UserMixin):
     avatar = Column(String(255),nullable = True)
     role = Column(Enum(VaiTro),nullable = False)
     phieuLichDat = relationship('PhieuLichDat',backref = 'nguoiDung',lazy = True)
+    
     def __str__(self):
         return f"{self.ho} {self.ten}"
 
