@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.text-key{
+
+}
+
+.text-value{
+
+}
