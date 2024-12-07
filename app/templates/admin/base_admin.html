@@ -51,7 +51,7 @@
                 <ul class="nav flex-column nav-tool">
                 <h5>Account</h5>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">
+                    <a class="nav-link ajax-link" href="{{url_for('staff_profile')}}">
                         <i class="fa-sharp-duotone fa-solid fa-user me-3"></i>
                         Profile
                     </a>
@@ -146,7 +146,7 @@
         $('#main a').addClass('ajax-link');
         $(document).ready(function() {
             $('a.ajax-link').click(function(e) {
-                e.preventDefault();
+                e.preventDefault();                
                 var url = $(this).attr('href');
                 loadPage(url);
             });

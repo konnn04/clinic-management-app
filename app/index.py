@@ -1,5 +1,5 @@
 import json
-from crypt import methods
+# from crypt import methods
 from datetime import datetime
 
 from flask import render_template, request, jsonify
@@ -58,7 +58,7 @@ def staff_profile():
             db.session.commit()
 
         user_data=current_user.to_dict()
-        return render_template('layouts/profile.html', user_info=user_data)
+        return render_template('layouts/profile.html', user_info=user_data, funcs= func[VaiTro.BAC_SI], index=5)
 
 @app.route('/logout')
 def patient_logout():
