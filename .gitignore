@@ -4,4 +4,6 @@ app/__pycache__
 .venv
 venv
 instance/
+.idea/
+/.idea
 .idea

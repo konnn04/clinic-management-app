@@ -1,6 +1,10 @@
-from flask import  render_template, request
+import json
+from crypt import methods
+from datetime import datetime
+
+from flask import render_template, request, jsonify
 from app import app, login_manager, roles_required
-from flask_login import current_user, login_required, logout_user,login_user
+from flask_login import current_user, login_required, logout_user, login_user
 from app import utils
 import pdb
 
@@ -35,10 +39,31 @@ def appointment():
     return render_template('appointment.html')
 
 
+@app.route('/staff/profile', methods=['GET', 'POST'])
+def staff_profile():
+    if current_user.is_authenticated:
+        if request.method == 'POST':
+            data = request.form.copy()
+            data['ngaySinh'] = datetime.strptime(request.form['ngaySinh'],'%Y-%m-%d %H:%M:%S.%f')
+            if (data['matKhau'] == 'self.matKhau'):
+                data['matKhau'] = current_user.matKhau
+
+            data['role'] = VaiTro[data['role']]
+
+            del data['id']
+            del data['taiKhoan']
+
+            for key, value in data.items():
+                setattr(current_user, key, value)
+            db.session.commit()
+
+        user_data=current_user.to_dict()
+        return render_template('layouts/profile.html', user_info=user_data)
+
 @app.route('/logout')
 def patient_logout():
     logout_user()
-    return redirect(url_for('patient_login'))
+    return redirect(url_for('login'))
 
 
 @app.route('/staff')

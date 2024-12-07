@@ -28,8 +28,24 @@ class NguoiDung(db.Model, UserMixin):
     avatar = Column(String(255),nullable = True)
     role = Column(Enum(VaiTro),nullable = False)
     phieuLichDat = relationship('PhieuLichDat',backref = 'nguoiDung',lazy = True)
+
     def __str__(self):
         return f"{self.ho} {self.ten}"
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'ho': self.ho,
+            'ten': self.ten,
+            'ngaySinh': self.ngaySinh,
+            'soDienThoai': self.soDienThoai,
+            'email': self.email,
+            'ghiChu': self.ghiChu,
+            'taiKhoan': self.taiKhoan,
+            'matKhau': 'self.matKhau',
+            'avatar': self.avatar,
+            'role': self.role.name,
+        }
 
 class QuyDinh(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
@@ -131,5 +147,9 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         ad = NguoiDung(ho = 'admin',ten = 'admin',ngaySinh = datetime.now(),soDienThoai = '0123456789',email = 'admin@admin.com',taiKhoan = 'admin',matKhau = generate_password_hash('admin'),role = VaiTro.ADMIN)
+        u1 = NguoiDung(ho='u1', ten='u1', ngaySinh=datetime.now(), soDienThoai='012345456789',
+                       email='u1@admin.com', taiKhoan='u1', matKhau=generate_password_hash('u1'),
+                       role=VaiTro.BAC_SI)
         db.session.add(ad)
+        db.session.add(u1)
         db.session.commit()
