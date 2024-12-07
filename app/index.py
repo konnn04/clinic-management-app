@@ -55,11 +55,7 @@ def staff():
 @app.route('/staff/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-<<<<<<< HEAD
         return redirect(url_for('staff'))
-=======
-        return redirect('/staff')
->>>>>>> 2a8266af91b98eded9084b7e2a710453825470c9
 
     if request.method == 'POST':
         username = request.form.get('username')
@@ -90,20 +86,12 @@ def login():
 @login_required
 @roles_required([VaiTro.BAC_SI])
 def doctor():
-<<<<<<< HEAD
     return render_template('doctor/index.html', funcs= func[VaiTro.BAC_SI], index=1)
-=======
-    return render_template('doctor/index.html', doctor_menu = doctor_menu, index=0)
->>>>>>> 2a8266af91b98eded9084b7e2a710453825470c9
 
 @app.route('/doctor/patients', methods=['GET', 'POST'])
 @roles_required([VaiTro.BAC_SI])
 def patients_doctor():
-<<<<<<< HEAD
     return render_template('doctor/patients.html', funcs= func[VaiTro.BAC_SI], index=2)
-=======
-    return render_template('doctor/patients.html', doctor_menu = doctor_menu, index=1)
->>>>>>> 2a8266af91b98eded9084b7e2a710453825470c9
 
 @app.errorhandler(404)
 def page_not_found(e):
