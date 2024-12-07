@@ -24,7 +24,6 @@
             <div class="logo my-2 p-2">
                 <img src="{{url_for('static', filename='images/logo.png')}}" alt="OU Medical Staff" class="w">
             </div>
-<<<<<<< HEAD
             <!-- TASK -->
             <ul class="nav flex-column nav-func"> 
                 {% for f in funcs %}
@@ -40,18 +39,6 @@
                     </a>
                 </li>
                 {% endfor %}
-=======
-            <ul class="nav flex-column nav-func">
-                {% for item in doctor_menu %}
-                <li class="nav-item {% if index==loop.index0 %}active{% endif %}">
-                    <a class="nav-link " href="{{url_for(item.url_for)}}" >
-                        <i class="{{item.icon}} me-3"></i>
-                        {{item.name}}
-                    </a>
-                </li>
-                {% endfor %}
-                
->>>>>>> 2a8266af91b98eded9084b7e2a710453825470c9
             </ul>
                 
             <ul class="nav flex-column nav-tool">
