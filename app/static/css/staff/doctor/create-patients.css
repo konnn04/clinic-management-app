@@ -1,0 +1,58 @@
+.form-container{
+    width: 300px;
+}
+
+.main-view{
+    flex: 1;
+}
+
+.search-box{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.results{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    display: none;
+}
+
+.search-box:hover .results{
+    display: block;
+}
+
+.results ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    padding: 1rem;
+}
+
+.results li{
+    padding: .5rem 0;
+    box-sizing: border-box;
+    border-bottom: 1px dashed #ccc;
+}
+
+.profile{
+    background-color: #fff;
+    border-radius: 1rem;
+}
+
+.ex-item{
+    background-color: #fff;
+}
+
+input[type="text"],
+input[type="number"],
+option{
+    padding: .3rem;
+}

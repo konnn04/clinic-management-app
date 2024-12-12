@@ -7,10 +7,8 @@ from app import utils
 from flask_admin.model.template import EndpointLinkRowAction
 from flask_login import current_user, login_required, logout_user
 from flask import redirect, url_for, request,render_template,flash
-
-
-
-
+from datetime import datetime
+import cloudinary.uploader
 
 class MyModelView(ModelView):
     def is_accessible(self):
@@ -20,10 +18,13 @@ class MyModelView(ModelView):
     create_template = 'admin/create.html'
     edit_template = 'admin/edit.html'
     details_template = 'admin/details.html'
+    profile_template = 'admin/profile.html'
 
 class MyBaseView(BaseView):
     def is_accessible(self):
         return current_user.is_authenticated and current_user.role == VaiTro.ADMIN
+
+
 
 class CreateStaffView(MyBaseView):
     @expose('/', methods=['GET', 'POST'])

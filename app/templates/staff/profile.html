@@ -1,0 +1,95 @@
+{% extends "layouts/base_staff.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/staff/profile.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    
+    <div class="bd-round box container2">
+        <div style="flex: 0.4; margin-top: 5rem; margin-right: 2rem">
+            <div class="fs-2 fw-bold">Center Name</div>
+            <div style="border-right: medium solid black">
+                <img class="img" src="{{ url_for('static', filename='images/logo.png') }}" style="padding-right: 1rem">
+            </div>
+        </div>
+        <div style="flex: 0.6; display: flex; flex-direction: column">
+            <div style="display: flex; flex-direction: row; justify-content: space-between">
+                <div class="fw-bold mb-3" style="color: #1A6291">Basic Information</div>
+                <button class="btn btn-mini" onclick="editProfileForm()">Edit</button>
+            </div>
+            <form id="profile-form" action="{{ url_for('staff_profile') }}" method="POST" enctype="multipart/form-data" onchange="">
+                <div style="display: flex; flex-wrap: wrap">
+                    <div style="flex: 0 0 50%">
+                        <p class="fw-normal fs-5 fw-bold" id="label-id">Mã nhân viên:</p>
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fs-5 text-value" id="value-id">{{user_info.id}}</p>
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fw-normal fs-5 fw-bold" id="label-name">Họ và tên:</p>
+                    </div>  
+                    <div style="flex: 0 0 50%" class="modify">
+                        <p class="fs-5 text-value" id="value-name">{{user_info.name}}</p>
+                        <input type="text"  name="ho" id="input-ho" class="form-control" value="{{ current_user.ho }}" style="display: none">
+                        <input type="text"  name="ten" id="input-ten" class="form-control" value="{{ current_user.ten }}" style="display: none">
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fw-normal fs-5 fw-bold" id="label-name">Ngày sinh:</p>
+                    </div>
+                    <div style="flex: 0 0 50%" class="modify">
+                        <p class="fs-5 text-value" id="value-name">{{user_info.dob}}</p>
+                        <input type="date" name="ngaySinh" id="input-ngaySinh" class="form-control" value="{{user_info.dob}}" style="display: none">
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fw-normal fs-5 fw-bold" id="label-name">Email:</p>
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fs-5 text-value" id="value-email">{{user_info.email}}</p>
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fw-normal fs-5 fw-bold" id="label-name">Số điện thoại:</p>
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fs-5 text-value" id="value-phone">{{user_info.phone}}</p>
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fw-normal fs-5 fw-bold" id="label-name">Vai trò:</p>
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fs-5 text-value" id="value-phone">{{user_info.role }}</p>
+                    </div>
+
+                    <div style="flex: 0 0 50%" >
+                        <p class="fw-normal fs-5 fw-bold" id="label-name">Ảnh đại diện:</p>
+                    </div>
+                    <div style="flex: 0 0 50%"  class="modify">
+                        <img src="{{ user_info.avatar }}" width="50px" height="50px">
+                        <input type="file" accept="image/*" name="avatar" id="input-avatar" class="form-control" value="{{ user_info.avatar }}" style="display: none" onchange="processImg(this)">
+                    </div>
+                    <div style="flex: 0 0 50%">
+                        <p class="fw-normal fs-5 fw-bold" id="label-name">Ghi chú:</p>
+                    </div>
+                    <div style="flex: 0 0 50%"  class="modify">
+                        <p class="fs-5 text-value" id="value-name">{{user_info.ghiChu}}</p>
+                        <textarea name="ghiChu" id="input-ghiChu" class="form-control" value="{{ current_user.ghiChu }}" style="display: none; resize: none" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group" id="submit-group" style="display: none">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="viewForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/staff/profile.js') }}"></script>
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

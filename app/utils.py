@@ -29,4 +29,30 @@ def addUser(ho,ten,ngaySinh,soDienThoai,email,taiKhoan,matKhau,avatar,role = Vai
     db.session.add(user)
     db.session.commit()
 
-
+def get_nav(current_user):
+    if not current_user.is_authenticated:
+        return []
+    role = current_user.role
+    func = {
+        VaiTro.BAC_SI:[{
+            "name": "Dashboard",
+            "icon": "fa-sharp-duotone fa-solid fa-grid-horizontal ",
+            "url_for": "doctor",
+        },
+        {
+            "name": "Patients",
+            "icon": "fa-sharp-duotone fa-solid fa-calendar",
+            "url_for": "patients_doctor",
+        }],
+        VaiTro.THU_NGAN:[{
+            "name": "Dashboard",
+            "icon": "fa-sharp-duotone fa-solid fa-grid-horizontal ",
+            "url_for": "cashier",
+        }],
+        VaiTro.Y_TA:[{
+            "name": "Dashboard",
+            "icon": "fa-sharp-duotone fa-solid fa-grid-horizontal ",
+            "url_for": "nurse",
+        }],
+    }
+    return func.get(role, [])

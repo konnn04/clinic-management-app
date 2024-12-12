@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{meta.title}}</title>
     <!-- Bootstrap 5.3 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{url_for('static', filename='js/loading.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Popper -->
@@ -13,28 +15,26 @@
     <!-- local style -->
     <link rel="stylesheet" href="{{url_for('static', filename='css/awesome.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/base_staff.css')}}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {% block styles %} {% endblock %}
 </head>
 <body>
     
-    <main class="d-flex min-vh-100 p-3 gap-3">
-        <div id="left-side" class="bd-round close">
+    <main class="d-flex min-vh-100 p-3 gap-3 close">
+        <div id="left-side" class="bd-round">
             <div class="logo my-2 p-2">
                 <img src="{{url_for('static', filename='images/logo.png')}}" alt="OU Medical Staff" class="w">
             </div>
             <!-- TASK -->
             <ul class="nav flex-column nav-func"> 
                 {% for f in funcs %}
-                <li class="nav-item">
-                    <a class="nav-link     
-                    {% if loop.index == index %}
-                    active
-                    {% endif %}               
-                    " href="{{url_for(f.url_for)}}">
+                <li class="nav-item  
+                {% if loop.index == index %}
+                active
+                {% endif %}">
+                    <a class="nav-link" href="{{url_for(f.url_for)}}">
                         <i class="{{f.icon}} me-3"></i>
-
                     {{f.name}}
                     </a>
                 </li>
@@ -43,14 +43,14 @@
                 
             <ul class="nav flex-column nav-tool">
                 <h5>Account</h5>
-                <li class="nav-item">
+                <li class="nav-item {% if index == -1 %}active{% endif %}">
                     <a class="nav-link ajax-link" href="{{url_for('staff_profile')}}">
                         <i class="fa-sharp-duotone fa-solid fa-user me-3"></i>
                         Profile
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('patient_logout')}}">
+                    <a class="nav-link"  data-bs-toggle="modal" data-bs-target="#signoutModal">
                         <i class="fa-sharp-duotone fa-solid fa-sign-out me-3"></i>
                         Logout
                     </a>
@@ -62,6 +62,10 @@
         </div>
         <div id="main">
             <div id="header" class="bd-round p-4 d-flex align-items-center justify-content-between" >
+                <div class="back">
+                    {% block back %}
+                    {% endblock %}
+                </div>
                 <div class="title">
                     <h1>
                         {% block title %}
@@ -73,7 +77,7 @@
                 </div>               
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="avt">
-                        <img src="{{current_user.avatar}}" alt="" class="w">
+                        <img src="{{current_user.avatar}}" alt="Avatar" class="w">
                     </div>
                     <div class="info">
                         <h5>{{current_user.taiKhoan}}</h5>
@@ -86,41 +90,24 @@
             </div>
         </div>
     </main>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Modal SignOut -->
+    <div class="modal fade" id="signoutModal" tabindex="-1" aria-labelledby="signoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="signoutModalLabel">Sign out</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="{{url_for('logout')}}" class="btn btn-danger">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="{{ url_for('static',filename='js/staff.js') }}" type="text/javascript"></script>
-    <script>
-        $('.nav-func a').addClass('ajax-link');
-        $('#main a').addClass('ajax-link');
-        $(document).ready(function() {
-            $('a.ajax-link').click(function(e) {
-                e.preventDefault();
-                var url = $(this).attr('href');
-                loadPage(url);
-            });
-        });
-
-        $(".nav-func li").click(function() {
-            $(".nav-func li").removeClass("active");
-            $(this).addClass("active");
-        });
-
-        function loadPage(url) {
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function(data) {
-                    $('#main').html($(data).find('#main').html());
-                    window.history.pushState({ path: url }, '', url);
-                },
-                error: function() {
-                    alert('Failed to load page.');
-                }
-            });
-        }
-    </script>
-    {% block scripts %}
-    
-    {% endblock %}
 </body>
 </html>

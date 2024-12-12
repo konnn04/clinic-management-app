@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('patient_logout')}}">
+                    <a class="nav-link" href="{{url_for('logout')}}">
                         <i class="fa-sharp-duotone fa-solid fa-sign-out me-3"></i>
                         Logout
                     </a>
@@ -140,38 +140,6 @@
     {% endif %}
 {% endblock %}
 
-    {% block tail %}
-    <script>
-        $('.nav-func a').addClass('ajax-link');
-        $('#main a').addClass('ajax-link');
-        $(document).ready(function() {
-            $('a.ajax-link').click(function(e) {
-                e.preventDefault();                
-                var url = $(this).attr('href');
-                loadPage(url);
-            });
-        });
-
-        $(".nav-func li").click(function() {
-            $(".nav-func li").removeClass("active");
-            $(this).addClass("active");
-        });
-
-        function loadPage(url) {
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function(data) {
-                    $('#main').html($(data).find('#main').html());
-                    window.history.pushState({ path: url }, '', url);
-                },
-                error: function() {
-                    alert('Failed to load page.');
-                }
-            });
-        }
-    </script>
-    {% endblock %}
   </body>
 </html>
 

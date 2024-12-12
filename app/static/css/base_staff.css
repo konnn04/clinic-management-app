@@ -14,6 +14,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f1f1f1;
+    position: relative;
 }
 
 img.w{
@@ -25,15 +26,17 @@ img.w{
 }
 
 #left-side {
-    width: 300px;
+    width: 250px;
     background-color: #fff;
     height: 90vh;
+    position: sticky;   
+    top: 0;
 }
 
 #left-side .nav-link{
     color: #000;
     padding: .8rem 2rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 #left-side .nav-link:hover,
@@ -120,14 +123,9 @@ img.w{
     padding-bottom: 5px;
 }
 
-#left-side {
-    position: relative;
-}
 
-#left-side,
-#left-side *{
-    transition: all .3s;
-}
+
+
 
 #toggle-close{
     position: absolute;
@@ -149,28 +147,43 @@ img.w{
     opacity: 1;
 }
 
-#left-side.close #toggle-close{
+main.close #left-side #toggle-close{
     transform: rotate(-180deg);
 }
 
-#left-side.close{
+main.close #left-side{
     width: 70px;
 }
 
-#left-side.close *{
+main.close #left-side *{
     font-size: 0!important;
 }
 
-#left-side.close i{
+main.close #left-side i{
     font-size: 1.5rem!important;
     margin: 0!important;
 }
 
 
-#left-side.close li{
+main.close #left-side li{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
+
+.back{
+    padding: 0!important;
+    transition: all .3s;
+}
+
+.back:hover{
+    scale: 1.05;
+}
+
+.nav-link{
+    cursor: pointer;
+}
+
+

@@ -1,0 +1,183 @@
+{% extends './layouts/base_staff.html' %}
+
+{% block title %}
+    Create Patient
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" class="css" href="{{url_for('static', filename='css/staff/doctor/create-patients.css')}}">
+{% endblock %}
+
+{% block back %}
+<a href="{{url_for('patients_doctor')}}" class="btn">
+    <i class="fa-solid fa-angle-left"></i>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-start gap-4">
+    <div class="main-view" style="flex:1;">
+       <div class="medicine-table">
+            <div class="table-header d-flex justify-content-between">
+                <h5>Medicine</h5>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên thuốc</th>
+                        <th>Cử uống</th>
+                        <th>Số lần</th>
+                        <th>Liều lượng</th>
+                        <th>Ngày uống</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <input type="text" class="form-control" placeholder="Tên thuốc" id-medicine="">
+                            <div class="recommend">
+                                <ul>
+                                    <li id-medicine="1">Paracetamol</li>
+                                    <li id-medicine="2">Dexamethasone</li>
+                                    <li id-medicine="3">Ibuprofen</li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-3">
+                                    <select name="method" id="method" class="form-control">
+                                        <option value="stc" selected>S/T/C</option>
+                                        <option value="hourly">Mỗi giờ</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <div class="stc w-100 row active">
+                                        <div class="col-4 px-1">
+                                            Sáng
+                                            <input type="number" class="form-control morning" placeholder="Không có" value="6">
+                                        </div>
+                                        <div class="col-4 px-1">
+                                            Trưa
+                                            <input type="number" class="form-control noon" placeholder="Không có" value="11">
+                                        </div>
+                                        <div class="col-4 px-1">
+                                            Chiều
+                                            <input type="number" class="form-control evening" placeholder="Không có" value="18">
+                                        </div>
+                                    </div>
+                                    <div class="hourly d-flex align-items-center w-100">
+                                        <span>Mỗi</span><input type="number" class="form-control mx-1" placeholder="Số giờ" value="6"><span>Tiếng</span>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <span>Uống khi</span>
+                                    <select name="when" id="when" class="form-control">
+                                        <option value="before" selected>Trước ăn</option>
+                                        <option value="after">Sau ăn</option>
+                                        <option value="none">Không</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <td>
+                            <input type="number" class="form-control" placeholder="Số lần" value="1" style="width: 80px;">                            
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2" style="width: 100px;">
+                                <input type="number" class="form-control" placeholder="Giá trị" value="1">
+                                <span id="unit">Viên</span>
+                            </div>
+                        </td>
+                        <td>
+                            <select name="day" id="day" class="form-control" style="width: 100px;">
+                                <option value="1" selected>Mỗi ngày</option>
+                                <option value="2">Mỗi 2 ngày</option>
+                                <option value="3">Mỗi 3 ngày</option>
+                                <option value="4">Mỗi 4 ngày</option>
+                                <option value="5">Mỗi 5 ngày</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+            <div class="add-medical w-100">
+                <button class="btn btn-primary w-100">Thêm thuốc</button>
+            </div>        
+       </div>
+    </div>
+    <div class="form-container" style="width: 250px;">
+        <h5>Profile</h5>
+        <div class="search-box d-flex align-items-center">
+            <input type="text" class="form-control" placeholder="ID, Name, Phone">
+            <button class="btn"><i class="fas fa-search"></i></button>
+            <div class="results">
+                <ul>
+                    <li>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="avatar">
+                                <img src="{{url_for('static', filename='images/avatars/avatar-1.jpg')}}" alt="">
+                            </div>
+                            <div class="info">
+                                <h6>John Doe</h6>
+                                <span>#0001</span>|<span>0772816986</span>
+                            </div>
+                        </div>
+                    </li>
+                                
+                </ul>
+            </div>
+        </div>   
+        <div class="profile flex-column d-flex align-items-center p-3 w-100 mb-4">
+            <div class="avt w-50 mb-3">
+                <!-- <img src="{{url_for('static', filename='{{patient_view.avatar}}')}}" alt=""> -->
+                <img src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt="" style="width:100%">
+            </div>
+            <div class="info p-0 w-100 text-center">
+                <h5 class="name">John Doe</h5>
+                <span class="age">25 tuổi</span>
+                <span class="id badge bg-primary">#0001</span>
+            </div>
+            <ul class="details p-0 w-100">
+                <li class="d-flex justify-content-between">
+                    <span>SĐT:</span>
+                    <span>0772816986</span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <span>Nhóm máu:</span>
+                    <span>O+</span>
+                </li>   
+                <li class="d-flex justify-content-between">
+                    <span>Lần khám cuối:</span>
+                    <span>12/12/2021</span>
+                </li>
+            </ul>
+        </div>
+        <div class="prev-examination">
+            <ul class="list list-unstyled  p-0">
+                {% for i in range(1, 5) %}
+                <li class="d-flex flex-column p-3 rounded mb-3 ex-item">
+                    <div class="d-flex justify-content-between">
+                        <span>12/12/2021</span>
+                        <span>Dr. John Doe</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Tập tin bệnh án</span>
+                        <a href="#" class="btn">2 files</a>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Ngày khám</span>
+                        <span>12/12/2021</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+        
+
+
+{% endblock %}
+

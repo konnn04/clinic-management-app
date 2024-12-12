@@ -4,10 +4,129 @@
     Patients
 {% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" class="css" href="{{url_for('static', filename='css/staff/doctor/patients.css')}}">
+{% endblock %}
+
 {% block content %}
+
+<div class="nav-bar d-flex justify-content-between">
+    <div class="seach-box d-flex align-items-center">
+        <input type="text" class="form-control" placeholder="Search...">
+        <button class="btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="control d-flex align-items-center gap-3">
+        <div id="view-type">
+            <i class="fas fa-th"></i>
+        </div>
+        <div class="sort d-flex align-items-center">
+            <select class="form-select">
+                <option value="date" selected>Date</option>
+                <option value="name">Name</option>
+                <option value="age">Age</option>
+            </select>
+            <div id="sort-type" class=" d-flex align-items-center">
+                <i class="fas fa-sort-amount-down"></i>
+            </div>
+        </div>
+        <nav>
+            <ul class="pagination justify-content-end m-0">
+                <li class="page-item
+                    {% if page == 1 %}
+                        disabled
+                    {% endif %}">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <i class="fas fa-angle-left"></i></a>
+                </li>                
+                <li class="page-item active" aria-current="page">
+                    <div class="div d-flex align-items-center text-center">
+                        <input type="text" class="form-control" value="1" style="width: 50px;" />
+                        <span>/</span>
+                        <span class="total-page" style="width: 50px;" >10</span>
+                    </div>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#"> <i class="fas fa-angle-right"></i></a>
+                </li>
+            </ul>
+        </nav>          
+    </div>
+</div>
+
+<div class="parients-container d-flex flex-wrap gap-3 mt-3">
+    <div class="create-form shadow-sm flex-column d-flex align-items-center justify-content-center rounded">
+        <a href="{{url_for('create_patient')}}" class="flex-column d-flex align-items-center justify-content-center">
+            <i class="fa-regular fa-clipboard-medical"></i>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPatient">Create Patient</button>
+        </a>
+    </div>
+    {% for i in range(1, 10) %}
+    <div class="card p-3 card-profile shadow-sm">
+        <div class="d-flex align-items-center mb-3">
+            <div class="profile-img me-3" style="width: 50px; height: 50px;">
+                <img src="{{url_for('static', filename='images/user.png')}}" alt="" class="w-100">
+            </div>
+            <div>
+                <div class="name-header">John Doe</div>
+                <div class="text-muted d-flex align-items-center">
+                    <span class="hash-id me-2">#TRUST0331</span>
+                    <span class="text-primary">34 yrs | Male</span>
+                </div>
+            </div>
+            <div class="ms-auto">
+                <i class="bi bi-three-dots-vertical"></i>
+            </div>
+        </div>
+        <div class="info-item mb-2">
+            <span class="text-muted">Blood Group:</span>
+            <strong class="text-primary">O+</strong>
+        </div>
+        <div class="info-item mb-2">
+            <span class="text-muted">Phone:</span>
+            <strong class="text-primary">+1 234 567 890</strong>
+        </div>
+        <div class="info-item mb-2">
+            <span class="text-muted">Doctor Assigned:</span>
+            <strong class="text-primary">Dr. John Doe</strong>
+        </div>
+        <div class="info-item mb-2">
+            <span class="text-muted">Last Visit:</span>
+            <strong class="text-primary">12/12/2021</strong>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="table-responsive mt-3">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Blood Group</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Doctor Assigned</th>
+                <th scope="col">Last Visit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(1, 10) %}
+            <tr>
+                <th scope="row">{{ i }}</th>
+                <td>John Doe</td>
+                <td>34</td>
+                <td>Male</td>
+                <td>O+</td>
+                <td>+1 234 567 890</td>
+                <td>Dr. John Doe</td>
+                <td>12/12/2021</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>    
+
+<script src="{{url_for('static', filename='js/staff/doctor/patients.js')}}"></script>
     
 {% endblock %}
 
-{% block scripts %}
-
-{% endblock %}
