@@ -82,12 +82,13 @@ def logout():
 def staff():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
-    if current_user.role == VaiTro.ADMIN:
-        return redirect(url_for('admin.index'))
-    elif current_user.role == VaiTro.BAC_SI:
-        return redirect(url_for('doctor'))
-    else:
-        return redirect(url_for('index'))
+    next_urls = {
+        VaiTro.BAC_SI: 'doctor',
+        VaiTro.Y_TA: 'nurse',
+        VaiTro.THU_NGAN: 'cashier',
+        VaiTro.ADMIN: 'admin.index'
+    }
+    return redirect(url_for(next_urls[current_user.role]))
 
 @app.route('/staff/login', methods=['GET', 'POST'])
 def login():
@@ -112,6 +113,13 @@ def login():
 
 
 # Nurse
+@app.route('/nurse', methods=['GET', 'POST'])
+@login_required
+@roles_required([VaiTro.Y_TA])
+def nurse():
+    return render_template('nurse/index.html', index=1)
+
+
 
 # Admin
 

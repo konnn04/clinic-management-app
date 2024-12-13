@@ -74,6 +74,10 @@
                 </div>
                 <div class="action">
                     <h4>{{current_user.role.name}}</h4>
+                    <div class="action-box">
+                        {% block actions %}
+                        {% endblock %}
+                    </div>
                 </div>               
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="avt">

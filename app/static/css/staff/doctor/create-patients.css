@@ -16,15 +16,18 @@
 .results{
     position: absolute;
     left: 0;
-    right: 0;
+    width: 100%;
     top: 100%;
     margin-top: 1rem;
-    background-color: white;
+    background-color: #fff;
     border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
     display: none;
+    overflow: hidden;
+    padding: .5rem 0;
 }
 
-.search-box:hover .results{
+.search-box.show .results{
     display: block;
 }
 
@@ -33,26 +36,103 @@
     padding: 0;
     margin: 0;
     width: 100%;
-    padding: 1rem;
 }
 
 .results li{
     padding: .5rem 0;
     box-sizing: border-box;
     border-bottom: 1px dashed #ccc;
+    cursor: pointer;
+}
+
+.results li:hover{
+    background-color: #f9f9f9;
+}
+
+.results li .avatar{
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.results li .avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.results li .info{
+    flex: 1;
 }
 
 .profile{
     background-color: #fff;
     border-radius: 1rem;
+    display: none!important;
+}
+
+.profile.show{
+    display: flex!important;
 }
 
 .ex-item{
     background-color: #fff;
 }
 
+.prev-examination{
+    display: none;
+}
+
+.prev-examination.show{
+    display: block;
+}
+
 input[type="text"],
 input[type="number"],
 option{
     padding: .3rem;
+}
+
+table tr>td{
+    position: relative;
+}
+
+table tr>td .stc,
+table tr>td .hourly{
+    display: none!important;
+}
+
+table tr>td .stc.active,
+table tr>td .hourly.active{
+    display: flex!important;
+}
+
+table td .recommend{
+    position: absolute;
+    top: 105%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    display: none;
+    z-index: 2;
+}
+
+table td .recommend.show{
+    display: block;
+}
+
+table td .recommend ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+table td .recommend ul li{
+    padding: .5rem 0;
+    box-sizing: border-box;
+    border-bottom: 1px dashed #ccc;
+    cursor: pointer;
 }

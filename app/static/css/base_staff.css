@@ -93,6 +93,15 @@ img.w{
     flex: 1;
     border-left: 1px solid #0000004f;
     border-right: 1px solid #0000004f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header .action .action-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #header .info> *{

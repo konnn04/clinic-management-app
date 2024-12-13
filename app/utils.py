@@ -50,8 +50,17 @@ def get_nav(current_user):
             "url_for": "cashier",
         }],
         VaiTro.Y_TA:[{
-            "name": "Dashboard",
+            "name": "Trang chủ",
             "icon": "fa-sharp-duotone fa-solid fa-grid-horizontal ",
+            "url_for": "nurse",
+        },
+        {
+            "name": "Danh sách đăng ký",
+            "icon": "fa-sharp-duotone fa-solid fa-calendar",
+            "url_for": "nurse",
+        },{
+            "name": "Danh sách lịch khám",
+            "icon": "fa-sharp-duotone fa-solid fa-calendar",
             "url_for": "nurse",
         }],
     }
