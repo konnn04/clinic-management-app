@@ -1,0 +1,125 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+    
+    <div class="box w-100">
+        <h5>THỐNG KẾ DOANH THU
+            <button type="button" class="btn btn-outline-primary right">CHI TIẾT</button>
+        </h5>
+        <div style="width: 100%;">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+
+    
+    <!-- Form chứa selectbox và nút -->
+        <div class="box mt-3">
+            <form method="GET" action="{{ url_for('revenue_stats.index') }}" class="d-flex">
+                <select name="month" class="form-select me-2" aria-label="Chọn tháng">
+                    <option value="1" {% if month == 1 %} selected {% endif %}>Tháng 1</option>
+                    <option value="2" {% if month == 2 %} selected {% endif %}>Tháng 2</option>
+                    <option value="3" {% if month == 3 %} selected {% endif %}>Tháng 3</option>
+                    <option value="4" {% if month == 4 %} selected {% endif %}>Tháng 4</option>
+                    <option value="5" {% if month == 5 %} selected {% endif %}>Tháng 5</option>
+                    <option value="6" {% if month == 6 %} selected {% endif %}>Tháng 6</option>
+                    <option value="7" {% if month == 7 %} selected {% endif %}>Tháng 7</option>
+                    <option value="8" {% if month == 8 %} selected {% endif %}>Tháng 8</option>
+                    <option value="9" {% if month == 9 %} selected {% endif %}>Tháng 9</option>
+                    <option value="10" {% if month == 10 %} selected {% endif %}>Tháng 10</option>
+                    <option value="11" {% if month == 11 %} selected {% endif %}>Tháng 11</option>
+                    <option value="12" {% if month == 12 %} selected {% endif %}>Tháng 12</option>
+                </select>
+                <button type="submit" class="btn btn-primary m-1">Xem</button>
+            </form>
+
+            <form method="POST" action="{{ url_for('revenue_stats.print_report') }}" target="_blank">
+                <input type="hidden" name="month" value="{{ month }}">
+                <button type="submit" class="btn btn-primary mt-1">In báo cáo</button>
+            </form>
+        </div>
+
+    
+        <div class="box mt-3">
+            <table class="table table-hover">
+                <thead>
+                <th scope="col">STT</th>
+                <th scope="col">Ngày</th>
+                <th scope="col">Số bệnh nhân</th>
+                <th scope="col">Doanh thu</th>
+                {# <th scope="col">Tỷ lệ</th>#}
+                </thead>
+
+                <tbody>
+                {% for s in stats %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ s.keys() | first }}</td> <!-- Lấy key đầu tiên trong dict -->
+                        <td>{{ s[s.keys() | first]['soBenhNhan'] }}</td> <!-- Lấy 'soBenhNhan' -->
+                        <td>{{ s[s.keys() | first]['doanhThu'] }} VND</td> <!-- Lấy 'doanhThu' -->
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    <script>
+        const Utils = {
+            months: function ({count}) {
+                const monthNames = [
+                    'January', 'February', 'March', 'April', 'May', 'June', 'July',
+                    'August', 'September', 'October', 'November', 'December'
+                ];
+                return monthNames.slice(0, count); // Lấy danh sách các tháng, giới hạn theo 'count'
+            }
+        };
+
+        // Ví dụ sử dụng
+        const labels = Utils.months({count: 12}); // ['January', 'February', ..., 'July']
+
+        console.info(labels)
+        const values = {{ data|tojson }}
+        console.info(values)
+
+        console.log("Revenue values:", values);
+        
+        const ctx = document.getElementById('revenueChart');
+        
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'DOANH THU THÁNG',
+                    data: values,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tháng'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Doanh Thu (VNĐ)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        
+    </script>
+{% endblock %}

@@ -1,7 +1,9 @@
 from app.models import NguoiDung,VaiTro
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db
+from app import db, dao
 from datetime import datetime
+from collections import defaultdict
+
 
 def check_account(username,password):
     user = NguoiDung.query.filter_by(taiKhoan=username).first()
@@ -65,3 +67,64 @@ def get_nav(current_user):
         }],
     }
     return func.get(role, [])
+
+
+def revenueStats():
+    '''
+    Dữ liệu trả về có dạng dictionary
+    [
+        { "01: 123000},
+        { "02: 122000},
+        ...
+    ]
+    :return:
+    '''
+    bills = dao.load_revenue()
+    monthly_revenue = defaultdict(float)  # Sử dụng defaultdict để gán giá trị mặc định là 0.0
+
+    for bill in bills:
+        ngay_hoa_don = bill['ngayLapHoaDon']
+        tong_tien = bill['tongTien']
+
+        # Chuyển đổi ngày sang định dạng datetime
+        date_obj = datetime.strptime(ngay_hoa_don, "%Y-%m-%d")
+        month_key = date_obj.strftime("%m")  # Lấy định dạng tháng-năm (e.g., "2024-01")
+
+        # Cộng tổng tiền vào tháng tương ứng
+        monthly_revenue[month_key] += tong_tien
+
+    # Chuyển đổi kết quả thành dictionary thường (tùy chọn)
+    sorted_revenue = dict(sorted(monthly_revenue.items()))
+    return sorted_revenue
+
+
+def revenueStatsDetail(month = 1):
+    '''
+    Trả về một list các dictionary tính số bệnh nhân trong ngày, doanh thu
+    [
+        { "2024-02-01" : { "soBenhNhan" : 2, "doanhThu" : 20000000},
+        ....
+    ]
+    :param month:
+    :return:
+    '''
+    data = dao.load_revenue()
+    filtered_data = [
+        entry for entry in data
+        if datetime.strptime(entry['ngayKham'], '%Y-%m-%d').month == month
+    ]
+
+    setDay = set()
+    stats = []
+    for d in filtered_data:
+        setDay.add(d['ngayKham'])
+
+    for s in setDay:
+        d = dict()
+        curr_day = [c for c in filtered_data if c['ngayKham'].__eq__(s)]
+        d[s] = {
+            "soBenhNhan" : len(curr_day),
+            "doanhThu" : sum([entry["tongTien"] for entry in curr_day])
+        }
+        stats.append(d)
+    return stats

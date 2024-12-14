@@ -6,9 +6,11 @@ from flask_admin import BaseView,expose, AdminIndexView
 from app import utils
 from flask_admin.model.template import EndpointLinkRowAction
 from flask_login import current_user, login_required, logout_user
-from flask import redirect, url_for, request,render_template,flash
+from flask import redirect, url_for, request,render_template,flash,send_file
 from datetime import datetime
 import cloudinary.uploader
+import pandas as pd
+import os
 
 class MyModelView(ModelView):
     def is_accessible(self):
@@ -39,7 +41,7 @@ class CreateStaffView(MyBaseView):
             taiKhoan = request.form.get('tenTK')
             matKhau = request.form.get('matKhau')
             xacNhanMK = request.form.get('xacNhanMK')
-            # avatar = request.files.get('avatar',"")
+            avatar = request.files.get('avatar',"")
             roleValue = request.form.get('vaiTro')
 
             try:
@@ -47,7 +49,11 @@ class CreateStaffView(MyBaseView):
                     raise ValueError("Vai trò không được để trống!")
                 role = VaiTro(int(roleValue))
                 if matKhau.strip().__eq__(xacNhanMK.strip()):
-                    utils.addUser(ho,ten,ngaySinh, soDienThoai, email, taiKhoan, matKhau, "", role)
+                    if avatar:
+                        avatar = cloudinary.uploader.upload(avatar)
+                    else:
+                        avatar = ""
+                    utils.addUser(ho=ho, ten=ten, ngaySinh=ngaySinh, soDienThoai=soDienThoai, email=email, taiKhoan=taiKhoan, matKhau=matKhau, role=role, avatar=avatar)
                     return redirect(url_for('admin.index'))
                 else:
                     err_msg = "Password not match"
@@ -113,6 +119,34 @@ class MedicineCategoryView(MyModelView):
         'thuoc' : 'Thuốc'
     }
 
+class RevenueStats(MyBaseView):
+    @expose('/', methods=['GET', 'POST'])
+    def index(self, *args, **kwargs):
+        revenue_data = utils.revenueStats()
+        month = request.args.get('month', default=1, type=int)
+        print(month)
+        stats = utils.revenueStatsDetail(month = month)
+        print(revenue_data)
+        values = list(revenue_data.values()) # Danh sách tổng doanh thu tương ứng
+        print(values)
+        return self.render('admin/revenue_stats.html', data = values,stats = stats,month = month)
+
+    @expose('/print-reports', methods=['POST'])
+    def print_report(self):
+        month = request.form.get('month', default=1, type=int)
+        stats = utils.revenueStatsDetail(month=month)
+
+        data = []
+        for s in stats:
+            date = list(s.keys())[0]
+            data.append([date, s[date]['soBenhNhan'], s[date]['doanhThu']])
+
+        df = pd.DataFrame(data, columns=['Ngày', 'Số bệnh nhân', 'Doanh thu'])
+        file_name = os.path.join(app.root_path, f'static/temp/bao_cao_thang_{month}.xlsx')
+        df.to_excel(file_name, index=True)  
+        return send_file(file_name, as_attachment=True)
+
+
 class MyAdminIndexView(AdminIndexView):
     @expose('/')
     def index(self):
@@ -166,6 +200,13 @@ admin.add_view(MedicineCategoryView(
     name='Danh mục thuốc', 
     menu_icon_type='fa', 
     menu_icon_value='fa-solid fa-th-list me-3'
+))
+
+admin.add_view(RevenueStats(
+    name='Thống kê doanh thu',
+    endpoint='revenue_stats',
+    menu_icon_type='fa',
+    menu_icon_value='fa-solid fa-chart-line me-3'
 ))
 
 

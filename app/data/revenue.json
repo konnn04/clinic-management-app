@@ -1,0 +1,7002 @@
+[
+    {
+        "id": 1,
+        "ngayKham": "2024-01-02",
+        "tienThuoc": 152000.0,
+        "tienKham": 517000.0,
+        "tongTien": 669000.0,
+        "ngayLapHoaDon": "2024-01-02",
+        "trangThai": 0,
+        "phieuKham_id": 1
+    },
+    {
+        "id": 2,
+        "ngayKham": "2024-01-03",
+        "tienThuoc": 471000.0,
+        "tienKham": 171000.0,
+        "tongTien": 642000.0,
+        "ngayLapHoaDon": "2024-01-03",
+        "trangThai": 0,
+        "phieuKham_id": 2
+    },
+    {
+        "id": 3,
+        "ngayKham": "2024-01-03",
+        "tienThuoc": 412000.0,
+        "tienKham": 131000.0,
+        "tongTien": 543000.0,
+        "ngayLapHoaDon": "2024-01-03",
+        "trangThai": 0,
+        "phieuKham_id": 3
+    },
+    {
+        "id": 4,
+        "ngayKham": "2024-01-04",
+        "tienThuoc": 189000.0,
+        "tienKham": 728000.0,
+        "tongTien": 917000.0,
+        "ngayLapHoaDon": "2024-01-04",
+        "trangThai": 1,
+        "phieuKham_id": 4
+    },
+    {
+        "id": 5,
+        "ngayKham": "2024-01-05",
+        "tienThuoc": 719000.0,
+        "tienKham": 366000.0,
+        "tongTien": 1085000.0,
+        "ngayLapHoaDon": "2024-01-05",
+        "trangThai": 1,
+        "phieuKham_id": 5
+    },
+    {
+        "id": 6,
+        "ngayKham": "2024-01-05",
+        "tienThuoc": 735000.0,
+        "tienKham": 698000.0,
+        "tongTien": 1433000.0,
+        "ngayLapHoaDon": "2024-01-05",
+        "trangThai": 0,
+        "phieuKham_id": 6
+    },
+    {
+        "id": 7,
+        "ngayKham": "2024-01-06",
+        "tienThuoc": 124000.0,
+        "tienKham": 933000.0,
+        "tongTien": 1057000.0,
+        "ngayLapHoaDon": "2024-01-06",
+        "trangThai": 0,
+        "phieuKham_id": 7
+    },
+    {
+        "id": 8,
+        "ngayKham": "2024-01-07",
+        "tienThuoc": 297000.0,
+        "tienKham": 733000.0,
+        "tongTien": 1030000.0,
+        "ngayLapHoaDon": "2024-01-07",
+        "trangThai": 0,
+        "phieuKham_id": 8
+    },
+    {
+        "id": 9,
+        "ngayKham": "2024-01-07",
+        "tienThuoc": 102000.0,
+        "tienKham": 108000.0,
+        "tongTien": 210000.0,
+        "ngayLapHoaDon": "2024-01-07",
+        "trangThai": 1,
+        "phieuKham_id": 9
+    },
+    {
+        "id": 10,
+        "ngayKham": "2024-01-07",
+        "tienThuoc": 283000.0,
+        "tienKham": 118000.0,
+        "tongTien": 401000.0,
+        "ngayLapHoaDon": "2024-01-07",
+        "trangThai": 1,
+        "phieuKham_id": 10
+    },
+    {
+        "id": 11,
+        "ngayKham": "2024-01-07",
+        "tienThuoc": 175000.0,
+        "tienKham": 870000.0,
+        "tongTien": 1045000.0,
+        "ngayLapHoaDon": "2024-01-07",
+        "trangThai": 1,
+        "phieuKham_id": 11
+    },
+    {
+        "id": 12,
+        "ngayKham": "2024-01-08",
+        "tienThuoc": 380000.0,
+        "tienKham": 445000.0,
+        "tongTien": 825000.0,
+        "ngayLapHoaDon": "2024-01-08",
+        "trangThai": 0,
+        "phieuKham_id": 12
+    },
+    {
+        "id": 13,
+        "ngayKham": "2024-01-08",
+        "tienThuoc": 421000.0,
+        "tienKham": 533000.0,
+        "tongTien": 954000.0,
+        "ngayLapHoaDon": "2024-01-08",
+        "trangThai": 0,
+        "phieuKham_id": 13
+    },
+    {
+        "id": 14,
+        "ngayKham": "2024-01-09",
+        "tienThuoc": 242000.0,
+        "tienKham": 320000.0,
+        "tongTien": 562000.0,
+        "ngayLapHoaDon": "2024-01-09",
+        "trangThai": 0,
+        "phieuKham_id": 14
+    },
+    {
+        "id": 15,
+        "ngayKham": "2024-01-09",
+        "tienThuoc": 555000.0,
+        "tienKham": 944000.0,
+        "tongTien": 1499000.0,
+        "ngayLapHoaDon": "2024-01-09",
+        "trangThai": 0,
+        "phieuKham_id": 15
+    },
+    {
+        "id": 16,
+        "ngayKham": "2024-01-10",
+        "tienThuoc": 600000.0,
+        "tienKham": 726000.0,
+        "tongTien": 1326000.0,
+        "ngayLapHoaDon": "2024-01-10",
+        "trangThai": 0,
+        "phieuKham_id": 16
+    },
+    {
+        "id": 17,
+        "ngayKham": "2024-01-10",
+        "tienThuoc": 889000.0,
+        "tienKham": 606000.0,
+        "tongTien": 1495000.0,
+        "ngayLapHoaDon": "2024-01-10",
+        "trangThai": 0,
+        "phieuKham_id": 17
+    },
+    {
+        "id": 18,
+        "ngayKham": "2024-01-11",
+        "tienThuoc": 419000.0,
+        "tienKham": 988000.0,
+        "tongTien": 1407000.0,
+        "ngayLapHoaDon": "2024-01-11",
+        "trangThai": 1,
+        "phieuKham_id": 18
+    },
+    {
+        "id": 19,
+        "ngayKham": "2024-01-11",
+        "tienThuoc": 248000.0,
+        "tienKham": 149000.0,
+        "tongTien": 397000.0,
+        "ngayLapHoaDon": "2024-01-11",
+        "trangThai": 1,
+        "phieuKham_id": 19
+    },
+    {
+        "id": 20,
+        "ngayKham": "2024-01-11",
+        "tienThuoc": 978000.0,
+        "tienKham": 136000.0,
+        "tongTien": 1114000.0,
+        "ngayLapHoaDon": "2024-01-11",
+        "trangThai": 1,
+        "phieuKham_id": 20
+    },
+    {
+        "id": 21,
+        "ngayKham": "2024-01-11",
+        "tienThuoc": 257000.0,
+        "tienKham": 560000.0,
+        "tongTien": 817000.0,
+        "ngayLapHoaDon": "2024-01-11",
+        "trangThai": 0,
+        "phieuKham_id": 21
+    },
+    {
+        "id": 22,
+        "ngayKham": "2024-01-11",
+        "tienThuoc": 508000.0,
+        "tienKham": 933000.0,
+        "tongTien": 1441000.0,
+        "ngayLapHoaDon": "2024-01-11",
+        "trangThai": 1,
+        "phieuKham_id": 22
+    },
+    {
+        "id": 23,
+        "ngayKham": "2024-01-12",
+        "tienThuoc": 574000.0,
+        "tienKham": 930000.0,
+        "tongTien": 1504000.0,
+        "ngayLapHoaDon": "2024-01-12",
+        "trangThai": 1,
+        "phieuKham_id": 23
+    },
+    {
+        "id": 24,
+        "ngayKham": "2024-01-13",
+        "tienThuoc": 211000.0,
+        "tienKham": 520000.0,
+        "tongTien": 731000.0,
+        "ngayLapHoaDon": "2024-01-13",
+        "trangThai": 1,
+        "phieuKham_id": 24
+    },
+    {
+        "id": 25,
+        "ngayKham": "2024-01-13",
+        "tienThuoc": 831000.0,
+        "tienKham": 325000.0,
+        "tongTien": 1156000.0,
+        "ngayLapHoaDon": "2024-01-13",
+        "trangThai": 0,
+        "phieuKham_id": 25
+    },
+    {
+        "id": 26,
+        "ngayKham": "2024-01-14",
+        "tienThuoc": 772000.0,
+        "tienKham": 689000.0,
+        "tongTien": 1461000.0,
+        "ngayLapHoaDon": "2024-01-14",
+        "trangThai": 1,
+        "phieuKham_id": 26
+    },
+    {
+        "id": 27,
+        "ngayKham": "2024-01-14",
+        "tienThuoc": 168000.0,
+        "tienKham": 539000.0,
+        "tongTien": 707000.0,
+        "ngayLapHoaDon": "2024-01-14",
+        "trangThai": 0,
+        "phieuKham_id": 27
+    },
+    {
+        "id": 28,
+        "ngayKham": "2024-01-15",
+        "tienThuoc": 733000.0,
+        "tienKham": 181000.0,
+        "tongTien": 914000.0,
+        "ngayLapHoaDon": "2024-01-15",
+        "trangThai": 1,
+        "phieuKham_id": 28
+    },
+    {
+        "id": 29,
+        "ngayKham": "2024-01-15",
+        "tienThuoc": 769000.0,
+        "tienKham": 978000.0,
+        "tongTien": 1747000.0,
+        "ngayLapHoaDon": "2024-01-15",
+        "trangThai": 0,
+        "phieuKham_id": 29
+    },
+    {
+        "id": 30,
+        "ngayKham": "2024-01-15",
+        "tienThuoc": 234000.0,
+        "tienKham": 269000.0,
+        "tongTien": 503000.0,
+        "ngayLapHoaDon": "2024-01-15",
+        "trangThai": 0,
+        "phieuKham_id": 30
+    },
+    {
+        "id": 31,
+        "ngayKham": "2024-01-15",
+        "tienThuoc": 650000.0,
+        "tienKham": 919000.0,
+        "tongTien": 1569000.0,
+        "ngayLapHoaDon": "2024-01-15",
+        "trangThai": 0,
+        "phieuKham_id": 31
+    },
+    {
+        "id": 32,
+        "ngayKham": "2024-01-16",
+        "tienThuoc": 685000.0,
+        "tienKham": 936000.0,
+        "tongTien": 1621000.0,
+        "ngayLapHoaDon": "2024-01-16",
+        "trangThai": 1,
+        "phieuKham_id": 32
+    },
+    {
+        "id": 33,
+        "ngayKham": "2024-01-16",
+        "tienThuoc": 992000.0,
+        "tienKham": 785000.0,
+        "tongTien": 1777000.0,
+        "ngayLapHoaDon": "2024-01-16",
+        "trangThai": 1,
+        "phieuKham_id": 33
+    },
+    {
+        "id": 34,
+        "ngayKham": "2024-01-17",
+        "tienThuoc": 470000.0,
+        "tienKham": 561000.0,
+        "tongTien": 1031000.0,
+        "ngayLapHoaDon": "2024-01-17",
+        "trangThai": 1,
+        "phieuKham_id": 34
+    },
+    {
+        "id": 35,
+        "ngayKham": "2024-01-17",
+        "tienThuoc": 316000.0,
+        "tienKham": 662000.0,
+        "tongTien": 978000.0,
+        "ngayLapHoaDon": "2024-01-17",
+        "trangThai": 1,
+        "phieuKham_id": 35
+    },
+    {
+        "id": 36,
+        "ngayKham": "2024-01-17",
+        "tienThuoc": 590000.0,
+        "tienKham": 195000.0,
+        "tongTien": 785000.0,
+        "ngayLapHoaDon": "2024-01-17",
+        "trangThai": 0,
+        "phieuKham_id": 36
+    },
+    {
+        "id": 37,
+        "ngayKham": "2024-01-17",
+        "tienThuoc": 624000.0,
+        "tienKham": 273000.0,
+        "tongTien": 897000.0,
+        "ngayLapHoaDon": "2024-01-17",
+        "trangThai": 1,
+        "phieuKham_id": 37
+    },
+    {
+        "id": 38,
+        "ngayKham": "2024-01-17",
+        "tienThuoc": 403000.0,
+        "tienKham": 883000.0,
+        "tongTien": 1286000.0,
+        "ngayLapHoaDon": "2024-01-17",
+        "trangThai": 1,
+        "phieuKham_id": 38
+    },
+    {
+        "id": 39,
+        "ngayKham": "2024-01-18",
+        "tienThuoc": 621000.0,
+        "tienKham": 204000.0,
+        "tongTien": 825000.0,
+        "ngayLapHoaDon": "2024-01-18",
+        "trangThai": 0,
+        "phieuKham_id": 39
+    },
+    {
+        "id": 40,
+        "ngayKham": "2024-01-19",
+        "tienThuoc": 987000.0,
+        "tienKham": 931000.0,
+        "tongTien": 1918000.0,
+        "ngayLapHoaDon": "2024-01-19",
+        "trangThai": 0,
+        "phieuKham_id": 40
+    },
+    {
+        "id": 41,
+        "ngayKham": "2024-01-19",
+        "tienThuoc": 318000.0,
+        "tienKham": 322000.0,
+        "tongTien": 640000.0,
+        "ngayLapHoaDon": "2024-01-19",
+        "trangThai": 0,
+        "phieuKham_id": 41
+    },
+    {
+        "id": 42,
+        "ngayKham": "2024-01-20",
+        "tienThuoc": 736000.0,
+        "tienKham": 883000.0,
+        "tongTien": 1619000.0,
+        "ngayLapHoaDon": "2024-01-20",
+        "trangThai": 1,
+        "phieuKham_id": 42
+    },
+    {
+        "id": 43,
+        "ngayKham": "2024-01-20",
+        "tienThuoc": 134000.0,
+        "tienKham": 939000.0,
+        "tongTien": 1073000.0,
+        "ngayLapHoaDon": "2024-01-20",
+        "trangThai": 0,
+        "phieuKham_id": 43
+    },
+    {
+        "id": 44,
+        "ngayKham": "2024-01-21",
+        "tienThuoc": 435000.0,
+        "tienKham": 846000.0,
+        "tongTien": 1281000.0,
+        "ngayLapHoaDon": "2024-01-21",
+        "trangThai": 1,
+        "phieuKham_id": 44
+    },
+    {
+        "id": 45,
+        "ngayKham": "2024-01-22",
+        "tienThuoc": 288000.0,
+        "tienKham": 449000.0,
+        "tongTien": 737000.0,
+        "ngayLapHoaDon": "2024-01-22",
+        "trangThai": 0,
+        "phieuKham_id": 45
+    },
+    {
+        "id": 46,
+        "ngayKham": "2024-01-23",
+        "tienThuoc": 499000.0,
+        "tienKham": 428000.0,
+        "tongTien": 927000.0,
+        "ngayLapHoaDon": "2024-01-23",
+        "trangThai": 0,
+        "phieuKham_id": 46
+    },
+    {
+        "id": 47,
+        "ngayKham": "2024-01-23",
+        "tienThuoc": 975000.0,
+        "tienKham": 293000.0,
+        "tongTien": 1268000.0,
+        "ngayLapHoaDon": "2024-01-23",
+        "trangThai": 1,
+        "phieuKham_id": 47
+    },
+    {
+        "id": 48,
+        "ngayKham": "2024-01-24",
+        "tienThuoc": 349000.0,
+        "tienKham": 263000.0,
+        "tongTien": 612000.0,
+        "ngayLapHoaDon": "2024-01-24",
+        "trangThai": 0,
+        "phieuKham_id": 48
+    },
+    {
+        "id": 49,
+        "ngayKham": "2024-01-24",
+        "tienThuoc": 168000.0,
+        "tienKham": 193000.0,
+        "tongTien": 361000.0,
+        "ngayLapHoaDon": "2024-01-24",
+        "trangThai": 1,
+        "phieuKham_id": 49
+    },
+    {
+        "id": 50,
+        "ngayKham": "2024-01-25",
+        "tienThuoc": 991000.0,
+        "tienKham": 237000.0,
+        "tongTien": 1228000.0,
+        "ngayLapHoaDon": "2024-01-25",
+        "trangThai": 0,
+        "phieuKham_id": 50
+    },
+    {
+        "id": 51,
+        "ngayKham": "2024-01-26",
+        "tienThuoc": 327000.0,
+        "tienKham": 793000.0,
+        "tongTien": 1120000.0,
+        "ngayLapHoaDon": "2024-01-26",
+        "trangThai": 1,
+        "phieuKham_id": 51
+    },
+    {
+        "id": 52,
+        "ngayKham": "2024-01-26",
+        "tienThuoc": 411000.0,
+        "tienKham": 171000.0,
+        "tongTien": 582000.0,
+        "ngayLapHoaDon": "2024-01-26",
+        "trangThai": 0,
+        "phieuKham_id": 52
+    },
+    {
+        "id": 53,
+        "ngayKham": "2024-01-27",
+        "tienThuoc": 189000.0,
+        "tienKham": 858000.0,
+        "tongTien": 1047000.0,
+        "ngayLapHoaDon": "2024-01-27",
+        "trangThai": 1,
+        "phieuKham_id": 53
+    },
+    {
+        "id": 54,
+        "ngayKham": "2024-01-28",
+        "tienThuoc": 487000.0,
+        "tienKham": 324000.0,
+        "tongTien": 811000.0,
+        "ngayLapHoaDon": "2024-01-28",
+        "trangThai": 0,
+        "phieuKham_id": 54
+    },
+    {
+        "id": 55,
+        "ngayKham": "2024-01-28",
+        "tienThuoc": 828000.0,
+        "tienKham": 962000.0,
+        "tongTien": 1790000.0,
+        "ngayLapHoaDon": "2024-01-28",
+        "trangThai": 1,
+        "phieuKham_id": 55
+    },
+    {
+        "id": 56,
+        "ngayKham": "2024-01-29",
+        "tienThuoc": 196000.0,
+        "tienKham": 837000.0,
+        "tongTien": 1033000.0,
+        "ngayLapHoaDon": "2024-01-29",
+        "trangThai": 0,
+        "phieuKham_id": 56
+    },
+    {
+        "id": 57,
+        "ngayKham": "2024-01-29",
+        "tienThuoc": 270000.0,
+        "tienKham": 423000.0,
+        "tongTien": 693000.0,
+        "ngayLapHoaDon": "2024-01-29",
+        "trangThai": 0,
+        "phieuKham_id": 57
+    },
+    {
+        "id": 58,
+        "ngayKham": "2024-01-30",
+        "tienThuoc": 795000.0,
+        "tienKham": 416000.0,
+        "tongTien": 1211000.0,
+        "ngayLapHoaDon": "2024-01-30",
+        "trangThai": 0,
+        "phieuKham_id": 58
+    },
+    {
+        "id": 59,
+        "ngayKham": "2024-01-31",
+        "tienThuoc": 212000.0,
+        "tienKham": 469000.0,
+        "tongTien": 681000.0,
+        "ngayLapHoaDon": "2024-01-31",
+        "trangThai": 1,
+        "phieuKham_id": 59
+    },
+    {
+        "id": 60,
+        "ngayKham": "2024-02-01",
+        "tienThuoc": 864000.0,
+        "tienKham": 443000.0,
+        "tongTien": 1307000.0,
+        "ngayLapHoaDon": "2024-02-01",
+        "trangThai": 1,
+        "phieuKham_id": 60
+    },
+    {
+        "id": 61,
+        "ngayKham": "2024-02-02",
+        "tienThuoc": 754000.0,
+        "tienKham": 639000.0,
+        "tongTien": 1393000.0,
+        "ngayLapHoaDon": "2024-02-02",
+        "trangThai": 0,
+        "phieuKham_id": 61
+    },
+    {
+        "id": 62,
+        "ngayKham": "2024-02-02",
+        "tienThuoc": 575000.0,
+        "tienKham": 513000.0,
+        "tongTien": 1088000.0,
+        "ngayLapHoaDon": "2024-02-02",
+        "trangThai": 0,
+        "phieuKham_id": 62
+    },
+    {
+        "id": 63,
+        "ngayKham": "2024-02-03",
+        "tienThuoc": 500000.0,
+        "tienKham": 172000.0,
+        "tongTien": 672000.0,
+        "ngayLapHoaDon": "2024-02-03",
+        "trangThai": 0,
+        "phieuKham_id": 63
+    },
+    {
+        "id": 64,
+        "ngayKham": "2024-02-04",
+        "tienThuoc": 873000.0,
+        "tienKham": 371000.0,
+        "tongTien": 1244000.0,
+        "ngayLapHoaDon": "2024-02-04",
+        "trangThai": 1,
+        "phieuKham_id": 64
+    },
+    {
+        "id": 65,
+        "ngayKham": "2024-02-05",
+        "tienThuoc": 419000.0,
+        "tienKham": 402000.0,
+        "tongTien": 821000.0,
+        "ngayLapHoaDon": "2024-02-05",
+        "trangThai": 0,
+        "phieuKham_id": 65
+    },
+    {
+        "id": 66,
+        "ngayKham": "2024-02-05",
+        "tienThuoc": 229000.0,
+        "tienKham": 265000.0,
+        "tongTien": 494000.0,
+        "ngayLapHoaDon": "2024-02-05",
+        "trangThai": 0,
+        "phieuKham_id": 66
+    },
+    {
+        "id": 67,
+        "ngayKham": "2024-02-06",
+        "tienThuoc": 426000.0,
+        "tienKham": 841000.0,
+        "tongTien": 1267000.0,
+        "ngayLapHoaDon": "2024-02-06",
+        "trangThai": 0,
+        "phieuKham_id": 67
+    },
+    {
+        "id": 68,
+        "ngayKham": "2024-02-07",
+        "tienThuoc": 149000.0,
+        "tienKham": 522000.0,
+        "tongTien": 671000.0,
+        "ngayLapHoaDon": "2024-02-07",
+        "trangThai": 1,
+        "phieuKham_id": 68
+    },
+    {
+        "id": 69,
+        "ngayKham": "2024-02-07",
+        "tienThuoc": 246000.0,
+        "tienKham": 125000.0,
+        "tongTien": 371000.0,
+        "ngayLapHoaDon": "2024-02-07",
+        "trangThai": 0,
+        "phieuKham_id": 69
+    },
+    {
+        "id": 70,
+        "ngayKham": "2024-02-08",
+        "tienThuoc": 733000.0,
+        "tienKham": 438000.0,
+        "tongTien": 1171000.0,
+        "ngayLapHoaDon": "2024-02-08",
+        "trangThai": 0,
+        "phieuKham_id": 70
+    },
+    {
+        "id": 71,
+        "ngayKham": "2024-02-09",
+        "tienThuoc": 239000.0,
+        "tienKham": 520000.0,
+        "tongTien": 759000.0,
+        "ngayLapHoaDon": "2024-02-09",
+        "trangThai": 1,
+        "phieuKham_id": 71
+    },
+    {
+        "id": 72,
+        "ngayKham": "2024-02-09",
+        "tienThuoc": 271000.0,
+        "tienKham": 654000.0,
+        "tongTien": 925000.0,
+        "ngayLapHoaDon": "2024-02-09",
+        "trangThai": 0,
+        "phieuKham_id": 72
+    },
+    {
+        "id": 73,
+        "ngayKham": "2024-02-09",
+        "tienThuoc": 410000.0,
+        "tienKham": 962000.0,
+        "tongTien": 1372000.0,
+        "ngayLapHoaDon": "2024-02-09",
+        "trangThai": 1,
+        "phieuKham_id": 73
+    },
+    {
+        "id": 74,
+        "ngayKham": "2024-02-09",
+        "tienThuoc": 368000.0,
+        "tienKham": 933000.0,
+        "tongTien": 1301000.0,
+        "ngayLapHoaDon": "2024-02-09",
+        "trangThai": 0,
+        "phieuKham_id": 74
+    },
+    {
+        "id": 75,
+        "ngayKham": "2024-02-09",
+        "tienThuoc": 498000.0,
+        "tienKham": 138000.0,
+        "tongTien": 636000.0,
+        "ngayLapHoaDon": "2024-02-09",
+        "trangThai": 0,
+        "phieuKham_id": 75
+    },
+    {
+        "id": 76,
+        "ngayKham": "2024-02-09",
+        "tienThuoc": 783000.0,
+        "tienKham": 545000.0,
+        "tongTien": 1328000.0,
+        "ngayLapHoaDon": "2024-02-09",
+        "trangThai": 0,
+        "phieuKham_id": 76
+    },
+    {
+        "id": 77,
+        "ngayKham": "2024-02-09",
+        "tienThuoc": 139000.0,
+        "tienKham": 330000.0,
+        "tongTien": 469000.0,
+        "ngayLapHoaDon": "2024-02-09",
+        "trangThai": 0,
+        "phieuKham_id": 77
+    },
+    {
+        "id": 78,
+        "ngayKham": "2024-02-10",
+        "tienThuoc": 734000.0,
+        "tienKham": 231000.0,
+        "tongTien": 965000.0,
+        "ngayLapHoaDon": "2024-02-10",
+        "trangThai": 1,
+        "phieuKham_id": 78
+    },
+    {
+        "id": 79,
+        "ngayKham": "2024-02-10",
+        "tienThuoc": 296000.0,
+        "tienKham": 220000.0,
+        "tongTien": 516000.0,
+        "ngayLapHoaDon": "2024-02-10",
+        "trangThai": 1,
+        "phieuKham_id": 79
+    },
+    {
+        "id": 80,
+        "ngayKham": "2024-02-10",
+        "tienThuoc": 441000.0,
+        "tienKham": 295000.0,
+        "tongTien": 736000.0,
+        "ngayLapHoaDon": "2024-02-10",
+        "trangThai": 0,
+        "phieuKham_id": 80
+    },
+    {
+        "id": 81,
+        "ngayKham": "2024-02-10",
+        "tienThuoc": 319000.0,
+        "tienKham": 836000.0,
+        "tongTien": 1155000.0,
+        "ngayLapHoaDon": "2024-02-10",
+        "trangThai": 1,
+        "phieuKham_id": 81
+    },
+    {
+        "id": 82,
+        "ngayKham": "2024-02-10",
+        "tienThuoc": 897000.0,
+        "tienKham": 525000.0,
+        "tongTien": 1422000.0,
+        "ngayLapHoaDon": "2024-02-10",
+        "trangThai": 0,
+        "phieuKham_id": 82
+    },
+    {
+        "id": 83,
+        "ngayKham": "2024-02-10",
+        "tienThuoc": 460000.0,
+        "tienKham": 798000.0,
+        "tongTien": 1258000.0,
+        "ngayLapHoaDon": "2024-02-10",
+        "trangThai": 0,
+        "phieuKham_id": 83
+    },
+    {
+        "id": 84,
+        "ngayKham": "2024-02-10",
+        "tienThuoc": 371000.0,
+        "tienKham": 292000.0,
+        "tongTien": 663000.0,
+        "ngayLapHoaDon": "2024-02-10",
+        "trangThai": 0,
+        "phieuKham_id": 84
+    },
+    {
+        "id": 85,
+        "ngayKham": "2024-02-11",
+        "tienThuoc": 486000.0,
+        "tienKham": 362000.0,
+        "tongTien": 848000.0,
+        "ngayLapHoaDon": "2024-02-11",
+        "trangThai": 1,
+        "phieuKham_id": 85
+    },
+    {
+        "id": 86,
+        "ngayKham": "2024-02-12",
+        "tienThuoc": 311000.0,
+        "tienKham": 363000.0,
+        "tongTien": 674000.0,
+        "ngayLapHoaDon": "2024-02-12",
+        "trangThai": 1,
+        "phieuKham_id": 86
+    },
+    {
+        "id": 87,
+        "ngayKham": "2024-02-13",
+        "tienThuoc": 390000.0,
+        "tienKham": 124000.0,
+        "tongTien": 514000.0,
+        "ngayLapHoaDon": "2024-02-13",
+        "trangThai": 0,
+        "phieuKham_id": 87
+    },
+    {
+        "id": 88,
+        "ngayKham": "2024-02-14",
+        "tienThuoc": 650000.0,
+        "tienKham": 760000.0,
+        "tongTien": 1410000.0,
+        "ngayLapHoaDon": "2024-02-14",
+        "trangThai": 0,
+        "phieuKham_id": 88
+    },
+    {
+        "id": 89,
+        "ngayKham": "2024-02-14",
+        "tienThuoc": 502000.0,
+        "tienKham": 237000.0,
+        "tongTien": 739000.0,
+        "ngayLapHoaDon": "2024-02-14",
+        "trangThai": 0,
+        "phieuKham_id": 89
+    },
+    {
+        "id": 90,
+        "ngayKham": "2024-02-15",
+        "tienThuoc": 405000.0,
+        "tienKham": 382000.0,
+        "tongTien": 787000.0,
+        "ngayLapHoaDon": "2024-02-15",
+        "trangThai": 0,
+        "phieuKham_id": 90
+    },
+    {
+        "id": 91,
+        "ngayKham": "2024-02-15",
+        "tienThuoc": 538000.0,
+        "tienKham": 721000.0,
+        "tongTien": 1259000.0,
+        "ngayLapHoaDon": "2024-02-15",
+        "trangThai": 1,
+        "phieuKham_id": 91
+    },
+    {
+        "id": 92,
+        "ngayKham": "2024-02-15",
+        "tienThuoc": 445000.0,
+        "tienKham": 685000.0,
+        "tongTien": 1130000.0,
+        "ngayLapHoaDon": "2024-02-15",
+        "trangThai": 1,
+        "phieuKham_id": 92
+    },
+    {
+        "id": 93,
+        "ngayKham": "2024-02-16",
+        "tienThuoc": 133000.0,
+        "tienKham": 528000.0,
+        "tongTien": 661000.0,
+        "ngayLapHoaDon": "2024-02-16",
+        "trangThai": 0,
+        "phieuKham_id": 93
+    },
+    {
+        "id": 94,
+        "ngayKham": "2024-02-17",
+        "tienThuoc": 248000.0,
+        "tienKham": 735000.0,
+        "tongTien": 983000.0,
+        "ngayLapHoaDon": "2024-02-17",
+        "trangThai": 0,
+        "phieuKham_id": 94
+    },
+    {
+        "id": 95,
+        "ngayKham": "2024-02-18",
+        "tienThuoc": 379000.0,
+        "tienKham": 781000.0,
+        "tongTien": 1160000.0,
+        "ngayLapHoaDon": "2024-02-18",
+        "trangThai": 1,
+        "phieuKham_id": 95
+    },
+    {
+        "id": 96,
+        "ngayKham": "2024-02-18",
+        "tienThuoc": 264000.0,
+        "tienKham": 273000.0,
+        "tongTien": 537000.0,
+        "ngayLapHoaDon": "2024-02-18",
+        "trangThai": 1,
+        "phieuKham_id": 96
+    },
+    {
+        "id": 97,
+        "ngayKham": "2024-02-19",
+        "tienThuoc": 281000.0,
+        "tienKham": 578000.0,
+        "tongTien": 859000.0,
+        "ngayLapHoaDon": "2024-02-19",
+        "trangThai": 0,
+        "phieuKham_id": 97
+    },
+    {
+        "id": 98,
+        "ngayKham": "2024-02-19",
+        "tienThuoc": 929000.0,
+        "tienKham": 658000.0,
+        "tongTien": 1587000.0,
+        "ngayLapHoaDon": "2024-02-19",
+        "trangThai": 1,
+        "phieuKham_id": 98
+    },
+    {
+        "id": 99,
+        "ngayKham": "2024-02-20",
+        "tienThuoc": 925000.0,
+        "tienKham": 837000.0,
+        "tongTien": 1762000.0,
+        "ngayLapHoaDon": "2024-02-20",
+        "trangThai": 0,
+        "phieuKham_id": 99
+    },
+    {
+        "id": 100,
+        "ngayKham": "2024-02-21",
+        "tienThuoc": 834000.0,
+        "tienKham": 598000.0,
+        "tongTien": 1432000.0,
+        "ngayLapHoaDon": "2024-02-21",
+        "trangThai": 1,
+        "phieuKham_id": 100
+    },
+    {
+        "id": 101,
+        "ngayKham": "2024-02-22",
+        "tienThuoc": 784000.0,
+        "tienKham": 364000.0,
+        "tongTien": 1148000.0,
+        "ngayLapHoaDon": "2024-02-22",
+        "trangThai": 1,
+        "phieuKham_id": 101
+    },
+    {
+        "id": 102,
+        "ngayKham": "2024-02-23",
+        "tienThuoc": 399000.0,
+        "tienKham": 671000.0,
+        "tongTien": 1070000.0,
+        "ngayLapHoaDon": "2024-02-23",
+        "trangThai": 0,
+        "phieuKham_id": 102
+    },
+    {
+        "id": 103,
+        "ngayKham": "2024-02-24",
+        "tienThuoc": 681000.0,
+        "tienKham": 487000.0,
+        "tongTien": 1168000.0,
+        "ngayLapHoaDon": "2024-02-24",
+        "trangThai": 0,
+        "phieuKham_id": 103
+    },
+    {
+        "id": 104,
+        "ngayKham": "2024-02-24",
+        "tienThuoc": 297000.0,
+        "tienKham": 126000.0,
+        "tongTien": 423000.0,
+        "ngayLapHoaDon": "2024-02-24",
+        "trangThai": 0,
+        "phieuKham_id": 104
+    },
+    {
+        "id": 105,
+        "ngayKham": "2024-02-25",
+        "tienThuoc": 441000.0,
+        "tienKham": 353000.0,
+        "tongTien": 794000.0,
+        "ngayLapHoaDon": "2024-02-25",
+        "trangThai": 0,
+        "phieuKham_id": 105
+    },
+    {
+        "id": 106,
+        "ngayKham": "2024-02-26",
+        "tienThuoc": 307000.0,
+        "tienKham": 711000.0,
+        "tongTien": 1018000.0,
+        "ngayLapHoaDon": "2024-02-26",
+        "trangThai": 0,
+        "phieuKham_id": 106
+    },
+    {
+        "id": 107,
+        "ngayKham": "2024-02-27",
+        "tienThuoc": 791000.0,
+        "tienKham": 538000.0,
+        "tongTien": 1329000.0,
+        "ngayLapHoaDon": "2024-02-27",
+        "trangThai": 1,
+        "phieuKham_id": 107
+    },
+    {
+        "id": 108,
+        "ngayKham": "2024-02-27",
+        "tienThuoc": 637000.0,
+        "tienKham": 264000.0,
+        "tongTien": 901000.0,
+        "ngayLapHoaDon": "2024-02-27",
+        "trangThai": 1,
+        "phieuKham_id": 108
+    },
+    {
+        "id": 109,
+        "ngayKham": "2024-02-27",
+        "tienThuoc": 811000.0,
+        "tienKham": 555000.0,
+        "tongTien": 1366000.0,
+        "ngayLapHoaDon": "2024-02-27",
+        "trangThai": 0,
+        "phieuKham_id": 109
+    },
+    {
+        "id": 110,
+        "ngayKham": "2024-02-27",
+        "tienThuoc": 863000.0,
+        "tienKham": 383000.0,
+        "tongTien": 1246000.0,
+        "ngayLapHoaDon": "2024-02-27",
+        "trangThai": 0,
+        "phieuKham_id": 110
+    },
+    {
+        "id": 111,
+        "ngayKham": "2024-02-27",
+        "tienThuoc": 300000.0,
+        "tienKham": 687000.0,
+        "tongTien": 987000.0,
+        "ngayLapHoaDon": "2024-02-27",
+        "trangThai": 0,
+        "phieuKham_id": 111
+    },
+    {
+        "id": 112,
+        "ngayKham": "2024-02-27",
+        "tienThuoc": 547000.0,
+        "tienKham": 155000.0,
+        "tongTien": 702000.0,
+        "ngayLapHoaDon": "2024-02-27",
+        "trangThai": 0,
+        "phieuKham_id": 112
+    },
+    {
+        "id": 113,
+        "ngayKham": "2024-02-28",
+        "tienThuoc": 549000.0,
+        "tienKham": 715000.0,
+        "tongTien": 1264000.0,
+        "ngayLapHoaDon": "2024-02-28",
+        "trangThai": 0,
+        "phieuKham_id": 113
+    },
+    {
+        "id": 114,
+        "ngayKham": "2024-02-29",
+        "tienThuoc": 550000.0,
+        "tienKham": 623000.0,
+        "tongTien": 1173000.0,
+        "ngayLapHoaDon": "2024-02-29",
+        "trangThai": 0,
+        "phieuKham_id": 114
+    },
+    {
+        "id": 115,
+        "ngayKham": "2024-03-01",
+        "tienThuoc": 615000.0,
+        "tienKham": 290000.0,
+        "tongTien": 905000.0,
+        "ngayLapHoaDon": "2024-03-01",
+        "trangThai": 0,
+        "phieuKham_id": 115
+    },
+    {
+        "id": 116,
+        "ngayKham": "2024-03-01",
+        "tienThuoc": 624000.0,
+        "tienKham": 544000.0,
+        "tongTien": 1168000.0,
+        "ngayLapHoaDon": "2024-03-01",
+        "trangThai": 0,
+        "phieuKham_id": 116
+    },
+    {
+        "id": 117,
+        "ngayKham": "2024-03-01",
+        "tienThuoc": 503000.0,
+        "tienKham": 667000.0,
+        "tongTien": 1170000.0,
+        "ngayLapHoaDon": "2024-03-01",
+        "trangThai": 1,
+        "phieuKham_id": 117
+    },
+    {
+        "id": 118,
+        "ngayKham": "2024-03-02",
+        "tienThuoc": 341000.0,
+        "tienKham": 554000.0,
+        "tongTien": 895000.0,
+        "ngayLapHoaDon": "2024-03-02",
+        "trangThai": 0,
+        "phieuKham_id": 118
+    },
+    {
+        "id": 119,
+        "ngayKham": "2024-03-02",
+        "tienThuoc": 295000.0,
+        "tienKham": 246000.0,
+        "tongTien": 541000.0,
+        "ngayLapHoaDon": "2024-03-02",
+        "trangThai": 1,
+        "phieuKham_id": 119
+    },
+    {
+        "id": 120,
+        "ngayKham": "2024-03-03",
+        "tienThuoc": 286000.0,
+        "tienKham": 336000.0,
+        "tongTien": 622000.0,
+        "ngayLapHoaDon": "2024-03-03",
+        "trangThai": 1,
+        "phieuKham_id": 120
+    },
+    {
+        "id": 121,
+        "ngayKham": "2024-03-03",
+        "tienThuoc": 698000.0,
+        "tienKham": 305000.0,
+        "tongTien": 1003000.0,
+        "ngayLapHoaDon": "2024-03-03",
+        "trangThai": 0,
+        "phieuKham_id": 121
+    },
+    {
+        "id": 122,
+        "ngayKham": "2024-03-04",
+        "tienThuoc": 409000.0,
+        "tienKham": 324000.0,
+        "tongTien": 733000.0,
+        "ngayLapHoaDon": "2024-03-04",
+        "trangThai": 1,
+        "phieuKham_id": 122
+    },
+    {
+        "id": 123,
+        "ngayKham": "2024-03-05",
+        "tienThuoc": 976000.0,
+        "tienKham": 951000.0,
+        "tongTien": 1927000.0,
+        "ngayLapHoaDon": "2024-03-05",
+        "trangThai": 1,
+        "phieuKham_id": 123
+    },
+    {
+        "id": 124,
+        "ngayKham": "2024-03-05",
+        "tienThuoc": 917000.0,
+        "tienKham": 238000.0,
+        "tongTien": 1155000.0,
+        "ngayLapHoaDon": "2024-03-05",
+        "trangThai": 0,
+        "phieuKham_id": 124
+    },
+    {
+        "id": 125,
+        "ngayKham": "2024-03-06",
+        "tienThuoc": 177000.0,
+        "tienKham": 532000.0,
+        "tongTien": 709000.0,
+        "ngayLapHoaDon": "2024-03-06",
+        "trangThai": 0,
+        "phieuKham_id": 125
+    },
+    {
+        "id": 126,
+        "ngayKham": "2024-03-06",
+        "tienThuoc": 906000.0,
+        "tienKham": 371000.0,
+        "tongTien": 1277000.0,
+        "ngayLapHoaDon": "2024-03-06",
+        "trangThai": 1,
+        "phieuKham_id": 126
+    },
+    {
+        "id": 127,
+        "ngayKham": "2024-03-06",
+        "tienThuoc": 917000.0,
+        "tienKham": 670000.0,
+        "tongTien": 1587000.0,
+        "ngayLapHoaDon": "2024-03-06",
+        "trangThai": 1,
+        "phieuKham_id": 127
+    },
+    {
+        "id": 128,
+        "ngayKham": "2024-03-06",
+        "tienThuoc": 947000.0,
+        "tienKham": 353000.0,
+        "tongTien": 1300000.0,
+        "ngayLapHoaDon": "2024-03-06",
+        "trangThai": 1,
+        "phieuKham_id": 128
+    },
+    {
+        "id": 129,
+        "ngayKham": "2024-03-07",
+        "tienThuoc": 826000.0,
+        "tienKham": 430000.0,
+        "tongTien": 1256000.0,
+        "ngayLapHoaDon": "2024-03-07",
+        "trangThai": 0,
+        "phieuKham_id": 129
+    },
+    {
+        "id": 130,
+        "ngayKham": "2024-03-07",
+        "tienThuoc": 311000.0,
+        "tienKham": 202000.0,
+        "tongTien": 513000.0,
+        "ngayLapHoaDon": "2024-03-07",
+        "trangThai": 0,
+        "phieuKham_id": 130
+    },
+    {
+        "id": 131,
+        "ngayKham": "2024-03-08",
+        "tienThuoc": 655000.0,
+        "tienKham": 352000.0,
+        "tongTien": 1007000.0,
+        "ngayLapHoaDon": "2024-03-08",
+        "trangThai": 0,
+        "phieuKham_id": 131
+    },
+    {
+        "id": 132,
+        "ngayKham": "2024-03-09",
+        "tienThuoc": 658000.0,
+        "tienKham": 136000.0,
+        "tongTien": 794000.0,
+        "ngayLapHoaDon": "2024-03-09",
+        "trangThai": 0,
+        "phieuKham_id": 132
+    },
+    {
+        "id": 133,
+        "ngayKham": "2024-03-09",
+        "tienThuoc": 636000.0,
+        "tienKham": 983000.0,
+        "tongTien": 1619000.0,
+        "ngayLapHoaDon": "2024-03-09",
+        "trangThai": 0,
+        "phieuKham_id": 133
+    },
+    {
+        "id": 134,
+        "ngayKham": "2024-03-10",
+        "tienThuoc": 753000.0,
+        "tienKham": 479000.0,
+        "tongTien": 1232000.0,
+        "ngayLapHoaDon": "2024-03-10",
+        "trangThai": 0,
+        "phieuKham_id": 134
+    },
+    {
+        "id": 135,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 479000.0,
+        "tienKham": 742000.0,
+        "tongTien": 1221000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 0,
+        "phieuKham_id": 135
+    },
+    {
+        "id": 136,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 803000.0,
+        "tienKham": 910000.0,
+        "tongTien": 1713000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 0,
+        "phieuKham_id": 136
+    },
+    {
+        "id": 137,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 738000.0,
+        "tienKham": 448000.0,
+        "tongTien": 1186000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 0,
+        "phieuKham_id": 137
+    },
+    {
+        "id": 138,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 386000.0,
+        "tienKham": 347000.0,
+        "tongTien": 733000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 1,
+        "phieuKham_id": 138
+    },
+    {
+        "id": 139,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 955000.0,
+        "tienKham": 812000.0,
+        "tongTien": 1767000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 1,
+        "phieuKham_id": 139
+    },
+    {
+        "id": 140,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 292000.0,
+        "tienKham": 453000.0,
+        "tongTien": 745000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 0,
+        "phieuKham_id": 140
+    },
+    {
+        "id": 141,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 259000.0,
+        "tienKham": 254000.0,
+        "tongTien": 513000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 1,
+        "phieuKham_id": 141
+    },
+    {
+        "id": 142,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 754000.0,
+        "tienKham": 639000.0,
+        "tongTien": 1393000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 0,
+        "phieuKham_id": 142
+    },
+    {
+        "id": 143,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 590000.0,
+        "tienKham": 727000.0,
+        "tongTien": 1317000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 1,
+        "phieuKham_id": 143
+    },
+    {
+        "id": 144,
+        "ngayKham": "2024-03-11",
+        "tienThuoc": 970000.0,
+        "tienKham": 516000.0,
+        "tongTien": 1486000.0,
+        "ngayLapHoaDon": "2024-03-11",
+        "trangThai": 0,
+        "phieuKham_id": 144
+    },
+    {
+        "id": 145,
+        "ngayKham": "2024-03-12",
+        "tienThuoc": 872000.0,
+        "tienKham": 421000.0,
+        "tongTien": 1293000.0,
+        "ngayLapHoaDon": "2024-03-12",
+        "trangThai": 1,
+        "phieuKham_id": 145
+    },
+    {
+        "id": 146,
+        "ngayKham": "2024-03-12",
+        "tienThuoc": 751000.0,
+        "tienKham": 454000.0,
+        "tongTien": 1205000.0,
+        "ngayLapHoaDon": "2024-03-12",
+        "trangThai": 0,
+        "phieuKham_id": 146
+    },
+    {
+        "id": 147,
+        "ngayKham": "2024-03-13",
+        "tienThuoc": 521000.0,
+        "tienKham": 123000.0,
+        "tongTien": 644000.0,
+        "ngayLapHoaDon": "2024-03-13",
+        "trangThai": 1,
+        "phieuKham_id": 147
+    },
+    {
+        "id": 148,
+        "ngayKham": "2024-03-13",
+        "tienThuoc": 984000.0,
+        "tienKham": 510000.0,
+        "tongTien": 1494000.0,
+        "ngayLapHoaDon": "2024-03-13",
+        "trangThai": 0,
+        "phieuKham_id": 148
+    },
+    {
+        "id": 149,
+        "ngayKham": "2024-03-14",
+        "tienThuoc": 288000.0,
+        "tienKham": 761000.0,
+        "tongTien": 1049000.0,
+        "ngayLapHoaDon": "2024-03-14",
+        "trangThai": 1,
+        "phieuKham_id": 149
+    },
+    {
+        "id": 150,
+        "ngayKham": "2024-03-15",
+        "tienThuoc": 924000.0,
+        "tienKham": 695000.0,
+        "tongTien": 1619000.0,
+        "ngayLapHoaDon": "2024-03-15",
+        "trangThai": 1,
+        "phieuKham_id": 150
+    },
+    {
+        "id": 151,
+        "ngayKham": "2024-03-15",
+        "tienThuoc": 102000.0,
+        "tienKham": 286000.0,
+        "tongTien": 388000.0,
+        "ngayLapHoaDon": "2024-03-15",
+        "trangThai": 1,
+        "phieuKham_id": 151
+    },
+    {
+        "id": 152,
+        "ngayKham": "2024-03-15",
+        "tienThuoc": 269000.0,
+        "tienKham": 506000.0,
+        "tongTien": 775000.0,
+        "ngayLapHoaDon": "2024-03-15",
+        "trangThai": 1,
+        "phieuKham_id": 152
+    },
+    {
+        "id": 153,
+        "ngayKham": "2024-03-15",
+        "tienThuoc": 166000.0,
+        "tienKham": 884000.0,
+        "tongTien": 1050000.0,
+        "ngayLapHoaDon": "2024-03-15",
+        "trangThai": 0,
+        "phieuKham_id": 153
+    },
+    {
+        "id": 154,
+        "ngayKham": "2024-03-15",
+        "tienThuoc": 438000.0,
+        "tienKham": 943000.0,
+        "tongTien": 1381000.0,
+        "ngayLapHoaDon": "2024-03-15",
+        "trangThai": 1,
+        "phieuKham_id": 154
+    },
+    {
+        "id": 155,
+        "ngayKham": "2024-03-15",
+        "tienThuoc": 172000.0,
+        "tienKham": 995000.0,
+        "tongTien": 1167000.0,
+        "ngayLapHoaDon": "2024-03-15",
+        "trangThai": 0,
+        "phieuKham_id": 155
+    },
+    {
+        "id": 156,
+        "ngayKham": "2024-03-16",
+        "tienThuoc": 674000.0,
+        "tienKham": 960000.0,
+        "tongTien": 1634000.0,
+        "ngayLapHoaDon": "2024-03-16",
+        "trangThai": 1,
+        "phieuKham_id": 156
+    },
+    {
+        "id": 157,
+        "ngayKham": "2024-03-17",
+        "tienThuoc": 362000.0,
+        "tienKham": 299000.0,
+        "tongTien": 661000.0,
+        "ngayLapHoaDon": "2024-03-17",
+        "trangThai": 0,
+        "phieuKham_id": 157
+    },
+    {
+        "id": 158,
+        "ngayKham": "2024-03-17",
+        "tienThuoc": 607000.0,
+        "tienKham": 875000.0,
+        "tongTien": 1482000.0,
+        "ngayLapHoaDon": "2024-03-17",
+        "trangThai": 1,
+        "phieuKham_id": 158
+    },
+    {
+        "id": 159,
+        "ngayKham": "2024-03-18",
+        "tienThuoc": 105000.0,
+        "tienKham": 218000.0,
+        "tongTien": 323000.0,
+        "ngayLapHoaDon": "2024-03-18",
+        "trangThai": 0,
+        "phieuKham_id": 159
+    },
+    {
+        "id": 160,
+        "ngayKham": "2024-03-19",
+        "tienThuoc": 731000.0,
+        "tienKham": 896000.0,
+        "tongTien": 1627000.0,
+        "ngayLapHoaDon": "2024-03-19",
+        "trangThai": 0,
+        "phieuKham_id": 160
+    },
+    {
+        "id": 161,
+        "ngayKham": "2024-03-19",
+        "tienThuoc": 403000.0,
+        "tienKham": 598000.0,
+        "tongTien": 1001000.0,
+        "ngayLapHoaDon": "2024-03-19",
+        "trangThai": 0,
+        "phieuKham_id": 161
+    },
+    {
+        "id": 162,
+        "ngayKham": "2024-03-20",
+        "tienThuoc": 547000.0,
+        "tienKham": 738000.0,
+        "tongTien": 1285000.0,
+        "ngayLapHoaDon": "2024-03-20",
+        "trangThai": 0,
+        "phieuKham_id": 162
+    },
+    {
+        "id": 163,
+        "ngayKham": "2024-03-21",
+        "tienThuoc": 882000.0,
+        "tienKham": 875000.0,
+        "tongTien": 1757000.0,
+        "ngayLapHoaDon": "2024-03-21",
+        "trangThai": 0,
+        "phieuKham_id": 163
+    },
+    {
+        "id": 164,
+        "ngayKham": "2024-03-22",
+        "tienThuoc": 747000.0,
+        "tienKham": 151000.0,
+        "tongTien": 898000.0,
+        "ngayLapHoaDon": "2024-03-22",
+        "trangThai": 1,
+        "phieuKham_id": 164
+    },
+    {
+        "id": 165,
+        "ngayKham": "2024-03-22",
+        "tienThuoc": 418000.0,
+        "tienKham": 660000.0,
+        "tongTien": 1078000.0,
+        "ngayLapHoaDon": "2024-03-22",
+        "trangThai": 0,
+        "phieuKham_id": 165
+    },
+    {
+        "id": 166,
+        "ngayKham": "2024-03-22",
+        "tienThuoc": 535000.0,
+        "tienKham": 664000.0,
+        "tongTien": 1199000.0,
+        "ngayLapHoaDon": "2024-03-22",
+        "trangThai": 1,
+        "phieuKham_id": 166
+    },
+    {
+        "id": 167,
+        "ngayKham": "2024-03-22",
+        "tienThuoc": 648000.0,
+        "tienKham": 478000.0,
+        "tongTien": 1126000.0,
+        "ngayLapHoaDon": "2024-03-22",
+        "trangThai": 0,
+        "phieuKham_id": 167
+    },
+    {
+        "id": 168,
+        "ngayKham": "2024-03-23",
+        "tienThuoc": 801000.0,
+        "tienKham": 574000.0,
+        "tongTien": 1375000.0,
+        "ngayLapHoaDon": "2024-03-23",
+        "trangThai": 1,
+        "phieuKham_id": 168
+    },
+    {
+        "id": 169,
+        "ngayKham": "2024-03-23",
+        "tienThuoc": 569000.0,
+        "tienKham": 599000.0,
+        "tongTien": 1168000.0,
+        "ngayLapHoaDon": "2024-03-23",
+        "trangThai": 1,
+        "phieuKham_id": 169
+    },
+    {
+        "id": 170,
+        "ngayKham": "2024-03-24",
+        "tienThuoc": 220000.0,
+        "tienKham": 553000.0,
+        "tongTien": 773000.0,
+        "ngayLapHoaDon": "2024-03-24",
+        "trangThai": 0,
+        "phieuKham_id": 170
+    },
+    {
+        "id": 171,
+        "ngayKham": "2024-03-25",
+        "tienThuoc": 454000.0,
+        "tienKham": 377000.0,
+        "tongTien": 831000.0,
+        "ngayLapHoaDon": "2024-03-25",
+        "trangThai": 1,
+        "phieuKham_id": 171
+    },
+    {
+        "id": 172,
+        "ngayKham": "2024-03-25",
+        "tienThuoc": 493000.0,
+        "tienKham": 945000.0,
+        "tongTien": 1438000.0,
+        "ngayLapHoaDon": "2024-03-25",
+        "trangThai": 1,
+        "phieuKham_id": 172
+    },
+    {
+        "id": 173,
+        "ngayKham": "2024-03-25",
+        "tienThuoc": 259000.0,
+        "tienKham": 813000.0,
+        "tongTien": 1072000.0,
+        "ngayLapHoaDon": "2024-03-25",
+        "trangThai": 0,
+        "phieuKham_id": 173
+    },
+    {
+        "id": 174,
+        "ngayKham": "2024-03-25",
+        "tienThuoc": 135000.0,
+        "tienKham": 782000.0,
+        "tongTien": 917000.0,
+        "ngayLapHoaDon": "2024-03-25",
+        "trangThai": 1,
+        "phieuKham_id": 174
+    },
+    {
+        "id": 175,
+        "ngayKham": "2024-03-25",
+        "tienThuoc": 416000.0,
+        "tienKham": 751000.0,
+        "tongTien": 1167000.0,
+        "ngayLapHoaDon": "2024-03-25",
+        "trangThai": 0,
+        "phieuKham_id": 175
+    },
+    {
+        "id": 176,
+        "ngayKham": "2024-03-26",
+        "tienThuoc": 296000.0,
+        "tienKham": 602000.0,
+        "tongTien": 898000.0,
+        "ngayLapHoaDon": "2024-03-26",
+        "trangThai": 0,
+        "phieuKham_id": 176
+    },
+    {
+        "id": 177,
+        "ngayKham": "2024-03-27",
+        "tienThuoc": 855000.0,
+        "tienKham": 407000.0,
+        "tongTien": 1262000.0,
+        "ngayLapHoaDon": "2024-03-27",
+        "trangThai": 0,
+        "phieuKham_id": 177
+    },
+    {
+        "id": 178,
+        "ngayKham": "2024-03-28",
+        "tienThuoc": 796000.0,
+        "tienKham": 245000.0,
+        "tongTien": 1041000.0,
+        "ngayLapHoaDon": "2024-03-28",
+        "trangThai": 1,
+        "phieuKham_id": 178
+    },
+    {
+        "id": 179,
+        "ngayKham": "2024-03-28",
+        "tienThuoc": 504000.0,
+        "tienKham": 920000.0,
+        "tongTien": 1424000.0,
+        "ngayLapHoaDon": "2024-03-28",
+        "trangThai": 0,
+        "phieuKham_id": 179
+    },
+    {
+        "id": 180,
+        "ngayKham": "2024-03-28",
+        "tienThuoc": 254000.0,
+        "tienKham": 112000.0,
+        "tongTien": 366000.0,
+        "ngayLapHoaDon": "2024-03-28",
+        "trangThai": 1,
+        "phieuKham_id": 180
+    },
+    {
+        "id": 181,
+        "ngayKham": "2024-03-28",
+        "tienThuoc": 894000.0,
+        "tienKham": 586000.0,
+        "tongTien": 1480000.0,
+        "ngayLapHoaDon": "2024-03-28",
+        "trangThai": 0,
+        "phieuKham_id": 181
+    },
+    {
+        "id": 182,
+        "ngayKham": "2024-03-29",
+        "tienThuoc": 733000.0,
+        "tienKham": 528000.0,
+        "tongTien": 1261000.0,
+        "ngayLapHoaDon": "2024-03-29",
+        "trangThai": 0,
+        "phieuKham_id": 182
+    },
+    {
+        "id": 183,
+        "ngayKham": "2024-03-29",
+        "tienThuoc": 486000.0,
+        "tienKham": 106000.0,
+        "tongTien": 592000.0,
+        "ngayLapHoaDon": "2024-03-29",
+        "trangThai": 0,
+        "phieuKham_id": 183
+    },
+    {
+        "id": 184,
+        "ngayKham": "2024-03-29",
+        "tienThuoc": 279000.0,
+        "tienKham": 478000.0,
+        "tongTien": 757000.0,
+        "ngayLapHoaDon": "2024-03-29",
+        "trangThai": 0,
+        "phieuKham_id": 184
+    },
+    {
+        "id": 185,
+        "ngayKham": "2024-03-30",
+        "tienThuoc": 813000.0,
+        "tienKham": 687000.0,
+        "tongTien": 1500000.0,
+        "ngayLapHoaDon": "2024-03-30",
+        "trangThai": 0,
+        "phieuKham_id": 185
+    },
+    {
+        "id": 186,
+        "ngayKham": "2024-03-31",
+        "tienThuoc": 169000.0,
+        "tienKham": 367000.0,
+        "tongTien": 536000.0,
+        "ngayLapHoaDon": "2024-03-31",
+        "trangThai": 0,
+        "phieuKham_id": 186
+    },
+    {
+        "id": 187,
+        "ngayKham": "2024-03-31",
+        "tienThuoc": 485000.0,
+        "tienKham": 203000.0,
+        "tongTien": 688000.0,
+        "ngayLapHoaDon": "2024-03-31",
+        "trangThai": 0,
+        "phieuKham_id": 187
+    },
+    {
+        "id": 188,
+        "ngayKham": "2024-04-01",
+        "tienThuoc": 913000.0,
+        "tienKham": 757000.0,
+        "tongTien": 1670000.0,
+        "ngayLapHoaDon": "2024-04-01",
+        "trangThai": 1,
+        "phieuKham_id": 188
+    },
+    {
+        "id": 189,
+        "ngayKham": "2024-04-02",
+        "tienThuoc": 714000.0,
+        "tienKham": 564000.0,
+        "tongTien": 1278000.0,
+        "ngayLapHoaDon": "2024-04-02",
+        "trangThai": 1,
+        "phieuKham_id": 189
+    },
+    {
+        "id": 190,
+        "ngayKham": "2024-04-03",
+        "tienThuoc": 696000.0,
+        "tienKham": 820000.0,
+        "tongTien": 1516000.0,
+        "ngayLapHoaDon": "2024-04-03",
+        "trangThai": 1,
+        "phieuKham_id": 190
+    },
+    {
+        "id": 191,
+        "ngayKham": "2024-04-04",
+        "tienThuoc": 522000.0,
+        "tienKham": 946000.0,
+        "tongTien": 1468000.0,
+        "ngayLapHoaDon": "2024-04-04",
+        "trangThai": 1,
+        "phieuKham_id": 191
+    },
+    {
+        "id": 192,
+        "ngayKham": "2024-04-05",
+        "tienThuoc": 231000.0,
+        "tienKham": 952000.0,
+        "tongTien": 1183000.0,
+        "ngayLapHoaDon": "2024-04-05",
+        "trangThai": 1,
+        "phieuKham_id": 192
+    },
+    {
+        "id": 193,
+        "ngayKham": "2024-04-05",
+        "tienThuoc": 921000.0,
+        "tienKham": 487000.0,
+        "tongTien": 1408000.0,
+        "ngayLapHoaDon": "2024-04-05",
+        "trangThai": 0,
+        "phieuKham_id": 193
+    },
+    {
+        "id": 194,
+        "ngayKham": "2024-04-05",
+        "tienThuoc": 479000.0,
+        "tienKham": 724000.0,
+        "tongTien": 1203000.0,
+        "ngayLapHoaDon": "2024-04-05",
+        "trangThai": 0,
+        "phieuKham_id": 194
+    },
+    {
+        "id": 195,
+        "ngayKham": "2024-04-05",
+        "tienThuoc": 674000.0,
+        "tienKham": 160000.0,
+        "tongTien": 834000.0,
+        "ngayLapHoaDon": "2024-04-05",
+        "trangThai": 1,
+        "phieuKham_id": 195
+    },
+    {
+        "id": 196,
+        "ngayKham": "2024-04-06",
+        "tienThuoc": 836000.0,
+        "tienKham": 385000.0,
+        "tongTien": 1221000.0,
+        "ngayLapHoaDon": "2024-04-06",
+        "trangThai": 1,
+        "phieuKham_id": 196
+    },
+    {
+        "id": 197,
+        "ngayKham": "2024-04-06",
+        "tienThuoc": 755000.0,
+        "tienKham": 381000.0,
+        "tongTien": 1136000.0,
+        "ngayLapHoaDon": "2024-04-06",
+        "trangThai": 0,
+        "phieuKham_id": 197
+    },
+    {
+        "id": 198,
+        "ngayKham": "2024-04-06",
+        "tienThuoc": 927000.0,
+        "tienKham": 850000.0,
+        "tongTien": 1777000.0,
+        "ngayLapHoaDon": "2024-04-06",
+        "trangThai": 0,
+        "phieuKham_id": 198
+    },
+    {
+        "id": 199,
+        "ngayKham": "2024-04-06",
+        "tienThuoc": 788000.0,
+        "tienKham": 701000.0,
+        "tongTien": 1489000.0,
+        "ngayLapHoaDon": "2024-04-06",
+        "trangThai": 0,
+        "phieuKham_id": 199
+    },
+    {
+        "id": 200,
+        "ngayKham": "2024-04-06",
+        "tienThuoc": 923000.0,
+        "tienKham": 379000.0,
+        "tongTien": 1302000.0,
+        "ngayLapHoaDon": "2024-04-06",
+        "trangThai": 1,
+        "phieuKham_id": 200
+    },
+    {
+        "id": 201,
+        "ngayKham": "2024-04-07",
+        "tienThuoc": 766854,
+        "tienKham": 755756,
+        "tongTien": 1522610,
+        "ngayLapHoaDon": "2024-04-07",
+        "trangThai": 1,
+        "phieuKham_id": 201
+    },
+    {
+        "id": 202,
+        "ngayKham": "2024-04-07",
+        "tienThuoc": 152623,
+        "tienKham": 428675,
+        "tongTien": 581298,
+        "ngayLapHoaDon": "2024-04-07",
+        "trangThai": 0,
+        "phieuKham_id": 202
+    },
+    {
+        "id": 203,
+        "ngayKham": "2024-04-08",
+        "tienThuoc": 438411,
+        "tienKham": 299008,
+        "tongTien": 737419,
+        "ngayLapHoaDon": "2024-04-08",
+        "trangThai": 0,
+        "phieuKham_id": 203
+    },
+    {
+        "id": 204,
+        "ngayKham": "2024-04-08",
+        "tienThuoc": 363917,
+        "tienKham": 191432,
+        "tongTien": 555349,
+        "ngayLapHoaDon": "2024-04-08",
+        "trangThai": 0,
+        "phieuKham_id": 204
+    },
+    {
+        "id": 205,
+        "ngayKham": "2024-04-08",
+        "tienThuoc": 597303,
+        "tienKham": 776955,
+        "tongTien": 1374258,
+        "ngayLapHoaDon": "2024-04-08",
+        "trangThai": 1,
+        "phieuKham_id": 205
+    },
+    {
+        "id": 206,
+        "ngayKham": "2024-04-09",
+        "tienThuoc": 601959,
+        "tienKham": 605038,
+        "tongTien": 1206997,
+        "ngayLapHoaDon": "2024-04-09",
+        "trangThai": 0,
+        "phieuKham_id": 206
+    },
+    {
+        "id": 207,
+        "ngayKham": "2024-04-09",
+        "tienThuoc": 970319,
+        "tienKham": 883092,
+        "tongTien": 1853411,
+        "ngayLapHoaDon": "2024-04-09",
+        "trangThai": 1,
+        "phieuKham_id": 207
+    },
+    {
+        "id": 208,
+        "ngayKham": "2024-04-09",
+        "tienThuoc": 686865,
+        "tienKham": 630943,
+        "tongTien": 1317808,
+        "ngayLapHoaDon": "2024-04-09",
+        "trangThai": 1,
+        "phieuKham_id": 208
+    },
+    {
+        "id": 209,
+        "ngayKham": "2024-04-10",
+        "tienThuoc": 474490,
+        "tienKham": 740753,
+        "tongTien": 1215243,
+        "ngayLapHoaDon": "2024-04-10",
+        "trangThai": 1,
+        "phieuKham_id": 209
+    },
+    {
+        "id": 210,
+        "ngayKham": "2024-04-10",
+        "tienThuoc": 465930,
+        "tienKham": 311489,
+        "tongTien": 777419,
+        "ngayLapHoaDon": "2024-04-10",
+        "trangThai": 0,
+        "phieuKham_id": 210
+    },
+    {
+        "id": 211,
+        "ngayKham": "2024-04-11",
+        "tienThuoc": 465147,
+        "tienKham": 381303,
+        "tongTien": 846450,
+        "ngayLapHoaDon": "2024-04-11",
+        "trangThai": 1,
+        "phieuKham_id": 211
+    },
+    {
+        "id": 212,
+        "ngayKham": "2024-04-11",
+        "tienThuoc": 421412,
+        "tienKham": 646797,
+        "tongTien": 1068209,
+        "ngayLapHoaDon": "2024-04-11",
+        "trangThai": 0,
+        "phieuKham_id": 212
+    },
+    {
+        "id": 213,
+        "ngayKham": "2024-04-11",
+        "tienThuoc": 266818,
+        "tienKham": 353248,
+        "tongTien": 620066,
+        "ngayLapHoaDon": "2024-04-11",
+        "trangThai": 0,
+        "phieuKham_id": 213
+    },
+    {
+        "id": 214,
+        "ngayKham": "2024-04-11",
+        "tienThuoc": 810687,
+        "tienKham": 105896,
+        "tongTien": 916583,
+        "ngayLapHoaDon": "2024-04-11",
+        "trangThai": 0,
+        "phieuKham_id": 214
+    },
+    {
+        "id": 215,
+        "ngayKham": "2024-04-11",
+        "tienThuoc": 458561,
+        "tienKham": 695004,
+        "tongTien": 1153565,
+        "ngayLapHoaDon": "2024-04-11",
+        "trangThai": 1,
+        "phieuKham_id": 215
+    },
+    {
+        "id": 216,
+        "ngayKham": "2024-04-12",
+        "tienThuoc": 235701,
+        "tienKham": 735467,
+        "tongTien": 971168,
+        "ngayLapHoaDon": "2024-04-12",
+        "trangThai": 1,
+        "phieuKham_id": 216
+    },
+    {
+        "id": 217,
+        "ngayKham": "2024-04-13",
+        "tienThuoc": 544317,
+        "tienKham": 876913,
+        "tongTien": 1421230,
+        "ngayLapHoaDon": "2024-04-13",
+        "trangThai": 0,
+        "phieuKham_id": 217
+    },
+    {
+        "id": 218,
+        "ngayKham": "2024-04-14",
+        "tienThuoc": 290077,
+        "tienKham": 376526,
+        "tongTien": 666603,
+        "ngayLapHoaDon": "2024-04-14",
+        "trangThai": 1,
+        "phieuKham_id": 218
+    },
+    {
+        "id": 219,
+        "ngayKham": "2024-04-14",
+        "tienThuoc": 866762,
+        "tienKham": 802599,
+        "tongTien": 1669361,
+        "ngayLapHoaDon": "2024-04-14",
+        "trangThai": 1,
+        "phieuKham_id": 219
+    },
+    {
+        "id": 220,
+        "ngayKham": "2024-04-15",
+        "tienThuoc": 134534,
+        "tienKham": 263537,
+        "tongTien": 398071,
+        "ngayLapHoaDon": "2024-04-15",
+        "trangThai": 1,
+        "phieuKham_id": 220
+    },
+    {
+        "id": 221,
+        "ngayKham": "2024-04-16",
+        "tienThuoc": 592787,
+        "tienKham": 960626,
+        "tongTien": 1553413,
+        "ngayLapHoaDon": "2024-04-16",
+        "trangThai": 0,
+        "phieuKham_id": 221
+    },
+    {
+        "id": 222,
+        "ngayKham": "2024-04-17",
+        "tienThuoc": 299044,
+        "tienKham": 435072,
+        "tongTien": 734116,
+        "ngayLapHoaDon": "2024-04-17",
+        "trangThai": 1,
+        "phieuKham_id": 222
+    },
+    {
+        "id": 223,
+        "ngayKham": "2024-04-17",
+        "tienThuoc": 629560,
+        "tienKham": 270327,
+        "tongTien": 899887,
+        "ngayLapHoaDon": "2024-04-17",
+        "trangThai": 0,
+        "phieuKham_id": 223
+    },
+    {
+        "id": 224,
+        "ngayKham": "2024-04-18",
+        "tienThuoc": 209542,
+        "tienKham": 652717,
+        "tongTien": 862259,
+        "ngayLapHoaDon": "2024-04-18",
+        "trangThai": 1,
+        "phieuKham_id": 224
+    },
+    {
+        "id": 225,
+        "ngayKham": "2024-04-18",
+        "tienThuoc": 883438,
+        "tienKham": 592284,
+        "tongTien": 1475722,
+        "ngayLapHoaDon": "2024-04-18",
+        "trangThai": 0,
+        "phieuKham_id": 225
+    },
+    {
+        "id": 226,
+        "ngayKham": "2024-04-18",
+        "tienThuoc": 437590,
+        "tienKham": 258337,
+        "tongTien": 695927,
+        "ngayLapHoaDon": "2024-04-18",
+        "trangThai": 1,
+        "phieuKham_id": 226
+    },
+    {
+        "id": 227,
+        "ngayKham": "2024-04-18",
+        "tienThuoc": 887692,
+        "tienKham": 665761,
+        "tongTien": 1553453,
+        "ngayLapHoaDon": "2024-04-18",
+        "trangThai": 0,
+        "phieuKham_id": 227
+    },
+    {
+        "id": 228,
+        "ngayKham": "2024-04-19",
+        "tienThuoc": 124681,
+        "tienKham": 638148,
+        "tongTien": 762829,
+        "ngayLapHoaDon": "2024-04-19",
+        "trangThai": 0,
+        "phieuKham_id": 228
+    },
+    {
+        "id": 229,
+        "ngayKham": "2024-04-20",
+        "tienThuoc": 972316,
+        "tienKham": 594067,
+        "tongTien": 1566383,
+        "ngayLapHoaDon": "2024-04-20",
+        "trangThai": 1,
+        "phieuKham_id": 229
+    },
+    {
+        "id": 230,
+        "ngayKham": "2024-04-21",
+        "tienThuoc": 870879,
+        "tienKham": 208030,
+        "tongTien": 1078909,
+        "ngayLapHoaDon": "2024-04-21",
+        "trangThai": 1,
+        "phieuKham_id": 230
+    },
+    {
+        "id": 231,
+        "ngayKham": "2024-04-21",
+        "tienThuoc": 741931,
+        "tienKham": 837735,
+        "tongTien": 1579666,
+        "ngayLapHoaDon": "2024-04-21",
+        "trangThai": 1,
+        "phieuKham_id": 231
+    },
+    {
+        "id": 232,
+        "ngayKham": "2024-04-22",
+        "tienThuoc": 773554,
+        "tienKham": 295946,
+        "tongTien": 1069500,
+        "ngayLapHoaDon": "2024-04-22",
+        "trangThai": 0,
+        "phieuKham_id": 232
+    },
+    {
+        "id": 233,
+        "ngayKham": "2024-04-23",
+        "tienThuoc": 626826,
+        "tienKham": 299149,
+        "tongTien": 925975,
+        "ngayLapHoaDon": "2024-04-23",
+        "trangThai": 0,
+        "phieuKham_id": 233
+    },
+    {
+        "id": 234,
+        "ngayKham": "2024-04-23",
+        "tienThuoc": 337371,
+        "tienKham": 405705,
+        "tongTien": 743076,
+        "ngayLapHoaDon": "2024-04-23",
+        "trangThai": 1,
+        "phieuKham_id": 234
+    },
+    {
+        "id": 235,
+        "ngayKham": "2024-04-23",
+        "tienThuoc": 276611,
+        "tienKham": 342075,
+        "tongTien": 618686,
+        "ngayLapHoaDon": "2024-04-23",
+        "trangThai": 0,
+        "phieuKham_id": 235
+    },
+    {
+        "id": 236,
+        "ngayKham": "2024-04-24",
+        "tienThuoc": 312803,
+        "tienKham": 671613,
+        "tongTien": 984416,
+        "ngayLapHoaDon": "2024-04-24",
+        "trangThai": 0,
+        "phieuKham_id": 236
+    },
+    {
+        "id": 237,
+        "ngayKham": "2024-04-25",
+        "tienThuoc": 185329,
+        "tienKham": 763412,
+        "tongTien": 948741,
+        "ngayLapHoaDon": "2024-04-25",
+        "trangThai": 1,
+        "phieuKham_id": 237
+    },
+    {
+        "id": 238,
+        "ngayKham": "2024-04-25",
+        "tienThuoc": 521353,
+        "tienKham": 917536,
+        "tongTien": 1438889,
+        "ngayLapHoaDon": "2024-04-25",
+        "trangThai": 0,
+        "phieuKham_id": 238
+    },
+    {
+        "id": 239,
+        "ngayKham": "2024-04-25",
+        "tienThuoc": 830242,
+        "tienKham": 346426,
+        "tongTien": 1176668,
+        "ngayLapHoaDon": "2024-04-25",
+        "trangThai": 0,
+        "phieuKham_id": 239
+    },
+    {
+        "id": 240,
+        "ngayKham": "2024-04-25",
+        "tienThuoc": 730672,
+        "tienKham": 812160,
+        "tongTien": 1542832,
+        "ngayLapHoaDon": "2024-04-25",
+        "trangThai": 1,
+        "phieuKham_id": 240
+    },
+    {
+        "id": 241,
+        "ngayKham": "2024-04-26",
+        "tienThuoc": 312036,
+        "tienKham": 669670,
+        "tongTien": 981706,
+        "ngayLapHoaDon": "2024-04-26",
+        "trangThai": 0,
+        "phieuKham_id": 241
+    },
+    {
+        "id": 242,
+        "ngayKham": "2024-04-26",
+        "tienThuoc": 145231,
+        "tienKham": 997682,
+        "tongTien": 1142913,
+        "ngayLapHoaDon": "2024-04-26",
+        "trangThai": 0,
+        "phieuKham_id": 242
+    },
+    {
+        "id": 243,
+        "ngayKham": "2024-04-26",
+        "tienThuoc": 872622,
+        "tienKham": 970937,
+        "tongTien": 1843559,
+        "ngayLapHoaDon": "2024-04-26",
+        "trangThai": 0,
+        "phieuKham_id": 243
+    },
+    {
+        "id": 244,
+        "ngayKham": "2024-04-26",
+        "tienThuoc": 826761,
+        "tienKham": 703461,
+        "tongTien": 1530222,
+        "ngayLapHoaDon": "2024-04-26",
+        "trangThai": 0,
+        "phieuKham_id": 244
+    },
+    {
+        "id": 245,
+        "ngayKham": "2024-04-26",
+        "tienThuoc": 221931,
+        "tienKham": 712912,
+        "tongTien": 934843,
+        "ngayLapHoaDon": "2024-04-26",
+        "trangThai": 0,
+        "phieuKham_id": 245
+    },
+    {
+        "id": 246,
+        "ngayKham": "2024-04-27",
+        "tienThuoc": 855726,
+        "tienKham": 267759,
+        "tongTien": 1123485,
+        "ngayLapHoaDon": "2024-04-27",
+        "trangThai": 1,
+        "phieuKham_id": 246
+    },
+    {
+        "id": 247,
+        "ngayKham": "2024-04-28",
+        "tienThuoc": 841952,
+        "tienKham": 333482,
+        "tongTien": 1175434,
+        "ngayLapHoaDon": "2024-04-28",
+        "trangThai": 0,
+        "phieuKham_id": 247
+    },
+    {
+        "id": 248,
+        "ngayKham": "2024-04-28",
+        "tienThuoc": 374148,
+        "tienKham": 456006,
+        "tongTien": 830154,
+        "ngayLapHoaDon": "2024-04-28",
+        "trangThai": 1,
+        "phieuKham_id": 248
+    },
+    {
+        "id": 249,
+        "ngayKham": "2024-04-28",
+        "tienThuoc": 767257,
+        "tienKham": 955444,
+        "tongTien": 1722701,
+        "ngayLapHoaDon": "2024-04-28",
+        "trangThai": 1,
+        "phieuKham_id": 249
+    },
+    {
+        "id": 250,
+        "ngayKham": "2024-04-29",
+        "tienThuoc": 713735,
+        "tienKham": 937466,
+        "tongTien": 1651201,
+        "ngayLapHoaDon": "2024-04-29",
+        "trangThai": 1,
+        "phieuKham_id": 250
+    },
+    {
+        "id": 251,
+        "ngayKham": "2024-04-30",
+        "tienThuoc": 105098,
+        "tienKham": 275887,
+        "tongTien": 380985,
+        "ngayLapHoaDon": "2024-04-30",
+        "trangThai": 0,
+        "phieuKham_id": 251
+    },
+    {
+        "id": 252,
+        "ngayKham": "2024-04-30",
+        "tienThuoc": 576735,
+        "tienKham": 666373,
+        "tongTien": 1243108,
+        "ngayLapHoaDon": "2024-04-30",
+        "trangThai": 0,
+        "phieuKham_id": 252
+    },
+    {
+        "id": 253,
+        "ngayKham": "2024-04-30",
+        "tienThuoc": 244016,
+        "tienKham": 976728,
+        "tongTien": 1220744,
+        "ngayLapHoaDon": "2024-04-30",
+        "trangThai": 1,
+        "phieuKham_id": 253
+    },
+    {
+        "id": 254,
+        "ngayKham": "2024-05-01",
+        "tienThuoc": 588624,
+        "tienKham": 248681,
+        "tongTien": 837305,
+        "ngayLapHoaDon": "2024-05-01",
+        "trangThai": 0,
+        "phieuKham_id": 254
+    },
+    {
+        "id": 255,
+        "ngayKham": "2024-05-02",
+        "tienThuoc": 257733,
+        "tienKham": 325213,
+        "tongTien": 582946,
+        "ngayLapHoaDon": "2024-05-02",
+        "trangThai": 1,
+        "phieuKham_id": 255
+    },
+    {
+        "id": 256,
+        "ngayKham": "2024-05-02",
+        "tienThuoc": 710937,
+        "tienKham": 889569,
+        "tongTien": 1600506,
+        "ngayLapHoaDon": "2024-05-02",
+        "trangThai": 0,
+        "phieuKham_id": 256
+    },
+    {
+        "id": 257,
+        "ngayKham": "2024-05-03",
+        "tienThuoc": 246340,
+        "tienKham": 308014,
+        "tongTien": 554354,
+        "ngayLapHoaDon": "2024-05-03",
+        "trangThai": 0,
+        "phieuKham_id": 257
+    },
+    {
+        "id": 258,
+        "ngayKham": "2024-05-04",
+        "tienThuoc": 995623,
+        "tienKham": 889462,
+        "tongTien": 1885085,
+        "ngayLapHoaDon": "2024-05-04",
+        "trangThai": 0,
+        "phieuKham_id": 258
+    },
+    {
+        "id": 259,
+        "ngayKham": "2024-05-05",
+        "tienThuoc": 808963,
+        "tienKham": 204499,
+        "tongTien": 1013462,
+        "ngayLapHoaDon": "2024-05-05",
+        "trangThai": 1,
+        "phieuKham_id": 259
+    },
+    {
+        "id": 260,
+        "ngayKham": "2024-05-05",
+        "tienThuoc": 313449,
+        "tienKham": 217876,
+        "tongTien": 531325,
+        "ngayLapHoaDon": "2024-05-05",
+        "trangThai": 0,
+        "phieuKham_id": 260
+    },
+    {
+        "id": 261,
+        "ngayKham": "2024-05-05",
+        "tienThuoc": 805462,
+        "tienKham": 990692,
+        "tongTien": 1796154,
+        "ngayLapHoaDon": "2024-05-05",
+        "trangThai": 1,
+        "phieuKham_id": 261
+    },
+    {
+        "id": 262,
+        "ngayKham": "2024-05-06",
+        "tienThuoc": 622723,
+        "tienKham": 468343,
+        "tongTien": 1091066,
+        "ngayLapHoaDon": "2024-05-06",
+        "trangThai": 0,
+        "phieuKham_id": 262
+    },
+    {
+        "id": 263,
+        "ngayKham": "2024-05-06",
+        "tienThuoc": 783325,
+        "tienKham": 721552,
+        "tongTien": 1504877,
+        "ngayLapHoaDon": "2024-05-06",
+        "trangThai": 1,
+        "phieuKham_id": 263
+    },
+    {
+        "id": 264,
+        "ngayKham": "2024-05-06",
+        "tienThuoc": 142447,
+        "tienKham": 315770,
+        "tongTien": 458217,
+        "ngayLapHoaDon": "2024-05-06",
+        "trangThai": 1,
+        "phieuKham_id": 264
+    },
+    {
+        "id": 265,
+        "ngayKham": "2024-05-06",
+        "tienThuoc": 128913,
+        "tienKham": 749255,
+        "tongTien": 878168,
+        "ngayLapHoaDon": "2024-05-06",
+        "trangThai": 0,
+        "phieuKham_id": 265
+    },
+    {
+        "id": 266,
+        "ngayKham": "2024-05-06",
+        "tienThuoc": 640275,
+        "tienKham": 996115,
+        "tongTien": 1636390,
+        "ngayLapHoaDon": "2024-05-06",
+        "trangThai": 0,
+        "phieuKham_id": 266
+    },
+    {
+        "id": 267,
+        "ngayKham": "2024-05-06",
+        "tienThuoc": 716746,
+        "tienKham": 654355,
+        "tongTien": 1371101,
+        "ngayLapHoaDon": "2024-05-06",
+        "trangThai": 1,
+        "phieuKham_id": 267
+    },
+    {
+        "id": 268,
+        "ngayKham": "2024-05-06",
+        "tienThuoc": 587906,
+        "tienKham": 474945,
+        "tongTien": 1062851,
+        "ngayLapHoaDon": "2024-05-06",
+        "trangThai": 1,
+        "phieuKham_id": 268
+    },
+    {
+        "id": 269,
+        "ngayKham": "2024-05-07",
+        "tienThuoc": 552342,
+        "tienKham": 312292,
+        "tongTien": 864634,
+        "ngayLapHoaDon": "2024-05-07",
+        "trangThai": 0,
+        "phieuKham_id": 269
+    },
+    {
+        "id": 270,
+        "ngayKham": "2024-05-08",
+        "tienThuoc": 614927,
+        "tienKham": 961142,
+        "tongTien": 1576069,
+        "ngayLapHoaDon": "2024-05-08",
+        "trangThai": 0,
+        "phieuKham_id": 270
+    },
+    {
+        "id": 271,
+        "ngayKham": "2024-05-09",
+        "tienThuoc": 467384,
+        "tienKham": 570520,
+        "tongTien": 1037904,
+        "ngayLapHoaDon": "2024-05-09",
+        "trangThai": 0,
+        "phieuKham_id": 271
+    },
+    {
+        "id": 272,
+        "ngayKham": "2024-05-10",
+        "tienThuoc": 547071,
+        "tienKham": 454872,
+        "tongTien": 1001943,
+        "ngayLapHoaDon": "2024-05-10",
+        "trangThai": 0,
+        "phieuKham_id": 272
+    },
+    {
+        "id": 273,
+        "ngayKham": "2024-05-10",
+        "tienThuoc": 128102,
+        "tienKham": 269805,
+        "tongTien": 397907,
+        "ngayLapHoaDon": "2024-05-10",
+        "trangThai": 0,
+        "phieuKham_id": 273
+    },
+    {
+        "id": 274,
+        "ngayKham": "2024-05-10",
+        "tienThuoc": 249343,
+        "tienKham": 842607,
+        "tongTien": 1091950,
+        "ngayLapHoaDon": "2024-05-10",
+        "trangThai": 1,
+        "phieuKham_id": 274
+    },
+    {
+        "id": 275,
+        "ngayKham": "2024-05-10",
+        "tienThuoc": 965461,
+        "tienKham": 176321,
+        "tongTien": 1141782,
+        "ngayLapHoaDon": "2024-05-10",
+        "trangThai": 0,
+        "phieuKham_id": 275
+    },
+    {
+        "id": 276,
+        "ngayKham": "2024-05-11",
+        "tienThuoc": 409259,
+        "tienKham": 666196,
+        "tongTien": 1075455,
+        "ngayLapHoaDon": "2024-05-11",
+        "trangThai": 0,
+        "phieuKham_id": 276
+    },
+    {
+        "id": 277,
+        "ngayKham": "2024-05-11",
+        "tienThuoc": 309753,
+        "tienKham": 668274,
+        "tongTien": 978027,
+        "ngayLapHoaDon": "2024-05-11",
+        "trangThai": 0,
+        "phieuKham_id": 277
+    },
+    {
+        "id": 278,
+        "ngayKham": "2024-05-12",
+        "tienThuoc": 976957,
+        "tienKham": 322205,
+        "tongTien": 1299162,
+        "ngayLapHoaDon": "2024-05-12",
+        "trangThai": 1,
+        "phieuKham_id": 278
+    },
+    {
+        "id": 279,
+        "ngayKham": "2024-05-12",
+        "tienThuoc": 380162,
+        "tienKham": 701750,
+        "tongTien": 1081912,
+        "ngayLapHoaDon": "2024-05-12",
+        "trangThai": 0,
+        "phieuKham_id": 279
+    },
+    {
+        "id": 280,
+        "ngayKham": "2024-05-12",
+        "tienThuoc": 993646,
+        "tienKham": 160925,
+        "tongTien": 1154571,
+        "ngayLapHoaDon": "2024-05-12",
+        "trangThai": 0,
+        "phieuKham_id": 280
+    },
+    {
+        "id": 281,
+        "ngayKham": "2024-05-13",
+        "tienThuoc": 768005,
+        "tienKham": 801528,
+        "tongTien": 1569533,
+        "ngayLapHoaDon": "2024-05-13",
+        "trangThai": 0,
+        "phieuKham_id": 281
+    },
+    {
+        "id": 282,
+        "ngayKham": "2024-05-13",
+        "tienThuoc": 232296,
+        "tienKham": 528728,
+        "tongTien": 761024,
+        "ngayLapHoaDon": "2024-05-13",
+        "trangThai": 0,
+        "phieuKham_id": 282
+    },
+    {
+        "id": 283,
+        "ngayKham": "2024-05-14",
+        "tienThuoc": 812062,
+        "tienKham": 879846,
+        "tongTien": 1691908,
+        "ngayLapHoaDon": "2024-05-14",
+        "trangThai": 0,
+        "phieuKham_id": 283
+    },
+    {
+        "id": 284,
+        "ngayKham": "2024-05-15",
+        "tienThuoc": 895169,
+        "tienKham": 188741,
+        "tongTien": 1083910,
+        "ngayLapHoaDon": "2024-05-15",
+        "trangThai": 1,
+        "phieuKham_id": 284
+    },
+    {
+        "id": 285,
+        "ngayKham": "2024-05-15",
+        "tienThuoc": 891678,
+        "tienKham": 809371,
+        "tongTien": 1701049,
+        "ngayLapHoaDon": "2024-05-15",
+        "trangThai": 0,
+        "phieuKham_id": 285
+    },
+    {
+        "id": 286,
+        "ngayKham": "2024-05-15",
+        "tienThuoc": 499599,
+        "tienKham": 285738,
+        "tongTien": 785337,
+        "ngayLapHoaDon": "2024-05-15",
+        "trangThai": 0,
+        "phieuKham_id": 286
+    },
+    {
+        "id": 287,
+        "ngayKham": "2024-05-15",
+        "tienThuoc": 466871,
+        "tienKham": 574202,
+        "tongTien": 1041073,
+        "ngayLapHoaDon": "2024-05-15",
+        "trangThai": 0,
+        "phieuKham_id": 287
+    },
+    {
+        "id": 288,
+        "ngayKham": "2024-05-15",
+        "tienThuoc": 987975,
+        "tienKham": 609858,
+        "tongTien": 1597833,
+        "ngayLapHoaDon": "2024-05-15",
+        "trangThai": 1,
+        "phieuKham_id": 288
+    },
+    {
+        "id": 289,
+        "ngayKham": "2024-05-15",
+        "tienThuoc": 999102,
+        "tienKham": 542703,
+        "tongTien": 1541805,
+        "ngayLapHoaDon": "2024-05-15",
+        "trangThai": 1,
+        "phieuKham_id": 289
+    },
+    {
+        "id": 290,
+        "ngayKham": "2024-05-16",
+        "tienThuoc": 206984,
+        "tienKham": 969002,
+        "tongTien": 1175986,
+        "ngayLapHoaDon": "2024-05-16",
+        "trangThai": 1,
+        "phieuKham_id": 290
+    },
+    {
+        "id": 291,
+        "ngayKham": "2024-05-17",
+        "tienThuoc": 215505,
+        "tienKham": 154211,
+        "tongTien": 369716,
+        "ngayLapHoaDon": "2024-05-17",
+        "trangThai": 0,
+        "phieuKham_id": 291
+    },
+    {
+        "id": 292,
+        "ngayKham": "2024-05-17",
+        "tienThuoc": 599479,
+        "tienKham": 232919,
+        "tongTien": 832398,
+        "ngayLapHoaDon": "2024-05-17",
+        "trangThai": 0,
+        "phieuKham_id": 292
+    },
+    {
+        "id": 293,
+        "ngayKham": "2024-05-17",
+        "tienThuoc": 489112,
+        "tienKham": 866949,
+        "tongTien": 1356061,
+        "ngayLapHoaDon": "2024-05-17",
+        "trangThai": 0,
+        "phieuKham_id": 293
+    },
+    {
+        "id": 294,
+        "ngayKham": "2024-05-17",
+        "tienThuoc": 305775,
+        "tienKham": 629632,
+        "tongTien": 935407,
+        "ngayLapHoaDon": "2024-05-17",
+        "trangThai": 1,
+        "phieuKham_id": 294
+    },
+    {
+        "id": 295,
+        "ngayKham": "2024-05-18",
+        "tienThuoc": 993963,
+        "tienKham": 369682,
+        "tongTien": 1363645,
+        "ngayLapHoaDon": "2024-05-18",
+        "trangThai": 1,
+        "phieuKham_id": 295
+    },
+    {
+        "id": 296,
+        "ngayKham": "2024-05-19",
+        "tienThuoc": 578118,
+        "tienKham": 232128,
+        "tongTien": 810246,
+        "ngayLapHoaDon": "2024-05-19",
+        "trangThai": 1,
+        "phieuKham_id": 296
+    },
+    {
+        "id": 297,
+        "ngayKham": "2024-05-19",
+        "tienThuoc": 754288,
+        "tienKham": 270288,
+        "tongTien": 1024576,
+        "ngayLapHoaDon": "2024-05-19",
+        "trangThai": 0,
+        "phieuKham_id": 297
+    },
+    {
+        "id": 298,
+        "ngayKham": "2024-05-19",
+        "tienThuoc": 784904,
+        "tienKham": 818304,
+        "tongTien": 1603208,
+        "ngayLapHoaDon": "2024-05-19",
+        "trangThai": 1,
+        "phieuKham_id": 298
+    },
+    {
+        "id": 299,
+        "ngayKham": "2024-05-20",
+        "tienThuoc": 756123,
+        "tienKham": 164174,
+        "tongTien": 920297,
+        "ngayLapHoaDon": "2024-05-20",
+        "trangThai": 1,
+        "phieuKham_id": 299
+    },
+    {
+        "id": 300,
+        "ngayKham": "2024-05-21",
+        "tienThuoc": 992005,
+        "tienKham": 776672,
+        "tongTien": 1768677,
+        "ngayLapHoaDon": "2024-05-21",
+        "trangThai": 0,
+        "phieuKham_id": 300
+    },
+    {
+        "id": 301,
+        "ngayKham": "2024-05-22",
+        "tienThuoc": 103318,
+        "tienKham": 647993,
+        "tongTien": 751311,
+        "ngayLapHoaDon": "2024-05-22",
+        "trangThai": 0,
+        "phieuKham_id": 301
+    },
+    {
+        "id": 302,
+        "ngayKham": "2024-05-22",
+        "tienThuoc": 272003,
+        "tienKham": 883623,
+        "tongTien": 1155626,
+        "ngayLapHoaDon": "2024-05-22",
+        "trangThai": 1,
+        "phieuKham_id": 302
+    },
+    {
+        "id": 303,
+        "ngayKham": "2024-05-23",
+        "tienThuoc": 511258,
+        "tienKham": 714236,
+        "tongTien": 1225494,
+        "ngayLapHoaDon": "2024-05-23",
+        "trangThai": 0,
+        "phieuKham_id": 303
+    },
+    {
+        "id": 304,
+        "ngayKham": "2024-05-24",
+        "tienThuoc": 875229,
+        "tienKham": 669962,
+        "tongTien": 1545191,
+        "ngayLapHoaDon": "2024-05-24",
+        "trangThai": 1,
+        "phieuKham_id": 304
+    },
+    {
+        "id": 305,
+        "ngayKham": "2024-05-24",
+        "tienThuoc": 567857,
+        "tienKham": 965210,
+        "tongTien": 1533067,
+        "ngayLapHoaDon": "2024-05-24",
+        "trangThai": 1,
+        "phieuKham_id": 305
+    },
+    {
+        "id": 306,
+        "ngayKham": "2024-05-25",
+        "tienThuoc": 861500,
+        "tienKham": 258064,
+        "tongTien": 1119564,
+        "ngayLapHoaDon": "2024-05-25",
+        "trangThai": 1,
+        "phieuKham_id": 306
+    },
+    {
+        "id": 307,
+        "ngayKham": "2024-05-26",
+        "tienThuoc": 561642,
+        "tienKham": 624187,
+        "tongTien": 1185829,
+        "ngayLapHoaDon": "2024-05-26",
+        "trangThai": 1,
+        "phieuKham_id": 307
+    },
+    {
+        "id": 308,
+        "ngayKham": "2024-05-26",
+        "tienThuoc": 310393,
+        "tienKham": 682837,
+        "tongTien": 993230,
+        "ngayLapHoaDon": "2024-05-26",
+        "trangThai": 1,
+        "phieuKham_id": 308
+    },
+    {
+        "id": 309,
+        "ngayKham": "2024-05-26",
+        "tienThuoc": 506642,
+        "tienKham": 963306,
+        "tongTien": 1469948,
+        "ngayLapHoaDon": "2024-05-26",
+        "trangThai": 0,
+        "phieuKham_id": 309
+    },
+    {
+        "id": 310,
+        "ngayKham": "2024-05-27",
+        "tienThuoc": 924181,
+        "tienKham": 212965,
+        "tongTien": 1137146,
+        "ngayLapHoaDon": "2024-05-27",
+        "trangThai": 0,
+        "phieuKham_id": 310
+    },
+    {
+        "id": 311,
+        "ngayKham": "2024-05-27",
+        "tienThuoc": 529767,
+        "tienKham": 633220,
+        "tongTien": 1162987,
+        "ngayLapHoaDon": "2024-05-27",
+        "trangThai": 1,
+        "phieuKham_id": 311
+    },
+    {
+        "id": 312,
+        "ngayKham": "2024-05-27",
+        "tienThuoc": 846518,
+        "tienKham": 928406,
+        "tongTien": 1774924,
+        "ngayLapHoaDon": "2024-05-27",
+        "trangThai": 0,
+        "phieuKham_id": 312
+    },
+    {
+        "id": 313,
+        "ngayKham": "2024-05-27",
+        "tienThuoc": 107828,
+        "tienKham": 918464,
+        "tongTien": 1026292,
+        "ngayLapHoaDon": "2024-05-27",
+        "trangThai": 0,
+        "phieuKham_id": 313
+    },
+    {
+        "id": 314,
+        "ngayKham": "2024-05-28",
+        "tienThuoc": 867396,
+        "tienKham": 255823,
+        "tongTien": 1123219,
+        "ngayLapHoaDon": "2024-05-28",
+        "trangThai": 0,
+        "phieuKham_id": 314
+    },
+    {
+        "id": 315,
+        "ngayKham": "2024-05-29",
+        "tienThuoc": 654406,
+        "tienKham": 890770,
+        "tongTien": 1545176,
+        "ngayLapHoaDon": "2024-05-29",
+        "trangThai": 0,
+        "phieuKham_id": 315
+    },
+    {
+        "id": 316,
+        "ngayKham": "2024-05-29",
+        "tienThuoc": 176814,
+        "tienKham": 514778,
+        "tongTien": 691592,
+        "ngayLapHoaDon": "2024-05-29",
+        "trangThai": 0,
+        "phieuKham_id": 316
+    },
+    {
+        "id": 317,
+        "ngayKham": "2024-05-30",
+        "tienThuoc": 370137,
+        "tienKham": 563385,
+        "tongTien": 933522,
+        "ngayLapHoaDon": "2024-05-30",
+        "trangThai": 0,
+        "phieuKham_id": 317
+    },
+    {
+        "id": 318,
+        "ngayKham": "2024-05-31",
+        "tienThuoc": 186569,
+        "tienKham": 431648,
+        "tongTien": 618217,
+        "ngayLapHoaDon": "2024-05-31",
+        "trangThai": 1,
+        "phieuKham_id": 318
+    },
+    {
+        "id": 319,
+        "ngayKham": "2024-05-31",
+        "tienThuoc": 325803,
+        "tienKham": 395742,
+        "tongTien": 721545,
+        "ngayLapHoaDon": "2024-05-31",
+        "trangThai": 1,
+        "phieuKham_id": 319
+    },
+    {
+        "id": 320,
+        "ngayKham": "2024-05-31",
+        "tienThuoc": 538163,
+        "tienKham": 243468,
+        "tongTien": 781631,
+        "ngayLapHoaDon": "2024-05-31",
+        "trangThai": 1,
+        "phieuKham_id": 320
+    },
+    {
+        "id": 321,
+        "ngayKham": "2024-05-31",
+        "tienThuoc": 200954,
+        "tienKham": 518906,
+        "tongTien": 719860,
+        "ngayLapHoaDon": "2024-05-31",
+        "trangThai": 1,
+        "phieuKham_id": 321
+    },
+    {
+        "id": 322,
+        "ngayKham": "2024-05-31",
+        "tienThuoc": 258639,
+        "tienKham": 905003,
+        "tongTien": 1163642,
+        "ngayLapHoaDon": "2024-05-31",
+        "trangThai": 1,
+        "phieuKham_id": 322
+    },
+    {
+        "id": 323,
+        "ngayKham": "2024-06-01",
+        "tienThuoc": 812065,
+        "tienKham": 948839,
+        "tongTien": 1760904,
+        "ngayLapHoaDon": "2024-06-01",
+        "trangThai": 0,
+        "phieuKham_id": 323
+    },
+    {
+        "id": 324,
+        "ngayKham": "2024-06-02",
+        "tienThuoc": 343780,
+        "tienKham": 456658,
+        "tongTien": 800438,
+        "ngayLapHoaDon": "2024-06-02",
+        "trangThai": 1,
+        "phieuKham_id": 324
+    },
+    {
+        "id": 325,
+        "ngayKham": "2024-06-03",
+        "tienThuoc": 344766,
+        "tienKham": 692597,
+        "tongTien": 1037363,
+        "ngayLapHoaDon": "2024-06-03",
+        "trangThai": 1,
+        "phieuKham_id": 325
+    },
+    {
+        "id": 326,
+        "ngayKham": "2024-06-04",
+        "tienThuoc": 761041,
+        "tienKham": 987754,
+        "tongTien": 1748795,
+        "ngayLapHoaDon": "2024-06-04",
+        "trangThai": 1,
+        "phieuKham_id": 326
+    },
+    {
+        "id": 327,
+        "ngayKham": "2024-06-05",
+        "tienThuoc": 426235,
+        "tienKham": 676568,
+        "tongTien": 1102803,
+        "ngayLapHoaDon": "2024-06-05",
+        "trangThai": 0,
+        "phieuKham_id": 327
+    },
+    {
+        "id": 328,
+        "ngayKham": "2024-06-05",
+        "tienThuoc": 964328,
+        "tienKham": 101593,
+        "tongTien": 1065921,
+        "ngayLapHoaDon": "2024-06-05",
+        "trangThai": 1,
+        "phieuKham_id": 328
+    },
+    {
+        "id": 329,
+        "ngayKham": "2024-06-06",
+        "tienThuoc": 880698,
+        "tienKham": 607791,
+        "tongTien": 1488489,
+        "ngayLapHoaDon": "2024-06-06",
+        "trangThai": 1,
+        "phieuKham_id": 329
+    },
+    {
+        "id": 330,
+        "ngayKham": "2024-06-07",
+        "tienThuoc": 823560,
+        "tienKham": 244130,
+        "tongTien": 1067690,
+        "ngayLapHoaDon": "2024-06-07",
+        "trangThai": 0,
+        "phieuKham_id": 330
+    },
+    {
+        "id": 331,
+        "ngayKham": "2024-06-08",
+        "tienThuoc": 990781,
+        "tienKham": 466737,
+        "tongTien": 1457518,
+        "ngayLapHoaDon": "2024-06-08",
+        "trangThai": 1,
+        "phieuKham_id": 331
+    },
+    {
+        "id": 332,
+        "ngayKham": "2024-06-09",
+        "tienThuoc": 591738,
+        "tienKham": 946470,
+        "tongTien": 1538208,
+        "ngayLapHoaDon": "2024-06-09",
+        "trangThai": 0,
+        "phieuKham_id": 332
+    },
+    {
+        "id": 333,
+        "ngayKham": "2024-06-10",
+        "tienThuoc": 400757,
+        "tienKham": 234783,
+        "tongTien": 635540,
+        "ngayLapHoaDon": "2024-06-10",
+        "trangThai": 0,
+        "phieuKham_id": 333
+    },
+    {
+        "id": 334,
+        "ngayKham": "2024-06-10",
+        "tienThuoc": 611079,
+        "tienKham": 217901,
+        "tongTien": 828980,
+        "ngayLapHoaDon": "2024-06-10",
+        "trangThai": 0,
+        "phieuKham_id": 334
+    },
+    {
+        "id": 335,
+        "ngayKham": "2024-06-10",
+        "tienThuoc": 948363,
+        "tienKham": 122480,
+        "tongTien": 1070843,
+        "ngayLapHoaDon": "2024-06-10",
+        "trangThai": 0,
+        "phieuKham_id": 335
+    },
+    {
+        "id": 336,
+        "ngayKham": "2024-06-11",
+        "tienThuoc": 278320,
+        "tienKham": 785134,
+        "tongTien": 1063454,
+        "ngayLapHoaDon": "2024-06-11",
+        "trangThai": 0,
+        "phieuKham_id": 336
+    },
+    {
+        "id": 337,
+        "ngayKham": "2024-06-12",
+        "tienThuoc": 355986,
+        "tienKham": 227333,
+        "tongTien": 583319,
+        "ngayLapHoaDon": "2024-06-12",
+        "trangThai": 0,
+        "phieuKham_id": 337
+    },
+    {
+        "id": 338,
+        "ngayKham": "2024-06-13",
+        "tienThuoc": 738262,
+        "tienKham": 631580,
+        "tongTien": 1369842,
+        "ngayLapHoaDon": "2024-06-13",
+        "trangThai": 0,
+        "phieuKham_id": 338
+    },
+    {
+        "id": 339,
+        "ngayKham": "2024-06-14",
+        "tienThuoc": 368771,
+        "tienKham": 625900,
+        "tongTien": 994671,
+        "ngayLapHoaDon": "2024-06-14",
+        "trangThai": 0,
+        "phieuKham_id": 339
+    },
+    {
+        "id": 340,
+        "ngayKham": "2024-06-14",
+        "tienThuoc": 273276,
+        "tienKham": 381103,
+        "tongTien": 654379,
+        "ngayLapHoaDon": "2024-06-14",
+        "trangThai": 0,
+        "phieuKham_id": 340
+    },
+    {
+        "id": 341,
+        "ngayKham": "2024-06-15",
+        "tienThuoc": 877884,
+        "tienKham": 823153,
+        "tongTien": 1701037,
+        "ngayLapHoaDon": "2024-06-15",
+        "trangThai": 1,
+        "phieuKham_id": 341
+    },
+    {
+        "id": 342,
+        "ngayKham": "2024-06-15",
+        "tienThuoc": 257691,
+        "tienKham": 833766,
+        "tongTien": 1091457,
+        "ngayLapHoaDon": "2024-06-15",
+        "trangThai": 0,
+        "phieuKham_id": 342
+    },
+    {
+        "id": 343,
+        "ngayKham": "2024-06-16",
+        "tienThuoc": 859021,
+        "tienKham": 477467,
+        "tongTien": 1336488,
+        "ngayLapHoaDon": "2024-06-16",
+        "trangThai": 0,
+        "phieuKham_id": 343
+    },
+    {
+        "id": 344,
+        "ngayKham": "2024-06-17",
+        "tienThuoc": 189831,
+        "tienKham": 898799,
+        "tongTien": 1088630,
+        "ngayLapHoaDon": "2024-06-17",
+        "trangThai": 1,
+        "phieuKham_id": 344
+    },
+    {
+        "id": 345,
+        "ngayKham": "2024-06-17",
+        "tienThuoc": 742830,
+        "tienKham": 635043,
+        "tongTien": 1377873,
+        "ngayLapHoaDon": "2024-06-17",
+        "trangThai": 0,
+        "phieuKham_id": 345
+    },
+    {
+        "id": 346,
+        "ngayKham": "2024-06-18",
+        "tienThuoc": 698859,
+        "tienKham": 115479,
+        "tongTien": 814338,
+        "ngayLapHoaDon": "2024-06-18",
+        "trangThai": 1,
+        "phieuKham_id": 346
+    },
+    {
+        "id": 347,
+        "ngayKham": "2024-06-19",
+        "tienThuoc": 405132,
+        "tienKham": 983197,
+        "tongTien": 1388329,
+        "ngayLapHoaDon": "2024-06-19",
+        "trangThai": 0,
+        "phieuKham_id": 347
+    },
+    {
+        "id": 348,
+        "ngayKham": "2024-06-20",
+        "tienThuoc": 380537,
+        "tienKham": 143651,
+        "tongTien": 524188,
+        "ngayLapHoaDon": "2024-06-20",
+        "trangThai": 1,
+        "phieuKham_id": 348
+    },
+    {
+        "id": 349,
+        "ngayKham": "2024-06-20",
+        "tienThuoc": 836422,
+        "tienKham": 346999,
+        "tongTien": 1183421,
+        "ngayLapHoaDon": "2024-06-20",
+        "trangThai": 1,
+        "phieuKham_id": 349
+    },
+    {
+        "id": 350,
+        "ngayKham": "2024-06-21",
+        "tienThuoc": 365624,
+        "tienKham": 842611,
+        "tongTien": 1208235,
+        "ngayLapHoaDon": "2024-06-21",
+        "trangThai": 0,
+        "phieuKham_id": 350
+    },
+    {
+        "id": 351,
+        "ngayKham": "2024-06-22",
+        "tienThuoc": 484565,
+        "tienKham": 384094,
+        "tongTien": 868659,
+        "ngayLapHoaDon": "2024-06-22",
+        "trangThai": 0,
+        "phieuKham_id": 351
+    },
+    {
+        "id": 352,
+        "ngayKham": "2024-06-22",
+        "tienThuoc": 294180,
+        "tienKham": 648597,
+        "tongTien": 942777,
+        "ngayLapHoaDon": "2024-06-22",
+        "trangThai": 0,
+        "phieuKham_id": 352
+    },
+    {
+        "id": 353,
+        "ngayKham": "2024-06-23",
+        "tienThuoc": 116527,
+        "tienKham": 962535,
+        "tongTien": 1079062,
+        "ngayLapHoaDon": "2024-06-23",
+        "trangThai": 1,
+        "phieuKham_id": 353
+    },
+    {
+        "id": 354,
+        "ngayKham": "2024-06-24",
+        "tienThuoc": 295202,
+        "tienKham": 890646,
+        "tongTien": 1185848,
+        "ngayLapHoaDon": "2024-06-24",
+        "trangThai": 0,
+        "phieuKham_id": 354
+    },
+    {
+        "id": 355,
+        "ngayKham": "2024-06-24",
+        "tienThuoc": 294130,
+        "tienKham": 804340,
+        "tongTien": 1098470,
+        "ngayLapHoaDon": "2024-06-24",
+        "trangThai": 1,
+        "phieuKham_id": 355
+    },
+    {
+        "id": 356,
+        "ngayKham": "2024-06-24",
+        "tienThuoc": 682885,
+        "tienKham": 255743,
+        "tongTien": 938628,
+        "ngayLapHoaDon": "2024-06-24",
+        "trangThai": 1,
+        "phieuKham_id": 356
+    },
+    {
+        "id": 357,
+        "ngayKham": "2024-06-24",
+        "tienThuoc": 478156,
+        "tienKham": 310114,
+        "tongTien": 788270,
+        "ngayLapHoaDon": "2024-06-24",
+        "trangThai": 0,
+        "phieuKham_id": 357
+    },
+    {
+        "id": 358,
+        "ngayKham": "2024-06-25",
+        "tienThuoc": 332375,
+        "tienKham": 458628,
+        "tongTien": 791003,
+        "ngayLapHoaDon": "2024-06-25",
+        "trangThai": 0,
+        "phieuKham_id": 358
+    },
+    {
+        "id": 359,
+        "ngayKham": "2024-06-25",
+        "tienThuoc": 855261,
+        "tienKham": 786043,
+        "tongTien": 1641304,
+        "ngayLapHoaDon": "2024-06-25",
+        "trangThai": 1,
+        "phieuKham_id": 359
+    },
+    {
+        "id": 360,
+        "ngayKham": "2024-06-26",
+        "tienThuoc": 166838,
+        "tienKham": 341321,
+        "tongTien": 508159,
+        "ngayLapHoaDon": "2024-06-26",
+        "trangThai": 0,
+        "phieuKham_id": 360
+    },
+    {
+        "id": 361,
+        "ngayKham": "2024-06-27",
+        "tienThuoc": 317368,
+        "tienKham": 514045,
+        "tongTien": 831413,
+        "ngayLapHoaDon": "2024-06-27",
+        "trangThai": 0,
+        "phieuKham_id": 361
+    },
+    {
+        "id": 362,
+        "ngayKham": "2024-06-27",
+        "tienThuoc": 296208,
+        "tienKham": 349204,
+        "tongTien": 645412,
+        "ngayLapHoaDon": "2024-06-27",
+        "trangThai": 1,
+        "phieuKham_id": 362
+    },
+    {
+        "id": 363,
+        "ngayKham": "2024-06-28",
+        "tienThuoc": 654965,
+        "tienKham": 295146,
+        "tongTien": 950111,
+        "ngayLapHoaDon": "2024-06-28",
+        "trangThai": 1,
+        "phieuKham_id": 363
+    },
+    {
+        "id": 364,
+        "ngayKham": "2024-06-28",
+        "tienThuoc": 350243,
+        "tienKham": 699453,
+        "tongTien": 1049696,
+        "ngayLapHoaDon": "2024-06-28",
+        "trangThai": 0,
+        "phieuKham_id": 364
+    },
+    {
+        "id": 365,
+        "ngayKham": "2024-06-28",
+        "tienThuoc": 857683,
+        "tienKham": 338015,
+        "tongTien": 1195698,
+        "ngayLapHoaDon": "2024-06-28",
+        "trangThai": 0,
+        "phieuKham_id": 365
+    },
+    {
+        "id": 366,
+        "ngayKham": "2024-06-28",
+        "tienThuoc": 296499,
+        "tienKham": 882085,
+        "tongTien": 1178584,
+        "ngayLapHoaDon": "2024-06-28",
+        "trangThai": 0,
+        "phieuKham_id": 366
+    },
+    {
+        "id": 367,
+        "ngayKham": "2024-06-29",
+        "tienThuoc": 185283,
+        "tienKham": 857492,
+        "tongTien": 1042775,
+        "ngayLapHoaDon": "2024-06-29",
+        "trangThai": 0,
+        "phieuKham_id": 367
+    },
+    {
+        "id": 368,
+        "ngayKham": "2024-06-29",
+        "tienThuoc": 598817,
+        "tienKham": 773785,
+        "tongTien": 1372602,
+        "ngayLapHoaDon": "2024-06-29",
+        "trangThai": 1,
+        "phieuKham_id": 368
+    },
+    {
+        "id": 369,
+        "ngayKham": "2024-06-29",
+        "tienThuoc": 820366,
+        "tienKham": 787131,
+        "tongTien": 1607497,
+        "ngayLapHoaDon": "2024-06-29",
+        "trangThai": 0,
+        "phieuKham_id": 369
+    },
+    {
+        "id": 370,
+        "ngayKham": "2024-06-29",
+        "tienThuoc": 561636,
+        "tienKham": 681890,
+        "tongTien": 1243526,
+        "ngayLapHoaDon": "2024-06-29",
+        "trangThai": 1,
+        "phieuKham_id": 370
+    },
+    {
+        "id": 371,
+        "ngayKham": "2024-06-30",
+        "tienThuoc": 420841,
+        "tienKham": 311142,
+        "tongTien": 731983,
+        "ngayLapHoaDon": "2024-06-30",
+        "trangThai": 0,
+        "phieuKham_id": 371
+    },
+    {
+        "id": 372,
+        "ngayKham": "2024-06-30",
+        "tienThuoc": 610036,
+        "tienKham": 315622,
+        "tongTien": 925658,
+        "ngayLapHoaDon": "2024-06-30",
+        "trangThai": 0,
+        "phieuKham_id": 372
+    },
+    {
+        "id": 373,
+        "ngayKham": "2024-07-01",
+        "tienThuoc": 112034,
+        "tienKham": 753100,
+        "tongTien": 865134,
+        "ngayLapHoaDon": "2024-07-01",
+        "trangThai": 0,
+        "phieuKham_id": 373
+    },
+    {
+        "id": 374,
+        "ngayKham": "2024-07-02",
+        "tienThuoc": 558000,
+        "tienKham": 385740,
+        "tongTien": 943740,
+        "ngayLapHoaDon": "2024-07-02",
+        "trangThai": 0,
+        "phieuKham_id": 374
+    },
+    {
+        "id": 375,
+        "ngayKham": "2024-07-02",
+        "tienThuoc": 140801,
+        "tienKham": 810406,
+        "tongTien": 951207,
+        "ngayLapHoaDon": "2024-07-02",
+        "trangThai": 1,
+        "phieuKham_id": 375
+    },
+    {
+        "id": 376,
+        "ngayKham": "2024-07-02",
+        "tienThuoc": 874995,
+        "tienKham": 807846,
+        "tongTien": 1682841,
+        "ngayLapHoaDon": "2024-07-02",
+        "trangThai": 0,
+        "phieuKham_id": 376
+    },
+    {
+        "id": 377,
+        "ngayKham": "2024-07-03",
+        "tienThuoc": 164356,
+        "tienKham": 926744,
+        "tongTien": 1091100,
+        "ngayLapHoaDon": "2024-07-03",
+        "trangThai": 0,
+        "phieuKham_id": 377
+    },
+    {
+        "id": 378,
+        "ngayKham": "2024-07-04",
+        "tienThuoc": 678079,
+        "tienKham": 435734,
+        "tongTien": 1113813,
+        "ngayLapHoaDon": "2024-07-04",
+        "trangThai": 0,
+        "phieuKham_id": 378
+    },
+    {
+        "id": 379,
+        "ngayKham": "2024-07-04",
+        "tienThuoc": 891168,
+        "tienKham": 259391,
+        "tongTien": 1150559,
+        "ngayLapHoaDon": "2024-07-04",
+        "trangThai": 0,
+        "phieuKham_id": 379
+    },
+    {
+        "id": 380,
+        "ngayKham": "2024-07-04",
+        "tienThuoc": 892933,
+        "tienKham": 568357,
+        "tongTien": 1461290,
+        "ngayLapHoaDon": "2024-07-04",
+        "trangThai": 1,
+        "phieuKham_id": 380
+    },
+    {
+        "id": 381,
+        "ngayKham": "2024-07-04",
+        "tienThuoc": 416350,
+        "tienKham": 820420,
+        "tongTien": 1236770,
+        "ngayLapHoaDon": "2024-07-04",
+        "trangThai": 1,
+        "phieuKham_id": 381
+    },
+    {
+        "id": 382,
+        "ngayKham": "2024-07-05",
+        "tienThuoc": 373870,
+        "tienKham": 743903,
+        "tongTien": 1117773,
+        "ngayLapHoaDon": "2024-07-05",
+        "trangThai": 1,
+        "phieuKham_id": 382
+    },
+    {
+        "id": 383,
+        "ngayKham": "2024-07-05",
+        "tienThuoc": 687669,
+        "tienKham": 677065,
+        "tongTien": 1364734,
+        "ngayLapHoaDon": "2024-07-05",
+        "trangThai": 0,
+        "phieuKham_id": 383
+    },
+    {
+        "id": 384,
+        "ngayKham": "2024-07-05",
+        "tienThuoc": 610901,
+        "tienKham": 948712,
+        "tongTien": 1559613,
+        "ngayLapHoaDon": "2024-07-05",
+        "trangThai": 1,
+        "phieuKham_id": 384
+    },
+    {
+        "id": 385,
+        "ngayKham": "2024-07-05",
+        "tienThuoc": 171785,
+        "tienKham": 566024,
+        "tongTien": 737809,
+        "ngayLapHoaDon": "2024-07-05",
+        "trangThai": 1,
+        "phieuKham_id": 385
+    },
+    {
+        "id": 386,
+        "ngayKham": "2024-07-05",
+        "tienThuoc": 656584,
+        "tienKham": 881647,
+        "tongTien": 1538231,
+        "ngayLapHoaDon": "2024-07-05",
+        "trangThai": 1,
+        "phieuKham_id": 386
+    },
+    {
+        "id": 387,
+        "ngayKham": "2024-07-05",
+        "tienThuoc": 435978,
+        "tienKham": 995592,
+        "tongTien": 1431570,
+        "ngayLapHoaDon": "2024-07-05",
+        "trangThai": 0,
+        "phieuKham_id": 387
+    },
+    {
+        "id": 388,
+        "ngayKham": "2024-07-05",
+        "tienThuoc": 791848,
+        "tienKham": 431938,
+        "tongTien": 1223786,
+        "ngayLapHoaDon": "2024-07-05",
+        "trangThai": 1,
+        "phieuKham_id": 388
+    },
+    {
+        "id": 389,
+        "ngayKham": "2024-07-06",
+        "tienThuoc": 764613,
+        "tienKham": 846586,
+        "tongTien": 1611199,
+        "ngayLapHoaDon": "2024-07-06",
+        "trangThai": 0,
+        "phieuKham_id": 389
+    },
+    {
+        "id": 390,
+        "ngayKham": "2024-07-06",
+        "tienThuoc": 518429,
+        "tienKham": 715732,
+        "tongTien": 1234161,
+        "ngayLapHoaDon": "2024-07-06",
+        "trangThai": 1,
+        "phieuKham_id": 390
+    },
+    {
+        "id": 391,
+        "ngayKham": "2024-07-07",
+        "tienThuoc": 564598,
+        "tienKham": 399441,
+        "tongTien": 964039,
+        "ngayLapHoaDon": "2024-07-07",
+        "trangThai": 0,
+        "phieuKham_id": 391
+    },
+    {
+        "id": 392,
+        "ngayKham": "2024-07-07",
+        "tienThuoc": 800024,
+        "tienKham": 229549,
+        "tongTien": 1029573,
+        "ngayLapHoaDon": "2024-07-07",
+        "trangThai": 1,
+        "phieuKham_id": 392
+    },
+    {
+        "id": 393,
+        "ngayKham": "2024-07-08",
+        "tienThuoc": 156073,
+        "tienKham": 350739,
+        "tongTien": 506812,
+        "ngayLapHoaDon": "2024-07-08",
+        "trangThai": 0,
+        "phieuKham_id": 393
+    },
+    {
+        "id": 394,
+        "ngayKham": "2024-07-08",
+        "tienThuoc": 808424,
+        "tienKham": 113627,
+        "tongTien": 922051,
+        "ngayLapHoaDon": "2024-07-08",
+        "trangThai": 1,
+        "phieuKham_id": 394
+    },
+    {
+        "id": 395,
+        "ngayKham": "2024-07-08",
+        "tienThuoc": 317161,
+        "tienKham": 785846,
+        "tongTien": 1103007,
+        "ngayLapHoaDon": "2024-07-08",
+        "trangThai": 1,
+        "phieuKham_id": 395
+    },
+    {
+        "id": 396,
+        "ngayKham": "2024-07-08",
+        "tienThuoc": 727786,
+        "tienKham": 990991,
+        "tongTien": 1718777,
+        "ngayLapHoaDon": "2024-07-08",
+        "trangThai": 1,
+        "phieuKham_id": 396
+    },
+    {
+        "id": 397,
+        "ngayKham": "2024-07-08",
+        "tienThuoc": 363611,
+        "tienKham": 754588,
+        "tongTien": 1118199,
+        "ngayLapHoaDon": "2024-07-08",
+        "trangThai": 0,
+        "phieuKham_id": 397
+    },
+    {
+        "id": 398,
+        "ngayKham": "2024-07-09",
+        "tienThuoc": 315330,
+        "tienKham": 149149,
+        "tongTien": 464479,
+        "ngayLapHoaDon": "2024-07-09",
+        "trangThai": 0,
+        "phieuKham_id": 398
+    },
+    {
+        "id": 399,
+        "ngayKham": "2024-07-09",
+        "tienThuoc": 863446,
+        "tienKham": 734361,
+        "tongTien": 1597807,
+        "ngayLapHoaDon": "2024-07-09",
+        "trangThai": 1,
+        "phieuKham_id": 399
+    },
+    {
+        "id": 400,
+        "ngayKham": "2024-07-10",
+        "tienThuoc": 813908,
+        "tienKham": 833536,
+        "tongTien": 1647444,
+        "ngayLapHoaDon": "2024-07-10",
+        "trangThai": 1,
+        "phieuKham_id": 400
+    },
+    {
+        "id": 401,
+        "ngayKham": "2024-07-11",
+        "tienThuoc": 499976,
+        "tienKham": 108083,
+        "tongTien": 608059,
+        "ngayLapHoaDon": "2024-07-11",
+        "trangThai": 0,
+        "phieuKham_id": 401
+    },
+    {
+        "id": 402,
+        "ngayKham": "2024-07-12",
+        "tienThuoc": 366220,
+        "tienKham": 377425,
+        "tongTien": 743645,
+        "ngayLapHoaDon": "2024-07-12",
+        "trangThai": 0,
+        "phieuKham_id": 402
+    },
+    {
+        "id": 403,
+        "ngayKham": "2024-07-13",
+        "tienThuoc": 792450,
+        "tienKham": 516350,
+        "tongTien": 1308800,
+        "ngayLapHoaDon": "2024-07-13",
+        "trangThai": 0,
+        "phieuKham_id": 403
+    },
+    {
+        "id": 404,
+        "ngayKham": "2024-07-13",
+        "tienThuoc": 142398,
+        "tienKham": 962522,
+        "tongTien": 1104920,
+        "ngayLapHoaDon": "2024-07-13",
+        "trangThai": 1,
+        "phieuKham_id": 404
+    },
+    {
+        "id": 405,
+        "ngayKham": "2024-07-14",
+        "tienThuoc": 111282,
+        "tienKham": 581434,
+        "tongTien": 692716,
+        "ngayLapHoaDon": "2024-07-14",
+        "trangThai": 1,
+        "phieuKham_id": 405
+    },
+    {
+        "id": 406,
+        "ngayKham": "2024-07-15",
+        "tienThuoc": 100300,
+        "tienKham": 677142,
+        "tongTien": 777442,
+        "ngayLapHoaDon": "2024-07-15",
+        "trangThai": 0,
+        "phieuKham_id": 406
+    },
+    {
+        "id": 407,
+        "ngayKham": "2024-07-16",
+        "tienThuoc": 323666,
+        "tienKham": 418085,
+        "tongTien": 741751,
+        "ngayLapHoaDon": "2024-07-16",
+        "trangThai": 0,
+        "phieuKham_id": 407
+    },
+    {
+        "id": 408,
+        "ngayKham": "2024-07-17",
+        "tienThuoc": 343279,
+        "tienKham": 269659,
+        "tongTien": 612938,
+        "ngayLapHoaDon": "2024-07-17",
+        "trangThai": 1,
+        "phieuKham_id": 408
+    },
+    {
+        "id": 409,
+        "ngayKham": "2024-07-18",
+        "tienThuoc": 618540,
+        "tienKham": 527038,
+        "tongTien": 1145578,
+        "ngayLapHoaDon": "2024-07-18",
+        "trangThai": 0,
+        "phieuKham_id": 409
+    },
+    {
+        "id": 410,
+        "ngayKham": "2024-07-18",
+        "tienThuoc": 798954,
+        "tienKham": 817550,
+        "tongTien": 1616504,
+        "ngayLapHoaDon": "2024-07-18",
+        "trangThai": 1,
+        "phieuKham_id": 410
+    },
+    {
+        "id": 411,
+        "ngayKham": "2024-07-19",
+        "tienThuoc": 837755,
+        "tienKham": 461326,
+        "tongTien": 1299081,
+        "ngayLapHoaDon": "2024-07-19",
+        "trangThai": 0,
+        "phieuKham_id": 411
+    },
+    {
+        "id": 412,
+        "ngayKham": "2024-07-19",
+        "tienThuoc": 851426,
+        "tienKham": 415319,
+        "tongTien": 1266745,
+        "ngayLapHoaDon": "2024-07-19",
+        "trangThai": 0,
+        "phieuKham_id": 412
+    },
+    {
+        "id": 413,
+        "ngayKham": "2024-07-20",
+        "tienThuoc": 544088,
+        "tienKham": 943105,
+        "tongTien": 1487193,
+        "ngayLapHoaDon": "2024-07-20",
+        "trangThai": 0,
+        "phieuKham_id": 413
+    },
+    {
+        "id": 414,
+        "ngayKham": "2024-07-20",
+        "tienThuoc": 727188,
+        "tienKham": 553418,
+        "tongTien": 1280606,
+        "ngayLapHoaDon": "2024-07-20",
+        "trangThai": 1,
+        "phieuKham_id": 414
+    },
+    {
+        "id": 415,
+        "ngayKham": "2024-07-21",
+        "tienThuoc": 875005,
+        "tienKham": 399210,
+        "tongTien": 1274215,
+        "ngayLapHoaDon": "2024-07-21",
+        "trangThai": 0,
+        "phieuKham_id": 415
+    },
+    {
+        "id": 416,
+        "ngayKham": "2024-07-21",
+        "tienThuoc": 873333,
+        "tienKham": 521642,
+        "tongTien": 1394975,
+        "ngayLapHoaDon": "2024-07-21",
+        "trangThai": 1,
+        "phieuKham_id": 416
+    },
+    {
+        "id": 417,
+        "ngayKham": "2024-07-22",
+        "tienThuoc": 124364,
+        "tienKham": 734240,
+        "tongTien": 858604,
+        "ngayLapHoaDon": "2024-07-22",
+        "trangThai": 1,
+        "phieuKham_id": 417
+    },
+    {
+        "id": 418,
+        "ngayKham": "2024-07-22",
+        "tienThuoc": 691484,
+        "tienKham": 659732,
+        "tongTien": 1351216,
+        "ngayLapHoaDon": "2024-07-22",
+        "trangThai": 0,
+        "phieuKham_id": 418
+    },
+    {
+        "id": 419,
+        "ngayKham": "2024-07-22",
+        "tienThuoc": 804782,
+        "tienKham": 595376,
+        "tongTien": 1400158,
+        "ngayLapHoaDon": "2024-07-22",
+        "trangThai": 1,
+        "phieuKham_id": 419
+    },
+    {
+        "id": 420,
+        "ngayKham": "2024-07-23",
+        "tienThuoc": 410757,
+        "tienKham": 662360,
+        "tongTien": 1073117,
+        "ngayLapHoaDon": "2024-07-23",
+        "trangThai": 0,
+        "phieuKham_id": 420
+    },
+    {
+        "id": 421,
+        "ngayKham": "2024-07-24",
+        "tienThuoc": 591843,
+        "tienKham": 778168,
+        "tongTien": 1370011,
+        "ngayLapHoaDon": "2024-07-24",
+        "trangThai": 1,
+        "phieuKham_id": 421
+    },
+    {
+        "id": 422,
+        "ngayKham": "2024-07-24",
+        "tienThuoc": 525464,
+        "tienKham": 205865,
+        "tongTien": 731329,
+        "ngayLapHoaDon": "2024-07-24",
+        "trangThai": 1,
+        "phieuKham_id": 422
+    },
+    {
+        "id": 423,
+        "ngayKham": "2024-07-25",
+        "tienThuoc": 844060,
+        "tienKham": 543242,
+        "tongTien": 1387302,
+        "ngayLapHoaDon": "2024-07-25",
+        "trangThai": 1,
+        "phieuKham_id": 423
+    },
+    {
+        "id": 424,
+        "ngayKham": "2024-07-26",
+        "tienThuoc": 562213,
+        "tienKham": 624364,
+        "tongTien": 1186577,
+        "ngayLapHoaDon": "2024-07-26",
+        "trangThai": 0,
+        "phieuKham_id": 424
+    },
+    {
+        "id": 425,
+        "ngayKham": "2024-07-26",
+        "tienThuoc": 176942,
+        "tienKham": 922283,
+        "tongTien": 1099225,
+        "ngayLapHoaDon": "2024-07-26",
+        "trangThai": 1,
+        "phieuKham_id": 425
+    },
+    {
+        "id": 426,
+        "ngayKham": "2024-07-26",
+        "tienThuoc": 605825,
+        "tienKham": 199012,
+        "tongTien": 804837,
+        "ngayLapHoaDon": "2024-07-26",
+        "trangThai": 1,
+        "phieuKham_id": 426
+    },
+    {
+        "id": 427,
+        "ngayKham": "2024-07-27",
+        "tienThuoc": 641778,
+        "tienKham": 900319,
+        "tongTien": 1542097,
+        "ngayLapHoaDon": "2024-07-27",
+        "trangThai": 0,
+        "phieuKham_id": 427
+    },
+    {
+        "id": 428,
+        "ngayKham": "2024-07-28",
+        "tienThuoc": 878698,
+        "tienKham": 867331,
+        "tongTien": 1746029,
+        "ngayLapHoaDon": "2024-07-28",
+        "trangThai": 1,
+        "phieuKham_id": 428
+    },
+    {
+        "id": 429,
+        "ngayKham": "2024-07-28",
+        "tienThuoc": 264953,
+        "tienKham": 298303,
+        "tongTien": 563256,
+        "ngayLapHoaDon": "2024-07-28",
+        "trangThai": 0,
+        "phieuKham_id": 429
+    },
+    {
+        "id": 430,
+        "ngayKham": "2024-07-28",
+        "tienThuoc": 683885,
+        "tienKham": 191898,
+        "tongTien": 875783,
+        "ngayLapHoaDon": "2024-07-28",
+        "trangThai": 0,
+        "phieuKham_id": 430
+    },
+    {
+        "id": 431,
+        "ngayKham": "2024-07-29",
+        "tienThuoc": 240352,
+        "tienKham": 706228,
+        "tongTien": 946580,
+        "ngayLapHoaDon": "2024-07-29",
+        "trangThai": 0,
+        "phieuKham_id": 431
+    },
+    {
+        "id": 432,
+        "ngayKham": "2024-07-30",
+        "tienThuoc": 453961,
+        "tienKham": 518885,
+        "tongTien": 972846,
+        "ngayLapHoaDon": "2024-07-30",
+        "trangThai": 1,
+        "phieuKham_id": 432
+    },
+    {
+        "id": 433,
+        "ngayKham": "2024-07-31",
+        "tienThuoc": 535703,
+        "tienKham": 397186,
+        "tongTien": 932889,
+        "ngayLapHoaDon": "2024-07-31",
+        "trangThai": 0,
+        "phieuKham_id": 433
+    },
+    {
+        "id": 434,
+        "ngayKham": "2024-08-01",
+        "tienThuoc": 167763,
+        "tienKham": 184648,
+        "tongTien": 352411,
+        "ngayLapHoaDon": "2024-08-01",
+        "trangThai": 0,
+        "phieuKham_id": 434
+    },
+    {
+        "id": 435,
+        "ngayKham": "2024-08-01",
+        "tienThuoc": 126588,
+        "tienKham": 407173,
+        "tongTien": 533761,
+        "ngayLapHoaDon": "2024-08-01",
+        "trangThai": 0,
+        "phieuKham_id": 435
+    },
+    {
+        "id": 436,
+        "ngayKham": "2024-08-02",
+        "tienThuoc": 862646,
+        "tienKham": 810158,
+        "tongTien": 1672804,
+        "ngayLapHoaDon": "2024-08-02",
+        "trangThai": 0,
+        "phieuKham_id": 436
+    },
+    {
+        "id": 437,
+        "ngayKham": "2024-08-02",
+        "tienThuoc": 643006,
+        "tienKham": 556810,
+        "tongTien": 1199816,
+        "ngayLapHoaDon": "2024-08-02",
+        "trangThai": 0,
+        "phieuKham_id": 437
+    },
+    {
+        "id": 438,
+        "ngayKham": "2024-08-03",
+        "tienThuoc": 316061,
+        "tienKham": 419870,
+        "tongTien": 735931,
+        "ngayLapHoaDon": "2024-08-03",
+        "trangThai": 0,
+        "phieuKham_id": 438
+    },
+    {
+        "id": 439,
+        "ngayKham": "2024-08-03",
+        "tienThuoc": 260535,
+        "tienKham": 375960,
+        "tongTien": 636495,
+        "ngayLapHoaDon": "2024-08-03",
+        "trangThai": 0,
+        "phieuKham_id": 439
+    },
+    {
+        "id": 440,
+        "ngayKham": "2024-08-03",
+        "tienThuoc": 342925,
+        "tienKham": 276534,
+        "tongTien": 619459,
+        "ngayLapHoaDon": "2024-08-03",
+        "trangThai": 0,
+        "phieuKham_id": 440
+    },
+    {
+        "id": 441,
+        "ngayKham": "2024-08-03",
+        "tienThuoc": 776654,
+        "tienKham": 531558,
+        "tongTien": 1308212,
+        "ngayLapHoaDon": "2024-08-03",
+        "trangThai": 1,
+        "phieuKham_id": 441
+    },
+    {
+        "id": 442,
+        "ngayKham": "2024-08-03",
+        "tienThuoc": 578075,
+        "tienKham": 591051,
+        "tongTien": 1169126,
+        "ngayLapHoaDon": "2024-08-03",
+        "trangThai": 0,
+        "phieuKham_id": 442
+    },
+    {
+        "id": 443,
+        "ngayKham": "2024-08-04",
+        "tienThuoc": 811191,
+        "tienKham": 664256,
+        "tongTien": 1475447,
+        "ngayLapHoaDon": "2024-08-04",
+        "trangThai": 1,
+        "phieuKham_id": 443
+    },
+    {
+        "id": 444,
+        "ngayKham": "2024-08-04",
+        "tienThuoc": 864532,
+        "tienKham": 100458,
+        "tongTien": 964990,
+        "ngayLapHoaDon": "2024-08-04",
+        "trangThai": 0,
+        "phieuKham_id": 444
+    },
+    {
+        "id": 445,
+        "ngayKham": "2024-08-05",
+        "tienThuoc": 960002,
+        "tienKham": 640146,
+        "tongTien": 1600148,
+        "ngayLapHoaDon": "2024-08-05",
+        "trangThai": 1,
+        "phieuKham_id": 445
+    },
+    {
+        "id": 446,
+        "ngayKham": "2024-08-06",
+        "tienThuoc": 523129,
+        "tienKham": 139569,
+        "tongTien": 662698,
+        "ngayLapHoaDon": "2024-08-06",
+        "trangThai": 1,
+        "phieuKham_id": 446
+    },
+    {
+        "id": 447,
+        "ngayKham": "2024-08-07",
+        "tienThuoc": 576311,
+        "tienKham": 422797,
+        "tongTien": 999108,
+        "ngayLapHoaDon": "2024-08-07",
+        "trangThai": 1,
+        "phieuKham_id": 447
+    },
+    {
+        "id": 448,
+        "ngayKham": "2024-08-08",
+        "tienThuoc": 532339,
+        "tienKham": 989764,
+        "tongTien": 1522103,
+        "ngayLapHoaDon": "2024-08-08",
+        "trangThai": 1,
+        "phieuKham_id": 448
+    },
+    {
+        "id": 449,
+        "ngayKham": "2024-08-08",
+        "tienThuoc": 917542,
+        "tienKham": 705284,
+        "tongTien": 1622826,
+        "ngayLapHoaDon": "2024-08-08",
+        "trangThai": 1,
+        "phieuKham_id": 449
+    },
+    {
+        "id": 450,
+        "ngayKham": "2024-08-08",
+        "tienThuoc": 102338,
+        "tienKham": 808075,
+        "tongTien": 910413,
+        "ngayLapHoaDon": "2024-08-08",
+        "trangThai": 1,
+        "phieuKham_id": 450
+    },
+    {
+        "id": 451,
+        "ngayKham": "2024-08-09",
+        "tienThuoc": 885233,
+        "tienKham": 275903,
+        "tongTien": 1161136,
+        "ngayLapHoaDon": "2024-08-09",
+        "trangThai": 0,
+        "phieuKham_id": 451
+    },
+    {
+        "id": 452,
+        "ngayKham": "2024-08-10",
+        "tienThuoc": 124215,
+        "tienKham": 252136,
+        "tongTien": 376351,
+        "ngayLapHoaDon": "2024-08-10",
+        "trangThai": 0,
+        "phieuKham_id": 452
+    },
+    {
+        "id": 453,
+        "ngayKham": "2024-08-10",
+        "tienThuoc": 662415,
+        "tienKham": 233594,
+        "tongTien": 896009,
+        "ngayLapHoaDon": "2024-08-10",
+        "trangThai": 1,
+        "phieuKham_id": 453
+    },
+    {
+        "id": 454,
+        "ngayKham": "2024-08-11",
+        "tienThuoc": 298025,
+        "tienKham": 764033,
+        "tongTien": 1062058,
+        "ngayLapHoaDon": "2024-08-11",
+        "trangThai": 1,
+        "phieuKham_id": 454
+    },
+    {
+        "id": 455,
+        "ngayKham": "2024-08-11",
+        "tienThuoc": 366656,
+        "tienKham": 827699,
+        "tongTien": 1194355,
+        "ngayLapHoaDon": "2024-08-11",
+        "trangThai": 1,
+        "phieuKham_id": 455
+    },
+    {
+        "id": 456,
+        "ngayKham": "2024-08-12",
+        "tienThuoc": 814364,
+        "tienKham": 890123,
+        "tongTien": 1704487,
+        "ngayLapHoaDon": "2024-08-12",
+        "trangThai": 0,
+        "phieuKham_id": 456
+    },
+    {
+        "id": 457,
+        "ngayKham": "2024-08-12",
+        "tienThuoc": 635647,
+        "tienKham": 904431,
+        "tongTien": 1540078,
+        "ngayLapHoaDon": "2024-08-12",
+        "trangThai": 1,
+        "phieuKham_id": 457
+    },
+    {
+        "id": 458,
+        "ngayKham": "2024-08-12",
+        "tienThuoc": 237562,
+        "tienKham": 157983,
+        "tongTien": 395545,
+        "ngayLapHoaDon": "2024-08-12",
+        "trangThai": 0,
+        "phieuKham_id": 458
+    },
+    {
+        "id": 459,
+        "ngayKham": "2024-08-12",
+        "tienThuoc": 530454,
+        "tienKham": 290876,
+        "tongTien": 821330,
+        "ngayLapHoaDon": "2024-08-12",
+        "trangThai": 0,
+        "phieuKham_id": 459
+    },
+    {
+        "id": 460,
+        "ngayKham": "2024-08-13",
+        "tienThuoc": 967878,
+        "tienKham": 675197,
+        "tongTien": 1643075,
+        "ngayLapHoaDon": "2024-08-13",
+        "trangThai": 1,
+        "phieuKham_id": 460
+    },
+    {
+        "id": 461,
+        "ngayKham": "2024-08-13",
+        "tienThuoc": 599509,
+        "tienKham": 361343,
+        "tongTien": 960852,
+        "ngayLapHoaDon": "2024-08-13",
+        "trangThai": 0,
+        "phieuKham_id": 461
+    },
+    {
+        "id": 462,
+        "ngayKham": "2024-08-13",
+        "tienThuoc": 987686,
+        "tienKham": 339201,
+        "tongTien": 1326887,
+        "ngayLapHoaDon": "2024-08-13",
+        "trangThai": 0,
+        "phieuKham_id": 462
+    },
+    {
+        "id": 463,
+        "ngayKham": "2024-08-13",
+        "tienThuoc": 961255,
+        "tienKham": 724561,
+        "tongTien": 1685816,
+        "ngayLapHoaDon": "2024-08-13",
+        "trangThai": 1,
+        "phieuKham_id": 463
+    },
+    {
+        "id": 464,
+        "ngayKham": "2024-08-13",
+        "tienThuoc": 181342,
+        "tienKham": 155473,
+        "tongTien": 336815,
+        "ngayLapHoaDon": "2024-08-13",
+        "trangThai": 0,
+        "phieuKham_id": 464
+    },
+    {
+        "id": 465,
+        "ngayKham": "2024-08-14",
+        "tienThuoc": 255686,
+        "tienKham": 959390,
+        "tongTien": 1215076,
+        "ngayLapHoaDon": "2024-08-14",
+        "trangThai": 1,
+        "phieuKham_id": 465
+    },
+    {
+        "id": 466,
+        "ngayKham": "2024-08-14",
+        "tienThuoc": 222019,
+        "tienKham": 717542,
+        "tongTien": 939561,
+        "ngayLapHoaDon": "2024-08-14",
+        "trangThai": 1,
+        "phieuKham_id": 466
+    },
+    {
+        "id": 467,
+        "ngayKham": "2024-08-15",
+        "tienThuoc": 538253,
+        "tienKham": 573905,
+        "tongTien": 1112158,
+        "ngayLapHoaDon": "2024-08-15",
+        "trangThai": 1,
+        "phieuKham_id": 467
+    },
+    {
+        "id": 468,
+        "ngayKham": "2024-08-16",
+        "tienThuoc": 603575,
+        "tienKham": 920193,
+        "tongTien": 1523768,
+        "ngayLapHoaDon": "2024-08-16",
+        "trangThai": 0,
+        "phieuKham_id": 468
+    },
+    {
+        "id": 469,
+        "ngayKham": "2024-08-17",
+        "tienThuoc": 879035,
+        "tienKham": 318469,
+        "tongTien": 1197504,
+        "ngayLapHoaDon": "2024-08-17",
+        "trangThai": 1,
+        "phieuKham_id": 469
+    },
+    {
+        "id": 470,
+        "ngayKham": "2024-08-17",
+        "tienThuoc": 278549,
+        "tienKham": 521812,
+        "tongTien": 800361,
+        "ngayLapHoaDon": "2024-08-17",
+        "trangThai": 0,
+        "phieuKham_id": 470
+    },
+    {
+        "id": 471,
+        "ngayKham": "2024-08-18",
+        "tienThuoc": 214732,
+        "tienKham": 691016,
+        "tongTien": 905748,
+        "ngayLapHoaDon": "2024-08-18",
+        "trangThai": 0,
+        "phieuKham_id": 471
+    },
+    {
+        "id": 472,
+        "ngayKham": "2024-08-19",
+        "tienThuoc": 671428,
+        "tienKham": 583656,
+        "tongTien": 1255084,
+        "ngayLapHoaDon": "2024-08-19",
+        "trangThai": 1,
+        "phieuKham_id": 472
+    },
+    {
+        "id": 473,
+        "ngayKham": "2024-08-20",
+        "tienThuoc": 179163,
+        "tienKham": 529059,
+        "tongTien": 708222,
+        "ngayLapHoaDon": "2024-08-20",
+        "trangThai": 1,
+        "phieuKham_id": 473
+    },
+    {
+        "id": 474,
+        "ngayKham": "2024-08-20",
+        "tienThuoc": 265852,
+        "tienKham": 277355,
+        "tongTien": 543207,
+        "ngayLapHoaDon": "2024-08-20",
+        "trangThai": 0,
+        "phieuKham_id": 474
+    },
+    {
+        "id": 475,
+        "ngayKham": "2024-08-21",
+        "tienThuoc": 889146,
+        "tienKham": 661363,
+        "tongTien": 1550509,
+        "ngayLapHoaDon": "2024-08-21",
+        "trangThai": 0,
+        "phieuKham_id": 475
+    },
+    {
+        "id": 476,
+        "ngayKham": "2024-08-21",
+        "tienThuoc": 223865,
+        "tienKham": 744107,
+        "tongTien": 967972,
+        "ngayLapHoaDon": "2024-08-21",
+        "trangThai": 0,
+        "phieuKham_id": 476
+    },
+    {
+        "id": 477,
+        "ngayKham": "2024-08-22",
+        "tienThuoc": 234099,
+        "tienKham": 561548,
+        "tongTien": 795647,
+        "ngayLapHoaDon": "2024-08-22",
+        "trangThai": 1,
+        "phieuKham_id": 477
+    },
+    {
+        "id": 478,
+        "ngayKham": "2024-08-23",
+        "tienThuoc": 988862,
+        "tienKham": 334890,
+        "tongTien": 1323752,
+        "ngayLapHoaDon": "2024-08-23",
+        "trangThai": 1,
+        "phieuKham_id": 478
+    },
+    {
+        "id": 479,
+        "ngayKham": "2024-08-23",
+        "tienThuoc": 772184,
+        "tienKham": 860120,
+        "tongTien": 1632304,
+        "ngayLapHoaDon": "2024-08-23",
+        "trangThai": 1,
+        "phieuKham_id": 479
+    },
+    {
+        "id": 480,
+        "ngayKham": "2024-08-23",
+        "tienThuoc": 226084,
+        "tienKham": 304235,
+        "tongTien": 530319,
+        "ngayLapHoaDon": "2024-08-23",
+        "trangThai": 0,
+        "phieuKham_id": 480
+    },
+    {
+        "id": 481,
+        "ngayKham": "2024-08-24",
+        "tienThuoc": 297351,
+        "tienKham": 811671,
+        "tongTien": 1109022,
+        "ngayLapHoaDon": "2024-08-24",
+        "trangThai": 1,
+        "phieuKham_id": 481
+    },
+    {
+        "id": 482,
+        "ngayKham": "2024-08-24",
+        "tienThuoc": 181111,
+        "tienKham": 138764,
+        "tongTien": 319875,
+        "ngayLapHoaDon": "2024-08-24",
+        "trangThai": 0,
+        "phieuKham_id": 482
+    },
+    {
+        "id": 483,
+        "ngayKham": "2024-08-25",
+        "tienThuoc": 965633,
+        "tienKham": 914388,
+        "tongTien": 1880021,
+        "ngayLapHoaDon": "2024-08-25",
+        "trangThai": 0,
+        "phieuKham_id": 483
+    },
+    {
+        "id": 484,
+        "ngayKham": "2024-08-26",
+        "tienThuoc": 447907,
+        "tienKham": 619073,
+        "tongTien": 1066980,
+        "ngayLapHoaDon": "2024-08-26",
+        "trangThai": 1,
+        "phieuKham_id": 484
+    },
+    {
+        "id": 485,
+        "ngayKham": "2024-08-26",
+        "tienThuoc": 876101,
+        "tienKham": 662353,
+        "tongTien": 1538454,
+        "ngayLapHoaDon": "2024-08-26",
+        "trangThai": 1,
+        "phieuKham_id": 485
+    },
+    {
+        "id": 486,
+        "ngayKham": "2024-08-27",
+        "tienThuoc": 545810,
+        "tienKham": 473469,
+        "tongTien": 1019279,
+        "ngayLapHoaDon": "2024-08-27",
+        "trangThai": 0,
+        "phieuKham_id": 486
+    },
+    {
+        "id": 487,
+        "ngayKham": "2024-08-28",
+        "tienThuoc": 348877,
+        "tienKham": 157006,
+        "tongTien": 505883,
+        "ngayLapHoaDon": "2024-08-28",
+        "trangThai": 1,
+        "phieuKham_id": 487
+    },
+    {
+        "id": 488,
+        "ngayKham": "2024-08-28",
+        "tienThuoc": 535182,
+        "tienKham": 851505,
+        "tongTien": 1386687,
+        "ngayLapHoaDon": "2024-08-28",
+        "trangThai": 1,
+        "phieuKham_id": 488
+    },
+    {
+        "id": 489,
+        "ngayKham": "2024-08-29",
+        "tienThuoc": 979396,
+        "tienKham": 620448,
+        "tongTien": 1599844,
+        "ngayLapHoaDon": "2024-08-29",
+        "trangThai": 1,
+        "phieuKham_id": 489
+    },
+    {
+        "id": 490,
+        "ngayKham": "2024-08-29",
+        "tienThuoc": 182211,
+        "tienKham": 954543,
+        "tongTien": 1136754,
+        "ngayLapHoaDon": "2024-08-29",
+        "trangThai": 1,
+        "phieuKham_id": 490
+    },
+    {
+        "id": 491,
+        "ngayKham": "2024-08-30",
+        "tienThuoc": 526835,
+        "tienKham": 345393,
+        "tongTien": 872228,
+        "ngayLapHoaDon": "2024-08-30",
+        "trangThai": 1,
+        "phieuKham_id": 491
+    },
+    {
+        "id": 492,
+        "ngayKham": "2024-08-30",
+        "tienThuoc": 336681,
+        "tienKham": 598017,
+        "tongTien": 934698,
+        "ngayLapHoaDon": "2024-08-30",
+        "trangThai": 1,
+        "phieuKham_id": 492
+    },
+    {
+        "id": 493,
+        "ngayKham": "2024-08-31",
+        "tienThuoc": 787442,
+        "tienKham": 871367,
+        "tongTien": 1658809,
+        "ngayLapHoaDon": "2024-08-31",
+        "trangThai": 1,
+        "phieuKham_id": 493
+    },
+    {
+        "id": 494,
+        "ngayKham": "2024-08-31",
+        "tienThuoc": 831574,
+        "tienKham": 758599,
+        "tongTien": 1590173,
+        "ngayLapHoaDon": "2024-08-31",
+        "trangThai": 1,
+        "phieuKham_id": 494
+    },
+    {
+        "id": 495,
+        "ngayKham": "2024-09-01",
+        "tienThuoc": 628292,
+        "tienKham": 737278,
+        "tongTien": 1365570,
+        "ngayLapHoaDon": "2024-09-01",
+        "trangThai": 0,
+        "phieuKham_id": 495
+    },
+    {
+        "id": 496,
+        "ngayKham": "2024-09-02",
+        "tienThuoc": 480621,
+        "tienKham": 326905,
+        "tongTien": 807526,
+        "ngayLapHoaDon": "2024-09-02",
+        "trangThai": 1,
+        "phieuKham_id": 496
+    },
+    {
+        "id": 497,
+        "ngayKham": "2024-09-03",
+        "tienThuoc": 387167,
+        "tienKham": 432086,
+        "tongTien": 819253,
+        "ngayLapHoaDon": "2024-09-03",
+        "trangThai": 1,
+        "phieuKham_id": 497
+    },
+    {
+        "id": 498,
+        "ngayKham": "2024-09-04",
+        "tienThuoc": 460007,
+        "tienKham": 313448,
+        "tongTien": 773455,
+        "ngayLapHoaDon": "2024-09-04",
+        "trangThai": 1,
+        "phieuKham_id": 498
+    },
+    {
+        "id": 499,
+        "ngayKham": "2024-09-05",
+        "tienThuoc": 803348,
+        "tienKham": 877735,
+        "tongTien": 1681083,
+        "ngayLapHoaDon": "2024-09-05",
+        "trangThai": 0,
+        "phieuKham_id": 499
+    },
+    {
+        "id": 500,
+        "ngayKham": "2024-09-06",
+        "tienThuoc": 994843,
+        "tienKham": 388934,
+        "tongTien": 1383777,
+        "ngayLapHoaDon": "2024-09-06",
+        "trangThai": 1,
+        "phieuKham_id": 500
+    },
+    {
+        "id": 501,
+        "ngayKham": "2024-09-06",
+        "tienThuoc": 913705,
+        "tienKham": 404552,
+        "tongTien": 1318257,
+        "ngayLapHoaDon": "2024-09-06",
+        "trangThai": 1,
+        "phieuKham_id": 501
+    },
+    {
+        "id": 502,
+        "ngayKham": "2024-09-06",
+        "tienThuoc": 274522,
+        "tienKham": 785471,
+        "tongTien": 1059993,
+        "ngayLapHoaDon": "2024-09-06",
+        "trangThai": 1,
+        "phieuKham_id": 502
+    },
+    {
+        "id": 503,
+        "ngayKham": "2024-09-06",
+        "tienThuoc": 148064,
+        "tienKham": 757190,
+        "tongTien": 905254,
+        "ngayLapHoaDon": "2024-09-06",
+        "trangThai": 0,
+        "phieuKham_id": 503
+    },
+    {
+        "id": 504,
+        "ngayKham": "2024-09-06",
+        "tienThuoc": 475386,
+        "tienKham": 412430,
+        "tongTien": 887816,
+        "ngayLapHoaDon": "2024-09-06",
+        "trangThai": 1,
+        "phieuKham_id": 504
+    },
+    {
+        "id": 505,
+        "ngayKham": "2024-09-06",
+        "tienThuoc": 910651,
+        "tienKham": 308961,
+        "tongTien": 1219612,
+        "ngayLapHoaDon": "2024-09-06",
+        "trangThai": 1,
+        "phieuKham_id": 505
+    },
+    {
+        "id": 506,
+        "ngayKham": "2024-09-07",
+        "tienThuoc": 453476,
+        "tienKham": 163853,
+        "tongTien": 617329,
+        "ngayLapHoaDon": "2024-09-07",
+        "trangThai": 1,
+        "phieuKham_id": 506
+    },
+    {
+        "id": 507,
+        "ngayKham": "2024-09-08",
+        "tienThuoc": 355299,
+        "tienKham": 355864,
+        "tongTien": 711163,
+        "ngayLapHoaDon": "2024-09-08",
+        "trangThai": 0,
+        "phieuKham_id": 507
+    },
+    {
+        "id": 508,
+        "ngayKham": "2024-09-09",
+        "tienThuoc": 401006,
+        "tienKham": 702887,
+        "tongTien": 1103893,
+        "ngayLapHoaDon": "2024-09-09",
+        "trangThai": 1,
+        "phieuKham_id": 508
+    },
+    {
+        "id": 509,
+        "ngayKham": "2024-09-10",
+        "tienThuoc": 987683,
+        "tienKham": 884030,
+        "tongTien": 1871713,
+        "ngayLapHoaDon": "2024-09-10",
+        "trangThai": 1,
+        "phieuKham_id": 509
+    },
+    {
+        "id": 510,
+        "ngayKham": "2024-09-11",
+        "tienThuoc": 856301,
+        "tienKham": 560096,
+        "tongTien": 1416397,
+        "ngayLapHoaDon": "2024-09-11",
+        "trangThai": 0,
+        "phieuKham_id": 510
+    },
+    {
+        "id": 511,
+        "ngayKham": "2024-09-12",
+        "tienThuoc": 302444,
+        "tienKham": 578303,
+        "tongTien": 880747,
+        "ngayLapHoaDon": "2024-09-12",
+        "trangThai": 1,
+        "phieuKham_id": 511
+    },
+    {
+        "id": 512,
+        "ngayKham": "2024-09-12",
+        "tienThuoc": 625530,
+        "tienKham": 418152,
+        "tongTien": 1043682,
+        "ngayLapHoaDon": "2024-09-12",
+        "trangThai": 1,
+        "phieuKham_id": 512
+    },
+    {
+        "id": 513,
+        "ngayKham": "2024-09-12",
+        "tienThuoc": 951993,
+        "tienKham": 408950,
+        "tongTien": 1360943,
+        "ngayLapHoaDon": "2024-09-12",
+        "trangThai": 1,
+        "phieuKham_id": 513
+    },
+    {
+        "id": 514,
+        "ngayKham": "2024-09-12",
+        "tienThuoc": 938766,
+        "tienKham": 782663,
+        "tongTien": 1721429,
+        "ngayLapHoaDon": "2024-09-12",
+        "trangThai": 0,
+        "phieuKham_id": 514
+    },
+    {
+        "id": 515,
+        "ngayKham": "2024-09-12",
+        "tienThuoc": 117308,
+        "tienKham": 723905,
+        "tongTien": 841213,
+        "ngayLapHoaDon": "2024-09-12",
+        "trangThai": 0,
+        "phieuKham_id": 515
+    },
+    {
+        "id": 516,
+        "ngayKham": "2024-09-12",
+        "tienThuoc": 643601,
+        "tienKham": 626789,
+        "tongTien": 1270390,
+        "ngayLapHoaDon": "2024-09-12",
+        "trangThai": 1,
+        "phieuKham_id": 516
+    },
+    {
+        "id": 517,
+        "ngayKham": "2024-09-13",
+        "tienThuoc": 674810,
+        "tienKham": 959844,
+        "tongTien": 1634654,
+        "ngayLapHoaDon": "2024-09-13",
+        "trangThai": 1,
+        "phieuKham_id": 517
+    },
+    {
+        "id": 518,
+        "ngayKham": "2024-09-14",
+        "tienThuoc": 545843,
+        "tienKham": 208888,
+        "tongTien": 754731,
+        "ngayLapHoaDon": "2024-09-14",
+        "trangThai": 1,
+        "phieuKham_id": 518
+    },
+    {
+        "id": 519,
+        "ngayKham": "2024-09-15",
+        "tienThuoc": 537341,
+        "tienKham": 864436,
+        "tongTien": 1401777,
+        "ngayLapHoaDon": "2024-09-15",
+        "trangThai": 1,
+        "phieuKham_id": 519
+    },
+    {
+        "id": 520,
+        "ngayKham": "2024-09-16",
+        "tienThuoc": 880418,
+        "tienKham": 369590,
+        "tongTien": 1250008,
+        "ngayLapHoaDon": "2024-09-16",
+        "trangThai": 1,
+        "phieuKham_id": 520
+    },
+    {
+        "id": 521,
+        "ngayKham": "2024-09-17",
+        "tienThuoc": 417699,
+        "tienKham": 814053,
+        "tongTien": 1231752,
+        "ngayLapHoaDon": "2024-09-17",
+        "trangThai": 1,
+        "phieuKham_id": 521
+    },
+    {
+        "id": 522,
+        "ngayKham": "2024-09-17",
+        "tienThuoc": 738598,
+        "tienKham": 691009,
+        "tongTien": 1429607,
+        "ngayLapHoaDon": "2024-09-17",
+        "trangThai": 1,
+        "phieuKham_id": 522
+    },
+    {
+        "id": 523,
+        "ngayKham": "2024-09-17",
+        "tienThuoc": 248833,
+        "tienKham": 855000,
+        "tongTien": 1103833,
+        "ngayLapHoaDon": "2024-09-17",
+        "trangThai": 0,
+        "phieuKham_id": 523
+    },
+    {
+        "id": 524,
+        "ngayKham": "2024-09-18",
+        "tienThuoc": 840940,
+        "tienKham": 640438,
+        "tongTien": 1481378,
+        "ngayLapHoaDon": "2024-09-18",
+        "trangThai": 1,
+        "phieuKham_id": 524
+    },
+    {
+        "id": 525,
+        "ngayKham": "2024-09-19",
+        "tienThuoc": 837179,
+        "tienKham": 315713,
+        "tongTien": 1152892,
+        "ngayLapHoaDon": "2024-09-19",
+        "trangThai": 1,
+        "phieuKham_id": 525
+    },
+    {
+        "id": 526,
+        "ngayKham": "2024-09-20",
+        "tienThuoc": 415901,
+        "tienKham": 266195,
+        "tongTien": 682096,
+        "ngayLapHoaDon": "2024-09-20",
+        "trangThai": 1,
+        "phieuKham_id": 526
+    },
+    {
+        "id": 527,
+        "ngayKham": "2024-09-21",
+        "tienThuoc": 161357,
+        "tienKham": 724070,
+        "tongTien": 885427,
+        "ngayLapHoaDon": "2024-09-21",
+        "trangThai": 1,
+        "phieuKham_id": 527
+    },
+    {
+        "id": 528,
+        "ngayKham": "2024-09-21",
+        "tienThuoc": 979352,
+        "tienKham": 422484,
+        "tongTien": 1401836,
+        "ngayLapHoaDon": "2024-09-21",
+        "trangThai": 0,
+        "phieuKham_id": 528
+    },
+    {
+        "id": 529,
+        "ngayKham": "2024-09-22",
+        "tienThuoc": 405794,
+        "tienKham": 793203,
+        "tongTien": 1198997,
+        "ngayLapHoaDon": "2024-09-22",
+        "trangThai": 0,
+        "phieuKham_id": 529
+    },
+    {
+        "id": 530,
+        "ngayKham": "2024-09-22",
+        "tienThuoc": 171781,
+        "tienKham": 884869,
+        "tongTien": 1056650,
+        "ngayLapHoaDon": "2024-09-22",
+        "trangThai": 1,
+        "phieuKham_id": 530
+    },
+    {
+        "id": 531,
+        "ngayKham": "2024-09-22",
+        "tienThuoc": 336396,
+        "tienKham": 289358,
+        "tongTien": 625754,
+        "ngayLapHoaDon": "2024-09-22",
+        "trangThai": 1,
+        "phieuKham_id": 531
+    },
+    {
+        "id": 532,
+        "ngayKham": "2024-09-23",
+        "tienThuoc": 659863,
+        "tienKham": 126899,
+        "tongTien": 786762,
+        "ngayLapHoaDon": "2024-09-23",
+        "trangThai": 1,
+        "phieuKham_id": 532
+    },
+    {
+        "id": 533,
+        "ngayKham": "2024-09-23",
+        "tienThuoc": 632150,
+        "tienKham": 100004,
+        "tongTien": 732154,
+        "ngayLapHoaDon": "2024-09-23",
+        "trangThai": 1,
+        "phieuKham_id": 533
+    },
+    {
+        "id": 534,
+        "ngayKham": "2024-09-24",
+        "tienThuoc": 971194,
+        "tienKham": 733830,
+        "tongTien": 1705024,
+        "ngayLapHoaDon": "2024-09-24",
+        "trangThai": 1,
+        "phieuKham_id": 534
+    },
+    {
+        "id": 535,
+        "ngayKham": "2024-09-25",
+        "tienThuoc": 221345,
+        "tienKham": 149980,
+        "tongTien": 371325,
+        "ngayLapHoaDon": "2024-09-25",
+        "trangThai": 0,
+        "phieuKham_id": 535
+    },
+    {
+        "id": 536,
+        "ngayKham": "2024-09-25",
+        "tienThuoc": 167088,
+        "tienKham": 757136,
+        "tongTien": 924224,
+        "ngayLapHoaDon": "2024-09-25",
+        "trangThai": 1,
+        "phieuKham_id": 536
+    },
+    {
+        "id": 537,
+        "ngayKham": "2024-09-26",
+        "tienThuoc": 436579,
+        "tienKham": 668495,
+        "tongTien": 1105074,
+        "ngayLapHoaDon": "2024-09-26",
+        "trangThai": 1,
+        "phieuKham_id": 537
+    },
+    {
+        "id": 538,
+        "ngayKham": "2024-09-27",
+        "tienThuoc": 777064,
+        "tienKham": 201054,
+        "tongTien": 978118,
+        "ngayLapHoaDon": "2024-09-27",
+        "trangThai": 1,
+        "phieuKham_id": 538
+    },
+    {
+        "id": 539,
+        "ngayKham": "2024-09-28",
+        "tienThuoc": 633690,
+        "tienKham": 228448,
+        "tongTien": 862138,
+        "ngayLapHoaDon": "2024-09-28",
+        "trangThai": 1,
+        "phieuKham_id": 539
+    },
+    {
+        "id": 540,
+        "ngayKham": "2024-09-28",
+        "tienThuoc": 433710,
+        "tienKham": 721135,
+        "tongTien": 1154845,
+        "ngayLapHoaDon": "2024-09-28",
+        "trangThai": 0,
+        "phieuKham_id": 540
+    },
+    {
+        "id": 541,
+        "ngayKham": "2024-09-28",
+        "tienThuoc": 246632,
+        "tienKham": 491029,
+        "tongTien": 737661,
+        "ngayLapHoaDon": "2024-09-28",
+        "trangThai": 1,
+        "phieuKham_id": 541
+    },
+    {
+        "id": 542,
+        "ngayKham": "2024-09-29",
+        "tienThuoc": 551409,
+        "tienKham": 738885,
+        "tongTien": 1290294,
+        "ngayLapHoaDon": "2024-09-29",
+        "trangThai": 1,
+        "phieuKham_id": 542
+    },
+    {
+        "id": 543,
+        "ngayKham": "2024-09-29",
+        "tienThuoc": 273186,
+        "tienKham": 769234,
+        "tongTien": 1042420,
+        "ngayLapHoaDon": "2024-09-29",
+        "trangThai": 1,
+        "phieuKham_id": 543
+    },
+    {
+        "id": 544,
+        "ngayKham": "2024-09-29",
+        "tienThuoc": 290823,
+        "tienKham": 701993,
+        "tongTien": 992816,
+        "ngayLapHoaDon": "2024-09-29",
+        "trangThai": 0,
+        "phieuKham_id": 544
+    },
+    {
+        "id": 545,
+        "ngayKham": "2024-09-30",
+        "tienThuoc": 103816,
+        "tienKham": 203938,
+        "tongTien": 307754,
+        "ngayLapHoaDon": "2024-09-30",
+        "trangThai": 1,
+        "phieuKham_id": 545
+    },
+    {
+        "id": 546,
+        "ngayKham": "2024-10-01",
+        "tienThuoc": 381067,
+        "tienKham": 204669,
+        "tongTien": 585736,
+        "ngayLapHoaDon": "2024-10-01",
+        "trangThai": 1,
+        "phieuKham_id": 546
+    },
+    {
+        "id": 547,
+        "ngayKham": "2024-10-02",
+        "tienThuoc": 501415,
+        "tienKham": 234459,
+        "tongTien": 735874,
+        "ngayLapHoaDon": "2024-10-02",
+        "trangThai": 1,
+        "phieuKham_id": 547
+    },
+    {
+        "id": 548,
+        "ngayKham": "2024-10-02",
+        "tienThuoc": 253584,
+        "tienKham": 530168,
+        "tongTien": 783752,
+        "ngayLapHoaDon": "2024-10-02",
+        "trangThai": 1,
+        "phieuKham_id": 548
+    },
+    {
+        "id": 549,
+        "ngayKham": "2024-10-03",
+        "tienThuoc": 670885,
+        "tienKham": 380802,
+        "tongTien": 1051687,
+        "ngayLapHoaDon": "2024-10-03",
+        "trangThai": 0,
+        "phieuKham_id": 549
+    },
+    {
+        "id": 550,
+        "ngayKham": "2024-10-04",
+        "tienThuoc": 125898,
+        "tienKham": 735766,
+        "tongTien": 861664,
+        "ngayLapHoaDon": "2024-10-04",
+        "trangThai": 0,
+        "phieuKham_id": 550
+    },
+    {
+        "id": 551,
+        "ngayKham": "2024-10-04",
+        "tienThuoc": 313915,
+        "tienKham": 959399,
+        "tongTien": 1273314,
+        "ngayLapHoaDon": "2024-10-04",
+        "trangThai": 0,
+        "phieuKham_id": 551
+    },
+    {
+        "id": 552,
+        "ngayKham": "2024-10-05",
+        "tienThuoc": 329578,
+        "tienKham": 755092,
+        "tongTien": 1084670,
+        "ngayLapHoaDon": "2024-10-05",
+        "trangThai": 0,
+        "phieuKham_id": 552
+    },
+    {
+        "id": 553,
+        "ngayKham": "2024-10-06",
+        "tienThuoc": 688617,
+        "tienKham": 176809,
+        "tongTien": 865426,
+        "ngayLapHoaDon": "2024-10-06",
+        "trangThai": 1,
+        "phieuKham_id": 553
+    },
+    {
+        "id": 554,
+        "ngayKham": "2024-10-07",
+        "tienThuoc": 131606,
+        "tienKham": 684932,
+        "tongTien": 816538,
+        "ngayLapHoaDon": "2024-10-07",
+        "trangThai": 0,
+        "phieuKham_id": 554
+    },
+    {
+        "id": 555,
+        "ngayKham": "2024-10-07",
+        "tienThuoc": 596984,
+        "tienKham": 609623,
+        "tongTien": 1206607,
+        "ngayLapHoaDon": "2024-10-07",
+        "trangThai": 0,
+        "phieuKham_id": 555
+    },
+    {
+        "id": 556,
+        "ngayKham": "2024-10-08",
+        "tienThuoc": 348423,
+        "tienKham": 809006,
+        "tongTien": 1157429,
+        "ngayLapHoaDon": "2024-10-08",
+        "trangThai": 0,
+        "phieuKham_id": 556
+    },
+    {
+        "id": 557,
+        "ngayKham": "2024-10-08",
+        "tienThuoc": 826960,
+        "tienKham": 764554,
+        "tongTien": 1591514,
+        "ngayLapHoaDon": "2024-10-08",
+        "trangThai": 1,
+        "phieuKham_id": 557
+    },
+    {
+        "id": 558,
+        "ngayKham": "2024-10-09",
+        "tienThuoc": 402215,
+        "tienKham": 131301,
+        "tongTien": 533516,
+        "ngayLapHoaDon": "2024-10-09",
+        "trangThai": 1,
+        "phieuKham_id": 558
+    },
+    {
+        "id": 559,
+        "ngayKham": "2024-10-10",
+        "tienThuoc": 978301,
+        "tienKham": 116668,
+        "tongTien": 1094969,
+        "ngayLapHoaDon": "2024-10-10",
+        "trangThai": 0,
+        "phieuKham_id": 559
+    },
+    {
+        "id": 560,
+        "ngayKham": "2024-10-11",
+        "tienThuoc": 429834,
+        "tienKham": 352685,
+        "tongTien": 782519,
+        "ngayLapHoaDon": "2024-10-11",
+        "trangThai": 0,
+        "phieuKham_id": 560
+    },
+    {
+        "id": 561,
+        "ngayKham": "2024-10-12",
+        "tienThuoc": 417911,
+        "tienKham": 625351,
+        "tongTien": 1043262,
+        "ngayLapHoaDon": "2024-10-12",
+        "trangThai": 0,
+        "phieuKham_id": 561
+    },
+    {
+        "id": 562,
+        "ngayKham": "2024-10-13",
+        "tienThuoc": 219006,
+        "tienKham": 248665,
+        "tongTien": 467671,
+        "ngayLapHoaDon": "2024-10-13",
+        "trangThai": 1,
+        "phieuKham_id": 562
+    },
+    {
+        "id": 563,
+        "ngayKham": "2024-10-13",
+        "tienThuoc": 815646,
+        "tienKham": 918639,
+        "tongTien": 1734285,
+        "ngayLapHoaDon": "2024-10-13",
+        "trangThai": 0,
+        "phieuKham_id": 563
+    },
+    {
+        "id": 564,
+        "ngayKham": "2024-10-14",
+        "tienThuoc": 926589,
+        "tienKham": 264223,
+        "tongTien": 1190812,
+        "ngayLapHoaDon": "2024-10-14",
+        "trangThai": 0,
+        "phieuKham_id": 564
+    },
+    {
+        "id": 565,
+        "ngayKham": "2024-10-14",
+        "tienThuoc": 237580,
+        "tienKham": 825870,
+        "tongTien": 1063450,
+        "ngayLapHoaDon": "2024-10-14",
+        "trangThai": 0,
+        "phieuKham_id": 565
+    },
+    {
+        "id": 566,
+        "ngayKham": "2024-10-14",
+        "tienThuoc": 579009,
+        "tienKham": 675721,
+        "tongTien": 1254730,
+        "ngayLapHoaDon": "2024-10-14",
+        "trangThai": 1,
+        "phieuKham_id": 566
+    },
+    {
+        "id": 567,
+        "ngayKham": "2024-10-14",
+        "tienThuoc": 289317,
+        "tienKham": 269944,
+        "tongTien": 559261,
+        "ngayLapHoaDon": "2024-10-14",
+        "trangThai": 1,
+        "phieuKham_id": 567
+    },
+    {
+        "id": 568,
+        "ngayKham": "2024-10-14",
+        "tienThuoc": 833627,
+        "tienKham": 905251,
+        "tongTien": 1738878,
+        "ngayLapHoaDon": "2024-10-14",
+        "trangThai": 1,
+        "phieuKham_id": 568
+    },
+    {
+        "id": 569,
+        "ngayKham": "2024-10-15",
+        "tienThuoc": 927478,
+        "tienKham": 133637,
+        "tongTien": 1061115,
+        "ngayLapHoaDon": "2024-10-15",
+        "trangThai": 1,
+        "phieuKham_id": 569
+    },
+    {
+        "id": 570,
+        "ngayKham": "2024-10-16",
+        "tienThuoc": 479282,
+        "tienKham": 357097,
+        "tongTien": 836379,
+        "ngayLapHoaDon": "2024-10-16",
+        "trangThai": 0,
+        "phieuKham_id": 570
+    },
+    {
+        "id": 571,
+        "ngayKham": "2024-10-16",
+        "tienThuoc": 244131,
+        "tienKham": 504422,
+        "tongTien": 748553,
+        "ngayLapHoaDon": "2024-10-16",
+        "trangThai": 1,
+        "phieuKham_id": 571
+    },
+    {
+        "id": 572,
+        "ngayKham": "2024-10-16",
+        "tienThuoc": 471943,
+        "tienKham": 335761,
+        "tongTien": 807704,
+        "ngayLapHoaDon": "2024-10-16",
+        "trangThai": 1,
+        "phieuKham_id": 572
+    },
+    {
+        "id": 573,
+        "ngayKham": "2024-10-16",
+        "tienThuoc": 800253,
+        "tienKham": 960042,
+        "tongTien": 1760295,
+        "ngayLapHoaDon": "2024-10-16",
+        "trangThai": 1,
+        "phieuKham_id": 573
+    },
+    {
+        "id": 574,
+        "ngayKham": "2024-10-16",
+        "tienThuoc": 761964,
+        "tienKham": 897838,
+        "tongTien": 1659802,
+        "ngayLapHoaDon": "2024-10-16",
+        "trangThai": 0,
+        "phieuKham_id": 574
+    },
+    {
+        "id": 575,
+        "ngayKham": "2024-10-17",
+        "tienThuoc": 446706,
+        "tienKham": 364205,
+        "tongTien": 810911,
+        "ngayLapHoaDon": "2024-10-17",
+        "trangThai": 0,
+        "phieuKham_id": 575
+    },
+    {
+        "id": 576,
+        "ngayKham": "2024-10-17",
+        "tienThuoc": 644063,
+        "tienKham": 998174,
+        "tongTien": 1642237,
+        "ngayLapHoaDon": "2024-10-17",
+        "trangThai": 1,
+        "phieuKham_id": 576
+    },
+    {
+        "id": 577,
+        "ngayKham": "2024-10-17",
+        "tienThuoc": 687594,
+        "tienKham": 512051,
+        "tongTien": 1199645,
+        "ngayLapHoaDon": "2024-10-17",
+        "trangThai": 1,
+        "phieuKham_id": 577
+    },
+    {
+        "id": 578,
+        "ngayKham": "2024-10-18",
+        "tienThuoc": 464022,
+        "tienKham": 172800,
+        "tongTien": 636822,
+        "ngayLapHoaDon": "2024-10-18",
+        "trangThai": 0,
+        "phieuKham_id": 578
+    },
+    {
+        "id": 579,
+        "ngayKham": "2024-10-18",
+        "tienThuoc": 821364,
+        "tienKham": 747804,
+        "tongTien": 1569168,
+        "ngayLapHoaDon": "2024-10-18",
+        "trangThai": 1,
+        "phieuKham_id": 579
+    },
+    {
+        "id": 580,
+        "ngayKham": "2024-10-19",
+        "tienThuoc": 180006,
+        "tienKham": 183196,
+        "tongTien": 363202,
+        "ngayLapHoaDon": "2024-10-19",
+        "trangThai": 1,
+        "phieuKham_id": 580
+    },
+    {
+        "id": 581,
+        "ngayKham": "2024-10-20",
+        "tienThuoc": 989727,
+        "tienKham": 664982,
+        "tongTien": 1654709,
+        "ngayLapHoaDon": "2024-10-20",
+        "trangThai": 1,
+        "phieuKham_id": 581
+    },
+    {
+        "id": 582,
+        "ngayKham": "2024-10-20",
+        "tienThuoc": 619572,
+        "tienKham": 295306,
+        "tongTien": 914878,
+        "ngayLapHoaDon": "2024-10-20",
+        "trangThai": 1,
+        "phieuKham_id": 582
+    },
+    {
+        "id": 583,
+        "ngayKham": "2024-10-20",
+        "tienThuoc": 702897,
+        "tienKham": 825765,
+        "tongTien": 1528662,
+        "ngayLapHoaDon": "2024-10-20",
+        "trangThai": 1,
+        "phieuKham_id": 583
+    },
+    {
+        "id": 584,
+        "ngayKham": "2024-10-20",
+        "tienThuoc": 628525,
+        "tienKham": 821319,
+        "tongTien": 1449844,
+        "ngayLapHoaDon": "2024-10-20",
+        "trangThai": 1,
+        "phieuKham_id": 584
+    },
+    {
+        "id": 585,
+        "ngayKham": "2024-10-20",
+        "tienThuoc": 467707,
+        "tienKham": 890523,
+        "tongTien": 1358230,
+        "ngayLapHoaDon": "2024-10-20",
+        "trangThai": 0,
+        "phieuKham_id": 585
+    },
+    {
+        "id": 586,
+        "ngayKham": "2024-10-20",
+        "tienThuoc": 209765,
+        "tienKham": 168162,
+        "tongTien": 377927,
+        "ngayLapHoaDon": "2024-10-20",
+        "trangThai": 1,
+        "phieuKham_id": 586
+    },
+    {
+        "id": 587,
+        "ngayKham": "2024-10-20",
+        "tienThuoc": 699202,
+        "tienKham": 356915,
+        "tongTien": 1056117,
+        "ngayLapHoaDon": "2024-10-20",
+        "trangThai": 1,
+        "phieuKham_id": 587
+    },
+    {
+        "id": 588,
+        "ngayKham": "2024-10-20",
+        "tienThuoc": 131996,
+        "tienKham": 406709,
+        "tongTien": 538705,
+        "ngayLapHoaDon": "2024-10-20",
+        "trangThai": 1,
+        "phieuKham_id": 588
+    },
+    {
+        "id": 589,
+        "ngayKham": "2024-10-21",
+        "tienThuoc": 181664,
+        "tienKham": 811839,
+        "tongTien": 993503,
+        "ngayLapHoaDon": "2024-10-21",
+        "trangThai": 0,
+        "phieuKham_id": 589
+    },
+    {
+        "id": 590,
+        "ngayKham": "2024-10-21",
+        "tienThuoc": 452923,
+        "tienKham": 722532,
+        "tongTien": 1175455,
+        "ngayLapHoaDon": "2024-10-21",
+        "trangThai": 0,
+        "phieuKham_id": 590
+    },
+    {
+        "id": 591,
+        "ngayKham": "2024-10-21",
+        "tienThuoc": 158442,
+        "tienKham": 174884,
+        "tongTien": 333326,
+        "ngayLapHoaDon": "2024-10-21",
+        "trangThai": 0,
+        "phieuKham_id": 591
+    },
+    {
+        "id": 592,
+        "ngayKham": "2024-10-22",
+        "tienThuoc": 429539,
+        "tienKham": 121056,
+        "tongTien": 550595,
+        "ngayLapHoaDon": "2024-10-22",
+        "trangThai": 1,
+        "phieuKham_id": 592
+    },
+    {
+        "id": 593,
+        "ngayKham": "2024-10-22",
+        "tienThuoc": 537061,
+        "tienKham": 321545,
+        "tongTien": 858606,
+        "ngayLapHoaDon": "2024-10-22",
+        "trangThai": 1,
+        "phieuKham_id": 593
+    },
+    {
+        "id": 594,
+        "ngayKham": "2024-10-22",
+        "tienThuoc": 700523,
+        "tienKham": 100913,
+        "tongTien": 801436,
+        "ngayLapHoaDon": "2024-10-22",
+        "trangThai": 0,
+        "phieuKham_id": 594
+    },
+    {
+        "id": 595,
+        "ngayKham": "2024-10-23",
+        "tienThuoc": 731939,
+        "tienKham": 124602,
+        "tongTien": 856541,
+        "ngayLapHoaDon": "2024-10-23",
+        "trangThai": 0,
+        "phieuKham_id": 595
+    },
+    {
+        "id": 596,
+        "ngayKham": "2024-10-23",
+        "tienThuoc": 762447,
+        "tienKham": 605776,
+        "tongTien": 1368223,
+        "ngayLapHoaDon": "2024-10-23",
+        "trangThai": 0,
+        "phieuKham_id": 596
+    },
+    {
+        "id": 597,
+        "ngayKham": "2024-10-23",
+        "tienThuoc": 647896,
+        "tienKham": 678494,
+        "tongTien": 1326390,
+        "ngayLapHoaDon": "2024-10-23",
+        "trangThai": 1,
+        "phieuKham_id": 597
+    },
+    {
+        "id": 598,
+        "ngayKham": "2024-10-24",
+        "tienThuoc": 787143,
+        "tienKham": 457367,
+        "tongTien": 1244510,
+        "ngayLapHoaDon": "2024-10-24",
+        "trangThai": 1,
+        "phieuKham_id": 598
+    },
+    {
+        "id": 599,
+        "ngayKham": "2024-10-25",
+        "tienThuoc": 727733,
+        "tienKham": 393793,
+        "tongTien": 1121526,
+        "ngayLapHoaDon": "2024-10-25",
+        "trangThai": 0,
+        "phieuKham_id": 599
+    },
+    {
+        "id": 600,
+        "ngayKham": "2024-10-26",
+        "tienThuoc": 315291,
+        "tienKham": 637361,
+        "tongTien": 952652,
+        "ngayLapHoaDon": "2024-10-26",
+        "trangThai": 1,
+        "phieuKham_id": 600
+    },
+    {
+        "id": 601,
+        "ngayKham": "2024-10-26",
+        "tienThuoc": 812176,
+        "tienKham": 352572,
+        "tongTien": 1164748,
+        "ngayLapHoaDon": "2024-10-26",
+        "trangThai": 1,
+        "phieuKham_id": 601
+    },
+    {
+        "id": 602,
+        "ngayKham": "2024-10-27",
+        "tienThuoc": 857689,
+        "tienKham": 976088,
+        "tongTien": 1833777,
+        "ngayLapHoaDon": "2024-10-27",
+        "trangThai": 0,
+        "phieuKham_id": 602
+    },
+    {
+        "id": 603,
+        "ngayKham": "2024-10-27",
+        "tienThuoc": 755077,
+        "tienKham": 628064,
+        "tongTien": 1383141,
+        "ngayLapHoaDon": "2024-10-27",
+        "trangThai": 0,
+        "phieuKham_id": 603
+    },
+    {
+        "id": 604,
+        "ngayKham": "2024-10-28",
+        "tienThuoc": 205169,
+        "tienKham": 395187,
+        "tongTien": 600356,
+        "ngayLapHoaDon": "2024-10-28",
+        "trangThai": 0,
+        "phieuKham_id": 604
+    },
+    {
+        "id": 605,
+        "ngayKham": "2024-10-29",
+        "tienThuoc": 518077,
+        "tienKham": 246051,
+        "tongTien": 764128,
+        "ngayLapHoaDon": "2024-10-29",
+        "trangThai": 1,
+        "phieuKham_id": 605
+    },
+    {
+        "id": 606,
+        "ngayKham": "2024-10-30",
+        "tienThuoc": 162830,
+        "tienKham": 281925,
+        "tongTien": 444755,
+        "ngayLapHoaDon": "2024-10-30",
+        "trangThai": 0,
+        "phieuKham_id": 606
+    },
+    {
+        "id": 607,
+        "ngayKham": "2024-10-31",
+        "tienThuoc": 511301,
+        "tienKham": 897854,
+        "tongTien": 1409155,
+        "ngayLapHoaDon": "2024-10-31",
+        "trangThai": 0,
+        "phieuKham_id": 607
+    },
+    {
+        "id": 608,
+        "ngayKham": "2024-10-31",
+        "tienThuoc": 414920,
+        "tienKham": 341238,
+        "tongTien": 756158,
+        "ngayLapHoaDon": "2024-10-31",
+        "trangThai": 0,
+        "phieuKham_id": 608
+    },
+    {
+        "id": 609,
+        "ngayKham": "2024-11-01",
+        "tienThuoc": 859779,
+        "tienKham": 690243,
+        "tongTien": 1550022,
+        "ngayLapHoaDon": "2024-11-01",
+        "trangThai": 1,
+        "phieuKham_id": 609
+    },
+    {
+        "id": 610,
+        "ngayKham": "2024-11-01",
+        "tienThuoc": 534603,
+        "tienKham": 266860,
+        "tongTien": 801463,
+        "ngayLapHoaDon": "2024-11-01",
+        "trangThai": 0,
+        "phieuKham_id": 610
+    },
+    {
+        "id": 611,
+        "ngayKham": "2024-11-02",
+        "tienThuoc": 427868,
+        "tienKham": 720045,
+        "tongTien": 1147913,
+        "ngayLapHoaDon": "2024-11-02",
+        "trangThai": 1,
+        "phieuKham_id": 611
+    },
+    {
+        "id": 612,
+        "ngayKham": "2024-11-03",
+        "tienThuoc": 228078,
+        "tienKham": 451326,
+        "tongTien": 679404,
+        "ngayLapHoaDon": "2024-11-03",
+        "trangThai": 0,
+        "phieuKham_id": 612
+    },
+    {
+        "id": 613,
+        "ngayKham": "2024-11-03",
+        "tienThuoc": 217269,
+        "tienKham": 329006,
+        "tongTien": 546275,
+        "ngayLapHoaDon": "2024-11-03",
+        "trangThai": 1,
+        "phieuKham_id": 613
+    },
+    {
+        "id": 614,
+        "ngayKham": "2024-11-03",
+        "tienThuoc": 707513,
+        "tienKham": 864804,
+        "tongTien": 1572317,
+        "ngayLapHoaDon": "2024-11-03",
+        "trangThai": 0,
+        "phieuKham_id": 614
+    },
+    {
+        "id": 615,
+        "ngayKham": "2024-11-04",
+        "tienThuoc": 345696,
+        "tienKham": 973316,
+        "tongTien": 1319012,
+        "ngayLapHoaDon": "2024-11-04",
+        "trangThai": 0,
+        "phieuKham_id": 615
+    },
+    {
+        "id": 616,
+        "ngayKham": "2024-11-04",
+        "tienThuoc": 816762,
+        "tienKham": 436663,
+        "tongTien": 1253425,
+        "ngayLapHoaDon": "2024-11-04",
+        "trangThai": 0,
+        "phieuKham_id": 616
+    },
+    {
+        "id": 617,
+        "ngayKham": "2024-11-05",
+        "tienThuoc": 649389,
+        "tienKham": 731468,
+        "tongTien": 1380857,
+        "ngayLapHoaDon": "2024-11-05",
+        "trangThai": 1,
+        "phieuKham_id": 617
+    },
+    {
+        "id": 618,
+        "ngayKham": "2024-11-06",
+        "tienThuoc": 362905,
+        "tienKham": 449974,
+        "tongTien": 812879,
+        "ngayLapHoaDon": "2024-11-06",
+        "trangThai": 1,
+        "phieuKham_id": 618
+    },
+    {
+        "id": 619,
+        "ngayKham": "2024-11-07",
+        "tienThuoc": 980562,
+        "tienKham": 563691,
+        "tongTien": 1544253,
+        "ngayLapHoaDon": "2024-11-07",
+        "trangThai": 1,
+        "phieuKham_id": 619
+    },
+    {
+        "id": 620,
+        "ngayKham": "2024-11-08",
+        "tienThuoc": 683473,
+        "tienKham": 550437,
+        "tongTien": 1233910,
+        "ngayLapHoaDon": "2024-11-08",
+        "trangThai": 0,
+        "phieuKham_id": 620
+    },
+    {
+        "id": 621,
+        "ngayKham": "2024-11-09",
+        "tienThuoc": 616587,
+        "tienKham": 727818,
+        "tongTien": 1344405,
+        "ngayLapHoaDon": "2024-11-09",
+        "trangThai": 1,
+        "phieuKham_id": 621
+    },
+    {
+        "id": 622,
+        "ngayKham": "2024-11-09",
+        "tienThuoc": 876045,
+        "tienKham": 878077,
+        "tongTien": 1754122,
+        "ngayLapHoaDon": "2024-11-09",
+        "trangThai": 1,
+        "phieuKham_id": 622
+    },
+    {
+        "id": 623,
+        "ngayKham": "2024-11-10",
+        "tienThuoc": 991689,
+        "tienKham": 783679,
+        "tongTien": 1775368,
+        "ngayLapHoaDon": "2024-11-10",
+        "trangThai": 1,
+        "phieuKham_id": 623
+    },
+    {
+        "id": 624,
+        "ngayKham": "2024-11-10",
+        "tienThuoc": 509738,
+        "tienKham": 681026,
+        "tongTien": 1190764,
+        "ngayLapHoaDon": "2024-11-10",
+        "trangThai": 1,
+        "phieuKham_id": 624
+    },
+    {
+        "id": 625,
+        "ngayKham": "2024-11-10",
+        "tienThuoc": 797971,
+        "tienKham": 336181,
+        "tongTien": 1134152,
+        "ngayLapHoaDon": "2024-11-10",
+        "trangThai": 0,
+        "phieuKham_id": 625
+    },
+    {
+        "id": 626,
+        "ngayKham": "2024-11-11",
+        "tienThuoc": 234886,
+        "tienKham": 348824,
+        "tongTien": 583710,
+        "ngayLapHoaDon": "2024-11-11",
+        "trangThai": 1,
+        "phieuKham_id": 626
+    },
+    {
+        "id": 627,
+        "ngayKham": "2024-11-12",
+        "tienThuoc": 245403,
+        "tienKham": 628312,
+        "tongTien": 873715,
+        "ngayLapHoaDon": "2024-11-12",
+        "trangThai": 0,
+        "phieuKham_id": 627
+    },
+    {
+        "id": 628,
+        "ngayKham": "2024-11-12",
+        "tienThuoc": 312215,
+        "tienKham": 355381,
+        "tongTien": 667596,
+        "ngayLapHoaDon": "2024-11-12",
+        "trangThai": 0,
+        "phieuKham_id": 628
+    },
+    {
+        "id": 629,
+        "ngayKham": "2024-11-13",
+        "tienThuoc": 595769,
+        "tienKham": 728100,
+        "tongTien": 1323869,
+        "ngayLapHoaDon": "2024-11-13",
+        "trangThai": 1,
+        "phieuKham_id": 629
+    },
+    {
+        "id": 630,
+        "ngayKham": "2024-11-14",
+        "tienThuoc": 237287,
+        "tienKham": 503690,
+        "tongTien": 740977,
+        "ngayLapHoaDon": "2024-11-14",
+        "trangThai": 1,
+        "phieuKham_id": 630
+    },
+    {
+        "id": 631,
+        "ngayKham": "2024-11-14",
+        "tienThuoc": 982234,
+        "tienKham": 832845,
+        "tongTien": 1815079,
+        "ngayLapHoaDon": "2024-11-14",
+        "trangThai": 0,
+        "phieuKham_id": 631
+    },
+    {
+        "id": 632,
+        "ngayKham": "2024-11-14",
+        "tienThuoc": 484888,
+        "tienKham": 589156,
+        "tongTien": 1074044,
+        "ngayLapHoaDon": "2024-11-14",
+        "trangThai": 0,
+        "phieuKham_id": 632
+    },
+    {
+        "id": 633,
+        "ngayKham": "2024-11-15",
+        "tienThuoc": 691525,
+        "tienKham": 258325,
+        "tongTien": 949850,
+        "ngayLapHoaDon": "2024-11-15",
+        "trangThai": 1,
+        "phieuKham_id": 633
+    },
+    {
+        "id": 634,
+        "ngayKham": "2024-11-15",
+        "tienThuoc": 971401,
+        "tienKham": 349805,
+        "tongTien": 1321206,
+        "ngayLapHoaDon": "2024-11-15",
+        "trangThai": 1,
+        "phieuKham_id": 634
+    },
+    {
+        "id": 635,
+        "ngayKham": "2024-11-15",
+        "tienThuoc": 941118,
+        "tienKham": 703440,
+        "tongTien": 1644558,
+        "ngayLapHoaDon": "2024-11-15",
+        "trangThai": 0,
+        "phieuKham_id": 635
+    },
+    {
+        "id": 636,
+        "ngayKham": "2024-11-16",
+        "tienThuoc": 703890,
+        "tienKham": 458561,
+        "tongTien": 1162451,
+        "ngayLapHoaDon": "2024-11-16",
+        "trangThai": 1,
+        "phieuKham_id": 636
+    },
+    {
+        "id": 637,
+        "ngayKham": "2024-11-16",
+        "tienThuoc": 457452,
+        "tienKham": 157943,
+        "tongTien": 615395,
+        "ngayLapHoaDon": "2024-11-16",
+        "trangThai": 0,
+        "phieuKham_id": 637
+    },
+    {
+        "id": 638,
+        "ngayKham": "2024-11-17",
+        "tienThuoc": 941727,
+        "tienKham": 309462,
+        "tongTien": 1251189,
+        "ngayLapHoaDon": "2024-11-17",
+        "trangThai": 1,
+        "phieuKham_id": 638
+    },
+    {
+        "id": 639,
+        "ngayKham": "2024-11-18",
+        "tienThuoc": 806482,
+        "tienKham": 230613,
+        "tongTien": 1037095,
+        "ngayLapHoaDon": "2024-11-18",
+        "trangThai": 1,
+        "phieuKham_id": 639
+    },
+    {
+        "id": 640,
+        "ngayKham": "2024-11-19",
+        "tienThuoc": 470591,
+        "tienKham": 733621,
+        "tongTien": 1204212,
+        "ngayLapHoaDon": "2024-11-19",
+        "trangThai": 1,
+        "phieuKham_id": 640
+    },
+    {
+        "id": 641,
+        "ngayKham": "2024-11-20",
+        "tienThuoc": 186554,
+        "tienKham": 750874,
+        "tongTien": 937428,
+        "ngayLapHoaDon": "2024-11-20",
+        "trangThai": 0,
+        "phieuKham_id": 641
+    },
+    {
+        "id": 642,
+        "ngayKham": "2024-11-21",
+        "tienThuoc": 949062,
+        "tienKham": 459259,
+        "tongTien": 1408321,
+        "ngayLapHoaDon": "2024-11-21",
+        "trangThai": 1,
+        "phieuKham_id": 642
+    },
+    {
+        "id": 643,
+        "ngayKham": "2024-11-21",
+        "tienThuoc": 575297,
+        "tienKham": 851306,
+        "tongTien": 1426603,
+        "ngayLapHoaDon": "2024-11-21",
+        "trangThai": 1,
+        "phieuKham_id": 643
+    },
+    {
+        "id": 644,
+        "ngayKham": "2024-11-21",
+        "tienThuoc": 917142,
+        "tienKham": 693323,
+        "tongTien": 1610465,
+        "ngayLapHoaDon": "2024-11-21",
+        "trangThai": 1,
+        "phieuKham_id": 644
+    },
+    {
+        "id": 645,
+        "ngayKham": "2024-11-21",
+        "tienThuoc": 641339,
+        "tienKham": 515706,
+        "tongTien": 1157045,
+        "ngayLapHoaDon": "2024-11-21",
+        "trangThai": 0,
+        "phieuKham_id": 645
+    },
+    {
+        "id": 646,
+        "ngayKham": "2024-11-21",
+        "tienThuoc": 324947,
+        "tienKham": 238691,
+        "tongTien": 563638,
+        "ngayLapHoaDon": "2024-11-21",
+        "trangThai": 1,
+        "phieuKham_id": 646
+    },
+    {
+        "id": 647,
+        "ngayKham": "2024-11-21",
+        "tienThuoc": 717870,
+        "tienKham": 417339,
+        "tongTien": 1135209,
+        "ngayLapHoaDon": "2024-11-21",
+        "trangThai": 0,
+        "phieuKham_id": 647
+    },
+    {
+        "id": 648,
+        "ngayKham": "2024-11-21",
+        "tienThuoc": 604596,
+        "tienKham": 835292,
+        "tongTien": 1439888,
+        "ngayLapHoaDon": "2024-11-21",
+        "trangThai": 0,
+        "phieuKham_id": 648
+    },
+    {
+        "id": 649,
+        "ngayKham": "2024-11-21",
+        "tienThuoc": 596693,
+        "tienKham": 442974,
+        "tongTien": 1039667,
+        "ngayLapHoaDon": "2024-11-21",
+        "trangThai": 1,
+        "phieuKham_id": 649
+    },
+    {
+        "id": 650,
+        "ngayKham": "2024-11-22",
+        "tienThuoc": 454275,
+        "tienKham": 292094,
+        "tongTien": 746369,
+        "ngayLapHoaDon": "2024-11-22",
+        "trangThai": 1,
+        "phieuKham_id": 650
+    },
+    {
+        "id": 651,
+        "ngayKham": "2024-11-22",
+        "tienThuoc": 284695,
+        "tienKham": 972334,
+        "tongTien": 1257029,
+        "ngayLapHoaDon": "2024-11-22",
+        "trangThai": 0,
+        "phieuKham_id": 651
+    },
+    {
+        "id": 652,
+        "ngayKham": "2024-11-22",
+        "tienThuoc": 801033,
+        "tienKham": 618850,
+        "tongTien": 1419883,
+        "ngayLapHoaDon": "2024-11-22",
+        "trangThai": 0,
+        "phieuKham_id": 652
+    },
+    {
+        "id": 653,
+        "ngayKham": "2024-11-23",
+        "tienThuoc": 777561,
+        "tienKham": 426121,
+        "tongTien": 1203682,
+        "ngayLapHoaDon": "2024-11-23",
+        "trangThai": 1,
+        "phieuKham_id": 653
+    },
+    {
+        "id": 654,
+        "ngayKham": "2024-11-23",
+        "tienThuoc": 771381,
+        "tienKham": 807347,
+        "tongTien": 1578728,
+        "ngayLapHoaDon": "2024-11-23",
+        "trangThai": 0,
+        "phieuKham_id": 654
+    },
+    {
+        "id": 655,
+        "ngayKham": "2024-11-24",
+        "tienThuoc": 907084,
+        "tienKham": 335113,
+        "tongTien": 1242197,
+        "ngayLapHoaDon": "2024-11-24",
+        "trangThai": 1,
+        "phieuKham_id": 655
+    },
+    {
+        "id": 656,
+        "ngayKham": "2024-11-25",
+        "tienThuoc": 134323,
+        "tienKham": 661169,
+        "tongTien": 795492,
+        "ngayLapHoaDon": "2024-11-25",
+        "trangThai": 0,
+        "phieuKham_id": 656
+    },
+    {
+        "id": 657,
+        "ngayKham": "2024-11-26",
+        "tienThuoc": 136946,
+        "tienKham": 855851,
+        "tongTien": 992797,
+        "ngayLapHoaDon": "2024-11-26",
+        "trangThai": 0,
+        "phieuKham_id": 657
+    },
+    {
+        "id": 658,
+        "ngayKham": "2024-11-27",
+        "tienThuoc": 810271,
+        "tienKham": 129350,
+        "tongTien": 939621,
+        "ngayLapHoaDon": "2024-11-27",
+        "trangThai": 0,
+        "phieuKham_id": 658
+    },
+    {
+        "id": 659,
+        "ngayKham": "2024-11-28",
+        "tienThuoc": 897515,
+        "tienKham": 238481,
+        "tongTien": 1135996,
+        "ngayLapHoaDon": "2024-11-28",
+        "trangThai": 0,
+        "phieuKham_id": 659
+    },
+    {
+        "id": 660,
+        "ngayKham": "2024-11-29",
+        "tienThuoc": 692834,
+        "tienKham": 859511,
+        "tongTien": 1552345,
+        "ngayLapHoaDon": "2024-11-29",
+        "trangThai": 1,
+        "phieuKham_id": 660
+    },
+    {
+        "id": 661,
+        "ngayKham": "2024-11-29",
+        "tienThuoc": 746755,
+        "tienKham": 926854,
+        "tongTien": 1673609,
+        "ngayLapHoaDon": "2024-11-29",
+        "trangThai": 1,
+        "phieuKham_id": 661
+    },
+    {
+        "id": 662,
+        "ngayKham": "2024-11-30",
+        "tienThuoc": 108993,
+        "tienKham": 613729,
+        "tongTien": 722722,
+        "ngayLapHoaDon": "2024-11-30",
+        "trangThai": 1,
+        "phieuKham_id": 662
+    },
+    {
+        "id": 663,
+        "ngayKham": "2024-11-30",
+        "tienThuoc": 415431,
+        "tienKham": 299906,
+        "tongTien": 715337,
+        "ngayLapHoaDon": "2024-11-30",
+        "trangThai": 1,
+        "phieuKham_id": 663
+    },
+    {
+        "id": 664,
+        "ngayKham": "2024-11-30",
+        "tienThuoc": 923056,
+        "tienKham": 222767,
+        "tongTien": 1145823,
+        "ngayLapHoaDon": "2024-11-30",
+        "trangThai": 0,
+        "phieuKham_id": 664
+    },
+    {
+        "id": 665,
+        "ngayKham": "2024-11-30",
+        "tienThuoc": 183125,
+        "tienKham": 570772,
+        "tongTien": 753897,
+        "ngayLapHoaDon": "2024-11-30",
+        "trangThai": 1,
+        "phieuKham_id": 665
+    },
+    {
+        "id": 666,
+        "ngayKham": "2024-11-30",
+        "tienThuoc": 789499,
+        "tienKham": 729781,
+        "tongTien": 1519280,
+        "ngayLapHoaDon": "2024-11-30",
+        "trangThai": 1,
+        "phieuKham_id": 666
+    },
+    {
+        "id": 667,
+        "ngayKham": "2024-11-30",
+        "tienThuoc": 575850,
+        "tienKham": 522254,
+        "tongTien": 1098104,
+        "ngayLapHoaDon": "2024-11-30",
+        "trangThai": 0,
+        "phieuKham_id": 667
+    },
+    {
+        "id": 668,
+        "ngayKham": "2024-12-01",
+        "tienThuoc": 708764,
+        "tienKham": 779652,
+        "tongTien": 1488416,
+        "ngayLapHoaDon": "2024-12-01",
+        "trangThai": 0,
+        "phieuKham_id": 668
+    },
+    {
+        "id": 669,
+        "ngayKham": "2024-12-02",
+        "tienThuoc": 961266,
+        "tienKham": 866393,
+        "tongTien": 1827659,
+        "ngayLapHoaDon": "2024-12-02",
+        "trangThai": 0,
+        "phieuKham_id": 669
+    },
+    {
+        "id": 670,
+        "ngayKham": "2024-12-03",
+        "tienThuoc": 149422,
+        "tienKham": 565315,
+        "tongTien": 714737,
+        "ngayLapHoaDon": "2024-12-03",
+        "trangThai": 1,
+        "phieuKham_id": 670
+    },
+    {
+        "id": 671,
+        "ngayKham": "2024-12-03",
+        "tienThuoc": 327779,
+        "tienKham": 785051,
+        "tongTien": 1112830,
+        "ngayLapHoaDon": "2024-12-03",
+        "trangThai": 0,
+        "phieuKham_id": 671
+    },
+    {
+        "id": 672,
+        "ngayKham": "2024-12-04",
+        "tienThuoc": 157039,
+        "tienKham": 271512,
+        "tongTien": 428551,
+        "ngayLapHoaDon": "2024-12-04",
+        "trangThai": 1,
+        "phieuKham_id": 672
+    },
+    {
+        "id": 673,
+        "ngayKham": "2024-12-04",
+        "tienThuoc": 748011,
+        "tienKham": 612627,
+        "tongTien": 1360638,
+        "ngayLapHoaDon": "2024-12-04",
+        "trangThai": 0,
+        "phieuKham_id": 673
+    },
+    {
+        "id": 674,
+        "ngayKham": "2024-12-05",
+        "tienThuoc": 174229,
+        "tienKham": 202921,
+        "tongTien": 377150,
+        "ngayLapHoaDon": "2024-12-05",
+        "trangThai": 1,
+        "phieuKham_id": 674
+    },
+    {
+        "id": 675,
+        "ngayKham": "2024-12-06",
+        "tienThuoc": 210138,
+        "tienKham": 531674,
+        "tongTien": 741812,
+        "ngayLapHoaDon": "2024-12-06",
+        "trangThai": 0,
+        "phieuKham_id": 675
+    },
+    {
+        "id": 676,
+        "ngayKham": "2024-12-06",
+        "tienThuoc": 139182,
+        "tienKham": 538237,
+        "tongTien": 677419,
+        "ngayLapHoaDon": "2024-12-06",
+        "trangThai": 1,
+        "phieuKham_id": 676
+    },
+    {
+        "id": 677,
+        "ngayKham": "2024-12-06",
+        "tienThuoc": 168593,
+        "tienKham": 883342,
+        "tongTien": 1051935,
+        "ngayLapHoaDon": "2024-12-06",
+        "trangThai": 1,
+        "phieuKham_id": 677
+    },
+    {
+        "id": 678,
+        "ngayKham": "2024-12-06",
+        "tienThuoc": 926433,
+        "tienKham": 538029,
+        "tongTien": 1464462,
+        "ngayLapHoaDon": "2024-12-06",
+        "trangThai": 0,
+        "phieuKham_id": 678
+    },
+    {
+        "id": 679,
+        "ngayKham": "2024-12-06",
+        "tienThuoc": 689992,
+        "tienKham": 809818,
+        "tongTien": 1499810,
+        "ngayLapHoaDon": "2024-12-06",
+        "trangThai": 1,
+        "phieuKham_id": 679
+    },
+    {
+        "id": 680,
+        "ngayKham": "2024-12-06",
+        "tienThuoc": 333881,
+        "tienKham": 107976,
+        "tongTien": 441857,
+        "ngayLapHoaDon": "2024-12-06",
+        "trangThai": 1,
+        "phieuKham_id": 680
+    },
+    {
+        "id": 681,
+        "ngayKham": "2024-12-07",
+        "tienThuoc": 309396,
+        "tienKham": 407109,
+        "tongTien": 716505,
+        "ngayLapHoaDon": "2024-12-07",
+        "trangThai": 0,
+        "phieuKham_id": 681
+    },
+    {
+        "id": 682,
+        "ngayKham": "2024-12-07",
+        "tienThuoc": 911594,
+        "tienKham": 950575,
+        "tongTien": 1862169,
+        "ngayLapHoaDon": "2024-12-07",
+        "trangThai": 0,
+        "phieuKham_id": 682
+    },
+    {
+        "id": 683,
+        "ngayKham": "2024-12-08",
+        "tienThuoc": 237006,
+        "tienKham": 667756,
+        "tongTien": 904762,
+        "ngayLapHoaDon": "2024-12-08",
+        "trangThai": 1,
+        "phieuKham_id": 683
+    },
+    {
+        "id": 684,
+        "ngayKham": "2024-12-08",
+        "tienThuoc": 615199,
+        "tienKham": 775124,
+        "tongTien": 1390323,
+        "ngayLapHoaDon": "2024-12-08",
+        "trangThai": 1,
+        "phieuKham_id": 684
+    },
+    {
+        "id": 685,
+        "ngayKham": "2024-12-08",
+        "tienThuoc": 947054,
+        "tienKham": 906107,
+        "tongTien": 1853161,
+        "ngayLapHoaDon": "2024-12-08",
+        "trangThai": 0,
+        "phieuKham_id": 685
+    },
+    {
+        "id": 686,
+        "ngayKham": "2024-12-08",
+        "tienThuoc": 133220,
+        "tienKham": 662007,
+        "tongTien": 795227,
+        "ngayLapHoaDon": "2024-12-08",
+        "trangThai": 0,
+        "phieuKham_id": 686
+    },
+    {
+        "id": 687,
+        "ngayKham": "2024-12-09",
+        "tienThuoc": 226995,
+        "tienKham": 246460,
+        "tongTien": 473455,
+        "ngayLapHoaDon": "2024-12-09",
+        "trangThai": 1,
+        "phieuKham_id": 687
+    },
+    {
+        "id": 688,
+        "ngayKham": "2024-12-09",
+        "tienThuoc": 958138,
+        "tienKham": 529160,
+        "tongTien": 1487298,
+        "ngayLapHoaDon": "2024-12-09",
+        "trangThai": 1,
+        "phieuKham_id": 688
+    },
+    {
+        "id": 689,
+        "ngayKham": "2024-12-10",
+        "tienThuoc": 603614,
+        "tienKham": 188346,
+        "tongTien": 791960,
+        "ngayLapHoaDon": "2024-12-10",
+        "trangThai": 1,
+        "phieuKham_id": 689
+    },
+    {
+        "id": 690,
+        "ngayKham": "2024-12-11",
+        "tienThuoc": 185079,
+        "tienKham": 683805,
+        "tongTien": 868884,
+        "ngayLapHoaDon": "2024-12-11",
+        "trangThai": 1,
+        "phieuKham_id": 690
+    },
+    {
+        "id": 691,
+        "ngayKham": "2024-12-12",
+        "tienThuoc": 818660,
+        "tienKham": 847015,
+        "tongTien": 1665675,
+        "ngayLapHoaDon": "2024-12-12",
+        "trangThai": 1,
+        "phieuKham_id": 691
+    },
+    {
+        "id": 692,
+        "ngayKham": "2024-12-13",
+        "tienThuoc": 876118,
+        "tienKham": 963983,
+        "tongTien": 1840101,
+        "ngayLapHoaDon": "2024-12-13",
+        "trangThai": 0,
+        "phieuKham_id": 692
+    },
+    {
+        "id": 693,
+        "ngayKham": "2024-12-14",
+        "tienThuoc": 173000,
+        "tienKham": 350842,
+        "tongTien": 523842,
+        "ngayLapHoaDon": "2024-12-14",
+        "trangThai": 0,
+        "phieuKham_id": 693
+    },
+    {
+        "id": 694,
+        "ngayKham": "2024-12-15",
+        "tienThuoc": 519704,
+        "tienKham": 682595,
+        "tongTien": 1202299,
+        "ngayLapHoaDon": "2024-12-15",
+        "trangThai": 1,
+        "phieuKham_id": 694
+    },
+    {
+        "id": 695,
+        "ngayKham": "2024-12-16",
+        "tienThuoc": 496151,
+        "tienKham": 484202,
+        "tongTien": 980353,
+        "ngayLapHoaDon": "2024-12-16",
+        "trangThai": 1,
+        "phieuKham_id": 695
+    },
+    {
+        "id": 696,
+        "ngayKham": "2024-12-17",
+        "tienThuoc": 607112,
+        "tienKham": 124422,
+        "tongTien": 731534,
+        "ngayLapHoaDon": "2024-12-17",
+        "trangThai": 0,
+        "phieuKham_id": 696
+    },
+    {
+        "id": 697,
+        "ngayKham": "2024-12-17",
+        "tienThuoc": 411868,
+        "tienKham": 771258,
+        "tongTien": 1183126,
+        "ngayLapHoaDon": "2024-12-17",
+        "trangThai": 0,
+        "phieuKham_id": 697
+    },
+    {
+        "id": 698,
+        "ngayKham": "2024-12-18",
+        "tienThuoc": 135370,
+        "tienKham": 562282,
+        "tongTien": 697652,
+        "ngayLapHoaDon": "2024-12-18",
+        "trangThai": 1,
+        "phieuKham_id": 698
+    },
+    {
+        "id": 699,
+        "ngayKham": "2024-12-19",
+        "tienThuoc": 371914,
+        "tienKham": 167050,
+        "tongTien": 538964,
+        "ngayLapHoaDon": "2024-12-19",
+        "trangThai": 1,
+        "phieuKham_id": 699
+    },
+    {
+        "id": 700,
+        "ngayKham": "2024-12-20",
+        "tienThuoc": 867689,
+        "tienKham": 166465,
+        "tongTien": 1034154,
+        "ngayLapHoaDon": "2024-12-20",
+        "trangThai": 0,
+        "phieuKham_id": 700
+    }
+]

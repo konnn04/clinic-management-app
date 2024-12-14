@@ -34,6 +34,7 @@
     {% endblock %}
     {% block head_tail %}
     {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 <body>
 {% block page_body %}
@@ -57,9 +58,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('logout')}}">
+                    <a class="nav-link"  data-bs-toggle="modal" data-bs-target="#signoutModal">
                         <i class="fa-sharp-duotone fa-solid fa-sign-out me-3"></i>
-                        Logout
+                        Đăng xuất
                     </a>
                 </li>
             </ul>
@@ -111,6 +112,23 @@
             {% endblock %}
         </div>
     </main>
+    <div class="modal fade" id="signoutModal" tabindex="-1" aria-labelledby="signoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="signoutModalLabel">Đăng xuất</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn đăng xuất?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="{{url_for('logout')}}" class="btn btn-danger">Logout</a>
+            </div>
+          </div>
+        </div>
+    </div>
 
 {% endblock %}
 
@@ -132,6 +150,7 @@
             type="text/javascript"></script>
     <script src="{{ admin_static.url(filename='vendor/multi-level-dropdowns-bootstrap/bootstrap4-dropdown-ml-hack.js') }}" type="text/javascript"></script>
     <script src="{{ admin_static.url(filename='admin/js/helpers.js', v='1.0.0') }}" type="text/javascript"></script>
+    
     <script src="{{ url_for('static',filename='js/staff.js') }}" type="text/javascript"></script>
     {% if admin_view.extra_js %}
         {% for js_url in admin_view.extra_js %}
