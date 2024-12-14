@@ -14,3 +14,5 @@ setTimeout(function() {
         element.style.transition = 'all .3s';
     });
 }, 10);
+
+

@@ -128,3 +128,20 @@ def revenueStatsDetail(month = 1):
         }
         stats.append(d)
     return stats
+
+
+def get_diseases(q=None, exists = "", limit = 5):
+    '''
+    Trả về danh sách các bệnh dựa trên từ khóa tìm kiếm
+    :param q: từ khóa tìm kiếm
+    :return:
+    '''
+    diseases = ["Sốt", "Ho", "Đau đầu", "Viêm họng", "Viêm phổi", "Tiểu đường", "Cao huyết áp", "Đau dạ dày", "Viêm gan", "Suy thận", "Thiếu máu", "Viêm khớp", "Loãng xương", "Hen suyễn", "Viêm xoang", "Đau tim", "Đột quỵ", "Ung thư", "Rối loạn tiêu hóa", "Nhiễm trùng đường tiểu", "Viêm da", "Mất ngủ", "Trầm cảm", "Lo âu", "Rối loạn tiền đình", "Viêm tai giữa", "Viêm màng não", "Suy giảm trí nhớ", "Viêm phế quản", "Viêm ruột thừa", "Viêm tụy", "Viêm bàng quang", "Viêm tuyến tiền liệt", "Viêm phổi tắc nghẽn mãn tính", "Viêm gan B", "Viêm gan C", "Viêm gan A", "Viêm gan D", "Viêm gan E", "Viêm gan G", "Viêm gan F", "Viêm gan H", "Viêm gan I", "Viêm gan J", "Viêm gan K", "Viêm gan L", "Viêm gan M", "Viêm gan N", "Viêm gan O", "Viêm gan P", "Viêm gan Q", "Viêm gan R", "Viêm gan S", "Viêm gan T", "Viêm gan U", "Viêm gan V", "Viêm gan W", "Viêm gan X", "Viêm gan Y", "Viêm gan Z"]
+
+    # Tìm kiếm theo từ khóa
+    if q:
+        diseases = [d for d in diseases if q.lower() in d.lower() and d.lower() not in exists.lower()][0:limit]
+    else:
+        diseases = diseases[0:limit]
+    return diseases
+

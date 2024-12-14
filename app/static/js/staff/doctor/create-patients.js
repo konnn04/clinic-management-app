@@ -1,10 +1,16 @@
+let profile = null;
+let  diseases = [];
+
+
 function addRowToTable() {
     const $tbody = $('tbody');
     const rowCount = $tbody.find('tr').length + 1;
 
     const newRow = `
         <tr>
-            <td>${rowCount}</td>
+            <td>
+                <span>${rowCount}</span>
+            </td>
             <td>
                 <input type="text" class="form-control recommend-input" placeholder="Tên thuốc" id-medicine="">
                 <div class="recommend">
@@ -79,7 +85,7 @@ function addRowToTable() {
 }
 
 function resetRow(){
-    $("table tr").remove()
+    $("table tbody tr").remove()
 }
 
 function removeRow(button) {
@@ -131,10 +137,10 @@ function updateRowNumbers() {
         
     });
 }
-
-
     
 function init() {
+    diseases = []
+    // Tìm kiếm bệnh nhân
     $(".search-box input").on("focus", function() {
         $(this).parent().addClass("show");
     });
@@ -195,9 +201,51 @@ function init() {
                 $(".profile #blood-type").text(patient.blood_type);
                 $(".profile #last-examination").text(patient.last_examination);
                 resetRow()
-                addRowToTable();             
+                addRowToTable();  
+                profile = patient;           
             });
         });
+    });
+
+    // Tìm bệnh
+    $("#search-disease").on("input", async function() {
+        $(".disease-recommend").addClass("show");
+        const text = $(this).val();
+        const exists = diseases.join(",")
+        const data = await fetch(`/api/get-dieases?q=${text}&exists=${exists}`)
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error:', error);
+                return {"error": "Error"};
+            })
+        const $recommend = $('.disease-recommend ul');
+        $recommend.empty();
+        if (data.error) {
+            $recommend.append(`<li class="recommend-item" style="color: red;">Không tìm thấy bệnh</li>`);
+            return;
+        }
+        data.forEach(disease => {
+            $recommend.append(`<li class="recommend-item" id-disease="">${disease}</li>`);
+        });
+        
+        $(".disease-recommend ul li").click(function() {
+            const disease = $(this).text();
+            $("#search-disease").val("");
+            $(".disease-recommend").removeClass("show");
+            $(".disease-list").append(`
+                <li class="d-flex justify-content-between p-3 badge bg-primary text-white rounded">
+                    ${disease}
+                </li>
+            `);
+            diseases.push(disease);
+
+            $(".disease-list li").click(function() {
+                $(this).remove();
+            });
+        });
+
+
+
     });
 }
 
@@ -207,3 +255,44 @@ $(document).ready(function() {
     init();
     $('#add-medical-btn').click(addRowToTable);   
 });
+
+
+function savePatient(){
+    if (profile == null){
+        showToast("Lỗi", "Chưa chọn bệnh nhân", "error", 5000)
+        return
+    }
+    const rows = $("table tbody tr")
+    const medicines = []
+    rows.each(function(index) {
+        if ($(this).find('.recommend-input').val() == ""){
+            showToast("Lỗi", "Chưa nhập tên thuốc", "error", 5000)
+            return
+        }
+        if (diseases.length == 0){
+            showToast("Lỗi", "Chưa chọn bệnh", "error", 5000)
+            return
+        }
+        const medicine = {
+            name: $(this).find('.recommend-input').val(),
+            method: $(this).find('.method').val(),
+            morning: $(this).find('.morning').val(),
+            noon: $(this).find('.noon').val(),
+            evening: $(this).find('.evening').val(),
+            hourly: $(this).find('.hourly input').val(),
+            when: $(this).find('select[name="when"]').val(),
+            times: $(this).find('input[type="number"]').val(),
+            value: $(this).find('input[type="number"]').val(),
+            // unit: $(this).find('.unit').text(),
+            day: $(this).find('select[name="day"]').val()
+        }
+        medicines.push(medicine)
+    });
+    console.log(medicines)
+    const data = {
+        patient: profile.id,
+        medicines: medicines,
+        diseases: diseases
+    }
+    console.log(data)
+}

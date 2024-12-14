@@ -16,7 +16,7 @@
 
 {% block actions %}
 <div class="actions">
-    <button class="btn btn-success" id="save-btn">Lưu</button>
+    <button class="btn btn-success" id="save-btn" onclick="savePatient()">Lưu</button>
 </div>
 {% endblock %}
 
@@ -54,61 +54,18 @@
             <div class="diseases-box col-6">
                 <div class="search-disease d-flex align-items-center">
                     <input type="text" class="form-control" placeholder="Tìm kiếm bệnh" autocomplete="off" id="search-disease" name="search-disease">
-                    <button class="btn"><i class="fas fa-search"></i></button>
-                    <div class="results">
+                    <button class="btn"><i class="fas fa-plus"></i></button>
+                    <div class="disease-recommend">
                         <ul>
-                            <li>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    Không có kết quả
-                                </div>
-                            </li>                                  
+                            <li class="recommend-item" style="color: red;">Không tìm thấy bệnh</li>                                
                         </ul>
                     </div>
                 </div>
-                <ul class="dieases list-unstyled p-0 d-flex flex-wrap">
-                    <li class="d-flex justify-content-between p-3 active">
-                        <span>Bệnh 1</span>
-                    </li>
-                    <li class="d-flex justify-content-between p-3">
-                        <span>Bệnh 2</span>
-                    </li>
-                    <li class="d-flex justify-content-between p-3">
-                        <span>Bệnh 3</span>
-                    </li>
-                    <li class="d-flex justify-content-between p-3">
-                        <span>Bệnh 4</span>
-                    </li>
+                <ul class="disease-list list-unstyled p-0 d-flex flex-wrap mt-3 gap-1">
+                    
                 </ul>
             </div>
-            <div class="symptoms-box col-6">
-                <div class="search-symptom d-flex align-items-center">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm triệu chứng" autocomplete="off" id="search-symptom" name="search-symptom">
-                    <button class="btn"><i class="fas fa-search"></i></button>
-                    <div class="results">
-                        <ul>
-                            <li>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    Không có kết quả
-                                </div>
-                            </li>                                  
-                        </ul>
-                    </div>
-                </div>
-                <ul class="symptoms list-unstyled p-0 d-flex flex-wrap">
-                    <li class="d-flex justify-content-between p-3 active">
-                        <span>Triệu chứng 1</span>
-                    </li>
-                    <li class="d-flex justify-content-between p-3">
-                        <span>Triệu chứng 2</span>
-                    </li>
-                    <li class="d-flex justify-content-between p-3">
-                        <span>Triệu chứng 3</span>
-                    </li>
-                    <li class="d-flex justify-content-between p-3">
-                        <span>Triệu chứng 4</span>
-                    </li>
-                </ul>
-            </div>
+            
        </div>
     </div>
     <div class="form-container" style="width: 250px;">
@@ -180,6 +137,17 @@
         </div>
     </div>
 </div>
+
+
+<div class="toast align-items-center text-bg-primary border-0" id="alert" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        <i class="fas fa-check-circle me-2"></i><span id="alert-message">Vui lòng điền đầy đủ thông tin</span>
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+
         
 <script src="{{url_for('static', filename='js/staff/doctor/create-patients.js')}}"></script>
 {% endblock %}

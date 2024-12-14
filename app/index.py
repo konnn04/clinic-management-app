@@ -143,6 +143,14 @@ def patients_doctor():
 def create_patient():
     return render_template('doctor/create-patient.html', index=2)
 
+#API
+@app.route('/api/get-dieases', methods=['GET'])
+def get_dieases():
+    q = request.args.get('q')
+    exists = request.args.get('exists')
+    
+    return jsonify(utils.get_diseases(q, exists,5))
+
 
 
 @app.errorhandler(404)

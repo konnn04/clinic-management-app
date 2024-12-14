@@ -136,3 +136,52 @@ table td .recommend ul li{
     border-bottom: 1px dashed #ccc;
     cursor: pointer;
 }
+
+.search-disease{
+    position: relative;
+}
+
+.search-disease .disease-recommend{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    padding: .5rem 0;
+    display: none;
+}
+
+.disease-recommend.show{
+    display: block;
+}
+
+.search-disease .disease-recommend ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-disease .disease-recommend ul li{
+    padding: .5rem;
+    box-sizing: border-box;
+    border-bottom: 1px dashed #ccc;
+    cursor: pointer;
+}
+
+.search-disease .disease-recommend ul li:hover{
+    background-color: #f9f9f9;
+}
+
+.search-disease .disease-recommend ul li:last-child{
+    border-bottom: none;
+}
+
+.disease-list li{
+    cursor: pointer!important;
+}
+
+.disease-list li:hover{
+    background-color: #ff2c2c!important;
+}
