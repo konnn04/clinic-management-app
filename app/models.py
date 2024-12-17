@@ -166,6 +166,10 @@ class CaLamViec(db.Model):
     batDau = Column(Time, nullable=False)
     ketThuc = Column(Time, nullable=False)
 
+    def gio_kham(self):
+        return f'{self.batDau.strftime("%H:%M")} - {self.ketThuc.strftime("%H:%M")}'
+    
+
 class PhieuLichDat(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     ngayDat = Column(DateTime,nullable = False,default = datetime.now())

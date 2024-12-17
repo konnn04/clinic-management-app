@@ -69,7 +69,7 @@ def get_nav(current_user):
         },{
             "name": "Danh sách lịch khám",
             "icon": "fa-sharp-duotone fa-solid fa-calendar",
-            "url_for": "nurse",
+            "url_for": "schedule_list",
         }],
         
     }

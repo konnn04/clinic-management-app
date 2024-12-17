@@ -1,6 +1,6 @@
 import json
 import os
-from app import app
+from app import app, db
 from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat
 from sqlalchemy import text
 from flask import jsonify
@@ -72,3 +72,31 @@ def patient_stat():
         'disease_stat': disease_stat
     }
     
+def load_schedule_list(date,type, draw, length, start, search, sort_column, sort_order):
+    query = PhieuLichDat.query.filter(PhieuLichDat.ngay == date, PhieuLichDat.loai == type)
+    if search:
+        query = query.filter(
+            db.or_(
+                PhieuLichDat.nguoiBenh.soDienThoai.like(f"%{search}%"),
+                PhieuLichDat.nguoiBenh.hoten.like(f"%{search}%")
+            )
+        )
+    total = query.count()
+    # Tạm tắt sort
+    query = query.order.by(PhieuLichDat.ca_id)
+    schedules = query.offset(start).limit(length).all()
+    schedule_list = [{
+        'id': schedule.id,
+        'nguoiBenh_id': schedule.nguoiBenh.id,
+        'hoTen': schedule.nguoiBenh.hoten,
+        'ngaySinh': schedule.nguoiBenh.ngaySinh.strftime('%Y-%m-%d'),
+        'gioiTinh': 'Nam' if schedule.nguoiBenh.gioiTinh else 'Nữ',
+        'gioKham': schedule.ca.gio_kham(),
+        'bacSi': schedule.bacSi.hoten if schedule.bacSi else 'Không chọn',
+    } for schedule in schedules]
+    return {
+        'draw': draw,
+        'recordsTotal': total,
+        'recordsFiltered': total,
+        'data': schedule_list
+    }

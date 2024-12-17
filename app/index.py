@@ -116,7 +116,14 @@ def login():
 def nurse():
     return render_template('nurse/index.html', index=1)
 
-
+@app.route('/nurse/schedule_list', methods=['GET', 'POST'])
+@roles_required([VaiTro.Y_TA])
+def schedule_list():
+    list_ = {
+        'current': datetime.now().strftime('%Y-%m-%d'),
+    }
+    return render_template('nurse/schedule-list.html', index=3, list=list_)
+    
 
 # Admin
 
@@ -209,6 +216,19 @@ def get_patients():
         search_value=search_value, 
         sort_column_index=sort_column_index, 
         sort_direction=sort_direction))
+
+@app.route('/api/schedule-list', methods=['GET'])
+@roles_required([VaiTro.Y_TA])
+def get_schedule_list():
+    draw = int(request.form.get('draw', 1))
+    start = int(request.form.get('start', 0))
+    length = int(request.form.get('length', 10))
+    search_value = request.form.get('search[value]', '')
+    order_column = int(request.form.get('order[0][column]', 0))
+    order_dir = request.form.get('order[0][dir]', 'asc')
+    type = request.args.get('type')
+    date = request.args.get('date')
+    return jsonify(dao.load_schedule_list(date=date, type=type, draw=draw, length=length, start=start, search=search_value, sort_column=order_column, sort_order=order_dir))
 
 @app.errorhandler(404)
 def page_not_found(e):

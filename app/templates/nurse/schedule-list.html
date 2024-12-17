@@ -1,0 +1,52 @@
+{% extends './layouts/base_staff.html' %}
+
+{% block title %}
+    Danh sách lịch khám
+{% endblock %}
+
+{% block styles %}
+    <!-- <link rel="stylesheet" class="css" href="{{ url_for('static', filename='css/staff/nurse/index.css')}}"> -->
+{% endblock %}
+
+{% block content %}
+<div class="nav d-flex gap-3 align-items-center p-3" style="background-color: #fff; border-radius: 1rem;">
+    <div class="d-flex justify-content-between align-items-center">
+        <h5>Ngày khám</h5>
+        <div class="ms-2 d-flex">
+            <input type="date" name="date" id="date" value="{{list.current}}" class="form-control">
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <h5>Tình trạng</h5>
+        <div class="ms-2 d-flex">
+            <select name="status" id="status" class="form-select">
+                <option value="False">Chưa lên lịch</option>
+                <option value="True">Đã lên lịch</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <table id="schedule_table" class="display">
+        <thead>
+            <tr>
+                <th>Mã lịch khám</th>
+                <th>Mã bệnh nhân</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Giờ khám</th>
+                <th>Bác sĩ</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Auto fill -->
+        </tbody>
+</div>
+
+<script src="{{url_for('static', filename='js/staff/nurse/schedule-list.js')}}"></script>
+
+{% endblock %}
+
