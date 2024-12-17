@@ -1,12 +1,9 @@
 import json
 # from crypt import methods
 from datetime import datetime
-
 from flask import render_template, request, jsonify
-from app import app, login_manager, roles_required
+from app import app, utils, login_manager, roles_required, dao
 from flask_login import current_user, login_required, logout_user, login_user
-from app import utils
-import pdb
 import cloudinary
 from cloudinary.uploader import upload
 
@@ -125,6 +122,25 @@ def nurse():
 
 
 # Cashier
+# Invoice: Hóa đơn trả sau
+# Payment: Thanh toán trước
+# Bill: Hóa đơn trả trước
+
+@app.route('/cashier', methods=['GET', 'POST'])
+@login_required
+@roles_required([VaiTro.THU_NGAN])
+def cashier():
+    return render_template('cashier/index.html', index=1)
+
+@app.route('/cashier/payment', methods=['GET', 'POST'])
+@roles_required([VaiTro.THU_NGAN])
+def payment():
+    return render_template('cashier/payment.html', index=2)
+
+@app.route('/cashier/invoices', methods=['GET', 'POST'])
+@roles_required([VaiTro.THU_NGAN])
+def invoices():
+    return render_template('cashier/invoices.html', index=2)
 
 # Doctor
 @app.route('/doctor', methods=['GET', 'POST'])
@@ -151,7 +167,42 @@ def get_dieases():
     
     return jsonify(utils.get_diseases(q, exists,5))
 
+# Lấy danh sách hoá đơn
+@app.route('/api/invoices', methods=['GET'])
+def get_invoices():
+    draw = request.args.get('draw', type=int, default=1) 
+    start = request.args.get('start', type=int, default=0)
+    length = request.args.get('length', type=int, default=10)
+    sort_column = request.args.get('order[0][column]', type=int, default=0)
+    sort_direction = request.args.get('order[0][dir]', default='asc')
+    search_value = request.args.get('search[value]', default='')
+    '''
+    Lấy dữ liệu từ request
+    draw: Số thứ tự của request
+    start: Vị trí bắt đầu lấy dữ liệu
+    length: Số lượng dữ liệu cần lấy
+    sort_column: Cột cần sắp xếp
+    sort_direction: Hướng sắp xếp
+    search_value: Giá trị tìm kiếm
+    '''
+    q = dao.load_invoices(draw, length, start, search_value, sort_column, sort_direction)
+    return jsonify(q)
 
+@app.route('/api/patient-stat', methods=['GET'])
+@roles_required([VaiTro.BAC_SI, VaiTro.Y_TA, VaiTro.THU_NGAN])
+def patient_stat():
+    return jsonify(dao.patient_stat())
+
+@app.route('/api/patient-list', methods=['GET'])
+@roles_required([VaiTro.BAC_SI, VaiTro.Y_TA, VaiTro.THU_NGAN])
+def get_patients():
+    draw = request.args.get('draw', type=int, default=1) 
+    start = request.args.get('start', type=int, default=0)
+    length = request.args.get('length', type=int, default=10)
+    sort_column_index = request.args.get('order[0][column]', type=int, default=0)
+    sort_direction = request.args.get('order[0][dir]', default='asc')
+    search_value = request.args.get('search[value]', default='')
+    return jsonify(utils.get_patients(draw, length, start, search_value, sort_column_index, sort_direction))
 
 @app.errorhandler(404)
 def page_not_found(e):

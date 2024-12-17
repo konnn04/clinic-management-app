@@ -41,7 +41,7 @@ class CreateStaffView(MyBaseView):
             taiKhoan = request.form.get('tenTK')
             matKhau = request.form.get('matKhau')
             xacNhanMK = request.form.get('xacNhanMK')
-            avatar = request.files.get('avatar',"")
+            avatar = request.files.get('avatar', None)
             roleValue = request.form.get('vaiTro')
 
             try:
@@ -51,6 +51,7 @@ class CreateStaffView(MyBaseView):
                 if matKhau.strip().__eq__(xacNhanMK.strip()):
                     if avatar:
                         avatar = cloudinary.uploader.upload(avatar)
+                        avatar = avatar['url']
                     else:
                         avatar = ""
                     utils.addUser(ho=ho, ten=ten, ngaySinh=ngaySinh, soDienThoai=soDienThoai, email=email, taiKhoan=taiKhoan, matKhau=matKhau, role=role, avatar=avatar)

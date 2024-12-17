@@ -8,9 +8,41 @@
     <link rel="stylesheet" class="css" href="{{ url_for('static', filename='css/staff/nurse/index.css')}}">
 {% endblock %}
 
-
-
 {% block content %}
-<h1>HI</h1>
+<div class="row p-0 justify-content-between stat">
+    <div class="box col-lg-4 col-md-4 col-12">
+        <h5>PATIENS</h5>
+        <canvas id="patiens_chart"></canvas>
+    </div>
+    <div class="box col-lg-4 col-md-4 col-12">
+        <h5>HEALING INDEX</h5>
+        <canvas id="healing_chart"></canvas>
+    </div>
+    <div class="box col-lg-4 col-md-4 col-12">
+        <h5>DISEASE INDEX</h5>
+        <canvas id="disease_chart"></canvas>
+    </div>
+</div>
+
+<div class="patiens_stat-box">
+    <table id="patient_table" class="display">
+        <thead>
+            <tr>
+                <th>Mã bệnh nhân</th>
+                <th>Họ tên</th>
+                <th>Giới tính</th>
+                <th>Ngày sinh</th>
+                <th>Số điện thoại</th>
+                <th>Ngày hẹn gần nhất</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Auto fill -->
+        </tbody>
+    </table>
+</div>
+
+<script src="{{url_for('static', filename='js/staff/nurse/index.js')}}"></script>
+
 {% endblock %}
 

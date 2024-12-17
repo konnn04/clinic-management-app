@@ -1,9 +1,9 @@
-from app.models import NguoiDung,VaiTro
+from app.models import NguoiDung,VaiTro, NguoiBenh, PhieuLichDat
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, dao
 from datetime import datetime
 from collections import defaultdict
-
+from sqlalchemy import text
 
 def check_account(username,password):
     user = NguoiDung.query.filter_by(taiKhoan=username).first()
@@ -47,10 +47,16 @@ def get_nav(current_user):
             "url_for": "patients_doctor",
         }],
         VaiTro.THU_NGAN:[{
-            "name": "Dashboard",
+            "name": "Trang chủ",
             "icon": "fa-sharp-duotone fa-solid fa-grid-horizontal ",
             "url_for": "cashier",
-        }],
+        },
+        {
+            "name": "Danh sách hoá đơn",
+            "icon": "fa-sharp-duotone fa-solid fa-calendar",
+            "url_for": "invoices",
+        },
+        ],
         VaiTro.Y_TA:[{
             "name": "Trang chủ",
             "icon": "fa-sharp-duotone fa-solid fa-grid-horizontal ",
@@ -65,6 +71,7 @@ def get_nav(current_user):
             "icon": "fa-sharp-duotone fa-solid fa-calendar",
             "url_for": "nurse",
         }],
+        
     }
     return func.get(role, [])
 
@@ -144,4 +151,27 @@ def get_diseases(q=None, exists = "", limit = 5):
     else:
         diseases = diseases[0:limit]
     return diseases
+
+def get_patients(draw, length, start, search_value, sort_column_index, sort_direction):
+    columns = ['id', 'name','gender', 'dob', 'phone', 'last_visit']
+    sort_column_name = columns[sort_column_index]
+    patients = NguoiBenh.query
+    if search_value:
+        patients = patients.filter(NguoiBenh.hoTen.like(f"%{search_value}%"))
+    total = patients.count()
+    patients = patients.order_by(text(f"{sort_column_name} {sort_direction}")).offset(start).limit(length).all()
+    patient_list = [{
+        'id': patient.id,
+        'name': patient.hoTen,  
+        'gender': "Nam" if patient.gioiTinh else "Nữ",
+        'dob': patient.ngaySinh.strftime('%Y-%m-%d'),
+        'phone': patient.soDienThoai,
+        'last_visit': PhieuLichDat.query.filter(PhieuLichDat.nguoiBenh_id == patient.id).order_by(PhieuLichDat.ngayHen.desc()).first().ngayHen.strftime('%Y-%m-%d')
+    } for patient in patients]
+    return {
+        'draw': draw,
+        'recordsTotal': total,
+        'recordsFiltered': total,
+        'data': patient_list
+    }
 
