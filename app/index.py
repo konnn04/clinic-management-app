@@ -202,7 +202,13 @@ def get_patients():
     sort_column_index = request.args.get('order[0][column]', type=int, default=0)
     sort_direction = request.args.get('order[0][dir]', default='asc')
     search_value = request.args.get('search[value]', default='')
-    return jsonify(utils.get_patients(draw, length, start, search_value, sort_column_index, sort_direction))
+    return jsonify(utils.get_patients(
+        draw=draw, 
+        length=length,
+        start= start, 
+        search_value=search_value, 
+        sort_column_index=sort_column_index, 
+        sort_direction=sort_direction))
 
 @app.errorhandler(404)
 def page_not_found(e):

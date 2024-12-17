@@ -67,6 +67,9 @@ class NguoiBenh(db.Model):
     def getAge(self):
         return datetime.now().year - self.ngaySinh.year
     
+    def lanCuoiGhe(self):
+        return PhieuLichDat.query.filter(PhieuLichDat.nguoiBenh_id == self.id).order_by(PhieuLichDat.ngayHen.desc()).first().ngayHen
+    
 
 
 class QuyDinh(db.Model):

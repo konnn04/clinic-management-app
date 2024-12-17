@@ -93,11 +93,11 @@ function patient_table(){
         },
         "columns": [
             { "data": "id" },
-            { "data": "name" },
-            { "data": "gender" },
-            { "data": "dob" },
-            { "data": "phone"},
-            { "data": "last_visit"},
+            { "data": "hoTen" },
+            { "data": "gioiTinh" },
+            { "data": "ngaySinh" },
+            { "data": "soDienThoai" },
+            { "data": "lanCuoiGhe"},
         ],
         "language": {
             "paginate": {
