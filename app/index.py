@@ -12,8 +12,6 @@ from app.models import NguoiDung, VaiTro
 host = '0.0.0.0'
 port = 5100
 
-
-
 @app.context_processor
 def update_template_context():
     return {

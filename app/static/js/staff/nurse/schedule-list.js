@@ -26,5 +26,6 @@ function init(){
                 orderable: false
             }
         ],
-    
+        order: [[0, 'desc']]
+    });    
 }

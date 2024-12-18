@@ -13,21 +13,23 @@ class VaiTro(RoleEnum):
     BENH_NHAN = 4
     THU_NGAN = 5
 
-
-class NguoiDung(db.Model, UserMixin): 
-    __tablename__ = 'nguoiDung'
+class ThongTin(db.Model):
+    __abstract__ = True
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     ho = Column(String(10),nullable=False,unique = False)
     ten = Column(String(10),nullable = False)
+    gioiTinh = Column(Boolean,nullable = False,default = True) # True: Nam, False: Nu
     ngaySinh = Column(DateTime,nullable = False)
     soDienThoai = Column(String(15),nullable=True,unique = True)
     email = Column(String(50),nullable=True,unique=True)
     ghiChu = Column(String(255),nullable = True)
+
+class NguoiDung(ThongTin, UserMixin): 
+    __tablename__ = 'nguoiDung'  
     taiKhoan = Column(String(50),nullable = False,unique = True)
     matKhau = Column(Text,nullable = False)
     avatar = Column(String(255),nullable = True)
     role = Column(Enum(VaiTro),nullable = False)
-    gioiTinh = Column(Boolean,nullable = False,default = True) # True: Nam, False: Nu
     
     def __str__(self):
         return f"{self.ho} {self.ten}"
@@ -54,13 +56,7 @@ class NguoiDung(db.Model, UserMixin):
         self.matKhau = generate_password_hash(password)
         
 
-class NguoiBenh(db.Model):
-    id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
-    hoTen = Column(String(50),nullable = False)
-    gioiTinh = Column(Boolean,nullable = False,default = True) # True: Nam, False: Nu
-    ngaySinh = Column(DateTime,nullable = False)
-    soDienThoai = Column(String(15),nullable = False)
-    email = Column(String(50),nullable = True)
+class NguoiBenh(ThongTin):
     diaChi = Column(String(255),nullable = False)
     phieuLichDat = relationship('PhieuLichDat',backref = 'nguoiBenh',lazy = True)
 
@@ -159,69 +155,21 @@ class DonThuoc(db.Model):
     cachDung = Column(String(255),nullable = False)
     soLuong = Column(Integer,nullable = False,default = 0)
 
-# Trieu thêm
-class CaLamViec(db.Model):
-    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    ten = Column(String(100), nullable=False)
-    batDau = Column(Time, nullable=False)
-    ketThuc = Column(Time, nullable=False)
-
-    def gio_kham(self):
-        return f'{self.batDau.strftime("%H:%M")} - {self.ketThuc.strftime("%H:%M")}'
-    
-
 class PhieuLichDat(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     ngayDat = Column(DateTime,nullable = False,default = datetime.now())
     ngayHen = Column(DateTime,nullable = False)
     trangThai = Column(Boolean,nullable = False,default = False)
-    ca_id = Column(Integer,ForeignKey(CaLamViec.id),nullable = False)
+    caHen = Column(String(10),nullable = False) # sang, chieu, toi
     # Nguoi benh dat lich
     nguoiBenh_id = Column(Integer,ForeignKey(NguoiBenh.id),nullable = False)
 
-
-    
-class LichLamViec(db.Model):
-    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    bacSi_id = Column(Integer, ForeignKey(NguoiDung.id), nullable=False)
-    ca_id = Column(Integer, ForeignKey(CaLamViec.id), nullable=False)
-    ngay_trong_tuan = Column(Integer, nullable=False) 
-   
-
-
-def initCaLamViec():
-    i = 0
-    # Từ 7h đến 21h, mỗi 30 phút một ca
-    while CaLamViec.query.count() < 28:
-        ca = CaLamViec(ten=f'Ca {(i*2)+1}', batDau=time(hour=7+i, minute=0), ketThuc=time(hour=7+i, minute=30))
-        ca2 = CaLamViec(ten=f'Ca {(i*2)+2}', batDau=time(hour=7+i, minute=30), ketThuc=time(hour=8+i, minute=0))
-        db.session.add(ca)
-        db.session.add(ca2)
-        i += 1
-    db.session.commit()
-    # Ca sáng: 7h00 - 11h00: Ca 0 -> Ca 7
-    # Ca chiều: 13h00 - 17h00: Ca 12 -> Ca 19
-    # Ca tối: 19h00 - 21h00: Ca 24 -> Ca 27
-
-def initLichLamViec(bac_si, type = 'sang'):
-    # 0: CN, 1: T2, 2: T3, 3: T4, 4: T5, 5: T6, 6: T7
-    if type == 'sang':
-        for i in range(7):
-            for j in range(1, 9):
-                lich = LichLamViec(bacSi_id=bac_si.id, ca_id=j, ngay_trong_tuan=i)
-                db.session.add(lich)
-
-    if type == 'chieu':
-        for i in range(7):
-            for j in range(13, 21):
-                lich = LichLamViec(bacSi_id=bac_si.id, ca_id=j, ngay_trong_tuan=i)
-                db.session.add(lich)
-    if type == 'toi':
-        for i in range(7):
-            for j in range(25, 29):
-                lich = LichLamViec(bacSi_id=bac_si.id, ca_id=j, ngay_trong_tuan=i)
-                db.session.add(lich)
-    db.session.commit()
+class CaLamViecBacSi(db.Model):
+    id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
+    bacSi_id = Column(Integer,ForeignKey(NguoiDung.id),nullable = False)
+    caSang = Column(Boolean,nullable = False,default = False)
+    caChieu = Column(Boolean,nullable = False,default = False)
+    caToi = Column(Boolean,nullable = False,default = False)    
 
 def initUser():
     ad = NguoiDung(ho = 'admin',ten = 'admin',ngaySinh = datetime.now(),soDienThoai = '0123456789',email = 'admin@admin.com',taiKhoan = 'admin',matKhau = generate_password_hash('admin'),role = VaiTro.ADMIN)
@@ -263,36 +211,40 @@ def initUser():
         taiKhoan='cashier1',
         matKhau=generate_password_hash('1212'),
         role=VaiTro.THU_NGAN)
+    
+    caBS1 = CaLamViecBacSi(bacSi_id = 1,caSang = True)
+    caBS2 = CaLamViecBacSi(bacSi_id = 2,caChieu = True)
+    
     db.session.add(ad)
     db.session.add(bs)
     db.session.add(bs2)
     db.session.add(yt)
     db.session.add(c)
+    db.session.add(caBS1)
+    db.session.add(caBS2)
     db.session.commit()
-    initLichLamViec(bs, 'sang')
-    initLichLamViec(bs2, 'chieu')
 
 def initPhieuLichDat():
-    nb1 = NguoiBenh(hoTen = 'Nguyen Van A',ngaySinh = datetime.now(),soDienThoai = '0123456789',email = 'a@gmail.com',diaChi = '123 abc')
-    nb2 = NguoiBenh(hoTen = 'Nguyen Van b',ngaySinh = datetime.now(),soDienThoai = '0123456788',email = 'a2@gmail.com',diaChi = '123 abc')
-    nb3 = NguoiBenh(hoTen = 'Nguyen Van C',ngaySinh = datetime.now(),soDienThoai = '0123456787',email = 'a3@gmail.com',diaChi = '123 abc')
-    nb4 = NguoiBenh(hoTen = 'Le Thi D', ngaySinh = datetime.now(), soDienThoai = '0123456786',email = 'a5@gmail.com',diaChi = '123 abc', gioiTinh = False)
-    nb5 = NguoiBenh(hoTen = 'Pham Thi F', ngaySinh = datetime.now(), soDienThoai = '0123456785',email = 'qqq@asd.com',diaChi = '123 abc', gioiTinh = False)
+    nb1 = NguoiBenh(ho = 'Nguyen Van', ten = 'A', ngaySinh = datetime.now(),soDienThoai = '0123456789',email = 'a@gmail.com',diaChi = '123 abc')
+    nb2 = NguoiBenh(ho = 'Nguyen Van', ten = 'B',ngaySinh = datetime.now(),soDienThoai = '0123456788',email = 'a2@gmail.com',diaChi = '123 abc')
+    nb3 = NguoiBenh(ho = 'Nguyen Van', ten = 'C',ngaySinh = datetime.now(),soDienThoai = '0123456787',email = 'a3@gmail.com',diaChi = '123 abc')
+    nb4 = NguoiBenh(ho = 'Le Thi', ten = 'D', ngaySinh = datetime.now(), soDienThoai = '0123456786',email = 'a5@gmail.com',diaChi = '123 abc', gioiTinh = False)
+    nb5 = NguoiBenh(ho = 'Pham Thi', ten = 'E', ngaySinh = datetime.now(), soDienThoai = '0123456785',email = 'qqq@asd.com',diaChi = '123 abc', gioiTinh = False)
     db.session.add(nb5)
     db.session.add(nb1)
     db.session.add(nb2)
     db.session.add(nb3)
     db.session.add(nb4)
-    p1 = PhieuLichDat(ngayHen = datetime.now(),trangThai = False,nguoiBenh_id = 1, ca_id=1)
-    p2 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 2, ca_id=3)
-    p3 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 3, ca_id=5)
-    p4 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 4, ca_id=1)
-    p5 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 1, ca_id=2)
-    p6 = PhieuLichDat(ngayHen = datetime(2025, 1, 15),trangThai = False,nguoiBenh_id = 2, ca_id=3)
-    p7 = PhieuLichDat(ngayHen = datetime(2025, 1, 13),trangThai = False,nguoiBenh_id = 3, ca_id=4)
-    p8 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 4, ca_id=5)
-    p9 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 5, ca_id=4)
-    p10 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 5, ca_id=4)
+    p1 = PhieuLichDat(ngayHen = datetime.now(),trangThai = False,nguoiBenh_id = 1, caHen = 'sang')
+    p2 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 2, caHen = 'chieu')
+    p3 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 3, caHen = 'sang')
+    p4 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 4, caHen = 'chieu')
+    p5 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 1, caHen = 'chieu')
+    p6 = PhieuLichDat(ngayHen = datetime(2025, 1, 15),trangThai = False,nguoiBenh_id = 2, caHen = 'chieu')
+    p7 = PhieuLichDat(ngayHen = datetime(2025, 1, 13),trangThai = False,nguoiBenh_id = 3, caHen = 'sang')
+    p8 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 4, caHen = 'chieu')
+    p9 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 5, caHen = 'sang')
+    p10 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 5, caHen = 'chieu')
     db.session.add(p1)
     db.session.add(p2)
     db.session.add(p3)
@@ -311,4 +263,3 @@ if __name__ == '__main__':
         db.create_all()
         initUser()
         initPhieuLichDat()
-        initCaLamViec()
