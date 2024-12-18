@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/appointment_history.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container1">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Nhập thông tin tra cứu" oninput="filterAppointments()">
+            <button onclick="filterAppointments()">Tra cứu</button>
+        </div>
+
+        <div class="appointment-history" id="appointment-history">
+            <div class="appointment-item">
+                <div class="info">
+                    <span class="id-value"><strong>Mã khám bệnh:</strong> #19191999</span>
+                    <span class="date-value"><strong>Ngày khám:</strong> 19/12/1999</span>
+                    <span class="total-value"><strong>Tổng tiền:</strong> 1.000.000 VNĐ</span>
+                </div>
+                <button class="details-button" onclick="openAppointmentDetail(19191999)">Xem chi tiết</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/appointment_history.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', getAppointmentHistory);
+    </script>
+{% endblock %}
