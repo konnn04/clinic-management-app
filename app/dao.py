@@ -4,7 +4,7 @@ from app import app, db
 from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat
 from sqlalchemy import text
 from flask import jsonify
-from datetime import datetime 
+from datetime import datetime
 import random
 
 def read_json(path):
@@ -14,6 +14,11 @@ def read_json(path):
 def load_revenue():
     return read_json(os.path.join(app.root_path, "data/revenue.json"))
 
+def get_appointment_history(user_id):
+    return
+
+def get_appointment_history_detail(user_id, order_id):
+    return
 def load_invoices(draw, length, start, search, sort_column, sort_order):
     columns = ['id', 'date', 'patient', 'doctor', 'total', 'status']
     sort_column = columns[sort_column]
@@ -23,7 +28,7 @@ def load_invoices(draw, length, start, search, sort_column, sort_order):
     total = query.count()
     query = query.order_by(text(f"{sort_column} {sort_order}"))
     invoices = query.offset(start).limit(length).all()
-    
+
     invoice_list = [{
         'id': invoice.id,
         'date': invoice.date.strftime('%Y-%m-%d'),
@@ -71,7 +76,7 @@ def patient_stat():
         'month_stat': month_stat,
         'disease_stat': disease_stat
     }
-    
+
 def load_schedule_list(date,type, draw, length, start, search, sort_column, sort_order):
     query = PhieuLichDat.query.filter(PhieuLichDat.ngay == date, PhieuLichDat.loai == type)
     if search:

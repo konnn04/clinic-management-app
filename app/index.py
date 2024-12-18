@@ -1,9 +1,12 @@
 import json
 # from crypt import methods
 from datetime import datetime
+
 from flask import render_template, request, jsonify
 from app import app, utils, login_manager, roles_required, dao
 from flask_login import current_user, login_required, logout_user, login_user
+from app import utils
+import pdb
 import cloudinary
 from cloudinary.uploader import upload
 
@@ -35,6 +38,51 @@ def index():
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
     return render_template('appointment.html')
+
+@app.route('/appointment/history', methods=['GET'])
+def appointment_history():
+    # login_session = session().get('login_session')
+    # if not login_session:
+    #     return redirect(url_for('guest_login'))
+    return render_template('appointment_history.html')
+
+
+@app.route('/api/appointment/history/detail/<int:order_id>', methods=['GET'])
+def appointment_history_detail(order_id):
+
+    # login_session = session().get('login_session')
+
+    # if not login_session:
+    #     return jsonify({'message': 'User not logged in'}), 401
+    #
+    # try:
+    #     appointment_history_detail = dao.get_appointment_history(login_session['user_id'], order_id)
+    #
+    #     if appointment_history_detail:
+    #         return jsonify({"appointment_history": appointment_history_detail}), 200
+    #     else:
+    #         return jsonify({'message': 'Appointment not found'}), 404
+    #
+    # except Exception as ex:
+    #     print(f"Error: {ex}")
+    #     return jsonify({'message': 'An error occurred while fetching appointment details'}), 500
+
+    # test template
+    return render_template('appointment_history_detail.html')
+
+
+@app.route('/api/appointment/history', methods=['GET'])
+def lookup_appointment_history():
+    login_session = session().get('login_session')
+
+    try:
+        appointment_histories = dao.get_appointment_history(login_session.user_id)
+        return jsonify({"appointment_histories": appointment_histories}), 200
+    except Exception as ex:
+        return jsonify({'message': 'error'}), 500
+
+
+
 
 @app.route('/staff/profile', methods=['GET', 'POST'])
 @login_required
@@ -121,7 +169,7 @@ def schedule_list():
         'current': datetime.now().strftime('%Y-%m-%d'),
     }
     return render_template('nurse/schedule-list.html', index=3, list=list_)
-    
+
 
 # Admin
 
@@ -169,13 +217,13 @@ def create_patient():
 def get_dieases():
     q = request.args.get('q')
     exists = request.args.get('exists')
-    
+
     return jsonify(utils.get_diseases(q, exists,5))
 
 # Lấy danh sách hoá đơn
 @app.route('/api/invoices', methods=['GET'])
 def get_invoices():
-    draw = request.args.get('draw', type=int, default=1) 
+    draw = request.args.get('draw', type=int, default=1)
     start = request.args.get('start', type=int, default=0)
     length = request.args.get('length', type=int, default=10)
     sort_column = request.args.get('order[0][column]', type=int, default=0)
@@ -201,18 +249,18 @@ def patient_stat():
 @app.route('/api/patient-list', methods=['GET'])
 @roles_required([VaiTro.BAC_SI, VaiTro.Y_TA, VaiTro.THU_NGAN])
 def get_patients():
-    draw = request.args.get('draw', type=int, default=1) 
+    draw = request.args.get('draw', type=int, default=1)
     start = request.args.get('start', type=int, default=0)
     length = request.args.get('length', type=int, default=10)
     sort_column_index = request.args.get('order[0][column]', type=int, default=0)
     sort_direction = request.args.get('order[0][dir]', default='asc')
     search_value = request.args.get('search[value]', default='')
     return jsonify(utils.get_patients(
-        draw=draw, 
+        draw=draw,
         length=length,
-        start= start, 
-        search_value=search_value, 
-        sort_column_index=sort_column_index, 
+        start= start,
+        search_value=search_value,
+        sort_column_index=sort_column_index,
         sort_direction=sort_direction))
 
 @app.route('/api/schedule-list', methods=['GET'])

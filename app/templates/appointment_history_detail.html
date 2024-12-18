@@ -1,0 +1,69 @@
+{% extends 'layouts/base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/appointment_history_detail.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td>Mã khám bệnh:</td>
+            <td>#19191999</td>
+            <td>Họ và Tên:</td>
+            <td>Nguyễn Văn Anh</td>
+        </tr>
+        <tr>
+            <td>Ngày khám:</td>
+            <td>19/12/1999</td>
+            <td>Bác sĩ khám:</td>
+            <td>Mohamed Sala</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <h2>Thông tin đơn thuốc</h2>
+                <table>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên thuốc</th>
+                        <th>Đơn vị</th>
+                        <th>Giá tiền</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Para</td>
+                        <td>Vi</td>
+                        <td>1 VND</td>
+                        <td>ABC</td>
+                    </tr>
+                </table>
+                <p>Tổng tiền: 1.000.000 VND</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <h2>Thông tin thanh toán</h2>
+                <table>
+                    <tr>
+                        <td>Tiền khám</td>
+                        <td>999.999.999 VND</td>
+                    </tr>
+                    <tr>
+                        <td>Tiền thuốc</td>
+                        <td>1 VND</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng tiền</td>
+                        <td>1.000.000 VND</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+    {#    <script src="{{ url_for('static', filename='js/appointment_history_detail.js') }}"></script>#}
+    {#    <script>#}
+    {#        document.addEventListener('DOMContentLoaded', getAppointmentHistory);#}
+    {#    </script>#}
+{% endblock %}
