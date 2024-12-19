@@ -33,7 +33,13 @@ function init(){
             {
                 data:null,
                 render: function(data, type, row){
-                    return `<button class="btn btn-danger" onclick="cancelSchedule(${row.id})">Hủy</button> <button class="btn btn-primary" onclick="acceptSchedule(${row.id})">Duyệt</button>`;
+                    trangThai = $('#status').val();
+                    if (trangThai == 'false') {
+                        return `<button class="btn btn-primary" onclick="acceptSchedule(${row.id})">Duyệt</button>`;    
+                    }else{
+                        return `<button class="btn btn-danger" onclick="cancelSchedule(${row.id})">Hủy</button> `;
+                    }
+                    
                 },
                 orderable: false
             }
@@ -64,6 +70,40 @@ function init(){
 
     $("#date").change(function(){
         table.draw();
+    });
+
+    
+}
+
+function acceptSchedule(id){
+    $.ajax({
+        url: `/nurse/schedule/accept`,
+        type: 'POST',
+        data: {
+            id: id
+        },
+        success: function(response){
+            if(response.status){
+                showToast('Thành công', response.message, 'success', 3000);
+                $("#schedule-table").DataTable().draw();
+            }
+        }
+    });
+}
+
+function cancelSchedule(id){
+    $.ajax({
+        url: `/nurse/schedule/cancel`,
+        type: 'POST',
+        data: {
+            id: id
+        },
+        success: function(response){
+            if(response.status){
+                showToast('Thành công', response.message, 'success', 3000);
+                $("#schedule-table").DataTable().draw();
+            }
+        }
     });
 }
 

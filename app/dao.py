@@ -1,7 +1,7 @@
 import json
 import os
 from app import app, db
-from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat
+from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat, PhieuKhamBenh, NguoiDung
 from sqlalchemy import text
 from flask import jsonify
 from datetime import datetime 
@@ -114,9 +114,7 @@ def load_schedule_list(date,status, draw, length, start, search, sort_column, so
         'data': schedule_list
     }
 
-def get_patients(draw, length, start, search_value, sort_column_index, sort_direction):
-    columns = ['id', 'ho', 'ten','gioiTinh', 'ngaySinh', 'soDienThoai', 'lanCuoiGhe']
-    
+def get_patients(draw, length, start, search_value, sort_column, sort_direction):
     patients = NguoiBenh.query
     if search_value:
         patients = patients.filter(
@@ -128,17 +126,7 @@ def get_patients(draw, length, start, search_value, sort_column_index, sort_dire
     total = patients.count()
     # sort_direction: 'asc' or 'desc'
     # sort_column_name: Tên cột cần sắp xếp
-    sort_column_map = {
-        0: NguoiBenh.id,
-        1: NguoiBenh.ho,
-        2: NguoiBenh.ten,
-        3: NguoiBenh.gioiTinh,
-        4: NguoiBenh.ngaySinh,
-        5: NguoiBenh.soDienThoai,
-        6: NguoiBenh.lanCuoiGhe
-    }
 
-    sort_column = columns[sort_column_index]
     if sort_direction == 'asc':
         patients = patients.order_by(getattr(NguoiBenh, sort_column).asc())
     else:
@@ -160,4 +148,131 @@ def get_patients(draw, length, start, search_value, sort_column_index, sort_dire
         'recordsTotal': total,
         'recordsFiltered': total,
         'data': patient_list
+    }
+
+def load_examination_list(draw, length, start, search, sort_column, sort_order):
+    query = db.session.query(
+        PhieuKhamBenh.id.label('id'),
+        PhieuKhamBenh.ngayKham,
+        NguoiDung.ho.label('ho_bac_si'),
+        NguoiDung.ten.label('ten_bac_si'),
+        NguoiBenh.ho.label('ho_benh_nhan'),
+        NguoiBenh.ten.label('ten_benh_nhan'),
+        NguoiBenh.soDienThoai.label('soDienThoai'),
+        NguoiBenh.ngaySinh,
+        NguoiBenh.gioiTinh,
+    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.nguoiBenh_id == NguoiBenh.id)
+
+    if search:
+        query = query.filter(
+            db.or_(
+            (
+                NguoiBenh.ho + " " + NguoiBenh.ten).like(f"%{search}%"),
+                NguoiDung.ho + " " + NguoiDung.ten).like(f"%{search}%"),
+                NguoiBenh.soDienThoai.like(f"%{search}%")
+            )
+    total = query.count()
+    query = query.order_by(text(f"{sort_column} {sort_order}"))
+    examinations = query.offset(start).limit(length).all()
+    examination_list = [{
+        'id': examination.id,
+        'ho_bac_si': examination.ho_bac_si,
+        'ten_bac_si': examination.ten_bac_si,
+        'ho_benh_nhan': examination.ho_benh_nhan,
+        'ten_benh_nhan': examination.ten_benh_nhan,
+        'ngayKham': examination.ngayKham.strftime('%Y-%m-%d'),
+        'gioiTinh': 'Nam' if examination.gioiTinh else 'Nữ',
+        'soDienThoai': examination.soDienThoai
+    } for examination in examinations]
+    
+    return {
+        'draw': draw,
+        'recordsTotal': total,
+        'recordsFiltered': total,
+        'data': examination_list
+    }
+    
+def get_examination_list_v1(sort_column, sort_order, page_index):
+    query = db.session.query(
+        PhieuKhamBenh.id.label('id'),
+        PhieuKhamBenh.ngayKham.label('ngay_kham'),
+        NguoiDung.ho.label('ho_bac_si'),
+        NguoiDung.ten.label('ten_bac_si'),
+        NguoiBenh.ho.label('ho_benh_nhan'),
+        NguoiBenh.ten.label('ten_benh_nhan'),
+        NguoiBenh.soDienThoai.label('so_dien_thoai'),
+        NguoiBenh.ngaySinh.label('ngay_sinh'),
+        NguoiBenh.gioiTinh.label('gioi_tinh')
+    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.nguoiBenh_id == NguoiBenh.id)
+    total = query.count()
+    if (page_index < 1):
+        page_index = 1
+
+    if (page_index > total//12 + 1):
+        page_index = total//12 + 1
+
+    query = query.order_by(text(f"{sort_column} {sort_order}"))
+    examinations = query.offset((page_index-1)*12).limit(12).all()
+
+    examination_list = [{
+        'id': examination.id,
+        'ho_bac_si': examination.ho_bac_si,
+        'ten_bac_si': examination.ten_bac_si,
+        'ho_benh_nhan': examination.ho_benh_nhan,
+        'ten_benh_nhan': examination.ten_benh_nhan,
+        'ngayKham': examination.ngay_kham.strftime('%Y-%m-%d'),
+        'gioi_tinh': 'Nam' if examination.gioiTinh else 'Nữ',
+        'soDienThoai': examination.soDienThoai
+    } for examination in examinations]
+
+    return {
+        'total': total,
+        'data': examination_list,
+        'page_index': page_index,
+        'next': True if page_index < total//12+1 else False,
+        'prev': True if page_index > 1 else False
+    }
+
+
+def cancel_schedule(id):
+    schedule = PhieuLichDat.query.get(id)
+    if schedule is None:
+        return False
+    schedule.trangThai = False
+    db.session.commit()
+    return True
+
+def accept_schedule(id):
+    schedule = PhieuLichDat.query.get(id)
+    if schedule is None:
+        return False
+    schedule.trangThai = True
+    db.session.commit()
+    return True
+
+def get_schedules_overview(q):
+    query = db.session.query(
+        PhieuLichDat.id.label('id'),
+        PhieuLichDat.ngayKham,
+        PhieuLichDat.trangThai,
+        PhieuLichDat.caKham,
+        NguoiBenh.id.label('nguoiBenh_id'),
+        NguoiBenh.ho,
+        NguoiBenh.ten,
+        NguoiBenh.soDienThoai,
+        NguoiBenh.ngaySinh,
+        NguoiBenh.gioiTinh,
+        PhieuLichDat.hoanThanh,
+    ).join(NguoiBenh, PhieuLichDat.nguoiBenh_id == NguoiBenh.id)
+
+    query = query.filter(
+            db.or_(
+            (
+                NguoiBenh.ho + " " + NguoiBenh.ten).like(f"%{q}%"),
+                NguoiDung.ho + " " + NguoiDung.ten).like(f"%{q}%"),
+                NguoiBenh.soDienThoai.like(f"%{q}%")
+            ), PhieuLichDat.hoanThanh == False, PhieuLichDat.trangThai == True
+    
+    return {
+        'id'
     }

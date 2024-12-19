@@ -121,8 +121,27 @@ def schedule_list():
         'current': datetime.now().strftime('%Y-%m-%d'),
     }
     return render_template('nurse/schedule-list.html', index=3, list=list_)
-    
 
+@app.route('/nurse/schedule/accept', methods=['POST'])
+@login_required
+@roles_required([VaiTro.Y_TA])
+def accpect_schedule():
+    id = request.form.get('id')
+    res = dao.accept_schedule(id=id)
+    if res:
+        return jsonify({'status': 'success', 'message': 'Đã chấp nhận lịch hẹn'})
+    return jsonify({'status': 'error', 'message': 'Đã có lỗi xảy ra'})
+
+
+@app.route('/nurse/schedule/cancel', methods=['POST'])
+@login_required
+@roles_required([VaiTro.Y_TA])
+def cancel_schedule():
+    id = request.form.get('id')
+    res = dao.cancel_schedule(id=id)
+    if res:
+        return jsonify({'status': 'success', 'message': 'Đã hủy lịch hẹn'})
+    return jsonify({'status': 'error', 'message': 'Đã có lỗi xảy ra'})
 # Admin
 
 
@@ -204,17 +223,17 @@ def get_patients():
     draw = request.args.get('draw', type=int, default=1) 
     start = request.args.get('start', type=int, default=0)
     length = request.args.get('length', type=int, default=10)
-    sort_column_index = request.args.get('sort', type=int, default=0)
+    sort_column = request.args.get('sort', default='id')
     sort_direction = request.args.get('order', default='asc')
     search_value = request.args.get('search[value]', default='')
 
-    print(draw, start, length, sort_column_index, sort_direction, search_value)
+    # print(draw, start, length, sort_column_index, sort_direction, search_value)
     return jsonify(dao.get_patients(
         draw=draw, 
         length=length,
         start= start, 
         search_value=search_value, 
-        sort_column_index=sort_column_index, 
+        sort_column=sort_column, 
         sort_direction=sort_direction))
 
 @app.route('/api/schedule-list', methods=['GET'])
@@ -240,6 +259,50 @@ def get_schedule_list():
             sort_order=order_dir
             )
         )
+
+@app.route('/api/examination-list-overview', methods=['GET'])
+@login_required
+@roles_required([VaiTro.BAC_SI])
+def get_examination_list():
+    draw = int(request.args.get('draw', 1))
+    start = int(request.args.get('start', 0))
+    length = int(request.args.get('length', 10))
+    search_value = request.args.get('search[value]', '')
+    order_column = request.args.get('sort', 'id')
+    order_dir = request.args.get('order', 'asc')
+    return jsonify(
+        dao.load_examination_list(
+            draw=draw, length=length, 
+            start=start, 
+            search=search_value,
+            sort_column=order_column, 
+            sort_order=order_dir
+            )
+        )
+    
+@app.route('/api/examination-list-v1', methods=['GET'])
+@login_required
+@roles_required([VaiTro.BAC_SI, VaiTro.Y_TA])
+def get_examination_list_v1():
+    col_sort = request.args.get('col_sort', 'ngay_kham')
+    order = request.args.get('order', 'desc')
+    page = request.args.get('page_index', 1, type=int)
+    data = dao.get_examination_list_v1(
+        sort_column=col_sort, 
+        sort_order=order, 
+        page_index=page
+        )
+    return jsonify(data)
+
+
+@app.route('/api/schedules-overview',methods=['GET'])
+@login_required
+@roles_required([VaiTro.BAC_SI])
+def get_schedules_overview():
+    q = request.args.get('q')
+    return jsonify(dao.get_schedules_overview())
+
+
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -62,6 +62,7 @@ class NguoiDung(ThongTin, UserMixin):
 class NguoiBenh(ThongTin):
     diaChi = Column(String(255),nullable = False)
     phieuLichDat = relationship('PhieuLichDat',backref = 'nguoiBenh',lazy = True)
+    phieuKhamBenh = relationship('PhieuKhamBenh',backref = 'nguoiBenh',lazy = True)
 
     def getAge(self):
         return datetime.now().year - self.ngaySinh.year
@@ -95,7 +96,7 @@ class PhieuKhamBenh(db.Model):
     trieuChung = Column(String(255),nullable = False)
     duDoanLoaiBenh = Column(String(255),nullable = False)
     bacSi_id = Column(Integer,ForeignKey(NguoiDung.id),nullable = False)
-    benhNhan_id = Column(Integer,ForeignKey(NguoiBenh.id),nullable = False)
+    nguoiBenh_id = Column(Integer,ForeignKey(NguoiBenh.id),nullable = False)
     phieuDichVu = relationship('PhieuDichVu',backref = backref('phieuKham',uselist = False)) 
     hoaDonThanhToan = relationship('HoaDonThanhToan', backref = backref('phieuKham',uselist = False))
 
@@ -165,7 +166,8 @@ class PhieuLichDat(db.Model):
     trangThai = Column(Boolean,nullable = False,default = False)
     caKham = Column(String(10),nullable = False) # sang, chieu, toi
     # Nguoi benh dat lich
-    nguoiBenh_id = Column(Integer,ForeignKey(NguoiBenh.id),nullable = False)\
+    nguoiBenh_id = Column(Integer,ForeignKey(NguoiBenh.id),nullable = False)
+    hoanThanh = Column(Boolean, default=False)
     
     def ngayKham_str(self):
         return self.ngayKham.strftime('%Y-%m-%d')

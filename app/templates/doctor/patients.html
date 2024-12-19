@@ -21,9 +21,9 @@
         </div>
         <div class="sort d-flex align-items-center">
             <select class="form-select">
-                <option value="date" selected>Date</option>
-                <option value="name">Name</option>
-                <option value="age">Age</option>
+                <option value="ngay_kham" selected>Date</option>
+                <option value="ten_benh_nhan">Name</option>
+                <option value="ngay_sinh    ">Age</option>
             </select>
             <div id="sort-type" class=" d-flex align-items-center">
                 <i class="fas fa-sort-amount-down"></i>
@@ -35,17 +35,18 @@
                     {% if page == 1 %}
                         disabled
                     {% endif %}">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <i class="fas fa-angle-left"></i></a>
+                    
+                    <button class="page-link" id="prev_page"><i class="fas fa-angle-left"></i></button>
                 </li>                
                 <li class="page-item active" aria-current="page">
                     <div class="div d-flex align-items-center text-center">
-                        <input type="text" class="form-control" value="1" style="width: 50px;" />
+                        <input type="text" class="form-control" value="1" style="width: 50px;" id="page_index" />
                         <span>/</span>
                         <span class="total-page" style="width: 50px;" >10</span>
                     </div>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="#"> <i class="fas fa-angle-right"></i></a>
+                    <button class="page-link" id="next_page" ><i class="fas fa-angle-right"></i></button>
                 </li>
             </ul>
         </nav>          
@@ -60,7 +61,7 @@
         </a>
     </div>
     {% for i in range(1, 10) %}
-    <div class="card p-3 card-profile shadow-sm">
+    <div class="examination_item card p-3 card-profile shadow-sm">
         <div class="d-flex align-items-center mb-3">
             <div class="profile-img me-3" style="width: 50px; height: 50px;">
                 <img src="{{url_for('static', filename='images/user.png')}}" alt="" class="w-100">

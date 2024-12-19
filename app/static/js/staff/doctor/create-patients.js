@@ -154,28 +154,28 @@ function init() {
     // Tìm bệnh nhân
     $(".search-box input").on("input", async function() {
         const text = $(this).val();
-        // const data = await fetch(`/api/patient?name=${text}`)
-        //     .then(response => response.json())
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //         return {"error": "Error"};
-        //     })
+        const data = await fetch(`/api/patient?q=${text}`)
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error:', error);
+                return {"error": "Error"};
+            })
         const $recommend = $('.search-box .results ul');
         $recommend.empty();
         // if (data.error) {
         //     $recommend.append(`<li class="result-item" style="color: red;">Không tìm thấy bệnh nhân</li>`);
         //     return;
         // }
-        const data = [{
-            "id": 1,
-            "name": "Nguyễn Văn A",
-            "phone": "0123456789",
-            "avatar": "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
-            "age:": 20,
-            "gender": "Nam",
-            "blood_type": "A",
-            "last_examination": "20/10/2021"
-        }]
+        // const data = [{
+        //     "id": 1,
+        //     "name": "Nguyễn Văn A",
+        //     "phone": "0123456789",
+        //     "avatar": "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
+        //     "age:": 20,
+        //     "gender": "Nam",
+        //     "blood_type": "A",
+        //     "last_examination": "20/10/2021"
+        // }]
         data.forEach(patient => {
             const $item = $('<li>', { class: 'result-item', 'id-patient': patient.id });
             $item.html(`
