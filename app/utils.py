@@ -213,9 +213,11 @@ def add_appointments(ngayDat, hoTen):
     db.session.commit()
 
 def check_user(info):
-    q = NguoiBenh.query.filter_by(email=info).first()
-    if q:
-        return q
+    q_email = NguoiBenh.query.filter_by(email=info).first()
+    q_phone = NguoiBenh.query.filter_by(soDienThoai=info).first()
+
+    if q_email or q_phone:# Nếu đã tồn tại email hay số điện thoại
+        return q_email if q_email else q_phone
     else:
         return None
 

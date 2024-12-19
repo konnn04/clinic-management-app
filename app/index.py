@@ -35,6 +35,9 @@ def index():
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
+    if not session.get('current_user'):
+        print(session['current_user'])
+        return redirect(url_for('patient_login'))
     return render_template('appointment.html')
 
 @app.route('/staff/profile', methods=['GET', 'POST'])
@@ -92,19 +95,19 @@ def patient_register():
 @app.route('/send-otp',methods=['POST'])
 def send_otp():
     data = request.json
-    info = data.get('info')
+    info = data.get('info') # Lấy thông tin có thể là số điện thoại hoặc email
 
     current_user = utils.check_user(info)
-    print(current_user.to_dict())
 
     if current_user:
+        print(current_user.to_dict())
         otp = str(random.randint(100000, 999999))
         session['current_user'] = current_user.to_dict()
-        session['current_user']['otp']=otp
+        session['current_user']['otp']=otp # Thêm trường otp để kiểm tra
         print(otp)
-        if '@' in info:
+        if '@' in info: # Nếu như là email
             return utils.send_otp_to_email(info,otp)
-        else:
+        else: # Nếu như là số điện thoại
             pass
     else:
         return jsonify({"message" : "Authentication failed"}),401
@@ -121,7 +124,7 @@ def patient_login():
         if otp.__eq__(current_user['otp']):
             return redirect(url_for('index'))
         else:
-            msg = "OTP không hợp lệ"
+            msg = "OTP không hợp lệ!!!"
     return render_template('login.html',msg=msg)
 
 @app.route('/logout')
