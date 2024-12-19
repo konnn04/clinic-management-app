@@ -1,8 +1,11 @@
 import json
+from crypt import methods
 # from crypt import methods
 from datetime import datetime
 
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, session, Response
+from sqlalchemy import false
+
 from app import app, utils, login_manager, roles_required, dao
 from flask_login import current_user, login_required, logout_user, login_user
 from app import utils
@@ -10,7 +13,7 @@ import pdb
 import cloudinary
 from cloudinary.uploader import upload
 
-from app.models import NguoiDung, VaiTro
+from app.models import NguoiDung, VaiTro, NguoiBenh
 
 host = '0.0.0.0'
 port = 5100
@@ -27,6 +30,10 @@ def update_template_context():
         'funcs': utils.get_nav(current_user)
     }
 
+@app.template_filter('format_money')
+def format_money(value):
+    return f"{value:,.0f} VND"
+
 @login_manager.user_loader
 def load_user(user_id):
     return NguoiDung.query.get(int(user_id))
@@ -39,50 +46,43 @@ def index():
 def appointment():
     return render_template('appointment.html')
 
+# test api start
+@app.route('/add_session', methods=['GET'])
+def add_session():
+    u = session.get('current_user')
+    if not u:
+        u = NguoiBenh.query.get(1)
+        print(u.to_dict())
+        session['current_user'] = u.to_dict()
+    return redirect('/appointment/history')
+
+# test api end
+
 @app.route('/appointment/history', methods=['GET'])
 def appointment_history():
-    # login_session = session().get('login_session')
-    # if not login_session:
-    #     return redirect(url_for('guest_login'))
+    u = session.get('current_user')
+    if not u:
+        return redirect(url_for('guest_login'))
     return render_template('appointment_history.html')
 
-
-@app.route('/api/appointment/history/detail/<int:order_id>', methods=['GET'])
+@app.route('/appointment/history/detail/<int:order_id>', methods=['GET'])
 def appointment_history_detail(order_id):
+    u = session.get('current_user')
+    if not u:
+        return redirect(url_for('guest_login'))
 
-    # login_session = session().get('login_session')
-
-    # if not login_session:
-    #     return jsonify({'message': 'User not logged in'}), 401
-    #
-    # try:
-    #     appointment_history_detail = dao.get_appointment_history(login_session['user_id'], order_id)
-    #
-    #     if appointment_history_detail:
-    #         return jsonify({"appointment_history": appointment_history_detail}), 200
-    #     else:
-    #         return jsonify({'message': 'Appointment not found'}), 404
-    #
-    # except Exception as ex:
-    #     print(f"Error: {ex}")
-    #     return jsonify({'message': 'An error occurred while fetching appointment details'}), 500
-
-    # test template
-    return render_template('appointment_history_detail.html')
+    data = dao.get_appointment_history_detail(u['id'], order_id)
+    return render_template('appointment_history_detail.html', data=data)
 
 
 @app.route('/api/appointment/history', methods=['GET'])
 def lookup_appointment_history():
-    login_session = session().get('login_session')
-
     try:
-        appointment_histories = dao.get_appointment_history(login_session.user_id)
-        return jsonify({"appointment_histories": appointment_histories}), 200
+        u = session.get('current_user')
+        appointment_histories = dao.get_appointment_history(u['id'])
+        return jsonify(appointment_histories), 200
     except Exception as ex:
-        return jsonify({'message': 'error'}), 500
-
-
-
+        return jsonify({'message': ex}), 500
 
 @app.route('/staff/profile', methods=['GET', 'POST'])
 @login_required

@@ -1,14 +1,29 @@
-table {
-    border-collapse: collapse;
-    width: 100%;
+.main-section{
+
+
+}
+.section {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+table{
+    table-layout: fixed;
+
+}
+th{
+    width: 25%;
+    /*background-color: #F2F2F2 !important;*/
 }
 
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
+.status {
+    font-weight: bold;
 }
 
-th {
-    background-color: #f2f2f2;
+.text-success {
+    color: green !important;
+}
+
+.text-danger {
+    color: red !important;
 }

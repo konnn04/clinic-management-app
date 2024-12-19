@@ -5,65 +5,127 @@
 {% endblock %}
 
 {% block content %}
-    <table>
-        <tr>
-            <td>Mã khám bệnh:</td>
-            <td>#19191999</td>
-            <td>Họ và Tên:</td>
-            <td>Nguyễn Văn Anh</td>
-        </tr>
-        <tr>
-            <td>Ngày khám:</td>
-            <td>19/12/1999</td>
-            <td>Bác sĩ khám:</td>
-            <td>Mohamed Sala</td>
-        </tr>
-        <tr>
-            <td colspan="4">
-                <h2>Thông tin đơn thuốc</h2>
-                <table>
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên thuốc</th>
-                        <th>Đơn vị</th>
-                        <th>Giá tiền</th>
-                        <th>Ghi chú</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Para</td>
-                        <td>Vi</td>
-                        <td>1 VND</td>
-                        <td>ABC</td>
-                    </tr>
-                </table>
-                <p>Tổng tiền: 1.000.000 VND</p>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4">
-                <h2>Thông tin thanh toán</h2>
-                <table>
-                    <tr>
-                        <td>Tiền khám</td>
-                        <td>999.999.999 VND</td>
-                    </tr>
-                    <tr>
-                        <td>Tiền thuốc</td>
-                        <td>1 VND</td>
-                    </tr>
-                    <tr>
-                        <td>Tổng tiền</td>
-                        <td>1.000.000 VND</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+    <div class="container my-4 shadow rounded">
+        <h1 class="text-center text-dark pt-5">Thông tin Phiếu Khám</h1>
 
+        <div class="section mt-2 p-3 rounded ">
+            <h2>Bác sĩ</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Họ và tên</th>
+                    <td>{{ data.bacSi.ho }} {{ data.bacSi.ten }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ data.bacSi.email }}</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại</th>
+                    <td>{{ data.bacSi.soDienThoai }}</td>
+                </tr>
+                <tr>
+                    <th>Chức vụ</th>
+                    <td>{{ data.bacSi.role }}</td>
+                </tr>
+            </table>
 
-    {#    <script src="{{ url_for('static', filename='js/appointment_history_detail.js') }}"></script>#}
-    {#    <script>#}
-    {#        document.addEventListener('DOMContentLoaded', getAppointmentHistory);#}
-    {#    </script>#}
+            <h2>Bệnh nhân</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Họ và tên</th>
+                    <td>{{ data.benhNhan.ho }} {{ data.benhNhan.ten }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ data.benhNhan.email }}</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại</th>
+                    <td>{{ data.benhNhan.soDienThoai }}</td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ</th>
+                    <td>{{ data.benhNhan.diaChi }}</td>
+                </tr>
+                <tr>
+                    <th>Ngày sinh</th>
+                    <td>{{ data.benhNhan.ngaySinh.strftime('%a, %d %b %Y %H:%M:%S GMT') }}</td>
+                </tr>
+            </table>
+
+            <h2>Thông tin khám</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Ngày khám</th>
+                    <td>{{ data.ngayKham.strftime('%a, %d %b %Y %H:%M:%S GMT') }}</td>
+                </tr>
+                <tr>
+                    <th>Triệu chứng</th>
+                    <td>{{ data.trieuChung }}</td>
+                </tr>
+                <tr>
+                    <th>Dự đoán loại bệnh</th>
+                    <td>{{ data.duDoanLoaiBenh }}</td>
+                </tr>
+            </table>
+
+            <h2>Dịch vụ khám</h2>
+            <table class="table table-bordered">
+                {% if data.phieuDichVu %}
+                    <tr>
+                        <th>Ghi chú dịch vụ</th>
+                        <td>{{ data.phieuDichVu[0].ghiChu }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ngày lập</th>
+                        <td>{{ data.phieuDichVu[0].ngayLap }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center">Không có dịch vụ khám.</td>
+                    </tr>
+                {% endif %}
+            </table>
+            <h2>Hóa đơn thanh toán</h2>
+            <table class="table table-bordered">
+                {% if data.hoaDonThanhToan %}
+                    <tr>
+                        <th>Ngày khám</th>
+                        <td>{{ data.hoaDonThanhToan[0].ngayKham }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ngày lập hóa đơn</th>
+                        <td>{{ data.hoaDonThanhToan[0].ngayLapHoaDon }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tiền khám</th>
+                        <td>{{ data.hoaDonThanhToan[0].tienKham | format_money }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tiền thuốc</th>
+                        <td>{{ data.hoaDonThanhToan[0].tienThuoc | format_money }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tổng tiền</th>
+                        <td>{{ data.hoaDonThanhToan[0].tongTien | format_money }}</td>
+                    </tr>
+                    <tr>
+                        <th>Trạng thái</th>
+                        <td class="status {% if data.hoaDonThanhToan[0].trangThai %}text-success{% else %}text-danger{% endif %}">
+                            {% if data.hoaDonThanhToan[0].trangThai %}
+                                Đã thanh toán
+                            {% else %}
+                                Chưa thanh toán
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center">Không có thông tin hóa đơn thanh toán.</td>
+                    </tr>
+                {% endif %}
+            </table>
+
+        </div>
+    </div>
 {% endblock %}

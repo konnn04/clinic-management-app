@@ -11,15 +11,8 @@
             <button onclick="filterAppointments()">Tra cứu</button>
         </div>
 
-        <div class="appointment-history" id="appointment-history">
-            <div class="appointment-item">
-                <div class="info">
-                    <span class="id-value"><strong>Mã khám bệnh:</strong> #19191999</span>
-                    <span class="date-value"><strong>Ngày khám:</strong> 19/12/1999</span>
-                    <span class="total-value"><strong>Tổng tiền:</strong> 1.000.000 VNĐ</span>
-                </div>
-                <button class="details-button" onclick="openAppointmentDetail(19191999)">Xem chi tiết</button>
-            </div>
+        <div class="history" id="appointment-history">
+
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/appointment_history.js') }}"></script>

@@ -1,5 +1,5 @@
 .container1 {
-    width: 80%;
+    width: 100%;
     margin: 30px auto;
     background-color: #f8f9fa;
     color: #333;
@@ -40,7 +40,7 @@
     background-color: #87b3f7;
 }
 
-.appointment-history {
+.history {
     margin-top: 20px;
 }
 
