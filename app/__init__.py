@@ -34,7 +34,7 @@ def roles_required(roles):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            if current_user.role not in roles:
+            if 'role' not in current_user.__dict__ or current_user.role not in roles:
                 return "You don't have permission to access this page"
             return func(*args, **kwargs)
         return wrapper

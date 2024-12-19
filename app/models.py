@@ -24,6 +24,9 @@ class ThongTin(db.Model):
     email = Column(String(50),nullable=True,unique=True)
     ghiChu = Column(String(255),nullable = True)
 
+    def hoTen(self):
+        return f"{self.ho} {self.ten}"
+
 class NguoiDung(ThongTin, UserMixin): 
     __tablename__ = 'nguoiDung'  
     taiKhoan = Column(String(50),nullable = False,unique = True)
@@ -39,7 +42,7 @@ class NguoiDung(ThongTin, UserMixin):
             'id': self.id,
             'ho': self.ho,
             'ten': self.ten,
-            'ngaySinh': self.ngaySinh,
+            'ngaySinh': self.ngaySinh.strftime('%Y-%m-%d') if self.ngaySinh else None,
             'soDienThoai': self.soDienThoai,
             'email': self.email,
             'ghiChu': self.ghiChu,
@@ -64,7 +67,7 @@ class NguoiBenh(ThongTin):
         return datetime.now().year - self.ngaySinh.year
     
     def lanCuoiGhe(self):
-        return PhieuLichDat.query.filter(PhieuLichDat.nguoiBenh_id == self.id).order_by(PhieuLichDat.ngayHen.desc()).first().ngayHen
+        return PhieuLichDat.query.filter(PhieuLichDat.nguoiBenh_id == self.id).order_by(PhieuLichDat.ngayKham.desc()).first().ngayKham
     
 
 
@@ -158,11 +161,14 @@ class DonThuoc(db.Model):
 class PhieuLichDat(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
     ngayDat = Column(DateTime,nullable = False,default = datetime.now())
-    ngayHen = Column(DateTime,nullable = False)
+    ngayKham = Column(DateTime,nullable = False)
     trangThai = Column(Boolean,nullable = False,default = False)
-    caHen = Column(String(10),nullable = False) # sang, chieu, toi
+    caKham = Column(String(10),nullable = False) # sang, chieu, toi
     # Nguoi benh dat lich
-    nguoiBenh_id = Column(Integer,ForeignKey(NguoiBenh.id),nullable = False)
+    nguoiBenh_id = Column(Integer,ForeignKey(NguoiBenh.id),nullable = False)\
+    
+    def ngayKham_str(self):
+        return self.ngayKham.strftime('%Y-%m-%d')
 
 class CaLamViecBacSi(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
@@ -235,16 +241,16 @@ def initPhieuLichDat():
     db.session.add(nb2)
     db.session.add(nb3)
     db.session.add(nb4)
-    p1 = PhieuLichDat(ngayHen = datetime.now(),trangThai = False,nguoiBenh_id = 1, caHen = 'sang')
-    p2 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 2, caHen = 'chieu')
-    p3 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 3, caHen = 'sang')
-    p4 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 4, caHen = 'chieu')
-    p5 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 1, caHen = 'chieu')
-    p6 = PhieuLichDat(ngayHen = datetime(2025, 1, 15),trangThai = False,nguoiBenh_id = 2, caHen = 'chieu')
-    p7 = PhieuLichDat(ngayHen = datetime(2025, 1, 13),trangThai = False,nguoiBenh_id = 3, caHen = 'sang')
-    p8 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 4, caHen = 'chieu')
-    p9 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 5, caHen = 'sang')
-    p10 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 5, caHen = 'chieu')
+    p1 = PhieuLichDat(ngayKham = datetime.now(),trangThai = False,nguoiBenh_id = 1, caKham = 'sang')
+    p2 = PhieuLichDat(ngayKham = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 2, caKham = 'chieu')
+    p3 = PhieuLichDat(ngayKham = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 3, caKham = 'sang')
+    p4 = PhieuLichDat(ngayKham = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 4, caKham = 'chieu')
+    p5 = PhieuLichDat(ngayKham = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 1, caKham = 'chieu')
+    p6 = PhieuLichDat(ngayKham = datetime(2025, 1, 15),trangThai = False,nguoiBenh_id = 2, caKham = 'chieu')
+    p7 = PhieuLichDat(ngayKham = datetime(2025, 1, 13),trangThai = False,nguoiBenh_id = 3, caKham = 'sang')
+    p8 = PhieuLichDat(ngayKham = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 4, caKham = 'chieu')
+    p9 = PhieuLichDat(ngayKham = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 5, caKham = 'sang')
+    p10 = PhieuLichDat(ngayKham = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 5, caKham = 'chieu')
     db.session.add(p1)
     db.session.add(p2)
     db.session.add(p3)

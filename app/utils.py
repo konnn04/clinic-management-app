@@ -152,28 +152,5 @@ def get_diseases(q=None, exists = "", limit = 5):
         diseases = diseases[0:limit]
     return diseases
 
-def get_patients(draw, length, start, search_value, sort_column_index, sort_direction):
-    columns = ['id', 'hoTen','gioiTinh', 'ngaySinh', 'soDienThoai', 'lanCuoiGhe']
-    sort_column_name = columns[sort_column_index]
-    patients = NguoiBenh.query
-    if search_value:
-        patients = patients.filter(NguoiBenh.hoTen.like(f"%{search_value}%"))
-    total = patients.count()
-    # sort_direction: 'asc' or 'desc'
-    # sort_column_name: Tên cột cần sắp xếp
-    patients = patients.order_by(text(f"{sort_column_name} {sort_direction}")).offset(start).limit(length).all()
-    patient_list = [{
-        'id': patient.id,
-        'hoTen': patient.hoTen,  
-        'gioiTinh': "Nam" if patient.gioiTinh else "Nữ",
-        'ngaySinh': patient.ngaySinh.strftime('%Y-%m-%d'),
-        'soDienThoai': patient.soDienThoai,
-        'lanCuoiGhe': patient.lanCuoiGhe().strftime('%Y-%m-%d') if patient.lanCuoiGhe() is not None else ""
-    } for patient in patients]
-    return {
-        'draw': draw,
-        'recordsTotal': total,
-        'recordsFiltered': total,
-        'data': patient_list
-    }
+
 

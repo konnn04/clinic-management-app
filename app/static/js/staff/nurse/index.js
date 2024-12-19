@@ -84,21 +84,24 @@ function patient_table(){
         "serverSide": true,
         "ajax": {
             "url": "/api/patient-list",
+            "type": "GET",
             "data": function(d) {
-                return $.extend({}, d, {
+                return $.extend({}, d, d.order.length ? {
                     "sort": d.columns[d.order[0].column].data,
                     "order": d.order[0].dir
-                });
+                } : {});
             }
         },
         "columns": [
             { "data": "id" },
-            { "data": "hoTen" },
+            { "data": "ho" },
+            { "data": "ten" },
             { "data": "gioiTinh" },
             { "data": "ngaySinh" },
             { "data": "soDienThoai" },
             { "data": "lanCuoiGhe"},
         ],
+        "order": [[0, 'desc']],
         "language": {
             "paginate": {
                 "first": "<i class='fas fa-angle-double-left'></i>",

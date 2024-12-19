@@ -20,30 +20,35 @@
         <h5>Tình trạng</h5>
         <div class="ms-2 d-flex">
             <select name="status" id="status" class="form-select">
-                <option value="False">Chưa lên lịch</option>
-                <option value="True">Đã lên lịch</option>
+                <option value="false" selected>Chưa lên lịch</option>
+                <option value="true">Đã lên lịch</option>
             </select>
         </div>
     </div>
 </div>
 
-<div class="table">
-    <table id="schedule_table" class="display">
+<div class="table p-3 mt-3" style="background-color: #fff; border-radius: 1rem;">
+    <table id="schedule-table" class="display">
         <thead>
             <tr>
-                <th>Mã lịch khám</th>
-                <th>Mã bệnh nhân</th>
-                <th>Họ tên</th>
+                <th>#</th>
+                <th style="width: 7%;">Mã LK</th>
+                <th style="width: 7%;">Mã BN</th>
+                <th>Họ lót</th>
+                <th>Tên</th>
                 <th>Ngày sinh</th>
                 <th>Giới tính</th>
-                <th>Giờ khám</th>
-                <th>Bác sĩ</th>
+                <th>Ca khám</th>
                 <th>Thao tác</th>
             </tr>
         </thead>
         <tbody>
             <!-- Auto fill -->
         </tbody>
+    </table>
+    <!-- <div id="control">
+
+    </div> -->
 </div>
 
 <script src="{{url_for('static', filename='js/staff/nurse/schedule-list.js')}}"></script>

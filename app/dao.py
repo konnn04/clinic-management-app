@@ -72,31 +72,92 @@ def patient_stat():
         'disease_stat': disease_stat
     }
     
-def load_schedule_list(date,type, draw, length, start, search, sort_column, sort_order):
-    query = PhieuLichDat.query.filter(PhieuLichDat.ngay == date, PhieuLichDat.loai == type)
+def load_schedule_list(date,status, draw, length, start, search, sort_column, sort_order):
+    query = db.session.query(
+        PhieuLichDat.id.label('id'),
+        PhieuLichDat.ngayKham,
+        PhieuLichDat.trangThai,
+        PhieuLichDat.caKham,
+        NguoiBenh.id.label('nguoiBenh_id'),
+        NguoiBenh.ho,
+        NguoiBenh.ten,
+        NguoiBenh.soDienThoai,
+        NguoiBenh.ngaySinh,
+        NguoiBenh.gioiTinh
+    ).join(NguoiBenh, PhieuLichDat.nguoiBenh_id == NguoiBenh.id)
+
+    query = query.filter(db.func.date(PhieuLichDat.ngayKham) == date, PhieuLichDat.trangThai == status)
     if search:
         query = query.filter(
             db.or_(
-                PhieuLichDat.nguoiBenh.soDienThoai.like(f"%{search}%"),
-                PhieuLichDat.nguoiBenh.hoten.like(f"%{search}%")
+            (NguoiBenh.ho + " " + NguoiBenh.ten).like(f"%{search}%"),
+            NguoiBenh.soDienThoai.like(f"%{search}%")
             )
         )
     total = query.count()
-    # Tạm tắt sort
-    query = query.order.by(PhieuLichDat.ca_id)
+    query = query.order_by(text(f"{sort_column} {sort_order}"))
     schedules = query.offset(start).limit(length).all()
     schedule_list = [{
         'id': schedule.id,
-        'nguoiBenh_id': schedule.nguoiBenh.id,
-        'hoTen': schedule.nguoiBenh.hoten,
-        'ngaySinh': schedule.nguoiBenh.ngaySinh.strftime('%Y-%m-%d'),
-        'gioiTinh': 'Nam' if schedule.nguoiBenh.gioiTinh else 'Nữ',
-        'gioKham': schedule.ca.gio_kham(),
-        'bacSi': schedule.bacSi.hoten if schedule.bacSi else 'Không chọn',
+        'nguoiBenh_id': schedule.nguoiBenh_id,
+        'ho': schedule.ho,
+        'ten': schedule.ten,
+        'ngaySinh': schedule.ngaySinh.strftime('%Y-%m-%d'),
+        'gioiTinh': 'Nam' if schedule.gioiTinh else 'Nữ',
+        'caKham': {"sang": "Sáng", "chieu": "Chiều", "toi":"Tối"}[schedule.caKham],
     } for schedule in schedules]
+    
     return {
         'draw': draw,
         'recordsTotal': total,
         'recordsFiltered': total,
         'data': schedule_list
+    }
+
+def get_patients(draw, length, start, search_value, sort_column_index, sort_direction):
+    columns = ['id', 'ho', 'ten','gioiTinh', 'ngaySinh', 'soDienThoai', 'lanCuoiGhe']
+    
+    patients = NguoiBenh.query
+    if search_value:
+        patients = patients.filter(
+            db.or_(
+            (NguoiBenh.ho + " " + NguoiBenh.ten).like(f"%{search_value}%"),
+            NguoiBenh.soDienThoai.like(f"%{search_value}%")
+            )
+        )
+    total = patients.count()
+    # sort_direction: 'asc' or 'desc'
+    # sort_column_name: Tên cột cần sắp xếp
+    sort_column_map = {
+        0: NguoiBenh.id,
+        1: NguoiBenh.ho,
+        2: NguoiBenh.ten,
+        3: NguoiBenh.gioiTinh,
+        4: NguoiBenh.ngaySinh,
+        5: NguoiBenh.soDienThoai,
+        6: NguoiBenh.lanCuoiGhe
+    }
+
+    sort_column = columns[sort_column_index]
+    if sort_direction == 'asc':
+        patients = patients.order_by(getattr(NguoiBenh, sort_column).asc())
+    else:
+        patients = patients.order_by(getattr(NguoiBenh, sort_column).desc())
+    
+    patients = patients.offset(start).limit(length).all()
+
+    patient_list = [{
+        'id': patient.id,
+        'ho': patient.ho,
+        'ten': patient.ten,
+        'gioiTinh': "Nam" if patient.gioiTinh else "Nữ",
+        'ngaySinh': patient.ngaySinh.strftime('%Y-%m-%d'),
+        'soDienThoai': patient.soDienThoai,
+        'lanCuoiGhe': patient.lanCuoiGhe().strftime('%Y-%m-%d') if patient.lanCuoiGhe() is not None else ""
+    } for patient in patients]
+    return {
+        'draw': draw,
+        'recordsTotal': total,
+        'recordsFiltered': total,
+        'data': patient_list
     }

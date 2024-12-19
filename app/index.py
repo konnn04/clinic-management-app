@@ -204,10 +204,12 @@ def get_patients():
     draw = request.args.get('draw', type=int, default=1) 
     start = request.args.get('start', type=int, default=0)
     length = request.args.get('length', type=int, default=10)
-    sort_column_index = request.args.get('order[0][column]', type=int, default=0)
-    sort_direction = request.args.get('order[0][dir]', default='asc')
+    sort_column_index = request.args.get('sort', type=int, default=0)
+    sort_direction = request.args.get('order', default='asc')
     search_value = request.args.get('search[value]', default='')
-    return jsonify(utils.get_patients(
+
+    print(draw, start, length, sort_column_index, sort_direction, search_value)
+    return jsonify(dao.get_patients(
         draw=draw, 
         length=length,
         start= start, 
@@ -218,15 +220,26 @@ def get_patients():
 @app.route('/api/schedule-list', methods=['GET'])
 @roles_required([VaiTro.Y_TA])
 def get_schedule_list():
-    draw = int(request.form.get('draw', 1))
-    start = int(request.form.get('start', 0))
-    length = int(request.form.get('length', 10))
-    search_value = request.form.get('search[value]', '')
-    order_column = int(request.form.get('order[0][column]', 0))
-    order_dir = request.form.get('order[0][dir]', 'asc')
-    type = request.args.get('type')
-    date = request.args.get('date')
-    return jsonify(dao.load_schedule_list(date=date, type=type, draw=draw, length=length, start=start, search=search_value, sort_column=order_column, sort_order=order_dir))
+    draw = int(request.args.get('draw', 1))
+    start = int(request.args.get('start', 0))
+    length = int(request.args.get('length', 10))
+    search_value = request.args.get('search[value]', '')
+    order_column = request.args.get('sort', 'id')
+    order_dir = request.args.get('order', 'asc')
+    status = request.args.get('schedule_status', 'false')
+    date = request.args.get('date', datetime.now().strftime('%Y-%m-%d'))
+    # print(draw, start, length, search_value, order_column, order_dir, request.args.get('schedule_status'), request.args.get('date'))
+    status = True if status == 'true' else False
+    return jsonify(
+        dao.load_schedule_list(
+            date=date, status=status, 
+            draw=draw, length=length, 
+            start=start, 
+            search=search_value,
+            sort_column=order_column, 
+            sort_order=order_dir
+            )
+        )
 
 @app.errorhandler(404)
 def page_not_found(e):
