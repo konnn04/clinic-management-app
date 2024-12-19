@@ -24,6 +24,18 @@ class ThongTin(db.Model):
     email = Column(String(50),nullable=True,unique=True)
     ghiChu = Column(String(255),nullable = True)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'ho': self.ho,
+            'ten': self.ten,
+            'gioiTinh' : self.gioiTinh,
+            'ngaySinh' : self.ngaySinh,
+            'soDienThoai': self.soDienThoai,
+            'email': self.email,
+            'ghiChu': self.ghiChu,
+        }
+
 class NguoiDung(ThongTin, UserMixin): 
     __tablename__ = 'nguoiDung'  
     taiKhoan = Column(String(50),nullable = False,unique = True)
@@ -60,13 +72,17 @@ class NguoiBenh(ThongTin):
     diaChi = Column(String(255),nullable = False)
     phieuLichDat = relationship('PhieuLichDat',backref = 'nguoiBenh',lazy = True)
 
+    def to_dict(self):
+        data = super().to_dict()
+        data['diaChi'] = self.diaChi
+        return data
+
     def getAge(self):
         return datetime.now().year - self.ngaySinh.year
     
     def lanCuoiGhe(self):
         return PhieuLichDat.query.filter(PhieuLichDat.nguoiBenh_id == self.id).order_by(PhieuLichDat.ngayHen.desc()).first().ngayHen
     
-
 
 class QuyDinh(db.Model):
     id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
@@ -230,36 +246,38 @@ def initPhieuLichDat():
     nb3 = NguoiBenh(ho = 'Nguyen Van', ten = 'C',ngaySinh = datetime.now(),soDienThoai = '0123456787',email = 'a3@gmail.com',diaChi = '123 abc')
     nb4 = NguoiBenh(ho = 'Le Thi', ten = 'D', ngaySinh = datetime.now(), soDienThoai = '0123456786',email = 'a5@gmail.com',diaChi = '123 abc', gioiTinh = False)
     nb5 = NguoiBenh(ho = 'Pham Thi', ten = 'E', ngaySinh = datetime.now(), soDienThoai = '0123456785',email = 'qqq@asd.com',diaChi = '123 abc', gioiTinh = False)
-    db.session.add(nb5)
-    db.session.add(nb1)
-    db.session.add(nb2)
-    db.session.add(nb3)
-    db.session.add(nb4)
-    p1 = PhieuLichDat(ngayHen = datetime.now(),trangThai = False,nguoiBenh_id = 1, caHen = 'sang')
-    p2 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 2, caHen = 'chieu')
-    p3 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 3, caHen = 'sang')
-    p4 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 4, caHen = 'chieu')
-    p5 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 1, caHen = 'chieu')
-    p6 = PhieuLichDat(ngayHen = datetime(2025, 1, 15),trangThai = False,nguoiBenh_id = 2, caHen = 'chieu')
-    p7 = PhieuLichDat(ngayHen = datetime(2025, 1, 13),trangThai = False,nguoiBenh_id = 3, caHen = 'sang')
-    p8 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 4, caHen = 'chieu')
-    p9 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 5, caHen = 'sang')
-    p10 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 5, caHen = 'chieu')
-    db.session.add(p1)
-    db.session.add(p2)
-    db.session.add(p3)
-    db.session.add(p4)
-    db.session.add(p5)
-    db.session.add(p6)
-    db.session.add(p7)
-    db.session.add(p8)
-    db.session.add(p9)
-    db.session.add(p10)
+    nb6 = NguoiBenh(ho='Phi Minh', ten='Quang', ngaySinh=datetime.now(), soDienThoai='0123456781', email='dangcapcothua2903@gmail.com',diaChi='123 abc')
+    db.session.add(nb6)
+    # db.session.add(nb5)
+    # db.session.add(nb1)
+    # db.session.add(nb2)
+    # db.session.add(nb3)
+    # db.session.add(nb4)
+    # p1 = PhieuLichDat(ngayHen = datetime.now(),trangThai = False,nguoiBenh_id = 1, caHen = 'sang')
+    # p2 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 2, caHen = 'chieu')
+    # p3 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 3, caHen = 'sang')
+    # p4 = PhieuLichDat(ngayHen = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 4, caHen = 'chieu')
+    # p5 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 1, caHen = 'chieu')
+    # p6 = PhieuLichDat(ngayHen = datetime(2025, 1, 15),trangThai = False,nguoiBenh_id = 2, caHen = 'chieu')
+    # p7 = PhieuLichDat(ngayHen = datetime(2025, 1, 13),trangThai = False,nguoiBenh_id = 3, caHen = 'sang')
+    # p8 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 4, caHen = 'chieu')
+    # p9 = PhieuLichDat(ngayHen = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 5, caHen = 'sang')
+    # p10 = PhieuLichDat(ngayHen = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 5, caHen = 'chieu')
+    # db.session.add(p1)
+    # db.session.add(p2)
+    # db.session.add(p3)
+    # db.session.add(p4)
+    # db.session.add(p5)
+    # db.session.add(p6)
+    # db.session.add(p7)
+    # db.session.add(p8)
+    # db.session.add(p9)
+    # db.session.add(p10)
     db.session.commit()
 
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-        initUser()
-        initPhieuLichDat()
+        # initUser()
+        # initPhieuLichDat()

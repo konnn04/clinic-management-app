@@ -1,12 +1,13 @@
 import json
-# from crypt import methods
 from datetime import datetime
-from flask import render_template, request, jsonify
+from idlelib.rpc import response_queue
+
+from flask import render_template, request, jsonify, session
 from app import app, utils, login_manager, roles_required, dao
 from flask_login import current_user, login_required, logout_user, login_user
 import cloudinary
 from cloudinary.uploader import upload
-
+import random
 from app.models import NguoiDung, VaiTro
 
 host = '0.0.0.0'
@@ -66,6 +67,62 @@ def staff_profile():
     return render_template('staff/profile.html', user_info=user_data)
     
 
+# Patients
+
+@app.route('/register',methods=["GET","POST"])
+def patient_register():
+    msg = ""
+    if request.method.__eq__("POST"):
+        ho = request.form.get('lastName')
+        ten = request.form.get('firstName')
+        email = request.form.get('email')
+        soDienThoai = request.form.get('phone')
+        gioiTinh = int(request.form.get('gender'))
+        ghiChu = request.form.get('note')
+        diaChi = request.form.get('address')
+        ngaySinh = request.form.get('birthday')
+
+        if not soDienThoai and not email:
+            msg = "Phải nhập 1 trong 2 thông tin email hoặc số điện thoại"
+        else:
+            utils.add_patients(ho=ho,ten=ten,email=email,soDienThoai=soDienThoai,ngaySinh=ngaySinh,gioiTinh=gioiTinh,diaChi=diaChi,ghiChu=ghiChu)
+            return redirect(url_for('patient_login'))
+    return render_template('register.html',msg=msg)
+
+@app.route('/send-otp',methods=['POST'])
+def send_otp():
+    data = request.json
+    info = data.get('info')
+
+    current_user = utils.check_user(info)
+    print(current_user.to_dict())
+
+    if current_user:
+        otp = str(random.randint(100000, 999999))
+        session['current_user'] = current_user.to_dict()
+        session['current_user']['otp']=otp
+        print(otp)
+        if '@' in info:
+            return utils.send_otp_to_email(info,otp)
+        else:
+            pass
+    else:
+        return jsonify({"message" : "Authentication failed"}),401
+
+
+
+@app.route('/login',methods = ['GET','POST'])
+def patient_login():
+    msg = ""
+    if request.method.__eq__('POST'):
+        info = request.form.get('info')
+        otp = request.form.get('otp')
+        current_user = session.get('current_user')
+        if otp.__eq__(current_user['otp']):
+            return redirect(url_for('index'))
+        else:
+            msg = "OTP không hợp lệ"
+    return render_template('login.html',msg=msg)
 
 @app.route('/logout')
 def logout():
@@ -103,7 +160,6 @@ def login():
         else:
             print("Another bug")
             return render_template('staff/login.html', msg='Sai tài khoản')
-        
     return render_template('staff/login.html')
 
 

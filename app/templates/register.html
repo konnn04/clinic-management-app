@@ -1,0 +1,75 @@
+{% extends 'layouts/base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="css/appointment.css">
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        {% if msg %}
+            <div class="alert alert-danger">
+                <h4>{{ msg }}</h4>
+            </div>
+        {% endif %}
+
+        <div class="appointment-form col-md-8">
+            <h1>Đăng ký thông tin</h1>
+        </div>
+
+        <div class="appointment-form col-md-8">
+            <form action="{{url_for('patient_register')}}" method="POST" class="row g-3">
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Họ và tên" required>
+                    <label for="lastName">Họ</label>
+                </div>
+
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Họ và tên" required>
+                    <label for="firstName">Tên</label>
+                </div>
+
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Ngày sinh" required>
+                    <label for="birthday">Ngày sinh</label>
+                </div>
+
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    <label for="email">Email</label>
+                </div>
+
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" required>
+                    <label for="phone">Số điện thoại</label>
+                </div>
+
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                    <label for="email">Email</label>
+                </div>
+
+                <div class="form-floating mb-3 col-md-12">
+                    <select name="gender" id="gender" value="1" class="form-select" required>
+                        <option value="1">Nam</option>
+                        <option value="0">Nữ</option>
+                    </select>
+                    <label for="gender">Giới tính</label>
+                </div>
+
+                <div class="form-floating mb-3 col-md-12">
+                    <textarea class="form-control" id="note" name="note" placeholder="Ghi chú"></textarea>
+                    <label for="note">Ghi chú</label>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/patient_login.js') }}"></script>
+{% endblock %}
