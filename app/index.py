@@ -1,18 +1,13 @@
 import json
-from crypt import methods
-# from crypt import methods
 from datetime import datetime
-
-from flask import render_template, request, jsonify, session, Response
-from sqlalchemy import false
-
+from flask import render_template, request, jsonify, session
 from app import app, utils, login_manager, roles_required, dao
 from flask_login import current_user, login_required, logout_user, login_user
 from app import utils
 import pdb
 import cloudinary
 from cloudinary.uploader import upload
-
+import random
 from app.models import NguoiDung, VaiTro, NguoiBenh
 
 host = '0.0.0.0'
@@ -44,6 +39,9 @@ def index():
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
+    if not session.get('current_user'):
+        print(session['current_user'])
+        return redirect(url_for('patient_login'))
     return render_template('appointment.html')
 
 # test api start
@@ -114,6 +112,62 @@ def staff_profile():
     return render_template('staff/profile.html', user_info=user_data)
     
 
+# Patients
+
+@app.route('/register',methods=["GET","POST"])
+def patient_register():
+    msg = ""
+    if request.method.__eq__("POST"):
+        ho = request.form.get('lastName')
+        ten = request.form.get('firstName')
+        email = request.form.get('email')
+        soDienThoai = request.form.get('phone')
+        gioiTinh = int(request.form.get('gender'))
+        ghiChu = request.form.get('note')
+        diaChi = request.form.get('address')
+        ngaySinh = request.form.get('birthday')
+
+        if not soDienThoai and not email:
+            msg = "Phải nhập 1 trong 2 thông tin email hoặc số điện thoại"
+        else:
+            utils.add_patients(ho=ho,ten=ten,email=email,soDienThoai=soDienThoai,ngaySinh=ngaySinh,gioiTinh=gioiTinh,diaChi=diaChi,ghiChu=ghiChu)
+            return redirect(url_for('patient_login'))
+    return render_template('register.html',msg=msg)
+
+@app.route('/send-otp',methods=['POST'])
+def send_otp():
+    data = request.json
+    info = data.get('info') # Lấy thông tin có thể là số điện thoại hoặc email
+
+    current_user = utils.check_user(info)
+
+    if current_user:
+        print(current_user.to_dict())
+        otp = str(random.randint(100000, 999999))
+        session['current_user'] = current_user.to_dict()
+        session['current_user']['otp']=otp # Thêm trường otp để kiểm tra
+        print(otp)
+        if '@' in info: # Nếu như là email
+            return utils.send_otp_to_email(info,otp)
+        else: # Nếu như là số điện thoại
+            pass
+    else:
+        return jsonify({"message" : "Authentication failed"}),401
+
+
+
+@app.route('/login',methods = ['GET','POST'])
+def patient_login():
+    msg = ""
+    if request.method.__eq__('POST'):
+        info = request.form.get('info')
+        otp = request.form.get('otp')
+        current_user = session.get('current_user')
+        if otp.__eq__(current_user['otp']):
+            return redirect(url_for('index'))
+        else:
+            msg = "OTP không hợp lệ!!!"
+    return render_template('login.html',msg=msg)
 
 @app.route('/logout')
 def logout():
@@ -169,7 +223,7 @@ def schedule_list():
         'current': datetime.now().strftime('%Y-%m-%d'),
     }
     return render_template('nurse/schedule-list.html', index=3, list=list_)
-
+    
 
 # Admin
 
@@ -256,11 +310,11 @@ def get_patients():
     sort_direction = request.args.get('order[0][dir]', default='asc')
     search_value = request.args.get('search[value]', default='')
     return jsonify(utils.get_patients(
-        draw=draw,
+        draw=draw, 
         length=length,
-        start= start,
-        search_value=search_value,
-        sort_column_index=sort_column_index,
+        start= start, 
+        search_value=search_value, 
+        sort_column_index=sort_column_index, 
         sort_direction=sort_direction))
 
 @app.route('/api/schedule-list', methods=['GET'])

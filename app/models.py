@@ -31,10 +31,11 @@ class ThongTin(db.Model):
             'id': self.id,
             'ho': self.ho,
             'ten': self.ten,
+            'gioiTinh': self.gioiTinh,
             'ngaySinh': self.ngaySinh,
             'soDienThoai': self.soDienThoai,
             'email': self.email,
-            'ghiChu': self.ghiChu
+            'ghiChu': self.ghiChu,
         }
 
 
@@ -82,7 +83,6 @@ class NguoiBenh(ThongTin):
             # 'phieuLichDat': self.phieuLichDat,
         }
 
-
 class QuyDinh(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     value = Column(Integer, nullable=False)
@@ -112,6 +112,7 @@ class HoaDonThanhToan(db.Model):
             'trangThai': self.trangThai,
             'phieuKham_id': self.phieuKham_id
         }
+
 
 
 class PhieuKhamBenh(db.Model):
@@ -157,6 +158,7 @@ class ChiTietDichVu(db.Model):
 #                          Column('ketQua', String(255), nullable=True)
 #                          )
 
+
 class PhieuDichVu(db.Model):
     __tablename__ = 'phieudichvu'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -174,6 +176,7 @@ class PhieuDichVu(db.Model):
         }
 
 
+
 class LoaiDichVu(db.Model):
     __tablename__ = 'loaidichvu'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -184,11 +187,13 @@ class LoaiDichVu(db.Model):
 
 
 
+
 class DanhMucThuoc(db.Model):
     __tablename__ = 'danhMucThuoc'
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     ten = Column(String(100), nullable=False, unique=True)
     thuoc = relationship('Thuoc', backref='danhMucThuoc', lazy=True)
+
 
 
 class LoHang(db.Model):
@@ -240,6 +245,7 @@ class PhieuLichDat(db.Model):
             'caHen': self.caHen,
             'nguoiBenh_id': self.nguoiBenh_id
         }
+
 
 
 class CaLamViecBacSi(db.Model):
