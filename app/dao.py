@@ -263,16 +263,23 @@ def get_schedules_overview(q):
         NguoiBenh.ngaySinh,
         NguoiBenh.gioiTinh,
         PhieuLichDat.hoanThanh,
-    ).join(NguoiBenh, PhieuLichDat.nguoiBenh_id == NguoiBenh.id)
+    ).join(NguoiBenh, PhieuLichDat.nguoiBenh_id == NguoiBenh.id).filter(PhieuLichDat.trangThai == True, PhieuLichDat.hoanThanh == False, db.func.date(PhieuLichDat.ngayKham) == datetime.now().date())
 
     query = query.filter(
             db.or_(
-            (
-                NguoiBenh.ho + " " + NguoiBenh.ten).like(f"%{q}%"),
-                NguoiDung.ho + " " + NguoiDung.ten).like(f"%{q}%"),
-                NguoiBenh.soDienThoai.like(f"%{q}%")
-            ), PhieuLichDat.hoanThanh == False, PhieuLichDat.trangThai == True
+            (NguoiBenh.ho + " " + NguoiBenh.ten).like(f"%{q}%"),
+            NguoiBenh.soDienThoai.like(f"%{q}%")
+            )
+        ).order_by(PhieuLichDat.ngayKham.desc()).limit(5).all()
     
-    return {
-        'id'
-    }
+    return [{
+        'id': e.id,
+        'nguoi_benh_id': e.nguoiBenh_id,
+        'ho': e.ho,
+        'ten': e.ten,
+        'sdt': e.soDienThoai,
+        'tuoi': datetime.now().year - e.ngaySinh.year,
+        'gioi_tinh': 'Nam' if e.gioiTinh else 'Nữ',
+        'nhom_mau': 'KXD'
+        
+    } for e in query]

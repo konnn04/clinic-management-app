@@ -300,7 +300,7 @@ def get_examination_list_v1():
 @roles_required([VaiTro.BAC_SI])
 def get_schedules_overview():
     q = request.args.get('q')
-    return jsonify(dao.get_schedules_overview())
+    return jsonify(dao.get_schedules_overview(q))
 
 
 

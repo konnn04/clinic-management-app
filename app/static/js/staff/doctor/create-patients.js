@@ -140,6 +140,7 @@ function updateRowNumbers() {
     
 function init() {
     diseases = []
+    let selected_patient = null;
     // Tìm kiếm bệnh nhân
     $(".search-box input").on("focus", function() {
         $(this).parent().addClass("show");
@@ -154,7 +155,7 @@ function init() {
     // Tìm bệnh nhân
     $(".search-box input").on("input", async function() {
         const text = $(this).val();
-        const data = await fetch(`/api/patient?q=${text}`)
+        const data = await fetch(`/api/schedules-overview?q=${text}`)
             .then(response => response.json())
             .catch(error => {
                 console.error('Error:', error);
@@ -162,44 +163,36 @@ function init() {
             })
         const $recommend = $('.search-box .results ul');
         $recommend.empty();
-        // if (data.error) {
-        //     $recommend.append(`<li class="result-item" style="color: red;">Không tìm thấy bệnh nhân</li>`);
-        //     return;
-        // }
-        // const data = [{
-        //     "id": 1,
-        //     "name": "Nguyễn Văn A",
-        //     "phone": "0123456789",
-        //     "avatar": "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
-        //     "age:": 20,
-        //     "gender": "Nam",
-        //     "blood_type": "A",
-        //     "last_examination": "20/10/2021"
-        // }]
+        if (data.error) {
+            $recommend.append(`<li class="result-item" style="color: red;">Không tìm thấy bệnh nhân</li>`);
+            return;
+        }
+
         data.forEach(patient => {
             const $item = $('<li>', { class: 'result-item', 'id-patient': patient.id });
             $item.html(`
                 <div class="d-flex align-items-center justify-content-between">
                 <div class="avatar">
-                    <img src="${patient.avatar}" alt="avatar">
+                    <img src='/static/images/user.png' alt="avatar">
                 </div>
                 <div class="info">
-                    <h6>${patient.name}</h6>
-                    <span>#${patient.id} | ${patient.phone}</span>
+                    <h6>${patient.ho} ${patient.ten}</h6>
+                    <span>#${patient.nguoi_benh_id} | ${patient.sdt}</span>
                 </div>
                 </div>
             `);
             $recommend.append($item);
+            selected_patient = patient;
             $item.click(function() {
                 $(".profile").addClass("show");
                 $(".prev-examination").addClass("show");
-                $(".profile .avt #avt").attr("src", patient.avatar);
-                $(".profile #name").text(patient.name);
-                $(".profile #phone").text(patient.phone);
-                $(".profile #age").text(patient.age);
-                $(".profile #gender").text(patient.gender);
-                $(".profile #blood-type").text(patient.blood_type);
-                $(".profile #last-examination").text(patient.last_examination);
+                $(".profile .avt #avt").attr("src", '/static/images/user.png');
+                $(".profile #name").text(`${patient.ho} ${patient.ten}`);
+                $(".profile #phone").text(patient.sdt);
+                $(".profile #age").text(patient.tuoi);
+                $(".profile #gender").text(patient.gioi_tinh);
+                $(".profile #blood-type").text(patient.nhom_mau);
+                $(".profile #last-examination").text("Chưa khám");
                 resetRow()
                 addRowToTable();  
                 profile = patient;           

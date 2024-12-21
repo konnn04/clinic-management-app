@@ -68,7 +68,10 @@ class NguoiBenh(ThongTin):
         return datetime.now().year - self.ngaySinh.year
     
     def lanCuoiGhe(self):
-        return PhieuLichDat.query.filter(PhieuLichDat.nguoiBenh_id == self.id).order_by(PhieuLichDat.ngayKham.desc()).first().ngayKham
+        p = PhieuKhamBenh.query.filter(PhieuKhamBenh.nguoiBenh_id == self.id).order_by(PhieuKhamBenh.ngayKham.desc()).first()
+        if p:
+            return p.ngayKham
+        return None
     
 
 
@@ -243,7 +246,7 @@ def initPhieuLichDat():
     db.session.add(nb2)
     db.session.add(nb3)
     db.session.add(nb4)
-    p1 = PhieuLichDat(ngayKham = datetime.now(),trangThai = False,nguoiBenh_id = 1, caKham = 'sang')
+    p1 = PhieuLichDat(ngayKham = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 1, caKham = 'sang')
     p2 = PhieuLichDat(ngayKham = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 2, caKham = 'chieu')
     p3 = PhieuLichDat(ngayKham = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 3, caKham = 'sang')
     p4 = PhieuLichDat(ngayKham = datetime(2025, 1, 16),trangThai = False,nguoiBenh_id = 4, caKham = 'chieu')
@@ -253,6 +256,11 @@ def initPhieuLichDat():
     p8 = PhieuLichDat(ngayKham = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 4, caKham = 'chieu')
     p9 = PhieuLichDat(ngayKham = datetime(2025, 1, 14),trangThai = False,nguoiBenh_id = 5, caKham = 'sang')
     p10 = PhieuLichDat(ngayKham = datetime(2025, 1, 12),trangThai = False,nguoiBenh_id = 5, caKham = 'chieu')
+    p01 = PhieuLichDat(ngayKham = datetime.now(),trangThai = False,nguoiBenh_id = 1, caKham = 'sang')
+    p02 = PhieuLichDat(ngayKham = datetime.now(),trangThai = False,nguoiBenh_id = 2, caKham = 'chieu')
+    p03 = PhieuLichDat(ngayKham = datetime.now(),trangThai = False,nguoiBenh_id = 3, caKham = 'sang')
+    p04 = PhieuLichDat(ngayKham = datetime.now(),trangThai = False,nguoiBenh_id = 4, caKham = 'chieu')
+    p05 = PhieuLichDat(ngayKham = datetime.now(),trangThai = False,nguoiBenh_id = 5, caKham = 'sang')
     db.session.add(p1)
     db.session.add(p2)
     db.session.add(p3)
@@ -263,6 +271,11 @@ def initPhieuLichDat():
     db.session.add(p8)
     db.session.add(p9)
     db.session.add(p10)
+    db.session.add(p01)
+    db.session.add(p02)
+    db.session.add(p03)
+    db.session.add(p04)
+    db.session.add(p05)
     db.session.commit()
 
 
