@@ -8,6 +8,8 @@ import cloudinary
 # from cloudinary.uploader import upload
 import random
 from app.models import NguoiDung, VaiTro, NguoiBenh
+from app.momo_payment import utils as momo_utils
+from app.models import HoaDonThanhToan
 
 host = '0.0.0.0'
 port = 5100
@@ -267,6 +269,53 @@ def cashier():
 def payment():
     return render_template('cashier/payment.html', index=2)
 
+@app.route('/cashier/payment/<string:order_hashed>', methods=['GET'])
+@roles_required([VaiTro.THU_NGAN])
+def pay(order_hashed):
+    order_id = HoaDonThanhToan.decode_hashed_id(hashed_id=order_hashed)
+    hoa_don = HoaDonThanhToan.query.filter(HoaDonThanhToan.id==order_id).first()
+    msg=""
+
+
+    if hoa_don:
+        if hoa_don.trangThai == True:
+            msg = "Hoa don da thanh toan"
+        else:
+            if hoa_don.payUrl:
+                return redirect(hoa_don.payUrl)
+            else:
+                data = momo_utils.create_request_data(hoa_don=hoa_don)
+                response = momo_utils.post_request(data)
+
+                if 'payUrl' not in response.json():
+                    msg=response.json()['message']
+                else:
+                    print("response data = ", response.json())
+                    dao.set_payUrl(hoa_don=hoa_don,payUrl=response.json()['payUrl'])
+                    return redirect(response.json()['payUrl'])
+    else:
+        msg="Hoa don khong ton tai"
+
+    return render_template('cashier/payment.html', data={"status":"error","message": msg})
+
+
+@app.route('/payment/result/<string:order_hashed>', methods=['POST'])
+@roles_required([VaiTro.THU_NGAN])
+def payment_result(order_hashed):
+    if request.method.__eq__('POST'):
+        data = request.data
+
+        response_str = data.decode('utf-8')
+        response_dict = json.loads(response_str)
+
+        result = dao.handle_payment_result(response_dict)
+
+        print( {
+            "result": result,
+            "data": response_dict
+        })
+        return jsonify({})
+
 @app.route('/cashier/invoices', methods=['GET', 'POST'])
 @roles_required([VaiTro.THU_NGAN])
 def invoices():
@@ -303,8 +352,8 @@ def get_invoices():
     draw = request.args.get('draw', type=int, default=1)
     start = request.args.get('start', type=int, default=0)
     length = request.args.get('length', type=int, default=10)
-    sort_column = request.args.get('order[0][column]', type=int, default=0)
-    sort_direction = request.args.get('order[0][dir]', default='asc')
+    sort = request.args.get('sort')
+    order = request.args.get('order', default='asc')
     search_value = request.args.get('search[value]', default='')
     '''
     Lấy dữ liệu từ request
@@ -315,7 +364,7 @@ def get_invoices():
     sort_direction: Hướng sắp xếp
     search_value: Giá trị tìm kiếm
     '''
-    q = dao.load_invoices(draw, length, start, search_value, sort_column, sort_direction)
+    q = dao.load_invoices(draw, length, start, search_value, sort, order)
     return jsonify(q)
 
 @app.route('/api/patient-stat', methods=['GET'])

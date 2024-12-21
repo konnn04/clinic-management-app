@@ -1,10 +1,11 @@
 from sqlalchemy import Integer, String, Float, ForeignKey, Boolean, Column, DateTime, Enum, Text, Time
-from app import db
+from app import db, app
 from sqlalchemy.orm import relationship, mapped_column, Mapped, backref
 from enum import Enum as RoleEnum
 from datetime import datetime, time
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from hashids import Hashids
 
 
 class VaiTro(RoleEnum):
@@ -105,7 +106,7 @@ class QuyDinh(db.Model):
 
 class HoaDonThanhToan(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    ngayKham = Column(DateTime, default=datetime.utcnow, nullable=False)
+    benhNhan_id = Column(Integer, ForeignKey(NguoiBenh.id), nullable=False)
     tienKham = Column(Float, nullable=False, default=0.0)
     tienThuoc = Column(Float, nullable=False, default=0.0)
     tongTien = Column(Float, nullable=False, default=0.0)
@@ -113,8 +114,19 @@ class HoaDonThanhToan(db.Model):
     trangThai = Column(Boolean, nullable=False, default=False)
     # Bac Si
     phieuKham_id = Column(Integer, ForeignKey("phieuKham.id"), unique=True)
+    payUrl = Column(String(255), nullable=True)
 
-    def to_dict(self):
+    @property
+    def hashed_id(self):
+        # hash order id
+        return Hashids(min_length=5, salt=app.secret_key).encode(self.id)
+
+    @classmethod
+    def decode_hashed_id(self, hashed_id):
+        # decoded hashed_id -> order id
+        decoded = Hashids(min_length=5, salt=app.secret_key).decode(hashed_id)
+        return decoded[0] if decoded else None
+    def to_dict(self, include_phieu_kham=False):
         return {
             'id': self.id,
             'ngayKham': self.ngayKham.isoformat() if self.ngayKham else None,
@@ -123,9 +135,9 @@ class HoaDonThanhToan(db.Model):
             'tongTien': self.tongTien,
             'ngayLapHoaDon': self.ngayLapHoaDon.isoformat() if self.ngayLapHoaDon else None,
             'trangThai': self.trangThai,
-            'phieuKham_id': self.phieuKham_id
+            'phieuKham_id': self.phieuKham_id,
+            'phieuKham': self.phieuKham.to_dict(include_hoa_don=False) if include_phieu_kham and self.phieuKham else None
         }
-
 
 
 class PhieuKhamBenh(db.Model):

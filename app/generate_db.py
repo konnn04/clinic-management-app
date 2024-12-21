@@ -391,53 +391,56 @@ def initDonThuoc():
 def initHoaDonThanhToan():
     # Tạo các hóa đơn mẫu
     hoa_don1 = HoaDonThanhToan(
-        ngayKham=datetime(2024, 12, 20),
+        # ngayKham=datetime(2024, 12, 20),
         tienKham=50000.0,
         tienThuoc=150000.0,
         tongTien=200000.0,  # Tổng tiền = tiền khám + tiền thuốc
         ngayLapHoaDon=datetime(2024, 12, 21),
         trangThai=True,
-        phieuKham_id=1  # Liên kết với phiếu khám bệnh có id=1
+        phieuKham_id=1,  # Liên kết với phiếu khám bệnh có id=1
+        benhNhan_id=1
     )
 
     hoa_don2 = HoaDonThanhToan(
-        ngayKham=datetime(2024, 12, 18),
         tienKham=60000.0,
         tienThuoc=120000.0,
         tongTien=180000.0,
         ngayLapHoaDon=datetime(2024, 12, 19),
         trangThai=True,
-        phieuKham_id=2  # Liên kết với phiếu khám bệnh có id=2
+        phieuKham_id=2,  # Liên kết với phiếu khám bệnh có id=2
+        benhNhan_id=2
     )
 
     hoa_don3 = HoaDonThanhToan(
-        ngayKham=datetime(2024, 12, 15),
         tienKham=70000.0,
         tienThuoc=180000.0,
         tongTien=250000.0,
         ngayLapHoaDon=datetime(2024, 12, 16),
-        trangThai=True,
-        phieuKham_id=3  # Liên kết với phiếu khám bệnh có id=3
-    )
+        trangThai=False,
+        phieuKham_id=3,
+          # Liên kết với phiếu khám bệnh có id=3
+        benhNhan_id=3
+    )   
 
     hoa_don4 = HoaDonThanhToan(
-        ngayKham=datetime(2024, 12, 10),
         tienKham=80000.0,
         tienThuoc=100000.0,
         tongTien=180000.0,
         ngayLapHoaDon=datetime(2024, 12, 11),
-        trangThai=True,
-        phieuKham_id=4  # Liên kết với phiếu khám bệnh có id=4
+        trangThai=False,
+        phieuKham_id=4,
+            # Liên kết với phiếu khám bệnh có id=4
+        benhNhan_id=4
     )
 
     hoa_don5 = HoaDonThanhToan(
-        ngayKham=datetime(2024, 12, 5),
         tienKham=55000.0,
         tienThuoc=90000.0,
         tongTien=145000.0,
         ngayLapHoaDon=datetime(2024, 12, 6),
         trangThai=True,
-        phieuKham_id=5  # Liên kết với phiếu khám bệnh có id=5
+        phieuKham_id=5,  # Liên kết với phiếu khám bệnh có id=5,
+        benhNhan_id=1
     )
 
     # Thêm các hóa đơn vào phiên làm việc

@@ -8,6 +8,7 @@ from flask import jsonify
 from datetime import datetime
 import random
 from werkzeug.security import check_password_hash, generate_password_hash
+from app.momo_payment import utils as momo_utils
 
 # Test function
 def read_json(path):
@@ -46,24 +47,40 @@ def get_appointment_history(user_id):
     return data
 
 
-def load_invoices(draw, length, start, search, sort_column, sort_order):
-    columns = ['id', 'date', 'patient', 'doctor', 'total', 'status']
-    sort_column = columns[sort_column]
-    query = HoaDonThanhToan.query
+def load_invoices(draw, length, start, search, sort, order):
+    query = db.session.query(
+        HoaDonThanhToan.id.label('id'),
+        HoaDonThanhToan.ngayLapHoaDon,
+        NguoiBenh.ho.label('hoBenhNhan'),
+        NguoiBenh.ten.label('tenBenhNhan'),
+        NguoiDung.ho.label('hoBacSi'),
+        NguoiDung.ten.label('tenBacSi'),
+        HoaDonThanhToan.tongTien,
+        HoaDonThanhToan.trangThai,
+        PhieuKhamBenh.id.label('phieuKham_id')
+    ).join(NguoiBenh, HoaDonThanhToan.benhNhan_id == NguoiBenh.id).join(PhieuKhamBenh, HoaDonThanhToan.phieuKham_id == PhieuKhamBenh.id, isouter=True).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id)
+
     if search:
-        query = query.filter(HoaDonThanhToan.phieuKham.like(f"%{search}%"))
+        query = query.filter(
+            db.or_(
+            (NguoiBenh.ho + " " + NguoiBenh.ten).like(f"%{search}%"),
+            (NguoiDung.ho + " " + NguoiDung.ten).like(f"%{search}%")
+            )
+        )
+
     total = query.count()
-    query = query.order_by(text(f"{sort_column} {sort_order}"))
+    query = query.order_by(text(f"{sort} {order}"))
     invoices = query.offset(start).limit(length).all()
 
     invoice_list = [{
-        'id': invoice.id,
-        'date': invoice.date.strftime('%Y-%m-%d'),
-        'patient': invoice.customer,
-        'doctor': invoice.doctor,
-        'total': invoice.total,
-        'status': invoice.status,
-        'action': invoice.action
+        'id': HoaDonThanhToan.query.get(invoice.id).hashed_id,
+        # 'hashed_id': HoaDonThanhToan.query.get(invoice.id).hashed_id,
+        'ngayLapHoaDon': invoice.ngayLapHoaDon.strftime('%Y-%m-%d'),
+        'hoBenhNhan': invoice.hoBenhNhan,
+        'tenBenhNhan': invoice.tenBenhNhan,
+        'bacSi': f"{invoice.hoBacSi} {invoice.tenBacSi}",
+        'tongTien': invoice.tongTien,
+        'trangThai': invoice.trangThai,
     } for invoice in invoices]
 
     return {
@@ -399,4 +416,31 @@ def get_medicine(q, exists = ""):
         'so_luong': e.so_luong
     } for e in query]
 
+def set_payUrl(hoa_don, payUrl):
+    setattr(hoa_don,'payUrl', payUrl)
+    db.session.commit()
 
+def handle_payment_result(response_dict):
+
+    order_id = HoaDonThanhToan.decode_hashed_id(response_dict.get('orderId'))
+    order = HoaDonThanhToan.query.filter_by(id=order_id).first()
+
+    msg = ""
+
+    # signature check
+
+    signature = momo_utils.create_confirm_signature(hoa_don=order, response=response_dict)
+
+    print(response_dict.get('signature'),"==========",signature)
+
+    if not response_dict.get('signature') == signature:
+        msg="Chu ky khong hop le"
+    else:
+        if not order:
+            msg = "Khong tim thay hoa don"
+        else:
+            if response_dict.get('resultCode') == 0:
+                setattr(order, "trangThai", True)
+                db.session.commit()
+                return {"status": "success", "message": "Thanh toan thanh cong"}
+    return {"status": "error", "message": msg}

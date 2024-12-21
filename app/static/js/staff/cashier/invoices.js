@@ -5,6 +5,7 @@ $(document).ready(function() {
         "ajax": {
             "url": "/api/invoices",
             "data": function(d) {
+                console.log(d);
                 return $.extend({}, d, {
                     "sort": d.columns[d.order[0].column].data,
                     "order": d.order[0].dir
@@ -13,16 +14,17 @@ $(document).ready(function() {
         },
         "columns": [
             { "data": "id" },
-            { "data": "date" },
-            { "data": "patient" },
-            { "data": "doctor" },
-            { "data": "total" },
-            { "data": "status" },
+            { "data": "ngayLapHoaDon" },
+            { "data": "hoBenhNhan" },
+            { "data": "tenBenhNhan" },
+            { "data": "bacSi"},
+            { "data": "tongTien" },
+            { "data": "trangThai" },
             {"data": "action",
+            orderable: false,
             "render": function(data, type, row) {
                 return `
                     <button class="btn btn-primary btn-sm view-btn" data-id="${row.id}">Xem</button>
-                    <button class="btn btn-danger btn-sm delete-btn" data-id="${row.id}">Xóa</button>
                 `;
             }
         }

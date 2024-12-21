@@ -8,7 +8,7 @@ import cloudinary
 
 app = Flask(__name__)
 
-app.secret_key = 'aaa'
+app.secret_key = '6 79ts7as b86as9 ftas907f5ta8s7f5a8s7 ft97astf87a9tf97artf897arf987rtas789 f7as8'
 
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'

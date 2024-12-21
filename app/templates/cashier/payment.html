@@ -1,0 +1,18 @@
+{% extends './layouts/base_staff.html' %}
+
+{% block title %}
+    Danh sách hoá đơn
+{% endblock %}
+
+{% block styles %}
+    <!-- <link rel="stylesheet" class="css" href="{{ url_for('static', filename='css/staff/cashier/index.css')}}"> -->
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="alert text-danger text-center">{{ data.get('message') }}</div>
+
+    <script src="{{url_for('static', filename='js/staff/cashier/invoices.js')}}"></script>
+
+{% endblock %}
