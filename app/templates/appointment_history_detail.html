@@ -1,0 +1,131 @@
+{% extends 'layouts/base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/appointment_history_detail.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container my-4 shadow rounded">
+        <h1 class="text-center text-dark pt-5">Thông tin Phiếu Khám</h1>
+
+        <div class="section mt-2 p-3 rounded ">
+            <h2>Bác sĩ</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Họ và tên</th>
+                    <td>{{ data.bacSi.ho }} {{ data.bacSi.ten }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ data.bacSi.email }}</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại</th>
+                    <td>{{ data.bacSi.soDienThoai }}</td>
+                </tr>
+                <tr>
+                    <th>Chức vụ</th>
+                    <td>{{ data.bacSi.role }}</td>
+                </tr>
+            </table>
+
+            <h2>Bệnh nhân</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Họ và tên</th>
+                    <td>{{ data.benhNhan.ho }} {{ data.benhNhan.ten }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ data.benhNhan.email }}</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại</th>
+                    <td>{{ data.benhNhan.soDienThoai }}</td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ</th>
+                    <td>{{ data.benhNhan.diaChi }}</td>
+                </tr>
+                <tr>
+                    <th>Ngày sinh</th>
+                    <td>{{ data.benhNhan.ngaySinh.strftime('%a, %d %b %Y %H:%M:%S GMT') }}</td>
+                </tr>
+            </table>
+
+            <h2>Thông tin khám</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Ngày khám</th>
+                    <td>{{ data.ngayKham.strftime('%a, %d %b %Y %H:%M:%S GMT') }}</td>
+                </tr>
+                <tr>
+                    <th>Triệu chứng</th>
+                    <td>{{ data.trieuChung }}</td>
+                </tr>
+                <tr>
+                    <th>Dự đoán loại bệnh</th>
+                    <td>{{ data.duDoanLoaiBenh }}</td>
+                </tr>
+            </table>
+
+            <h2>Dịch vụ khám</h2>
+            <table class="table table-bordered">
+                {% if data.phieuDichVu %}
+                    <tr>
+                        <th>Ghi chú dịch vụ</th>
+                        <td>{{ data.phieuDichVu[0].ghiChu }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ngày lập</th>
+                        <td>{{ data.phieuDichVu[0].ngayLap }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center">Không có dịch vụ khám.</td>
+                    </tr>
+                {% endif %}
+            </table>
+            <h2>Hóa đơn thanh toán</h2>
+            <table class="table table-bordered">
+                {% if data.hoaDonThanhToan %}
+                    <tr>
+                        <th>Ngày khám</th>
+                        <td>{{ data.hoaDonThanhToan[0].ngayKham }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ngày lập hóa đơn</th>
+                        <td>{{ data.hoaDonThanhToan[0].ngayLapHoaDon }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tiền khám</th>
+                        <td>{{ data.hoaDonThanhToan[0].tienKham | format_money }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tiền thuốc</th>
+                        <td>{{ data.hoaDonThanhToan[0].tienThuoc | format_money }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tổng tiền</th>
+                        <td>{{ data.hoaDonThanhToan[0].tongTien | format_money }}</td>
+                    </tr>
+                    <tr>
+                        <th>Trạng thái</th>
+                        <td class="status {% if data.hoaDonThanhToan[0].trangThai %}text-success{% else %}text-danger{% endif %}">
+                            {% if data.hoaDonThanhToan[0].trangThai %}
+                                Đã thanh toán
+                            {% else %}
+                                Chưa thanh toán
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center">Không có thông tin hóa đơn thanh toán.</td>
+                    </tr>
+                {% endif %}
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

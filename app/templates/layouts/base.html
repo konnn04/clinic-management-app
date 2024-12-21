@@ -20,6 +20,9 @@
     <main class="container my-4">
         {% block content %}{% endblock %}
     </main>
-    {% include 'layouts/footer.html' %}    
+    {% include 'layouts/footer.html' %}
+
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

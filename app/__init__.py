@@ -44,4 +44,3 @@ def upload_file(file):
     if file:
         return cloudinary.uploader.upload(file, folder="phongkham")
     return None
-

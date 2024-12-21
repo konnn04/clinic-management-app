@@ -57,12 +57,14 @@
                 
             </ul>
             <ul class="navbar-nav">
-                <li class="navbar-item">
-                    <a class="nav-link" href="#">Tra cứu</a>
+                <li class="navbar-item" style="margin-right: 10px;">
+                    <a style="background-color:#a0c4ff;color: black;font-weight: bold;border: none;" class="btn btn-primary" href="{{url_for('appointment')}}">Đặt lịch ngay!</a>
                 </li>
+
                 <li class="navbar-item">
-                    <a class="btn btn-primary order" href="{{url_for('appointment')}}">Đặt lịch ngay!</a>
+                    <a style="background-color:#a0c4ff;color: black;font-weight: bold;border: none;" class="btn btn-primary" href="{{ url_for('patient_login') }}">Đăng nhập</a>
                 </li>
+
             </ul>
         </div>
     </nav>

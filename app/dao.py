@@ -3,16 +3,48 @@ import os
 from app import app, db
 from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat, PhieuKhamBenh, NguoiDung
 from sqlalchemy import text
+from sqlalchemy.orm import joinedload, subqueryload
 from flask import jsonify
-from datetime import datetime 
+from datetime import datetime
 import random
 
+
 def read_json(path):
-    with open(path,"r") as f:
+    with open(path, "r") as f:
         return json.load(f)
+
 
 def load_revenue():
     return read_json(os.path.join(app.root_path, "data/revenue.json"))
+
+
+def get_appointment_history_detail(user_id, order_id):
+    phieukham = PhieuKhamBenh.query.filter(
+        PhieuKhamBenh.benhNhan_id == user_id,
+        PhieuKhamBenh.id == order_id
+    ).first()
+    print(phieukham.to_dict())
+    return phieukham.to_dict()
+
+
+def get_appointment_history(user_id):
+    # Chỉ truy vấn các cột cần thiết để giảm áp lực cho db
+    phieukhams = PhieuKhamBenh.query.filter(PhieuKhamBenh.benhNhan_id == user_id) \
+        .with_entities(PhieuKhamBenh.id, PhieuKhamBenh.ngayKham, HoaDonThanhToan) \
+        .join(HoaDonThanhToan, HoaDonThanhToan.phieuKham_id == PhieuKhamBenh.id, isouter=True) \
+        .all()
+
+    data = [
+        {
+            'id': pk[0],
+            'ngayKham': pk[1] if pk[1] else None,
+            'hoaDonThanhToan': pk[2].to_dict() if pk[2] else None
+        }
+        for pk in phieukhams
+    ]
+
+    return data
+
 
 def load_invoices(draw, length, start, search, sort_column, sort_order):
     columns = ['id', 'date', 'patient', 'doctor', 'total', 'status']
@@ -23,7 +55,7 @@ def load_invoices(draw, length, start, search, sort_column, sort_order):
     total = query.count()
     query = query.order_by(text(f"{sort_column} {sort_order}"))
     invoices = query.offset(start).limit(length).all()
-    
+
     invoice_list = [{
         'id': invoice.id,
         'date': invoice.date.strftime('%Y-%m-%d'),
@@ -40,6 +72,7 @@ def load_invoices(draw, length, start, search, sort_column, sort_order):
         'recordsFiltered': total,
         'data': invoice_list
     }
+
 
 def patient_stat():
     man_count = NguoiBenh.query.filter(NguoiBenh.gioiTinh == True).count()
@@ -71,6 +104,10 @@ def patient_stat():
         'month_stat': month_stat,
         'disease_stat': disease_stat
     }
+
+
+def load_schedule_list(date, type, draw, length, start, search, sort_column, sort_order):
+    query = PhieuLichDat.query.filter(PhieuLichDat.ngay == date, PhieuLichDat.loai == type)
     
 def load_schedule_list(date,status, draw, length, start, search, sort_column, sort_order):
     query = db.session.query(

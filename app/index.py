@@ -1,13 +1,14 @@
 import json
-# from crypt import methods
 from datetime import datetime
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, session
 from app import app, utils, login_manager, roles_required, dao
 from flask_login import current_user, login_required, logout_user, login_user
+from app import utils
+import pdb
 import cloudinary
 from cloudinary.uploader import upload
-
-from app.models import NguoiDung, VaiTro
+import random
+from app.models import NguoiDung, VaiTro, NguoiBenh
 
 host = '0.0.0.0'
 port = 5100
@@ -24,6 +25,10 @@ def update_template_context():
         'funcs': utils.get_nav(current_user)
     }
 
+@app.template_filter('format_money')
+def format_money(value):
+    return f"{value:,.0f} VND"
+
 @login_manager.user_loader
 def load_user(user_id):
     return NguoiDung.query.get(int(user_id))
@@ -34,7 +39,48 @@ def index():
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
+    if not session.get('current_user'):
+        print(session['current_user'])
+        return redirect(url_for('patient_login'))
     return render_template('appointment.html')
+
+# test api start
+@app.route('/add_session', methods=['GET'])
+def add_session():
+    u = session.get('current_user')
+    if not u:
+        u = NguoiBenh.query.get(1)
+        print(u.to_dict())
+        session['current_user'] = u.to_dict()
+    return redirect('/appointment/history')
+
+# test api end
+
+@app.route('/appointment/history', methods=['GET'])
+def appointment_history():
+    u = session.get('current_user')
+    if not u:
+        return redirect(url_for('guest_login'))
+    return render_template('appointment_history.html')
+
+@app.route('/appointment/history/detail/<int:order_id>', methods=['GET'])
+def appointment_history_detail(order_id):
+    u = session.get('current_user')
+    if not u:
+        return redirect(url_for('guest_login'))
+
+    data = dao.get_appointment_history_detail(u['id'], order_id)
+    return render_template('appointment_history_detail.html', data=data)
+
+
+@app.route('/api/appointment/history', methods=['GET'])
+def lookup_appointment_history():
+    try:
+        u = session.get('current_user')
+        appointment_histories = dao.get_appointment_history(u['id'])
+        return jsonify(appointment_histories), 200
+    except Exception as ex:
+        return jsonify({'message': ex}), 500
 
 @app.route('/staff/profile', methods=['GET', 'POST'])
 @login_required
@@ -66,6 +112,62 @@ def staff_profile():
     return render_template('staff/profile.html', user_info=user_data)
     
 
+# Patients
+
+@app.route('/register',methods=["GET","POST"])
+def patient_register():
+    msg = ""
+    if request.method.__eq__("POST"):
+        ho = request.form.get('lastName')
+        ten = request.form.get('firstName')
+        email = request.form.get('email')
+        soDienThoai = request.form.get('phone')
+        gioiTinh = int(request.form.get('gender'))
+        ghiChu = request.form.get('note')
+        diaChi = request.form.get('address')
+        ngaySinh = request.form.get('birthday')
+
+        if not soDienThoai and not email:
+            msg = "Phải nhập 1 trong 2 thông tin email hoặc số điện thoại"
+        else:
+            utils.add_patients(ho=ho,ten=ten,email=email,soDienThoai=soDienThoai,ngaySinh=ngaySinh,gioiTinh=gioiTinh,diaChi=diaChi,ghiChu=ghiChu)
+            return redirect(url_for('patient_login'))
+    return render_template('register.html',msg=msg)
+
+@app.route('/send-otp',methods=['POST'])
+def send_otp():
+    data = request.json
+    info = data.get('info') # Lấy thông tin có thể là số điện thoại hoặc email
+
+    current_user = utils.check_user(info)
+
+    if current_user:
+        print(current_user.to_dict())
+        otp = str(random.randint(100000, 999999))
+        session['current_user'] = current_user.to_dict()
+        session['current_user']['otp']=otp # Thêm trường otp để kiểm tra
+        print(otp)
+        if '@' in info: # Nếu như là email
+            return utils.send_otp_to_email(info,otp)
+        else: # Nếu như là số điện thoại
+            pass
+    else:
+        return jsonify({"message" : "Authentication failed"}),401
+
+
+
+@app.route('/login',methods = ['GET','POST'])
+def patient_login():
+    msg = ""
+    if request.method.__eq__('POST'):
+        info = request.form.get('info')
+        otp = request.form.get('otp')
+        current_user = session.get('current_user')
+        if otp.__eq__(current_user['otp']):
+            return redirect(url_for('index'))
+        else:
+            msg = "OTP không hợp lệ!!!"
+    return render_template('login.html',msg=msg)
 
 @app.route('/logout')
 def logout():
@@ -188,13 +290,13 @@ def create_patient():
 def get_dieases():
     q = request.args.get('q')
     exists = request.args.get('exists')
-    
+
     return jsonify(utils.get_diseases(q, exists,5))
 
 # Lấy danh sách hoá đơn
 @app.route('/api/invoices', methods=['GET'])
 def get_invoices():
-    draw = request.args.get('draw', type=int, default=1) 
+    draw = request.args.get('draw', type=int, default=1)
     start = request.args.get('start', type=int, default=0)
     length = request.args.get('length', type=int, default=10)
     sort_column = request.args.get('order[0][column]', type=int, default=0)
@@ -220,7 +322,7 @@ def patient_stat():
 @app.route('/api/patient-list', methods=['GET'])
 @roles_required([VaiTro.BAC_SI, VaiTro.Y_TA, VaiTro.THU_NGAN])
 def get_patients():
-    draw = request.args.get('draw', type=int, default=1) 
+    draw = request.args.get('draw', type=int, default=1)
     start = request.args.get('start', type=int, default=0)
     length = request.args.get('length', type=int, default=10)
     sort_column = request.args.get('sort', default='id')

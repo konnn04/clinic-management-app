@@ -1,0 +1,29 @@
+.main-section{
+
+
+}
+.section {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+table{
+    table-layout: fixed;
+
+}
+th{
+    width: 25%;
+    /*background-color: #F2F2F2 !important;*/
+}
+
+.status {
+    font-weight: bold;
+}
+
+.text-success {
+    color: green !important;
+}
+
+.text-danger {
+    color: red !important;
+}

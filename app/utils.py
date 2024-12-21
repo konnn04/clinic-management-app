@@ -5,6 +5,12 @@ from datetime import datetime
 from collections import defaultdict
 from sqlalchemy import text
 
+from flask import jsonify
+
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
 def check_account(username,password):
     user = NguoiDung.query.filter_by(taiKhoan=username).first()
     if user and check_password_hash(user.matKhau, password):
@@ -154,3 +160,52 @@ def get_diseases(q=None, exists = "", limit = 5):
 
 
 
+def send_otp_to_email(to_email,otp):
+    api_key = os.environ.get('SENDGRID_API_KEY')
+    message = Mail(
+        from_email='2251012121quang@ou.edu.vn',
+        to_emails=to_email,
+        subject='HERE IS YOUR OTP CODE',
+        html_content=f'<p>Your OTP code is: </p> <h3>{otp}</h3>'
+    )
+
+    try:
+        sg = SendGridAPIClient(api_key)
+        response = sg.send(message)
+        print("OTP sent successfully!")
+        return jsonify({'message': 'OTP sent successfully!'}), 200
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'error': 'Failed to send OTP!'}), 500
+
+def send_otp_to_phone(phoneNum,otp):
+    pass
+
+def add_appointments(ngayDat, hoTen):
+    p = PhieuLichDat(hoTen = hoTen,
+                     ngayDat = datetime.strptime(ngayDat, "%Y-%m-%d"),
+                     trangThai = True,
+                     nguoiDung_id = 1)
+    db.session.add(p)
+    db.session.commit()
+
+def check_user(info):
+    q_email = NguoiBenh.query.filter_by(email=info).first()
+    q_phone = NguoiBenh.query.filter_by(soDienThoai=info).first()
+
+    if q_email or q_phone:# Nếu đã tồn tại email hay số điện thoại
+        return q_email if q_email else q_phone
+    else:
+        return None
+
+def add_patients(ho,ten,email,soDienThoai,ngaySinh,gioiTinh,diaChi,ghiChu):
+    n = NguoiBenh(ho = ho,
+                  ten = ten,
+                  gioiTinh = gioiTinh,
+                  ngaySinh = datetime.strptime(ngaySinh, "%Y-%m-%d"),
+                  soDienThoai=soDienThoai,
+                  email=email,
+                  diaChi = diaChi,
+                  ghiChu=ghiChu)
+    db.session.add(n)
+    db.session.commit()
