@@ -1,4 +1,8 @@
-from app.models import *
+from app import app, db
+from app.models import NguoiDung, VaiTro, NguoiBenh, PhieuLichDat, PhieuKhamBenh, PhieuDichVu, LoaiDichVu, ChiTietDichVu, DanhMucThuoc, Thuoc, LoHang, DonThuoc, HoaDonThanhToan, CaLamViecBacSi
+
+from werkzeug.security import generate_password_hash
+from datetime import datetime
 
 
 def initUser():
@@ -75,16 +79,16 @@ def initNguoiBenh():
 
 
 def initPhieuLichDat():
-    p1 = PhieuLichDat(ngayHen=datetime.now(), trangThai=False, nguoiBenh_id=1, caHen='sang')
-    p2 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, nguoiBenh_id=2, caHen='chieu')
-    p3 = PhieuLichDat(ngayHen=datetime(2025, 1, 16), trangThai=False, nguoiBenh_id=3, caHen='sang')
-    p4 = PhieuLichDat(ngayHen=datetime(2025, 1, 16), trangThai=False, nguoiBenh_id=4, caHen='chieu')
-    p5 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, nguoiBenh_id=1, caHen='chieu')
-    p6 = PhieuLichDat(ngayHen=datetime(2025, 1, 15), trangThai=False, nguoiBenh_id=2, caHen='chieu')
-    p7 = PhieuLichDat(ngayHen=datetime(2025, 1, 13), trangThai=False, nguoiBenh_id=3, caHen='sang')
-    p8 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), trangThai=False, nguoiBenh_id=4, caHen='chieu')
-    p9 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), trangThai=False, nguoiBenh_id=5, caHen='sang')
-    p10 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, nguoiBenh_id=5, caHen='chieu')
+    p1 = PhieuLichDat(ngayHen=datetime.now(), trangThai=False, benhNhan_id=1, caHen='sang')
+    p2 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, benhNhan_id=2, caHen='chieu')
+    p3 = PhieuLichDat(ngayHen=datetime(2025, 1, 16), trangThai=False, benhNhan_id=3, caHen='sang')
+    p4 = PhieuLichDat(ngayHen=datetime(2025, 1, 16), trangThai=False, benhNhan_id=4, caHen='chieu')
+    p5 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, benhNhan_id=1, caHen='chieu')
+    p6 = PhieuLichDat(ngayHen=datetime(2025, 1, 15), trangThai=False, benhNhan_id=2, caHen='chieu')
+    p7 = PhieuLichDat(ngayHen=datetime(2025, 1, 13), trangThai=False, benhNhan_id=3, caHen='sang')
+    p8 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), trangThai=False, benhNhan_id=4, caHen='chieu')
+    p9 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), trangThai=False, benhNhan_id=5, caHen='sang')
+    p10 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, benhNhan_id=5, caHen='chieu')
     db.session.add(p1)
     db.session.add(p2)
     db.session.add(p3)
@@ -190,53 +194,12 @@ def initDMThuoc_LoHang_Thuoc():
 
     db.session.commit()
 
-    lohang1 = LoHang(
-        ngayNhap=datetime(2024, 12, 1),
-        hanSuDung=datetime(2025, 12, 1),
-        ngaySanXuat=datetime(2024, 6, 1)
-    )
-
-    lohang2 = LoHang(
-        ngayNhap=datetime(2024, 12, 5),
-        hanSuDung=datetime(2025, 11, 30),
-        ngaySanXuat=datetime(2024, 5, 30)
-    )
-
-    lohang3 = LoHang(
-        ngayNhap=datetime(2024, 12, 10),
-        hanSuDung=datetime(2026, 1, 1),
-        ngaySanXuat=datetime(2024, 7, 1)
-    )
-
-    lohang4 = LoHang(
-        ngayNhap=datetime(2024, 12, 15),
-        hanSuDung=datetime(2025, 12, 15),
-        ngaySanXuat=datetime(2024, 8, 15)
-    )
-
-    lohang5 = LoHang(
-        ngayNhap=datetime(2024, 12, 20),
-        hanSuDung=datetime(2026, 6, 20),
-        ngaySanXuat=datetime(2024, 9, 20)
-    )
-
-    # Thêm dữ liệu vào phiên làm việc
-    db.session.add(lohang1)
-    db.session.add(lohang2)
-    db.session.add(lohang3)
-    db.session.add(lohang4)
-    db.session.add(lohang5)
-
-    # Lưu các thay đổi vào cơ sở dữ liệu
-    db.session.commit()
-
     thuoc1 = Thuoc(
         ten="Paracetamol",
         nhaCungCap="Công ty Dược phẩm ABC",
         xuatXu="Việt Nam",
         donVi="Viên",
         danhMucThuoc_id=1,  # Thuộc danh mục 'Thuốc giảm đau'
-        loHang_id=1,  # Giả sử lô hàng id là 1
         gia=20000
     )
 
@@ -246,7 +209,6 @@ def initDMThuoc_LoHang_Thuoc():
         xuatXu="Pháp",
         donVi="Viên",
         danhMucThuoc_id=2,  # Thuộc danh mục 'Thuốc kháng sinh'
-        loHang_id=2,  # Giả sử lô hàng id là 2
         gia=50000
     )
 
@@ -254,9 +216,8 @@ def initDMThuoc_LoHang_Thuoc():
         ten="Acetaminophen",
         nhaCungCap="Công ty Dược phẩm DEF",
         xuatXu="Hoa Kỳ",
-        donVi="Viên",
+        donVi="Chai",
         danhMucThuoc_id=3,  # Thuộc danh mục 'Thuốc trị cảm cúm'
-        loHang_id=3,  # Giả sử lô hàng id là 3
         gia=15000
     )
 
@@ -266,7 +227,6 @@ def initDMThuoc_LoHang_Thuoc():
         xuatXu="Anh",
         donVi="Chai",
         danhMucThuoc_id=4,  # Thuộc danh mục 'Thuốc trị ho'
-        loHang_id=4,  # Giả sử lô hàng id là 4
         gia=30000
     )
 
@@ -276,7 +236,6 @@ def initDMThuoc_LoHang_Thuoc():
         xuatXu="Đức",
         donVi="Viên",
         danhMucThuoc_id=5,  # Thuộc danh mục 'Thuốc chống dị ứng'
-        loHang_id=5,  # Giả sử lô hàng id là 5
         gia=25000
     )
 
@@ -289,6 +248,96 @@ def initDMThuoc_LoHang_Thuoc():
 
     # Lưu vào cơ sở dữ liệu
     db.session.commit()
+    
+    lohang1 = LoHang(
+        ngayNhap=datetime(2024, 12, 1),
+        hanSuDung=datetime(2025, 12, 1),
+        ngaySanXuat=datetime(2024, 6, 1),
+        soLuong=100,
+        thuoc_id=1  # Liên kết với thuốc có id=1 (Paracetamol)
+    )
+
+    lohang2 = LoHang(
+        ngayNhap=datetime(2024, 12, 5),
+        hanSuDung=datetime(2025, 11, 30),
+        ngaySanXuat=datetime(2024, 5, 30),
+        soLuong=100,
+        thuoc_id=2  # Liên kết với thuốc có id=2 (Amoxicillin)
+
+    )
+
+    lohang3 = LoHang(
+        ngayNhap=datetime(2024, 12, 10),
+        hanSuDung=datetime(2026, 1, 1),
+        ngaySanXuat=datetime(2024, 7, 1),
+        soLuong=100,
+        thuoc_id=3  # Liên kết với thuốc có id=3 (Acetamin
+    )
+
+    lohang4 = LoHang(
+        ngayNhap=datetime(2024, 12, 15),
+        hanSuDung=datetime(2025, 12, 15),
+        ngaySanXuat=datetime(2024, 8, 15),
+        soLuong=100,
+        thuoc_id=4  # Liên kết với thuốc có id=4 (Cough Sy
+    )
+
+    lohang5 = LoHang(
+        ngayNhap=datetime(2024, 12, 20),
+        hanSuDung=datetime(2026, 6, 20),
+        ngaySanXuat=datetime(2024, 9, 20),
+        soLuong=100,
+        thuoc_id=5  # Liên kết với thuốc có id=5 (Cetirizine
+    )
+    lohang6 = LoHang(
+        ngayNhap=datetime(2024, 12, 25),
+        hanSuDung=datetime(2026, 6, 25),
+        ngaySanXuat=datetime(2024, 10, 1),
+        soLuong=100,
+        thuoc_id=1  # Liên kết với thuốc có id=1 (Paracetamol)
+    )
+
+    lohang7 = LoHang(
+        ngayNhap=datetime(2024, 12, 30),
+        hanSuDung=datetime(2026, 7, 1),
+        ngaySanXuat=datetime(2024, 11, 1),
+        soLuong=100,
+        thuoc_id=2  # Liên kết với thuốc có id=2 (Amoxicillin)
+    )
+
+    lohang8 = LoHang(
+        ngayNhap=datetime(2025, 1, 5),
+        hanSuDung=datetime(2026, 8, 1),
+        ngaySanXuat=datetime(2024, 12, 1),
+        soLuong=100,
+        thuoc_id=3  # Liên kết với thuốc có id=3 (Acetaminophen)
+    )
+
+    lohang9 = LoHang(
+        ngayNhap=datetime(2025, 1, 10),
+        hanSuDung=datetime(2026, 9, 1),
+        ngaySanXuat=datetime(2025, 1, 1),
+        soLuong=100,
+        thuoc_id=4  # Liên kết với thuốc có id=4 (Cough Syrup)
+    )
+
+    lohang10 = LoHang(
+        ngayNhap=datetime(2025, 1, 15),
+        hanSuDung=datetime(2026, 10, 1),
+        ngaySanXuat=datetime(2025, 2, 1),
+        soLuong=100,
+        thuoc_id=5  # Liên kết với thuốc có id=5 (Cetirizine)
+    )
+
+
+
+    # Thêm dữ liệu vào phiên làm việc
+    db.session.add_all([lohang1, lohang2, lohang3, lohang4, lohang5, lohang6, lohang7, lohang8, lohang9, lohang10])
+
+    # Lưu các thay đổi vào cơ sở dữ liệu
+    db.session.commit()
+
+    
 
 
 def initDonThuoc():

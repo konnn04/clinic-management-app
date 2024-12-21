@@ -61,9 +61,16 @@
                     <a style="background-color:#a0c4ff;color: black;font-weight: bold;border: none;" class="btn btn-primary" href="{{url_for('appointment')}}">Đặt lịch ngay!</a>
                 </li>
 
+                {% if is_login %}
                 <li class="navbar-item">
-                    <a style="background-color:#a0c4ff;color: black;font-weight: bold;border: none;" class="btn btn-primary" href="{{ url_for('patient_login') }}">Đăng nhập</a>
+                    <a class="nav-link" href="{{url_for('appointment_history')}}">Tra cứu</a>
                 </li>
+                {% else %}
+                <li class="navbar-item">
+                    <a class="nav-link" href="{{url_for('patient_login')}}">Đăng nhập</a>
+                </li>
+            </ul>
+            {% endif %}
 
             </ul>
         </div>

@@ -1,12 +1,11 @@
-import json
+# import json
 from datetime import datetime
 from flask import render_template, request, jsonify, session
 from app import app, utils, login_manager, roles_required, dao
 from flask_login import current_user, login_required, logout_user, login_user
-from app import utils
 import pdb
 import cloudinary
-from cloudinary.uploader import upload
+# from cloudinary.uploader import upload
 import random
 from app.models import NguoiDung, VaiTro, NguoiBenh
 
@@ -15,6 +14,10 @@ port = 5100
 
 @app.context_processor
 def update_template_context():
+    u = session.get('current_user')
+    is_login = False
+    if u:
+        is_login = True
     return {
         'meta':{
             'title': 'Hospital Management System',
@@ -22,7 +25,8 @@ def update_template_context():
             'keyword':'phòng mạch, phòng mạch OU, chăm sóc sức khỏe, bác sĩ, y tá, y khoa, y học, bệnh viện, bệnh tật, bệnh lý, thuốc, dược phẩm, y học cổ truyền, y học hiện đại, y học phương Đông, y học phương Tây, y học phổ thông, y học chuyên sâu, y học cấp cứu, y học phòng ngừa, y học gia đình, y học công cộng, y học cộng đồng, y học tư vấn, y học chăm sóc, y học tâm lý, y học thể chất, y học tinh thần, y học xã hội, y học môi trường, y học công nghệ, y học thông tin, y học truyền thông, y học giáo dục, y học đào tạo, y học nghiên cứu, y học phát triển, y học quản lý, y học hành vi, y học tư duy, y học sáng tạo, y học đổi mới, y học phát minh',
             'author':'Duy Quang Trieu'
         },
-        'funcs': utils.get_nav(current_user)
+        'funcs': utils.get_nav(current_user),
+        "is_login": is_login,
     }
 
 @app.template_filter('format_money')
@@ -130,7 +134,7 @@ def patient_register():
         if not soDienThoai and not email:
             msg = "Phải nhập 1 trong 2 thông tin email hoặc số điện thoại"
         else:
-            utils.add_patients(ho=ho,ten=ten,email=email,soDienThoai=soDienThoai,ngaySinh=ngaySinh,gioiTinh=gioiTinh,diaChi=diaChi,ghiChu=ghiChu)
+            dao.add_patients(ho=ho,ten=ten,email=email,soDienThoai=soDienThoai,ngaySinh=ngaySinh,gioiTinh=gioiTinh,diaChi=diaChi,ghiChu=ghiChu)
             return redirect(url_for('patient_login'))
     return render_template('register.html',msg=msg)
 
@@ -139,7 +143,7 @@ def send_otp():
     data = request.json
     info = data.get('info') # Lấy thông tin có thể là số điện thoại hoặc email
 
-    current_user = utils.check_user(info)
+    current_user = dao.check_user(info)
 
     if current_user:
         print(current_user.to_dict())
@@ -197,7 +201,7 @@ def login():
         password = request.form.get('password')
         print(username)
         print(password)
-        user = utils.check_account(username, password)
+        user = dao.check_account(username, password)
         if user and user.role not in [VaiTro.BENH_NHAN]:
             login_user(user)
             print("OK 2")
@@ -404,7 +408,13 @@ def get_schedules_overview():
     q = request.args.get('q')
     return jsonify(dao.get_schedules_overview(q))
 
-
+@app.route('/api/medicine', methods=['GET'])
+@login_required
+@roles_required([VaiTro.BAC_SI])
+def get_medicine():
+    q = request.args.get('name')
+    exists = request.args.get('exists')
+    return jsonify(dao.get_medicine(q, exists))
 
 @app.errorhandler(404)
 def page_not_found(e):

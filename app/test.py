@@ -22,22 +22,23 @@ if __name__ == "__main__":
     with app.app_context():
         for i in range(1, 11):
             user = NguoiBenh(
-            ho = random.choice(ho),
-            ten = random.choice(ten),
-            gioiTinh = random.choice([True, False]),
-            ngaySinh = datetime(random.randint(1950, 2000), random.randint(1, 12), random.randint(1, 28)),
-            diaChi = "Số " + str(random.randint(1, 100)) + ", " + random.choice(["Đường 1", "Đường 2", "Đường 3", "Đường 4", "Đường 5"]),
-            soDienThoai = randomPhone(),
-            email = "nguoibenh" + str(i) + "@gmail.com"
-        )
-            
-
-            schedule = PhieuLichDat(
-                ngayKham = datetime.now(),
-                caKham = random.choice(["sang", "chieu", "toi"]),
-                trangThai = False,
-                nguoiBenh_id = 6 + i
+                ho = random.choice(ho),
+                ten = random.choice(ten),
+                gioiTinh = random.choice([True, False]),
+                ngaySinh = datetime(random.randint(1950, 2000), random.randint(1, 12), random.randint(1, 28)),
+                diaChi = "Số " + str(random.randint(1, 100)) + ", " + random.choice(["Đường 1", "Đường 2", "Đường 3", "Đường 4", "Đường 5"]),
+                soDienThoai = randomPhone(),
+                email = "nguoibenh" + str(i) + "@gmail.com"
             )
+            
+            
+            schedule = PhieuLichDat(
+                ngayHen = datetime.now(),
+                caHen = random.choice(["sang", "chieu", "toi"]),
+                trangThai = False,
+                benhNhan_id = i+1
+            )
+
             try:
                 db.session.add(user)
                 db.session.add(schedule)

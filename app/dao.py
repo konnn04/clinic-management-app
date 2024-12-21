@@ -1,23 +1,23 @@
 import json
 import os
 from app import app, db
-from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat, PhieuKhamBenh, NguoiDung
+from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat, PhieuKhamBenh, NguoiDung, VaiTro, Thuoc, LoHang
 from sqlalchemy import text
 from sqlalchemy.orm import joinedload, subqueryload
 from flask import jsonify
 from datetime import datetime
 import random
+from werkzeug.security import check_password_hash, generate_password_hash
 
-
+# Test function
 def read_json(path):
     with open(path, "r") as f:
         return json.load(f)
 
-
 def load_revenue():
     return read_json(os.path.join(app.root_path, "data/revenue.json"))
 
-
+# Tra cứu thông tin bệnh nhân
 def get_appointment_history_detail(user_id, order_id):
     phieukham = PhieuKhamBenh.query.filter(
         PhieuKhamBenh.benhNhan_id == user_id,
@@ -37,7 +37,7 @@ def get_appointment_history(user_id):
     data = [
         {
             'id': pk[0],
-            'ngayKham': pk[1] if pk[1] else None,
+            'ngayHen': pk[1] if pk[1] else None,
             'hoaDonThanhToan': pk[2].to_dict() if pk[2] else None
         }
         for pk in phieukhams
@@ -112,18 +112,18 @@ def load_schedule_list(date, type, draw, length, start, search, sort_column, sor
 def load_schedule_list(date,status, draw, length, start, search, sort_column, sort_order):
     query = db.session.query(
         PhieuLichDat.id.label('id'),
-        PhieuLichDat.ngayKham,
+        PhieuLichDat.ngayHen,
         PhieuLichDat.trangThai,
-        PhieuLichDat.caKham,
-        NguoiBenh.id.label('nguoiBenh_id'),
+        PhieuLichDat.caHen,
+        NguoiBenh.id.label('benhNhan_id'),
         NguoiBenh.ho,
         NguoiBenh.ten,
         NguoiBenh.soDienThoai,
         NguoiBenh.ngaySinh,
         NguoiBenh.gioiTinh
-    ).join(NguoiBenh, PhieuLichDat.nguoiBenh_id == NguoiBenh.id)
+    ).join(NguoiBenh, PhieuLichDat.benhNhan_id == NguoiBenh.id)
 
-    query = query.filter(db.func.date(PhieuLichDat.ngayKham) == date, PhieuLichDat.trangThai == status)
+    query = query.filter(db.func.date(PhieuLichDat.ngayHen) == date, PhieuLichDat.trangThai == status)
     if search:
         query = query.filter(
             db.or_(
@@ -136,12 +136,12 @@ def load_schedule_list(date,status, draw, length, start, search, sort_column, so
     schedules = query.offset(start).limit(length).all()
     schedule_list = [{
         'id': schedule.id,
-        'nguoiBenh_id': schedule.nguoiBenh_id,
+        'benhNhan_id': schedule.benhNhan_id,
         'ho': schedule.ho,
         'ten': schedule.ten,
         'ngaySinh': schedule.ngaySinh.strftime('%Y-%m-%d'),
         'gioiTinh': 'Nam' if schedule.gioiTinh else 'Nữ',
-        'caKham': {"sang": "Sáng", "chieu": "Chiều", "toi":"Tối"}[schedule.caKham],
+        'caHen': {"sang": "Sáng", "chieu": "Chiều", "toi":"Tối"}[schedule.caHen],
     } for schedule in schedules]
     
     return {
@@ -198,7 +198,7 @@ def load_examination_list(draw, length, start, search, sort_column, sort_order):
         NguoiBenh.soDienThoai.label('soDienThoai'),
         NguoiBenh.ngaySinh,
         NguoiBenh.gioiTinh,
-    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.nguoiBenh_id == NguoiBenh.id)
+    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.benhNhan_id == NguoiBenh.id)
 
     if search:
         query = query.filter(
@@ -240,7 +240,7 @@ def get_examination_list_v1(sort_column, sort_order, page_index):
         NguoiBenh.soDienThoai.label('so_dien_thoai'),
         NguoiBenh.ngaySinh.label('ngay_sinh'),
         NguoiBenh.gioiTinh.label('gioi_tinh')
-    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.nguoiBenh_id == NguoiBenh.id)
+    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.benhNhan_id == NguoiBenh.id)
     total = query.count()
     if (page_index < 1):
         page_index = 1
@@ -257,9 +257,9 @@ def get_examination_list_v1(sort_column, sort_order, page_index):
         'ten_bac_si': examination.ten_bac_si,
         'ho_benh_nhan': examination.ho_benh_nhan,
         'ten_benh_nhan': examination.ten_benh_nhan,
-        'ngayKham': examination.ngay_kham.strftime('%Y-%m-%d'),
-        'gioi_tinh': 'Nam' if examination.gioiTinh else 'Nữ',
-        'soDienThoai': examination.soDienThoai
+        'ngayHen': examination.ngay_kham.strftime('%Y-%m-%d'),
+        'gioi_tinh': 'Nam' if examination.gioi_tinh else 'Nữ',
+        'so_dien_thoai': examination.so_dien_thoai
     } for examination in examinations]
 
     return {
@@ -290,28 +290,28 @@ def accept_schedule(id):
 def get_schedules_overview(q):
     query = db.session.query(
         PhieuLichDat.id.label('id'),
-        PhieuLichDat.ngayKham,
+        PhieuLichDat.ngayHen,
         PhieuLichDat.trangThai,
-        PhieuLichDat.caKham,
-        NguoiBenh.id.label('nguoiBenh_id'),
+        PhieuLichDat.caHen,
+        NguoiBenh.id.label('benhNhan_id'),
         NguoiBenh.ho,
         NguoiBenh.ten,
         NguoiBenh.soDienThoai,
         NguoiBenh.ngaySinh,
         NguoiBenh.gioiTinh,
         PhieuLichDat.hoanThanh,
-    ).join(NguoiBenh, PhieuLichDat.nguoiBenh_id == NguoiBenh.id).filter(PhieuLichDat.trangThai == True, PhieuLichDat.hoanThanh == False, db.func.date(PhieuLichDat.ngayKham) == datetime.now().date())
+    ).join(NguoiBenh, PhieuLichDat.benhNhan_id == NguoiBenh.id).filter(PhieuLichDat.trangThai == True, PhieuLichDat.hoanThanh == False, db.func.date(PhieuLichDat.ngayHen) == datetime.now().date())
 
     query = query.filter(
             db.or_(
             (NguoiBenh.ho + " " + NguoiBenh.ten).like(f"%{q}%"),
             NguoiBenh.soDienThoai.like(f"%{q}%")
             )
-        ).order_by(PhieuLichDat.ngayKham.desc()).limit(5).all()
+        ).order_by(PhieuLichDat.ngayHen.desc()).limit(5).all()
     
     return [{
         'id': e.id,
-        'nguoi_benh_id': e.nguoiBenh_id,
+        'nguoi_benh_id': e.benhNhan_id,
         'ho': e.ho,
         'ten': e.ten,
         'sdt': e.soDienThoai,
@@ -320,3 +320,83 @@ def get_schedules_overview(q):
         'nhom_mau': 'KXD'
         
     } for e in query]
+
+def check_account(username,password):
+    user = NguoiDung.query.filter_by(taiKhoan=username).first()
+    if user and check_password_hash(user.matKhau, password):
+        print("OK")
+        return user
+    else:
+        print("BUG")
+        return None
+    
+
+def add_appointments(ngayDat, hoTen):
+    p = PhieuLichDat(hoTen = hoTen,
+                     ngayDat = datetime.strptime(ngayDat, "%Y-%m-%d"),
+                     trangThai = True,
+                     nguoiDung_id = 1)
+    db.session.add(p)
+    db.session.commit()
+
+def check_user(info):
+    q_email = NguoiBenh.query.filter_by(email=info).first()
+    q_phone = NguoiBenh.query.filter_by(soDienThoai=info).first()
+
+    if q_email or q_phone:# Nếu đã tồn tại email hay số điện thoại
+        return q_email if q_email else q_phone
+    else:
+        return None
+
+def add_patients(ho,ten,email,soDienThoai,ngaySinh,gioiTinh,diaChi,ghiChu):
+    n = NguoiBenh(ho = ho,
+                  ten = ten,
+                  gioiTinh = gioiTinh,
+                  ngaySinh = datetime.strptime(ngaySinh, "%Y-%m-%d"),
+                  soDienThoai=soDienThoai,
+                  email=email,
+                  diaChi = diaChi,
+                  ghiChu=ghiChu)
+    db.session.add(n)
+    db.session.commit()
+
+def addUser(ho,ten,ngaySinh,soDienThoai,email,taiKhoan,matKhau,avatar,role = VaiTro.BENH_NHAN):
+    matKhau = generate_password_hash(matKhau)
+    user = NguoiDung(ho = ho.strip(),
+                     ten = ten.strip(),
+                     ngaySinh = datetime.strptime(ngaySinh, "%Y-%m-%d"),
+                     soDienThoai = soDienThoai.strip(),
+                     email = email.strip(),
+                     taiKhoan = taiKhoan.strip(),
+                     matKhau = matKhau,
+                     avatar = avatar,
+                     role = role
+                     )
+    print(user)
+    db.session.add(user)
+    db.session.commit()
+
+def get_medicine(q, exists = ""):
+    query = db.session.query(
+        Thuoc.id.label('id'),
+        Thuoc.ten.label('ten'),
+        Thuoc.donVi.label('don_vi'),
+        Thuoc.gia.label('gia'),
+        db.func.sum(LoHang.soLuong).label('so_luong')
+    ).join(LoHang, Thuoc.id == LoHang.thuoc_id).group_by(Thuoc.id)
+
+    query = query.filter(Thuoc.ten.like(f"%{q}%" if q else "%"))
+    # query = query.filter
+    for e in exists.split(","):
+        query = query.filter(Thuoc.id != e)
+    
+    query = query.all()
+    return [{
+        'id': e.id,
+        'ten': e.ten,
+        'don_vi': e.don_vi,
+        'gia': e.gia,
+        'so_luong': e.so_luong
+    } for e in query]
+
+

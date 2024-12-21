@@ -3,7 +3,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from app.models import NguoiDung, VaiTro, Thuoc, LoHang, DanhMucThuoc
 from flask_admin import BaseView,expose, AdminIndexView
-from app import utils
+from app import dao
 from flask_admin.model.template import EndpointLinkRowAction
 from flask_login import current_user, login_required, logout_user
 from flask import redirect, url_for, request,render_template,flash,send_file
@@ -54,7 +54,7 @@ class CreateStaffView(MyBaseView):
                         avatar = avatar['url']
                     else:
                         avatar = ""
-                    utils.addUser(ho=ho, ten=ten, ngaySinh=ngaySinh, soDienThoai=soDienThoai, email=email, taiKhoan=taiKhoan, matKhau=matKhau, role=role, avatar=avatar)
+                    dao.addUser(ho=ho, ten=ten, ngaySinh=ngaySinh, soDienThoai=soDienThoai, email=email, taiKhoan=taiKhoan, matKhau=matKhau, role=role, avatar=avatar)
                     return redirect(url_for('admin.index'))
                 else:
                     err_msg = "Password not match"
@@ -89,7 +89,7 @@ class UserView(MyModelView):
 
 # Quản lý thuốc
 class ConsignmentView(MyModelView):
-    column_list = ['id','ngayNhap','hanSuDung','ngaySanXuat','thuoc']
+    column_list = ['id','ngayNhap','hanSuDung','ngaySanXuat','thuoc_id']
     column_labels = {
         'id': 'ID',
         'ngayNhap' : 'Ngày nhập',
@@ -97,7 +97,7 @@ class ConsignmentView(MyModelView):
         'ngaySanXuat' : 'Ngày sản xuất',
         'thuoc' : 'Thuốc'
     }
-    form_columns = ['ngayNhap', 'hanSuDung', 'ngaySanXuat', 'thuoc']
+    form_columns = ['ngayNhap', 'hanSuDung', 'ngaySanXuat', 'thuoc_id']
 
 class MedicineView(MyModelView):
     column_list = ['id','ten','nhaCungCap','xuatXu','donVi','danhMucThuoc_id','loHang_id']
@@ -108,9 +108,8 @@ class MedicineView(MyModelView):
         'xuatXu': 'Xuất xứ',
         'donVi' : 'Đơn vị',
         'danhMucThuoc_id': 'Mã danh mục',
-        'loHang_id' : 'Lô hàng'
     }
-    form_columns = ['ten', 'nhaCungCap', 'xuatXu', 'donVi', 'danhMucThuoc_id', 'loHang_id']
+    form_columns = ['ten', 'nhaCungCap', 'xuatXu', 'donVi', 'danhMucThuoc_id']
 
 class MedicineCategoryView(MyModelView):
     column_list = ['id', 'ten']
@@ -123,10 +122,10 @@ class MedicineCategoryView(MyModelView):
 class RevenueStats(MyBaseView):
     @expose('/', methods=['GET', 'POST'])
     def index(self, *args, **kwargs):
-        revenue_data = utils.revenueStats()
+        revenue_data = dao.revenueStats()
         month = request.args.get('month', default=1, type=int)
         print(month)
-        stats = utils.revenueStatsDetail(month = month)
+        stats = dao.revenueStatsDetail(month = month)
         print(revenue_data)
         values = list(revenue_data.values()) # Danh sách tổng doanh thu tương ứng
         print(values)
@@ -135,7 +134,7 @@ class RevenueStats(MyBaseView):
     @expose('/print-reports', methods=['POST'])
     def print_report(self):
         month = request.form.get('month', default=1, type=int)
-        stats = utils.revenueStatsDetail(month=month)
+        stats = dao.revenueStatsDetail(month=month)
 
         data = []
         for s in stats:

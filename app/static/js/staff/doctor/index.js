@@ -93,17 +93,18 @@ function initTable(){
         },
         "columns": [
             { "data": "id" },
-            { "data": "ho_benh_nhanh" },
+            { "data": "ho_benh_nhan" },
             { "data": "ten_benh_nhan" },
             { "data": "gioiTinh" },
             { "data": null, render: function(data, type, row) {
                 return "KXĐ"
             }, orderable: false },
             { "data": "soDienThoai" },
-            { "data": "ngayKham" },
             { "data": null, render: function(data, type, row) {
                 return `${row.ho_bac_si} ${row.ten_bac_si}`
-            }, orderable: false }
+            }, orderable: false },
+            { "data": "ngayKham" },
+            
         ],
         "order": [[0, 'desc']],
         "language": table_language_vn

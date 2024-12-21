@@ -43,13 +43,13 @@ function addRowToTable() {
                         </div>
                     </div>
                     <div class="hourly d-flex align-items-center w-100">
-                        <span>Mỗi</span><input type="number" class="form-control mx-1" placeholder="Số giờ" value="6" style="width:70px;"><span>Tiếng</span>
+                        <span>Mỗi</span><input type="number" class="form-control hourly mx-1" placeholder="Số giờ" value="6" style="width:70px;"><span>Tiếng</span>
                     </div>
                 </div>
             </td>
             <td>
                 <div class="d-flex align-items-center">
-                    <select name="when" class="form-control">
+                    <select name="when" class="form-control when">
                         <option value="before" selected>Trước ăn</option>
                         <option value="after">Sau ăn</option>
                         <option value="none">Không</option>
@@ -57,16 +57,16 @@ function addRowToTable() {
                 </div>
             </td>
             <td>
-                <input type="number" class="form-control" placeholder="Số lần" value="1" style="width: 80px;">                            
+                <input type="number" class="form-control times" placeholder="Số lần" value="1" style="width: 80px;">                            
             </td>
             <td>
                 <div class="d-flex align-items-center gap-2" style="width: 100px;">
-                    <input type="number" class="form-control" placeholder="Giá trị" value="1">
+                    <input type="number" class="form-control value" placeholder="Giá trị" value="1">
                     <span class="unit">Viên</span>
                 </div>
             </td>
             <td>
-                <select name="day" class="form-control" style="width: 100px;">
+                <select name="day" class="form-control day" style="width: 100px;">
                     <option value="1" selected>Mỗi ngày</option>
                     <option value="2">Mỗi 2 ngày</option>
                     <option value="3">Mỗi 3 ngày</option>
@@ -112,7 +112,13 @@ function updateRowNumbers() {
         $(this).find('.recommend-input').on('input', async function() {
             $(this).closest('td').find('.recommend').addClass('show');
             const text = $(this).val();
-            const data = await fetch(`/api/medicine?name=${text}`)
+            // Fetch data
+            exist_med = []
+            for (let e of $rows){
+                const medicine = $(e).find(".recommend-input").attr("id-medicine")
+                if (medicine != "") exist_med.push(medicine)
+            }
+            const data = await fetch(`/api/medicine?name=${text}&exists=${exist_med.join(",")}`)
                 .then(response => response.json())
                 .catch(error => {
                     console.error('Error:', error);
@@ -124,17 +130,30 @@ function updateRowNumbers() {
                 $recommend.append(`<li class="recommend-item" style="color: red;">Không tìm thấy thuốc</li>`);
                 return;
             }
-            data.forEach(medicine => {
-                $recommend.append(`<li class="recommend-item" id-medicine="${medicine.id}">${medicine.name}</li>`);
+            data.forEach((medicine, index) => {
+                $recommend.append(`<li class="recommend-item" idx="${index}" id-medicine="${medicine.id}">${medicine.ten}</li>`);
             });
-        });
-        $(this).find('.recommend-input').on('focusout', function() {
-            $(this).closest('td').find('.recommend').removeClass('show');
-        });
-        // $(this).find('.recommend-input').on('focusin', function() {
             
-        // });
-        
+            $('.recommend .recommend-item').click(function() {
+                const d = data[$(this).attr('idx')]
+                if (d === undefined) return;
+                if (d.so_luong <= 0) {
+                    showToast("Lỗi", "Thuốc đã hết", "error", 5000)
+                    return
+                }
+                $(this).closest('tr').find('.recommend-input').val($(this).text());
+                $(this).closest('tr').find('.recommend-input').attr('id-medicine', d.id);
+                $(this).closest('tr').find('.unit').text(d.don_vi);
+            });    
+        });
+
+        $(this).find('.recommend-input').on('focusout', function() {
+            setTimeout(()=> {
+                $(this).closest('td').find('.recommend').removeClass('show');
+            },300)
+        });
+
+            
     });
 }
     
@@ -242,7 +261,12 @@ function init() {
     });
 }
 
-
+// function resetSearchMedicine(){
+//     $(".recommend-input").off("input")
+//     $(".recommend-input").click(function() {
+//         $(this).closest('td').find('.recommend').addClass('show');
+//     });
+// }
 
 $(document).ready(function() {
     init();
@@ -257,30 +281,37 @@ function savePatient(){
     }
     const rows = $("table tbody tr")
     const medicines = []
-    rows.each(function(index) {
-        if ($(this).find('.recommend-input').val() == ""){
+    for (let e of rows){
+        const medicine = $(e).find(".recommend-input").attr("id-medicine")
+        const method = $(e).find(".method").val()
+        const morning = $(e).find("input.morning").val()
+        const noon = $(e).find("input.noon").val()
+        const evening = $(e).find("input.evening").val()
+        const hourly = $(e).find("input.hourly").val()
+        const when = $(e).find("select.when").val()
+        const times = $(e).find("input.times").val()
+        const value = $(e).find("input.value").val()
+        const unit = $(e).find(".unit").text()
+        const day = $(e).find("select.day").val()
+        if (medicine == ""){
             showToast("Lỗi", "Chưa nhập tên thuốc", "error", 5000)
             return
         }
-        if (diseases.length == 0){
-            showToast("Lỗi", "Chưa chọn bệnh", "error", 5000)
-            return
+        const data = {
+            medicine: medicine,
+            method: method,
+            morning: morning,
+            noon: noon,
+            evening: evening,
+            hourly: hourly,
+            when: when,
+            times: times,
+            value: value,
+            unit: unit,
+            day: day
         }
-        const medicine = {
-            name: $(this).find('.recommend-input').val(),
-            method: $(this).find('.method').val(),
-            morning: $(this).find('.morning').val(),
-            noon: $(this).find('.noon').val(),
-            evening: $(this).find('.evening').val(),
-            hourly: $(this).find('.hourly input').val(),
-            when: $(this).find('select[name="when"]').val(),
-            times: $(this).find('input[type="number"]').val(),
-            value: $(this).find('input[type="number"]').val(),
-            // unit: $(this).find('.unit').text(),
-            day: $(this).find('select[name="day"]').val()
-        }
-        medicines.push(medicine)
-    });
+        medicines.push(data)
+    }
     console.log(medicines)
     const data = {
         patient: profile.id,

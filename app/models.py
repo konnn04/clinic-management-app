@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, String, Float, ForeignKey, Boolean, Column, DateTime, Enum, Text, Time
-from app import app, db
+from app import db
 from sqlalchemy.orm import relationship, mapped_column, Mapped, backref
 from enum import Enum as RoleEnum
 from datetime import datetime, time
@@ -8,11 +8,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class VaiTro(RoleEnum):
-    ADMIN = 1
-    BAC_SI = 2
-    Y_TA = 3
-    BENH_NHAN = 4
-    THU_NGAN = 5
+    ADMIN = 1, "Admin"
+    BAC_SI = 2, "Bác sĩ"
+    Y_TA = 3, "Y tá"
+    BENH_NHAN = 4, "Bệnh nhân"
+    THU_NGAN = 5, "Thu ngân"
+    
 
 
 class ThongTin(db.Model):
@@ -25,23 +26,27 @@ class ThongTin(db.Model):
     soDienThoai = Column(String(15), nullable=True, unique=True)
     email = Column(String(50), nullable=True, unique=True)
     ghiChu = Column(String(255), nullable=True)
-    id = Column(Integer,primary_key=True,autoincrement=True,nullable=False)
-    ho = Column(String(10),nullable=False,unique = False)
-    ten = Column(String(10),nullable = False)
-    gioiTinh = Column(Boolean,nullable = False,default = True) # True: Nam, False: Nu
-    ngaySinh = Column(DateTime,nullable = False)
-    soDienThoai = Column(String(15),nullable=True,unique = True)
-    email = Column(String(50),nullable=True,unique=True)
-    ghiChu = Column(String(255),nullable = True)
 
     def hoTen(self):
         return f"{self.ho} {self.ten}"
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'ho': self.ho,
+            'ten': self.ten,
+            'gioiTinh': self.gioiTinh,
+            'ngaySinh': self.ngaySinh,
+            'soDienThoai': self.soDienThoai,
+            'email': self.email,
+            'ghiChu': self.ghiChu,
+        }
 
 class NguoiDung(ThongTin, UserMixin): 
     __tablename__ = 'nguoiDung'  
     taiKhoan = Column(String(50),nullable = False,unique = True)
     matKhau = Column(Text,nullable = False)
-    avatar = Column(String(255),nullable = True)
+    avatar = Column(String(255),nullable = True, default = '/static/images/user.png')
     role = Column(Enum(VaiTro),nullable = False)
     
     def __str__(self):
@@ -58,32 +63,15 @@ class NguoiDung(ThongTin, UserMixin):
             'email': self.email,
             'ghiChu': self.ghiChu,
         }
-
-
-class NguoiDung(ThongTin, UserMixin):
-    __tablename__ = 'nguoiDung'
-    taiKhoan = Column(String(50), nullable=False, unique=True)
-    matKhau = Column(Text, nullable=False)
-    avatar = Column(String(255), nullable=True)
-    role = Column(Enum(VaiTro), nullable=False)
-
-    def __str__(self):
-        return f"{self.ho} {self.ten}"
-
-    def to_dict(self):
-        return {
-            **super().to_dict(),
-            'taiKhoan': self.taiKhoan,
-            # 'matKhau': 'self.matKhau',
-            'avatar': self.avatar,
-            'role': self.role.name,
-        }
-
+    
     def check_password(self, password):
         return check_password_hash(self.matKhau, password)
 
     def set_password(self, password):
         self.matKhau = generate_password_hash(password)
+
+
+
 
 
 class NguoiBenh(ThongTin):
@@ -95,14 +83,11 @@ class NguoiBenh(ThongTin):
         return datetime.now().year - self.ngaySinh.year
 
     def lanCuoiGhe(self):
-        p = PhieuKhamBenh.query.filter(PhieuKhamBenh.nguoiBenh_id == self.id).order_by(PhieuKhamBenh.ngayKham.desc()).first()
+        p = PhieuKhamBenh.query.filter(PhieuKhamBenh.benhNhan_id == self.id).order_by(PhieuKhamBenh.ngayKham.desc()).first()
         if p:
             return p.ngayKham
         return None
-    
 
-        return PhieuLichDat.query.filter(PhieuLichDat.nguoiBenh_id == self.id).order_by(
-            PhieuLichDat.ngayHen.desc()).first().ngayHen
 
     def to_dict(self):
         return {
@@ -222,17 +207,6 @@ class DanhMucThuoc(db.Model):
     ten = Column(String(100), nullable=False, unique=True)
     thuoc = relationship('Thuoc', backref='danhMucThuoc', lazy=True)
 
-
-
-class LoHang(db.Model):
-    __tablename__ = 'loHang'
-    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    ngayNhap = Column(DateTime, default=datetime.utcnow)
-    hanSuDung = Column(DateTime, nullable=False)
-    ngaySanXuat = Column(DateTime, nullable=False)
-    thuoc = relationship("Thuoc", backref=backref('loHang', uselist=False))
-
-
 class Thuoc(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     ten = Column(String(100), nullable=False, unique=True)
@@ -240,19 +214,21 @@ class Thuoc(db.Model):
     xuatXu = Column(String(100), nullable=False)
     donVi = Column(String(100), nullable=False)
     danhMucThuoc_id = Column(Integer, ForeignKey(DanhMucThuoc.id), nullable=False)
-    loHang_id = Column(Integer, ForeignKey("loHang.id"), unique=True)
+    loHang = relationship('LoHang',backref='thuoc',lazy=True)
     gia = Column(Float, nullable=False)
 
     def __str__(self):
         return self.ten
 
 
-class DonThuoc(db.Model):
+class LoHang(db.Model):
+    __tablename__ = 'loHang'
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    phieu_id = Column(Integer, ForeignKey(PhieuKhamBenh.id), nullable=False)
-    thuoc_id = Column(Integer, ForeignKey(Thuoc.id), nullable=False)
-    cachDung = Column(String(255), nullable=False)
-    soLuong = Column(Integer, nullable=False, default=0)
+    ngayNhap = Column(DateTime, default=datetime.now())
+    hanSuDung = Column(DateTime, nullable=False)
+    ngaySanXuat = Column(DateTime, nullable=False)
+    soLuong = Column(Integer,nullable=False)
+    thuoc_id = Column(Integer,ForeignKey(Thuoc.id))
 
 
 class PhieuLichDat(db.Model):
@@ -261,8 +237,9 @@ class PhieuLichDat(db.Model):
     ngayHen = Column(DateTime, nullable=False)
     trangThai = Column(Boolean, nullable=False, default=False)
     caHen = Column(String(10), nullable=False)  # sang, chieu, toi
+    hoanThanh = Column(Boolean, nullable=False, default=False)
     # Nguoi benh dat lich
-    nguoiBenh_id = Column(Integer, ForeignKey(NguoiBenh.id), nullable=False)
+    benhNhan_id= Column(Integer, ForeignKey(NguoiBenh.id), nullable=False)
 
     def to_dict(self):
         return {
@@ -271,10 +248,15 @@ class PhieuLichDat(db.Model):
             'ngayHen': self.ngayHen.isoformat() if isinstance(self.ngayHen, datetime) else self.ngayHen,
             'trangThai': self.trangThai,
             'caHen': self.caHen,
-            'nguoiBenh_id': self.nguoiBenh_id
+            'benhNhan_id': self.benhNhan_id
         }
 
-
+class DonThuoc(db.Model):
+    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    phieu_id = Column(Integer, ForeignKey(PhieuKhamBenh.id), nullable=False)
+    thuoc_id = Column(Integer, ForeignKey(Thuoc.id), nullable=False)
+    cachDung = Column(String(255), nullable=False)
+    soLuong = Column(Integer, nullable=False, default=0)
 
 class CaLamViecBacSi(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)

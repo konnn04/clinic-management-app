@@ -1,5 +1,5 @@
-from app.models import NguoiDung,VaiTro, NguoiBenh, PhieuLichDat
-from werkzeug.security import generate_password_hash, check_password_hash
+from app.models import VaiTro
+# from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, dao
 from datetime import datetime
 from collections import defaultdict
@@ -10,32 +10,6 @@ from flask import jsonify
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-
-def check_account(username,password):
-    user = NguoiDung.query.filter_by(taiKhoan=username).first()
-    if user and check_password_hash(user.matKhau, password):
-        print("OK")
-        return user
-    else:
-        print("BUG")
-        return None
-
-
-def addUser(ho,ten,ngaySinh,soDienThoai,email,taiKhoan,matKhau,avatar,role = VaiTro.BENH_NHAN):
-    matKhau = generate_password_hash(matKhau)
-    user = NguoiDung(ho = ho.strip(),
-                     ten = ten.strip(),
-                     ngaySinh = datetime.strptime(ngaySinh, "%Y-%m-%d"),
-                     soDienThoai = soDienThoai.strip(),
-                     email = email.strip(),
-                     taiKhoan = taiKhoan.strip(),
-                     matKhau = matKhau,
-                     avatar = avatar,
-                     role = role
-                     )
-    print(user)
-    db.session.add(user)
-    db.session.commit()
 
 def get_nav(current_user):
     if not current_user.is_authenticated:
@@ -161,7 +135,7 @@ def get_diseases(q=None, exists = "", limit = 5):
 
 
 def send_otp_to_email(to_email,otp):
-    api_key = os.environ.get('SENDGRID_API_KEY')
+    api_key = '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'
     message = Mail(
         from_email='2251012121quang@ou.edu.vn',
         to_emails=to_email,
@@ -180,32 +154,3 @@ def send_otp_to_email(to_email,otp):
 
 def send_otp_to_phone(phoneNum,otp):
     pass
-
-def add_appointments(ngayDat, hoTen):
-    p = PhieuLichDat(hoTen = hoTen,
-                     ngayDat = datetime.strptime(ngayDat, "%Y-%m-%d"),
-                     trangThai = True,
-                     nguoiDung_id = 1)
-    db.session.add(p)
-    db.session.commit()
-
-def check_user(info):
-    q_email = NguoiBenh.query.filter_by(email=info).first()
-    q_phone = NguoiBenh.query.filter_by(soDienThoai=info).first()
-
-    if q_email or q_phone:# Nếu đã tồn tại email hay số điện thoại
-        return q_email if q_email else q_phone
-    else:
-        return None
-
-def add_patients(ho,ten,email,soDienThoai,ngaySinh,gioiTinh,diaChi,ghiChu):
-    n = NguoiBenh(ho = ho,
-                  ten = ten,
-                  gioiTinh = gioiTinh,
-                  ngaySinh = datetime.strptime(ngaySinh, "%Y-%m-%d"),
-                  soDienThoai=soDienThoai,
-                  email=email,
-                  diaChi = diaChi,
-                  ghiChu=ghiChu)
-    db.session.add(n)
-    db.session.commit()

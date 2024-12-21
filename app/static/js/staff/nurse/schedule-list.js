@@ -24,12 +24,12 @@ function init(){
                 orderable: false
             },
             {data: 'id'},
-            {data: 'nguoiBenh_id'},
+            {data: 'benhNhan_id'},
             {data: 'ho'},
             {data: 'ten'},
             {data: 'ngaySinh'},
             {data: 'gioiTinh'},
-            {data: 'caKham'},
+            {data: 'caHen'},
             {
                 data:null,
                 render: function(data, type, row){
