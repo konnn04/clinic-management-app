@@ -1,4 +1,4 @@
-from instance import apikey
+import os
 
-account_SID=apikey.twilio_account_SID
-auth_toKen=apikey.twilio_auth_token
+account_SID=os.getenv("TWILIO_ACCOUNT_SID")
+auth_toKen=os.getenv("TWILIO_AUTH_TOKEN")

@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import render_template, request, jsonify, session
 from app import app, utils, login_manager, roles_required, dao
 from flask_login import current_user, login_required, logout_user, login_user
-import pdb
+import os
 import cloudinary
 # from cloudinary.uploader import upload
 import random
@@ -13,7 +13,7 @@ from app.twilio_service import utils as twilio_utils
 from app.models import HoaDonThanhToan
 
 host = '0.0.0.0'
-port = 5100
+port = os.getenv('DEV_PORT', 5000)
 
 @app.context_processor
 def update_template_context():
@@ -476,6 +476,21 @@ def get_medicine():
     exists = request.args.get('exists')
     return jsonify(dao.get_medicine(q, exists))
 
+@app.route('/api/get-services', methods=['GET'])
+@login_required
+@roles_required([VaiTro.BAC_SI])
+def get_services():
+    q = request.args.get('q')
+    exists = request.args.get('exists')
+    return jsonify(dao.get_services(q, exists))
+
+@app.route('/api/save-examination', methods=['POST'])
+@login_required
+@roles_required([VaiTro.BAC_SI])
+def save_patient():
+    data = request.json
+    return jsonify(dao.save_patient(data))
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('layouts/404.html'), 404
@@ -483,7 +498,9 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    from app.admin import *
-    app.run(host=host, port=port, debug=True)
+    with app.app_context():
+        from app.admin import *
+        dao.init_varaibles()
+        app.run(host=host, port=port, debug=True)
 
 

@@ -1,9 +1,17 @@
 .form-container{
-    width: 300px;
+    width: 320px;
+    background-color: #fff;
+    border-radius: 1rem;
 }
 
 .main-view{
     flex: 1;
+    background-color: #fff;
+    border-radius: 1rem;
+}
+
+.col-6{
+    width: 48% !important;
 }
 
 .search-box{
@@ -12,6 +20,7 @@
     margin-bottom: 20px;
     position: relative;
 }
+
 
 .results{
     position: absolute;
@@ -117,7 +126,7 @@ table td .recommend{
     border-radius: 1rem;
     border: 1px solid #ccc;
     display: none;
-    z-index: 2;
+    z-index: 99;
 }
 
 table td .recommend.show{
@@ -137,11 +146,13 @@ table td .recommend ul li{
     cursor: pointer;
 }
 
-.search-disease{
+.search-disease,
+.search-service{
     position: relative;
 }
 
-.search-disease .disease-recommend{
+.search-disease .disease-recommend,
+.search-service .service-recommend{
     position: absolute;
     top: 100%;
     left: 0;
@@ -153,35 +164,59 @@ table td .recommend ul li{
     display: none;
 }
 
-.disease-recommend.show{
+.disease-recommend.show,
+.service-recommend.show{
     display: block;
 }
 
-.search-disease .disease-recommend ul{
+.search-disease .disease-recommend ul,
+.search-service .service-recommend ul{
     list-style: none;
     padding: 0;
     margin: 0;
+    
 }
 
-.search-disease .disease-recommend ul li{
+.search-disease .disease-recommend ul li,
+.search-service .service-recommend ul li{
     padding: .5rem;
     box-sizing: border-box;
     border-bottom: 1px dashed #ccc;
     cursor: pointer;
 }
 
-.search-disease .disease-recommend ul li:hover{
+.search-disease .disease-recommend ul li:hover,
+.search-service .service-recommend ul li:hover{
     background-color: #f9f9f9;
 }
 
-.search-disease .disease-recommend ul li:last-child{
+.search-disease .disease-recommend ul li:last-child,
+.search-service .disease-recommend ul li:last-child{
     border-bottom: none;
 }
 
-.disease-list li{
+.disease-list li,
+.service-list li{
     cursor: pointer!important;
 }
 
-.disease-list li:hover{
+.disease-list li:hover,
+.service-list li:hover{
     background-color: #ff2c2c!important;
+}
+
+.form-control{
+    z-index: 0;
+}
+
+.diseases-box>ul,
+.search-box>ul{
+    min-height: 200px;
+    align-items: flex-start;
+}
+
+h5{
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
 }

@@ -7,3 +7,7 @@ instance/
 .idea/
 /.idea
 .idea
+.env
+.code
+.vscode
+*/__pycache__

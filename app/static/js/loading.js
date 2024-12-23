@@ -42,14 +42,15 @@ function showToast(title, description, type, timeout,img="", time="Now") {
         ${description}
         </div>
     `;
+    toast.classList.add('bg-info', 'text-white');
     if (type === 'success') {
         toast.classList.add('bg-success', 'text-white');
-    } else if (type === 'error') {
+    }
+    if (type === 'error') {
         toast.classList.add('bg-danger', 'text-white');
-    } else if (type === 'warning') {
+    }
+    if (type === 'warning') {
         toast.classList.add('bg-warning', 'text-dark');
-    } else {
-        toast.classList.add('bg-info', 'text-white');
     }
     toast.querySelector('.btn-close').addEventListener('click', function() {
         toast.remove();

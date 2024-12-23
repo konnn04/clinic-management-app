@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv 
 from flask import Flask, redirect, url_for
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -5,13 +7,14 @@ from flask_login import LoginManager, current_user
 from functools import wraps
 import cloudinary
 
+load_dotenv()
 
 app = Flask(__name__)
 
-app.secret_key = '6 79ts7as b86as9 ftas907f5ta8s7f5a8s7 ft97astf87a9tf97artf897arf987rtas789 f7as8'
+app.secret_key = os.getenv('SECRET_KEY')
 
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@localhost/phongkhamdb?charset=utf8mb4'
 
@@ -24,9 +27,9 @@ login_manager.login_view = '/staff/login'
 app.config.MAX_PAGE = 12
 
 cloudinary.config(
-    cloud_name = "dbxht4ocu",
-    api_key = "693848432562243",
-    api_secret = "lZxC9_Cbx5fKxMIuqj_icXqFg64", # Click 'View API Keys' above to copy your API secret
+    cloud_name = os.getenv('CLOUD_NAME'),
+    api_key = os.getenv('API_KEY'),
+    api_secret = os.getenv('API_SECRET'),
     secure=True
 )
 

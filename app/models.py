@@ -99,10 +99,11 @@ class NguoiBenh(ThongTin):
 
 class QuyDinh(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    key = Column(String(50), nullable=False, unique=True)
     value = Column(Integer, nullable=False)
-    description = Column(String(255), nullable=False)
+    description = Column(String(255), nullable=True)
     # Người lần cuối sửa
-    nguoiQuanTri_id = Column(Integer, ForeignKey(NguoiDung.id), nullable=False)
+    nguoiQuanTri_id = Column(Integer, ForeignKey(NguoiDung.id), nullable=True)
 
 
 class HoaDonThanhToan(db.Model):
@@ -153,6 +154,7 @@ class PhieuKhamBenh(db.Model):
     benhNhan_id = Column(Integer, ForeignKey(NguoiBenh.id), nullable=False)
     phieuDichVu = relationship('PhieuDichVu', backref=backref('phieuKham', uselist=False))
     hoaDonThanhToan = relationship('HoaDonThanhToan', backref=backref('phieuKham', uselist=False))
+    ghiChu = Column(Text, nullable=True)
 
     def to_dict(self):
         return {
@@ -168,14 +170,14 @@ class PhieuKhamBenh(db.Model):
             'hoaDonThanhToan': [hoa_don.to_dict() for hoa_don in self.hoaDonThanhToan] if self.hoaDonThanhToan else []
         }
 
-class ChiTietDichVu(db.Model):
-    phieuDichVu_id = Column(ForeignKey('phieudichvu.id'), primary_key=True)
-    dichVu_id = Column(ForeignKey('loaidichvu.id'), primary_key=True)
+# class ChiTietDichVu(db.Model):
+#     phieuDichVu_id = Column(ForeignKey('phieudichvu.id'), primary_key=True)
+#     dichVu_id = Column(ForeignKey('loaidichvu.id'), primary_key=True)
 
-    ketQua = Column(String(255), nullable=False)
+#     ketQua = Column(String(255), nullable=False)
 
-    loaiDichVu = relationship("LoaiDichVu",  back_populates="cacPhieuDichVu")
-    phieuDichVu = relationship("PhieuDichVu", back_populates="cacLoaiDichVu")
+#     loaiDichVu = relationship("LoaiDichVu",  back_populates="cacPhieuDichVu")
+#     phieuDichVu = relationship("PhieuDichVu", back_populates="cacLoaiDichVu")
 
 
 # chiTietDichVu = db.Table('chiTietDichVu',
@@ -183,15 +185,23 @@ class ChiTietDichVu(db.Model):
 #                          Column('loaiDichVu', Integer,ForeignKey('loaidichvu.id'), primary_key=True),
 #                          Column('ketQua', String(255), nullable=True)
 #                          )
-
+class LoaiDichVu(db.Model):
+    __tablename__ = 'loaidichvu'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    tenDichVu = Column(String(255), nullable=False, unique=True)
+    giaDichVu = Column(Float, default=0, nullable=False)
+    moTa = Column(Text, nullable=True)
+    # cacPhieuDichVu = relationship(ChiTietDichVu, back_populates='loaiDichVu')
 
 class PhieuDichVu(db.Model):
     __tablename__ = 'phieudichvu'
     id = Column(Integer, primary_key=True, autoincrement=True)
     ngayLap = Column(DateTime, default=datetime.utcnow)
     ghiChu = Column(Text, nullable=True)
-    phieukham_id = Column(Integer, ForeignKey("phieuKham.id"), unique=True)
-    cacLoaiDichVu = relationship(ChiTietDichVu, back_populates='phieuDichVu')
+    phieukham_id = Column(Integer, ForeignKey("phieuKham.id"), unique=False)
+    # cacLoaiDichVu = relationship(ChiTietDichVu, back_populates='phieuDichVu')
+    id_dich_vu = Column(Integer, ForeignKey(LoaiDichVu.id), nullable=False)
+    giaDichVu = Column(Float, nullable=False)
 
     def to_dict(self):
         return {
@@ -200,19 +210,6 @@ class PhieuDichVu(db.Model):
             'ghiChu': self.ghiChu,
             'phieukham_id': self.phieukham_id
         }
-
-
-
-class LoaiDichVu(db.Model):
-    __tablename__ = 'loaidichvu'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    tenDichVu = Column(String(255), nullable=False, unique=True)
-    giaDichVu = Column(Float, default=0, nullable=False)
-    moTa = Column(Text, nullable=True)
-    cacPhieuDichVu = relationship(ChiTietDichVu, back_populates='loaiDichVu')
-
-
-
 
 class DanhMucThuoc(db.Model):
     __tablename__ = 'danhMucThuoc'

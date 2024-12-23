@@ -13,23 +13,25 @@
 {% block content %}
 
 
-<table id="example" class="display">
-    <thead>
-        <tr>
-            <th>Mã hoá đơn</th>
-            <th>Ngày tạo</th>
-            <th>Họ</th>
-            <th>Tên</th>
-            <th>Người khám</th>
-            <th>Tổng tiền</th>
-            <th>Trạng thái</th>
-            <th>Thao tác</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Auto fill -->
-    </tbody>
-</table>
+<div class="box">
+    <table id="example" class="display table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Mã hoá đơn</th>
+                <th>Ngày tạo</th>
+                <th>Họ</th>
+                <th>Tên</th>
+                <th>Người khám</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Auto fill -->
+        </tbody>
+    </table>
+</div>
 
 <script src="{{url_for('static', filename='js/staff/cashier/invoices.js')}}"></script>
 

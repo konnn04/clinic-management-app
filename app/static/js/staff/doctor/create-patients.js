@@ -1,5 +1,6 @@
 let profile = null;
 let  diseases = [];
+let services = [];
 
 
 function addRowToTable() {
@@ -255,9 +256,44 @@ function init() {
                 $(this).remove();
             });
         });
+    });
 
+    $("#search-service").on("input", async function() {
+        $(".service-recommend").addClass("show");
+        const text = $(this).val();
+        const exists = services.join(",")
+        const data = await fetch(`/api/get-services?q=${text}&exists=${exists}`)
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error:', error);
+                return {"error": "Error"};
+            })
+        const $recommend = $('.service-recommend ul');
+        $recommend.empty();
+        if (data.error) {
+            $recommend.append(`<li class="recommend-item" style="color: red;">Không tìm thấy dịch vụ này</li>`);
+            return;
+        }
+        data.forEach(service => {
+            $recommend.append(`<li class="recommend-item" id-service="${service.id}">${service.ten_dich_vu}</li>`);
+        });
+        
+        $(".service-recommend ul li").click(function() {
+            const service = $(this).text();
+            const id = $(this).attr("id-service")
+            $("#search-service").val("");
+            $(".service-recommend").removeClass("show");
+            $(".service-list").append(`
+                <li class="d-flex justify-content-between p-3 badge bg-primary text-white rounded" id-service="${id}">
+                    ${service}
+                </li>
+            `);
+            services.push(id);
 
-
+            $(".service-list li").click(function() {
+                $(this).remove();
+            });
+        });
     });
 }
 
@@ -275,8 +311,10 @@ $(document).ready(function() {
 
 
 function savePatient(){
+    $(this).attr("disabled", true)
     if (profile == null){
         showToast("Lỗi", "Chưa chọn bệnh nhân", "error", 5000)
+        $(this).attr("disabled", false)
         return
     }
     const rows = $("table tbody tr")
@@ -294,6 +332,7 @@ function savePatient(){
         const unit = $(e).find(".unit").text()
         const day = $(e).find("select.day").val()
         if (medicine == ""){
+            $(this).attr("disabled", false)
             showToast("Lỗi", "Chưa nhập tên thuốc", "error", 5000)
             return
         }
@@ -312,11 +351,72 @@ function savePatient(){
         }
         medicines.push(data)
     }
-    console.log(medicines)
+    // console.log(medicines)
+    const id_services = []
+    $("ul.service-list li").each(function(){
+        id_services.push($(this).attr("id-service"))
+    })
+
+
+
     const data = {
-        patient: profile.id,
+        examination_id: profile.id,
         medicines: medicines,
-        diseases: diseases
+        diseases: diseases,
+        result: {
+            bloodType: $("#blood-type").val() || "Không có",
+            bloodPressure: $("#blood-pressure").val() || "Không có",
+        },
+        services: id_services,
+        note: $("#note").val() || "Không có"
     }
-    console.log(data)
+    // console.log(data)
+
+    fetch("/api/save-examination", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }).then(response => response.json())
+    .then(data => {
+        if (!data){
+            $(this).attr("disabled", false)
+            showToast("Lỗi", data.error, "error", 5000)
+            return
+        }
+        $(this).attr("disabled", false)
+        showToast("Thành công", "Lưu thông tin bệnh nhân thành công", "success", 5000)
+        resetRow()
+        addRowToTable()
+        diseases = []
+        services = []
+        $(".disease-list").empty()
+        $(".service-list").empty()
+        $("#note").val("")
+
+        setTimeout(() => {
+            location.reload()
+        },2000)
+    }).catch(error => {
+        console.error('Error:', error);
+        $(this).attr("disabled", false)
+        showToast("Lỗi", data.error, "error", 5000)
+    });
 }
+
+
+$("#save-btn").click(function(){
+    savePatient()
+    
+})
+
+// $(".search-disease> div> .btn").click(function(){
+//     const disease =$(".search-disease").val()
+//     $(".disease-list").append(`
+//         <li class="d-flex justify-content-between p-3 badge bg-primary text-white rounded">
+//             ${disease}
+//         </li>
+//     `);
+//     $(".search-disease").val("");
+// })

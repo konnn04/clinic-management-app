@@ -1,7 +1,7 @@
 import json
 import os
 from app import app, db
-from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat, PhieuKhamBenh, NguoiDung, VaiTro, Thuoc, LoHang
+from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat, PhieuKhamBenh, NguoiDung, VaiTro, Thuoc, LoHang, LoaiDichVu, PhieuDichVu, DonThuoc, QuyDinh
 from sqlalchemy import text
 from sqlalchemy.orm import joinedload, subqueryload
 from flask import jsonify
@@ -9,6 +9,7 @@ from datetime import datetime
 import random
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.momo_payment import utils as momo_utils
+from flask_login import current_user
 
 # Test function
 def read_json(path):
@@ -448,3 +449,162 @@ def handle_payment_result(response_dict):
                 db.session.commit()
                 return {"status": "success", "message": "Thanh toan thanh cong"}
     return {"status": "error", "message": msg}
+
+def get_services(q, exists):
+    query = db.session.query(
+        LoaiDichVu.id.label('id'),
+        LoaiDichVu.tenDichVu.label('ten_dich_vu'),
+        LoaiDichVu.giaDichVu.label('gia_dich_vu'),
+    )
+
+    query = query.filter(LoaiDichVu.tenDichVu.like(f"%{q}%" if q else "%"))
+
+    for e in exists.split(","):
+        query = query.filter(LoaiDichVu.id != e.strip())
+
+    query = query.all()
+    return [{
+        'id': e.id,
+        'ten_dich_vu': e.ten_dich_vu,
+        'gia_dich_vu': e.gia_dich_vu
+    } for e in query]
+
+def create_invoice(phieuKham):
+    dichVuKham = PhieuDichVu.query.filter(PhieuDichVu.phieukham_id == phieuKham.id).all()
+    tienDichVu = sum([dv.giaDichVu for dv in dichVuKham])
+    donThuoc = DonThuoc.query.filter(DonThuoc.phieu_id == phieuKham.id).all()
+    tienThuoc = 0
+    for thuoc in donThuoc:
+        tienThuoc += thuoc.soLuong * Thuoc.query.get(thuoc.thuoc_id).gia
+    hoaDon = HoaDonThanhToan(
+        benhNhan_id = phieuKham.benhNhan_id,
+        tienKham = QuyDinh.query.filter_by(key="EXAMINATION_COST").first().value,
+        tienThuoc = tienThuoc,
+        phieuKham_id = phieuKham.id,
+        tongTien = tienDichVu + tienThuoc,
+        )
+    db.session.add(hoaDon)
+    db.session.commit()
+
+def save_patient(data):
+    examination = PhieuLichDat.query.get(data.get('examination_id'))
+    if examination is None:
+        return {
+            "status": "error",
+            "message": "Không tìm thấy phiếu khám"
+        }
+    
+    patient = NguoiBenh.query.get(examination.benhNhan_id)
+    if patient is None:
+        return {
+            "status": "error",
+            "message": "Không tìm thấy bệnh nhân"
+        }
+    
+    trieuChung = "Không có triệu chứng"
+    duDoanLoaiBenh = "Không có dự đoán loại bệnh"
+    if data.get('diseases'):
+        duDoanLoaiBenh = ", ".join(data.get('diseases'))
+
+    services = data.get('services')
+    medicines = data.get('medicines')
+
+    bacSi = current_user.id        
+    ghiChu = data.get('ghiChu')
+
+    # Kiểm tra thuốc
+    medicines = data.get('medicines')
+    if medicines:
+        for medicine in medicines:
+            thuoc = Thuoc.query.get(medicine.get('medicine'))
+            if thuoc is None:
+                return {
+                    "status": "error",
+                    "message": "Không tìm thấy thuốc"
+                }
+            
+            soLuongThuoc = LoHang.query.filter(LoHang.thuoc_id == thuoc.id).with_entities(db.func.sum(LoHang.soLuong)).scalar()
+            if soLuongThuoc < int(medicine.get('value')):
+                return {
+                    "status": "error",
+                    "message": "Số lượng thuốc không đủ"
+                }
+
+    if services:
+        for service in services:
+            loaiDichVu = LoaiDichVu.query.get(int(service))
+            if loaiDichVu is None:
+                return {
+                    "status": "error",
+                    "message": "Không tìm thấy dịch vụ"
+                }
+            p = PhieuDichVu(
+                phieukham_id = phieuKham.id,
+                id_dich_vu = loaiDichVu.id,
+                giaDichVu = loaiDichVu.giaDichVu
+            )
+            db.session.add(p)
+            db.session.commit()
+
+    phieuKham = PhieuKhamBenh(
+        benhNhan_id = patient.id,
+        bacSi_id = bacSi,
+        trieuChung = trieuChung,
+        duDoanLoaiBenh = duDoanLoaiBenh,
+        ghiChu = ghiChu
+    )
+
+    db.session.add(phieuKham)
+    db.session.commit()
+
+    phieuKham = PhieuKhamBenh.query.filter(PhieuKhamBenh.benhNhan_id == patient.id).order_by(PhieuKhamBenh.ngayKham.desc()).first()
+    for medicine in medicines:
+        cachDung = ""
+
+        uongKhi = {
+            "before": "Uống rước khi ăn",
+            "after": "Uống sau khi ăn",
+            "none": "Trước hoặc sau khi ăn",
+        }.get(medicine.get('when'))
+
+        thuoc = Thuoc.query.get(int(medicine.get('medicine')))
+        if thuoc is None:
+            continue
+        
+        if medicine.get('method') == "stc":
+            cachDung = f'Uống sáng trưa chiều, ({medicine.get("morning")}h, {medicine.get("noon")}h, {medicine.get("evening")}h), {uongKhi}, mỗi lần {medicine.get("time")} {medicine.get("unit")}, cách nhau {medicine.get("day")} ngày'
+        else:
+            cachDung = f'Uống mỗi {medicine.get("hourly")} giờ, {uongKhi}, mỗi lần {medicine.get("time")} {medicine.get("unit")}, cách nhau {medicine.get("day")} ngày'
+        p = DonThuoc(
+            phieu_id = phieuKham.id,
+            thuoc_id = medicine.get('medicine'),
+            soLuong = medicine.get('value'),
+            cachDung = cachDung
+        )
+        db.session.add(p)
+
+        db.session.commit()
+
+    create_invoice(phieuKham)
+
+    return {
+        "status": "success",
+        "message": "Đã lưu thông tin bệnh nhân",
+    }
+    
+
+def init_varaibles():
+    quydinh = {
+        "MAX_PAGE": 10,
+        "MAX_APPOINTMENT": 40,
+        "EXAMINATION_COST": 100000,
+    }
+
+    for key in quydinh:
+        q = QuyDinh.query.filter_by(key=key).first()
+        if not q:
+            q = QuyDinh(key=key, value=quydinh[key])
+        db.session.add(q)
+    db.session.commit()
+
+    

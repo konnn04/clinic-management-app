@@ -1,11 +1,11 @@
 {% extends './layouts/base_staff.html' %}
 
 {% block title %}
-    Create Patient
+Create Patient
 {% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" class="css" href="{{url_for('static', filename='css/staff/doctor/create-patients.css')}}">
+<link rel="stylesheet" class="css" href="{{url_for('static', filename='css/staff/doctor/create-patients.css')}}">
 {% endblock %}
 
 {% block back %}
@@ -16,15 +16,15 @@
 
 {% block actions %}
 <div class="actions">
-    <button class="btn btn-success" id="save-btn" onclick="savePatient()">Lưu</button>
+    <button class="btn btn-success" id="save-btn">Lưu</button>
 </div>
 {% endblock %}
 
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-start gap-4">
-    <div class="main-view" style="flex:1;">
-       <div class="medicine-table">
+<div class="d-flex justify-content-between align-items-start gap-3">
+    <div class="main-view p-3" style="flex:1;">
+        <div class="medicine-table">
             <div class="table-header d-flex justify-content-between">
                 <h5>Medicine</h5>
             </div>
@@ -43,35 +43,83 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                 </tbody>
-            </table>    
+            </table>
             <div class="add-medical w-100">
                 <button class="btn btn-primary w-100" id="add-medical-btn">Thêm thuốc</button>
-            </div>        
-       </div>
-       <div class="details d-flex justify-content-between mt-5">
+            </div>
+        </div>
+        <div class="details d-flex justify-content-between mt-5 gap-3">
+             
             <div class="diseases-box col-6">
+                <h5>Triệu chứng:</h5>     
                 <div class="search-disease d-flex align-items-center">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm bệnh" autocomplete="off" id="search-disease" name="search-disease">
-                    <button class="btn"><i class="fas fa-plus"></i></button>
+                    <div class="form-control d-flex">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm bệnh" autocomplete="off"
+                            id="search-disease" name="search-disease">
+                        <button class="btn"><i class="fas fa-plus"></i></button>
+                    </div>
+
                     <div class="disease-recommend">
                         <ul>
-                            <li class="recommend-item" style="color: red;">Không tìm thấy bệnh</li>                                
+                            <li class="recommend-item" style="color: red;">Không tìm thấy bệnh</li>
                         </ul>
                     </div>
                 </div>
                 <ul class="disease-list list-unstyled p-0 d-flex flex-wrap mt-3 gap-1">
-                    
+
                 </ul>
             </div>
+            <div class="col-6">
+                <h5>Kết quả khám:</h5>      
+                <div class="d-flex gap-2">                          
+                    <div class="form-control col-6">
+                        <label for="result">Nhóm máu</label>
+                        <input type="text" class="form-control" id="blood-type" name="blood-type">
+                    </div>
+                    <div class="form-control col-6">
+                        <label for="result">Huyết áp</label>
+                        <input type="text" class="form-control" id="blood-pressure" name="blood-pressure">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex mt-5 gap-3">
             
-       </div>
+            <div class="service-box col-6" style="display: none;">
+                <h5>Dịch vụ khám:</h5>   
+                <div class="search-service d-flex align-items-center">
+                    <div class="form-control">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm dịch vụ khám" autocomplete="off"
+                            id="search-service" name="search-service">
+                    </div>
+                    <div class="service-recommend">
+                        <ul>
+                            <li class="recommend-item" style="color: red;">Không tìm thấy dịch vụ khám</li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="service-list list-unstyled p-0 d-flex flex-wrap mt-3 gap-1">
+
+                </ul>
+            </div>
+
+            <div class="col-12">
+                <h5>Ghi chú:</h5>
+                <div class="form-control">
+                    <textarea class="form-control" id="note" rows="6" id="note"></textarea>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-container" style="width: 250px;">
+
+
+    <div class="form-container p-3 px-2" style="width: 250px;">
         <h5>Profile</h5>
         <div class="search-box d-flex align-items-center">
-            <input type="text" class="form-control" placeholder="ID, Name, Phone" autocomplete="off" id="search" name="search">
+            <input type="text" class="form-control" placeholder="ID, Name, Phone" autocomplete="off" id="search"
+                name="search">
             <button class="btn"><i class="fas fa-search"></i></button>
             <div class="results">
                 <ul>
@@ -79,15 +127,16 @@
                         <div class="d-flex align-items-center justify-content-between">
                             Không có kết quả
                         </div>
-                    </li>                                
+                    </li>
                 </ul>
             </div>
-        </div>   
+        </div>
 
         <div class="profile flex-column d-flex align-items-center p-3 w-100 mb-4">
             <div class="avt w-50 mb-3">
                 <!-- <img src="{{url_for('static', filename='{{patient_view.avatar}}')}}" alt=""> -->
-                <img id="avt" src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt="" style="width:100%">
+                <img id="avt" src="https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png" alt=""
+                    style="width:100%">
             </div>
             <div class="info p-0 w-100 text-center">
                 <h5 class="name" id="name">John Doe</h5>
@@ -106,7 +155,7 @@
                 <li class="d-flex justify-content-between">
                     <span>Nhóm máu:</span>
                     <span id="blood-type">O+</span>
-                </li>   
+                </li>
                 <li class="d-flex justify-content-between">
                     <span>Lần khám cuối:</span>
                     <span id="last-examination">12/12/2021</span>
@@ -114,7 +163,7 @@
 
             </ul>
         </div>
-        <div class="prev-examination">
+        <!-- <div class="prev-examination">
             <h5>Examination</h5>
             <ul class="list list-unstyled p-0">
                 {% for i in range(1, 5) %}
@@ -134,21 +183,21 @@
                 </li>
                 {% endfor %}
             </ul>
-        </div>
+        </div> -->
     </div>
 </div>
 
-
-<div class="toast align-items-center text-bg-primary border-0" id="alert" role="alert" aria-live="assertive" aria-atomic="true">
+<!-- <div class="toast align-items-center text-bg-primary border-0" id="alert" role="alert" aria-live="assertive"
+    aria-atomic="true">
     <div class="d-flex">
-      <div class="toast-body">
-        <i class="fas fa-check-circle me-2"></i><span id="alert-message">Vui lòng điền đầy đủ thông tin</span>
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="toast-body">
+            <i class="fas fa-check-circle me-2"></i><span id="alert-message">Vui lòng điền đầy đủ thông tin</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
     </div>
-  </div>
+</div> -->
 
-        
+
 <script src="{{url_for('static', filename='js/staff/doctor/create-patients.js')}}"></script>
 {% endblock %}
-

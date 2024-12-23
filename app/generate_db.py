@@ -1,9 +1,9 @@
 from app import app, db
-from app.models import NguoiDung, VaiTro, NguoiBenh, PhieuLichDat, PhieuKhamBenh, PhieuDichVu, LoaiDichVu, ChiTietDichVu, DanhMucThuoc, Thuoc, LoHang, DonThuoc, HoaDonThanhToan, CaLamViecBacSi
+from app.models import NguoiDung, VaiTro, NguoiBenh, PhieuLichDat, PhieuKhamBenh, PhieuDichVu, LoaiDichVu, DanhMucThuoc, Thuoc, LoHang, DonThuoc, HoaDonThanhToan, CaLamViecBacSi
 
 from werkzeug.security import generate_password_hash
 from datetime import datetime
-
+# , ChiTietDichVu
 
 def initUser():
     ad = NguoiDung(ho='admin', ten='admin', ngaySinh=datetime.now(), soDienThoai='0123456789', email='admin@admin.com',
@@ -153,12 +153,13 @@ def initPhieuKhamBenh():
 
 def initPhieuDichVu_LoaiDichVu_ChiTietDichVu():
     # Dữ liệu mẫu
-    dv1 = LoaiDichVu(tenDichVu="Dịch vụ sửa chữa", giaDichVu=150000, moTa="Dịch vụ 1")
-    dv2 = LoaiDichVu(tenDichVu="Dịch vụ bảo trì", giaDichVu=50000, moTa="Dịch vụ 2")
-    dv3 = LoaiDichVu(tenDichVu="Dịch vụ tư vấn", giaDichVu=200000, moTa="Dịch vụ 3")
-    dv4 = LoaiDichVu(tenDichVu="Dịch vụ vệ sinh", giaDichVu=30000, moTa="Dịch vụ 4")
+    dv1 = LoaiDichVu(tenDichVu="Xét nghiệm máu", giaDichVu=150000, moTa="Dịch vụ 1")
+    dv2 = LoaiDichVu(tenDichVu="Châm huyết", giaDichVu=50000, moTa="Dịch vụ 2")
+    dv3 = LoaiDichVu(tenDichVu="Nội soi", giaDichVu=200000, moTa="Dịch vụ 3")
+    dv4 = LoaiDichVu(tenDichVu="Xét nghiệm khác", giaDichVu=30000, moTa="Dịch vụ 4")
+    dv5 = LoaiDichVu(tenDichVu="Tiểu phẫu", giaDichVu=40000, moTa="Dịch vụ 4")
 
-    db.session.add_all([dv1, dv2, dv3, dv4])
+    db.session.add_all([dv1, dv2, dv3, dv4, dv5])
     db.session.commit()
 
     #
@@ -166,17 +167,18 @@ def initPhieuDichVu_LoaiDichVu_ChiTietDichVu():
     pk1 = PhieuKhamBenh.query.get(1)
     pk2 = PhieuKhamBenh.query.get(2)
 
-    pdv1 = PhieuDichVu(phieukham_id=pk1.id, ghiChu="Kiểm tra huyết áp và xét nghiệm máu")
-    pdv2 = PhieuDichVu(phieukham_id=pk2.id, ghiChu="X-ray và kiểm tra chức năng gan")
+    pdv1 = PhieuDichVu(phieukham_id=pk1.id, id_dich_vu=1, giaDichVu=150000, ghiChu="Kiểm tra huyết áp và xét nghiệm máu")
+    pdv2 = PhieuDichVu(phieukham_id=pk2.id, id_dich_vu=1, giaDichVu=150000, ghiChu="Kiểm tra huyết áp và xét nghiệm máu")
+    
 
     db.session.add(pdv1)
     db.session.add(pdv2)
     db.session.commit()
 
-    pdv1.cacLoaiDichVu.append(ChiTietDichVu(ketQua="KQ1", loaiDichVu=dv1))
-    pdv1.cacLoaiDichVu.append(ChiTietDichVu(ketQua="KQ2", loaiDichVu=dv2))
+    # pdv1.cacLoaiDichVu.append(ChiTietDichVu(ketQua="KQ1", loaiDichVu=dv1))
+    # pdv1.cacLoaiDichVu.append(ChiTietDichVu(ketQua="KQ2", loaiDichVu=dv2))
 
-    pdv2.cacLoaiDichVu.append(ChiTietDichVu(ketQua="KQ3", loaiDichVu=dv1))
+    # pdv2.cacLoaiDichVu.append(ChiTietDichVu(ketQua="KQ3", loaiDichVu=dv1))
 
 
 def initDMThuoc_LoHang_Thuoc():
