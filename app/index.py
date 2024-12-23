@@ -9,6 +9,7 @@ import cloudinary
 import random
 from app.models import NguoiDung, VaiTro, NguoiBenh
 from app.momo_payment import utils as momo_utils
+from app.twilio_service import utils as twilio_utils
 from app.models import HoaDonThanhToan
 
 host = '0.0.0.0'
@@ -148,17 +149,17 @@ def send_otp():
     current_user = dao.check_user(info)
 
     if current_user:
-        print(current_user.to_dict())
-        otp = str(random.randint(100000, 999999))
-        session['current_user'] = current_user.to_dict()
-        session['current_user']['otp']=otp # Thêm trường otp để kiểm tra
-        print(otp)
+        # print(current_user.to_dict())
         if '@' in info: # Nếu như là email
-            return utils.send_otp_to_email(info,otp)
+            otp = str(random.randint(100000, 999999))
+            session['otp']=otp # Thêm trường otp để kiểm tra
+            return utils.send_otp_to_email(current_user.email,otp)
         else: # Nếu như là số điện thoại
-            pass
+            current_user.soDienThoai = utils.convert_to_international_format(info)
+            return twilio_utils.send_sms_otp(current_user.soDienThoai)
     else:
-        return jsonify({"message" : "Authentication failed"}),401
+        return jsonify({"status": "failed",
+                        "message": "Authentication failed"}),401
 
 
 
@@ -168,11 +169,17 @@ def patient_login():
     if request.method.__eq__('POST'):
         info = request.form.get('info')
         otp = request.form.get('otp')
-        current_user = session.get('current_user')
-        if otp.__eq__(current_user['otp']):
-            return redirect(url_for('index'))
-        else:
-            msg = "OTP không hợp lệ!!!"
+        current_user = dao.check_user(info)
+        print(session['otp'])
+        try:
+            if ("@" in info and otp.__eq__(session.get('otp'))) or (twilio_utils.verify_sms_otp(current_user.soDienThoai, otp)['status'] == "verified"):
+                session['current_user'] = current_user.to_dict()
+                return redirect(url_for('index'))
+            else:
+                msg = "OTP không hợp lệ!!!"
+        except Exception as ex:
+            print(ex)
+            msg = "Vui lòng nhập thông tin người dùng"
     return render_template('login.html',msg=msg)
 
 @app.route('/logout')
