@@ -170,9 +170,13 @@ def patient_login():
         info = request.form.get('info')
         otp = request.form.get('otp')
         current_user = dao.check_user(info)
-        print(session['otp'])
+        if current_user.soDienThoai:
+            current_user.soDienThoai = utils.convert_to_international_format(info)
+
         try:
-            if ("@" in info and otp.__eq__(session.get('otp'))) or (twilio_utils.verify_sms_otp(current_user.soDienThoai, otp)['status'] == "verified"):
+            if (info.__contains__("@") and otp.__eq__(session.get('otp'))) or \
+                (twilio_utils.verify_sms_otp(current_user.soDienThoai, otp)['status'] == "verified"):
+
                 session['current_user'] = current_user.to_dict()
                 return redirect(url_for('index'))
             else:

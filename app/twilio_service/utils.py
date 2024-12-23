@@ -33,6 +33,8 @@ def verify_sms_otp(to,otp):
 
         client = Client(account_sid, auth_token)
         verification_checks = client.verify.v2.services(service_id).verification_checks.create(to=to, code=otp)
+        print("Check in run")
+        print(verification_checks.status)
         return {
             "status": "verified" if verification_checks.status.__eq__("approved") else "failed",
             "message": verification_checks
