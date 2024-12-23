@@ -101,6 +101,7 @@ class QuyDinh(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     value = Column(Integer, nullable=False)
     description = Column(String(255), nullable=False)
+    # Người lần cuối sửa
     nguoiQuanTri_id = Column(Integer, ForeignKey(NguoiDung.id), nullable=False)
 
 
