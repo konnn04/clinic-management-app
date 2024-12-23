@@ -9,6 +9,7 @@ import cloudinary
 import random
 from app.models import NguoiDung, VaiTro, NguoiBenh
 from app.momo_payment import utils as momo_utils
+from app.twilio_service import utils as twilio_utils
 from app.models import HoaDonThanhToan
 
 host = '0.0.0.0'
@@ -156,7 +157,7 @@ def send_otp():
         if '@' in info: # Nếu như là email
             return utils.send_otp_to_email(info,otp)
         else: # Nếu như là số điện thoại
-            pass
+            return twilio_utils.send_sms_otp(info)
     else:
         return jsonify({"message" : "Authentication failed"}),401
 
