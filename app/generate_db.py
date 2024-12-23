@@ -263,7 +263,6 @@ def initDMThuoc_LoHang_Thuoc():
         ngaySanXuat=datetime(2024, 5, 30),
         soLuong=100,
         thuoc_id=2  # Liên kết với thuốc có id=2 (Amoxicillin)
-
     )
 
     lohang3 = LoHang(

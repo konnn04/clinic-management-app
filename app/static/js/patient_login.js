@@ -42,6 +42,4 @@ function sendOtp() {
     } else {
         alert("Vui lòng nhập số điện thoại hoặc email hợp lệ!");
     }
-
-
 }
