@@ -10,6 +10,8 @@ from flask import jsonify
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import phonenumbers
+
 
 def get_nav(current_user):
     if not current_user.is_authenticated:
@@ -147,10 +149,25 @@ def send_otp_to_email(to_email,otp):
         sg = SendGridAPIClient(api_key)
         response = sg.send(message)
         print("OTP sent successfully!")
-        return jsonify({'message': 'OTP sent successfully!'}), 200
+        return jsonify({
+            "status": "success",
+            'message': 'OTP sent successfully!'
+        }), 200
     except Exception as e:
         print(f"Error: {e}")
-        return jsonify({'error': 'Failed to send OTP!'}), 500
+        return jsonify({
+            "status": 'error',
+            "message": 'Failed to send OTP!'}), 500
 
-def send_otp_to_phone(phoneNum,otp):
-    pass
+
+def convert_to_international_format(phone_number, country_code="VN"):
+    try:
+        parsed_number = phonenumbers.parse(phone_number, country_code)
+        international_number = phonenumbers.format_number(
+            parsed_number, phonenumbers.PhoneNumberFormat.INTERNATIONAL
+        )
+
+        return international_number
+
+    except phonenumbers.NumberParseException as e:
+        return f"Invalid phone number: {e}"

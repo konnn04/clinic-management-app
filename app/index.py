@@ -149,17 +149,19 @@ def send_otp():
     current_user = dao.check_user(info)
 
     if current_user:
-        print(current_user.to_dict())
-        otp = str(random.randint(100000, 999999))
+        # print(current_user.to_dict())
         session['current_user'] = current_user.to_dict()
-        session['current_user']['otp']=otp # Thêm trường otp để kiểm tra
-        print(otp)
         if '@' in info: # Nếu như là email
+            otp = str(random.randint(100000, 999999))
+            session['current_user']['otp']=otp # Thêm trường otp để kiểm tra
+            # print(otp)
             return utils.send_otp_to_email(info,otp)
         else: # Nếu như là số điện thoại
-            return twilio_utils.send_sms_otp(info)
+            session['current_user']['soDienThoai'] = utils.convert_to_international_format(info)
+            return twilio_utils.send_sms_otp(session['current_user']['soDienThoai'])
     else:
-        return jsonify({"message" : "Authentication failed"}),401
+        return jsonify({"status": "failed",
+                        "message": "Authentication failed"}),401
 
 
 
@@ -169,11 +171,17 @@ def patient_login():
     if request.method.__eq__('POST'):
         info = request.form.get('info')
         otp = request.form.get('otp')
-        current_user = session.get('current_user')
-        if otp.__eq__(current_user['otp']):
-            return redirect(url_for('index'))
-        else:
-            msg = "OTP không hợp lệ!!!"
+        try:
+            current_user = session.get('current_user')
+            print(current_user)
+
+            if ("@" in info and otp.__eq__(current_user['otp'])) or (twilio_utils.verify_sms_otp(current_user["soDienThoai"], otp)['status'] == "verified"):
+                return redirect(url_for('index'))
+
+            else:
+                msg = "OTP không hợp lệ!!!"
+        except Exception as ex:
+            msg = "Vui lòng nhập thông tin người dùng"
     return render_template('login.html',msg=msg)
 
 @app.route('/logout')

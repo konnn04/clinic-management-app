@@ -357,13 +357,17 @@ def add_appointments(ngayDat, hoTen):
     db.session.commit()
 
 def check_user(info):
-    q_email = NguoiBenh.query.filter_by(email=info).first()
-    q_phone = NguoiBenh.query.filter_by(soDienThoai=info).first()
-
-    if q_email or q_phone:# Nếu đã tồn tại email hay số điện thoại
-        return q_email if q_email else q_phone
+    if info.__contains__("@"):
+        q = NguoiBenh.query.filter_by(email=info).first()
     else:
-        return None
+        q = NguoiBenh.query.filter_by(soDienThoai=info).first()
+
+    return q
+    # q sẽ trả về None khi không tồn tại nên không cần
+    # if q_email or q_phone:# Nếu đã tồn tại email hay số điện thoại
+    #     return q_email if q_email else q_phone
+    # else:
+    #     return None
 
 def add_patients(ho,ten,email,soDienThoai,ngaySinh,gioiTinh,diaChi,ghiChu):
     n = NguoiBenh(ho = ho,
