@@ -19,7 +19,6 @@ function sendOtp() {
         return;
     }
     if (validateInput(info)) {
-        alert("Yêu cầu gửi OTP thành công!");
         fetch('/send-otp', {
             method: 'POST',
             headers: {
