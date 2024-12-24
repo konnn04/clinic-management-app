@@ -27,9 +27,9 @@ login_manager.login_view = '/staff/login'
 app.config.MAX_PAGE = 12
 
 cloudinary.config(
-    cloud_name = os.getenv('CLOUD_NAME'),
-    api_key = os.getenv('API_KEY'),
-    api_secret = os.getenv('API_SECRET'),
+    cloud_name = os.getenv('CLOUDINARY_NAME'),
+    api_key = os.getenv('CLOUDINARY_API_KEY'),
+    api_secret = os.getenv('CLOUDINARY_API_SECRET'),
     secure=True
 )
 

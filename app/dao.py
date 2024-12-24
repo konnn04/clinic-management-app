@@ -445,17 +445,19 @@ def add_patients(ho,ten,email,soDienThoai,ngaySinh,gioiTinh,diaChi,ghiChu):
     db.session.add(n)
     db.session.commit()
 
-def addUser(ho,ten,ngaySinh,soDienThoai,email,taiKhoan,matKhau,avatar,role = VaiTro.BENH_NHAN):
+def addUser(ho,ten,ngaySinh,gioiTinh,soDienThoai,email,taiKhoan,matKhau,avatar,role = VaiTro.BAC_SI,ghiChu = ""):
     matKhau = generate_password_hash(matKhau)
     user = NguoiDung(ho = ho.strip(),
                      ten = ten.strip(),
                      ngaySinh = datetime.strptime(ngaySinh, "%Y-%m-%d"),
+                     gioiTinh = gioiTinh,
                      soDienThoai = soDienThoai.strip(),
                      email = email.strip(),
                      taiKhoan = taiKhoan.strip(),
                      matKhau = matKhau,
                      avatar = avatar,
-                     role = role
+                     role = role,
+                     ghiChu = ghiChu
                      )
     print(user)
     db.session.add(user)
@@ -675,9 +677,9 @@ def init_varaibles():
     db.session.commit()
 
 def get_appointment_list(id):
-    print(id)
+    # print(id)
     try:
-        phieulichdat = PhieuLichDat.query.filter(PhieuLichDat.benhNhan_id == id, PhieuLichDat.active == True, PhieuLichDat.ngayHen >= datetime.now().date()).all()
+        phieulichdat = PhieuLichDat.query.filter(PhieuLichDat.benhNhan_id == int(id), PhieuLichDat.active == True, PhieuLichDat.ngayHen >= datetime.now().date()).all()
         
         return [{
             'id': e.id,

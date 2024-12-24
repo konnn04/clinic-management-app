@@ -82,11 +82,11 @@
 
     <script>
         const today = new Date();
-        const todayISO = today.toISOString().split('T')[0];
-
+        const todayISO = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+        console.log(todayISO);
         const maxDate = new Date();
         maxDate.setDate(today.getDate() + 7);
-        const maxDateISO = maxDate.toISOString().split('T')[0];
+        const maxDateISO = new Date(maxDate.getTime() - maxDate.getTimezoneOffset() * 60000).toISOString().split('T')[0];
 
         const dateInput = document.getElementById('date_inp');
         dateInput.min = todayISO;

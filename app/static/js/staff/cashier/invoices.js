@@ -1,11 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
+    // Initialize DataTable
     $('#example').DataTable({
         "processing": true,
         "serverSide": true,
         "ajax": {
             "url": "/api/invoices",
-            "data": function(d) {
-                console.log(d);
+            "data": function (d) {
                 return $.extend({}, d, {
                     "sort": d.columns[d.order[0].column].data,
                     "order": d.order[0].dir
@@ -13,21 +13,27 @@ $(document).ready(function() {
             }
         },
         "columns": [
-            { "data": "id" },
-            { "data": "ngayLapHoaDon" },
-            { "data": "hoBenhNhan" },
-            { "data": "tenBenhNhan" },
-            { "data": "bacSi"},
-            { "data": "tongTien" },
-            { "data": "trangThai" },
-            {"data": "action",
-            orderable: false,
-            "render": function(data, type, row) {
-                return `
-                    <button class="btn btn-primary btn-sm view-btn" data-id="${row.id}">Xem</button>
-                `;
+            {"data": "id"},
+            {"data": "ngayLapHoaDon"},
+            {"data": "hoBenhNhan"},
+            {"data": "tenBenhNhan"},
+            {"data": "bacSi"},
+            {"data": "tongTien"},
+            {"data": "trangThai"},
+            {
+                "data": "action",
+                "orderable": false,
+                "render": function (data, type, row) {
+                    if (row.trangThai == true) {
+                        return `
+                        <button class="btn btn-primary btn-sm view-btn" data-id="${row.id}">Xem</button>
+                        `;
+                    } else return `
+                        <button class="btn btn-primary btn-sm view-btn" data-id="${row.id}">Xem</button>
+                        <button class="btn btn-success btn-sm pay-btn" data-id="${row.id}">Thanh toán</button>
+                    `;
+                }
             }
-        }
         ],
         "language": {
             "paginate": {
@@ -46,4 +52,26 @@ $(document).ready(function() {
             "zeroRecords": "Không tìm thấy bản ghi nào"
         }
     });
+
+    $(document).on('click', '.view-btn', function () {
+        const invoiceId = $(this).data('id');
+        handleViewInvoice(invoiceId);
+    });
+
+    $(document).on('click', '.pay-btn', function () {
+        const invoiceId = $(this).data('id');
+        handlePayInvoice(invoiceId);
+    });
+
 });
+
+async function handleViewInvoice(invoiceId) {
+    console.log(invoiceId);
+    window.open(`/cashier/invoice/${invoiceId}`, '_blank');
+}
+
+function handlePayInvoice(invoiceId) {
+    if (confirm('Bạn có chắc chắn muốn thanh toán hóa đơn này?')) {
+        window.open(`/cashier/payment/${invoiceId}`, '_blank');
+    }
+}

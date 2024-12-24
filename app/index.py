@@ -1,4 +1,4 @@
-# import json
+import json
 from datetime import datetime
 from flask import render_template, request, jsonify, session
 from app import app, utils, login_manager, roles_required, dao, login_patient_required
@@ -89,8 +89,6 @@ def appointment_history_detail(order_id):
         return redirect(url_for('guest_login'))
 
     data = dao.get_appointment_history_detail(u['id'], order_id)
-    if not data:
-        return render_template('appointment_history.html', msg='Không tìm thấy đơn tra cứu')
     return render_template('appointment_history_detail.html', data=data)
 
 
@@ -344,11 +342,26 @@ def pay(order_hashed):
 
     return render_template('cashier/payment.html', data={"status":"error","message": msg})
 
+@app.route('/cashier/invoice/<string:order_hashed>', methods=['GET'])
+@roles_required([VaiTro.THU_NGAN])
+def invoice_detail(order_hashed):
+    order_id = HoaDonThanhToan.decode_hashed_id(hashed_id=order_hashed)
+    hoa_don = HoaDonThanhToan.query.filter(HoaDonThanhToan.id==order_id).first()
+    msg=""
+
+
+    if hoa_don:
+        return render_template('cashier/invoice_detail.html', data={"status": "success", "message": hoa_don.to_dict()})
+    else:
+        msg="Hoa don khong ton tai"
+        return render_template('cashier/invoice_detail.html', data={"status":"error","message": msg})
+
+
 
 @app.route('/payment/result/<string:order_hashed>', methods=['POST'])
-@roles_required([VaiTro.THU_NGAN])
 def payment_result(order_hashed):
     if request.method.__eq__('POST'):
+        # print("Momo goi")
         data = request.data
 
         response_str = data.decode('utf-8')
@@ -366,6 +379,7 @@ def payment_result(order_hashed):
 @roles_required([VaiTro.THU_NGAN])
 def invoices():
     return render_template('cashier/invoices.html', index=2)
+
 
 # Doctor
 @app.route('/doctor', methods=['GET', 'POST'])
@@ -554,5 +568,6 @@ if __name__ == '__main__':
         from app.admin import *
         dao.init_varaibles()
         app.run(host=host, port=port, debug=True)
+        # app.run(host=host, port=port)
 
 

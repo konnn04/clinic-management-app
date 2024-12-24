@@ -11,3 +11,5 @@ instance/
 .code
 .vscode
 */__pycache__
+
+*.zip

@@ -1,0 +1,58 @@
+{% extends './layouts/base_staff.html' %}
+
+{% block title %}
+    Chi tiết hóa đơn
+{% endblock %}
+
+{% block styles %}
+    <!-- Thêm CSS nếu cần -->
+    <!-- <link rel="stylesheet" class="css" href="{{ url_for('static', filename='css/staff/cashier/index.css')}}"> -->
+{% endblock %}
+
+{% block content %}
+    {% if data.status == "success" %}
+        <h3>Chi tiết hóa đơn</h3>
+        <table class="table">
+            <tr>
+                <th>Mã hóa đơn:</th>
+                <td>{{ data.message.id }}</td>
+            </tr>
+            <tr>
+                <th>Ngày lập hóa đơn:</th>
+                <td>{{ data.message.ngayLapHoaDon }}</td>
+            </tr>
+            <tr>
+                <th>Tiền khám:</th>
+                <td>{{ data.message.tienKham |format_money }}</td>
+            </tr>
+            <tr>
+                <th>Tiền thuốc:</th>
+                <td>{{ data.message.tienThuoc |format_money}}</td>
+            </tr>
+            <tr>
+                <th>Tổng tiền:</th>
+                <td>{{ data.message.tongTien |format_money}}</td>
+            </tr>
+            <tr>
+                <th>Trạng thái thanh toán:</th>
+                <td>{{ 'Đã thanh toán' if data.message.trangThai else 'Chưa thanh toán' }}</td>
+            </tr>
+            <tr>
+                <th>URL thanh toán:</th>
+                <td>
+                    {% if data.message.payUrl %}
+                        <a href="{{ data.message.payUrl }}" target="_blank">Thanh toán tại đây</a>
+                    {% else %}
+                        Không có URL thanh toán
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            {{ data.message }}
+        </div>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='js/staff/doctor/index.js') }}"></script>
+{% endblock %}

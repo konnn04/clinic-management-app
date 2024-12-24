@@ -11,6 +11,7 @@ from datetime import datetime
 import cloudinary.uploader
 import pandas as pd
 import os
+from wtforms import PasswordField
 
 from wtforms import IntegerField
 from wtforms.validators import NumberRange
@@ -95,6 +96,23 @@ class UserView(MyModelView):
         'ngaySinh': 'Ngày sinh',
         'role': 'Quyền truy cập'
     }
+
+    def get_edit_form(self):
+        form_class = super(UserView, self).get_edit_form()
+        # del form_class.matKhau
+        del form_class.phieuKham
+        return form_class
+    
+    form_excluded_columns = ('matKhau')
+
+    form_extra_fields = {
+        'matKhau2': PasswordField('Mật khẩu mới (Nếu muốn thay đổi)')
+    }
+
+    def on_model_change(self, form, User, is_created):
+        if form.matKhau2.data is not None:
+            User.set_password(form.matKhau2.data)
+    
 
 # Quản lý quy định
 class ConfigView(MyModelView):

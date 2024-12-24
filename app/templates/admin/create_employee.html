@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-4 rounded p-4" style = "background-color: white">
     <h3 class="mb-4">Tạo nhân viên</h3>
     <form method="POST" action = {{ url_for("create_employee.index") }} enctype="multipart/form-data">
         <div class="row g-3">
@@ -20,11 +20,23 @@
                 <input type="text" id="ten" class="form-control" name="ten" placeholder="Nhập tên nhân viên" required>
             </div>
 
+            {# Giới tính #}
+            <div class="col-md-6">
+                <label for="gioiTinh" class="form-label">Giới tính</label>
+                <select id="gioiTinh" class="form-select" name = "gioiTinh" required>
+                    <option selected disabled>Chọn giới tính</option>
+                    <option value=0 >Nam</option>
+                    <option value=1 >Nữ</option>
+                </select>
+            </div>
+
 {#                Ngày sinh#}
             <div class="col-md-6">
                 <label for="ngaySinh" class="form-label">Ngày sinh</label>
                 <input type="date" id="ngaySinh" class="form-control" name="ngaySinh" placeholder="Nhập ngày sinh" required>
             </div>
+
+
 
 {#                Số điện thoại#}
             <div class="col-md-6">
@@ -62,6 +74,12 @@
                 <input type="file" id="avatar" class="form-control" name="avatar" placeholder="Chọn avatar">
             </div>
 
+        {# ghi chú #}
+            <div class="col-md-6">
+                <label for="note" class="form-label">Ghi chú</label>
+                <input type="text" id="note" class="form-control" name="note" placeholder="Ghi chú">
+            </div>
+
 
 {#                role#}
             <div class="col-md-6">
@@ -70,7 +88,7 @@
                     <option selected disabled>Chọn vai trò</option>
                     {%  for r in VaiTro %}
                         {% if r.name != 'BENH_NHAN' %}
-                        <option value="{{ r.value }}">{{ r.name }}</option>
+                        <option value="{{ r.value[0] }}|{{ r.value[1] }}">{{ r.value[1] }}</option>
                         {% endif %}
                     {% endfor %}
                 </select>

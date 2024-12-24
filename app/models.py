@@ -124,12 +124,12 @@ class HoaDonThanhToan(db.Model):
     @property
     def hashed_id(self):
         # hash order id
-        return Hashids(min_length=5, salt=app.secret_key).encode(self.id)
+        return Hashids(min_length=12, salt=app.secret_key).encode(self.id)
 
     @classmethod
     def decode_hashed_id(self, hashed_id):
         # decoded hashed_id -> order id
-        decoded = Hashids(min_length=5, salt=app.secret_key).decode(hashed_id)
+        decoded = Hashids(min_length=12, salt=app.secret_key).decode(hashed_id)
         return decoded[0] if decoded else None
     def to_dict(self, include_phieu_kham=False):
         return {
