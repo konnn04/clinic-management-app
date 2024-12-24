@@ -50,7 +50,7 @@ img.w{
 }
 
 #left-side .nav-func{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #left-side .nav{
@@ -58,7 +58,7 @@ img.w{
 }
 
 #left-side  ul.nav h5{
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     font-weight: 600;
     padding: 0 2rem;
 }

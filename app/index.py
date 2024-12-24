@@ -206,17 +206,17 @@ def patient_login():
         if user.soDienThoai:
             user.soDienThoai = utils.convert_to_international_format(info)
 
-        try:
-            if (info.__contains__("@") and otp.__eq__(session.get('otp'))) or \
-                (twilio_utils.verify_sms_otp(user.soDienThoai, otp)['status'] == "verified"):
+        # try:
+        if (info.__contains__("@") and otp.__eq__(session.get('otp'))) or \
+            (twilio_utils.verify_sms_otp(user.soDienThoai, otp)['status'] == "verified"):
 
-                session['current_user'] = user.to_dict()
-                return redirect(url_for('index'))
-            else:
-                msg = "OTP không hợp lệ!!!"
-        except Exception as ex:
-            print(ex)
-            msg = "Vui lòng nhập thông tin người dùng"
+            session['current_user'] = user.to_dict()
+            return redirect(url_for('index'))
+        else:
+            msg = "OTP không hợp lệ!!!"
+        # except Exception as ex:
+        #     print(ex)
+        #     msg = "Vui lòng nhập thông tin người dùng"
     return render_template('login.html',msg=msg)
 
 @app.route('/staff/logout')

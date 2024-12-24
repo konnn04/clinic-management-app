@@ -54,24 +54,30 @@
                 </li>
 
 
-                
+
             </ul>
             <ul class="navbar-nav">
                 <li class="navbar-item" style="margin-right: 10px;">
-                    <a style="background-color:#a0c4ff;color: black;font-weight: bold;border: none;" class="btn btn-primary" href="{{url_for('appointment')}}">Đặt lịch ngay!</a>
+                    <a style="background-color:#a0c4ff;color: black;font-weight: bold;border: none;"
+                        class="btn btn-primary" href="{{url_for('appointment')}}">Đặt lịch ngay!</a>
                 </li>
 
                 {% if is_login %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Tài khoản
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Tài khoản
                     </a>
-                    <ul class="dropdown-menu" style="z-index: 999;">
-                      <li><a class="dropdown-item" href="{{url_for('appointment_history')}}">Tra cứu</a></li>
-                      <li><a class="dropdown-item" href="{{url_for('patient_logout')}}">Đăng xuất</a></li>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a class="dropdown-item" href="{{url_for('appointment_history')}}">Tra cứu</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{url_for('patient_logout')}}"><i class="fa fa-sign-out"></i>  Đăng xuất</a></li>
                     </ul>
                 </li>
-                
+
                 {% else %}
                 <li class="navbar-item">
                     <a class="nav-link" href="{{url_for('patient_login')}}">Đăng nhập</a>

@@ -95,7 +95,7 @@ class NguoiBenh(ThongTin):
         return {
             **super().to_dict(),
             'diaChi': self.diaChi,
-            'phieuLichDat': self.phieuLichDat,
+            # 'phieuLichDat': self.phieuLichDat
         }
 
 class QuyDinh(db.Model):
@@ -134,7 +134,7 @@ class HoaDonThanhToan(db.Model):
     def to_dict(self, include_phieu_kham=False):
         return {
             'id': self.id,
-            'ngayKham': self.ngayKham.isoformat() if self.ngayKham else None,
+            # 'ngayKham': self.ngayKham,
             'tienKham': self.tienKham,
             'tienThuoc': self.tienThuoc,
             'tongTien': self.tongTien,
@@ -288,8 +288,8 @@ class PhieuLichDat(db.Model):
             'id': self.id,
             'ngayDat': self.ngayDat.isoformat() if isinstance(self.ngayDat, datetime) else self.ngayDat,
             'ngayHen': self.ngayHen.isoformat() if isinstance(self.ngayHen, datetime) else self.ngayHen,
-            'trangThai': self.trangThai.name,
-            'caHen': self.caHen,
+            'trangThai': self.trangThai.value[1],
+            'caHen': self.caHen.value[1],
             'benhNhan_id': self.benhNhan_id
         }
 
