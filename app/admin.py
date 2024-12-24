@@ -12,6 +12,10 @@ import cloudinary.uploader
 import pandas as pd
 import os
 
+from wtforms import IntegerField
+from wtforms.validators import NumberRange
+from flask_admin.form import rules
+
 class MyModelView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated and current_user.role == VaiTro.ADMIN
@@ -114,7 +118,18 @@ class ConsignmentView(MyModelView):
         'ngaySanXuat' : 'Ngày sản xuất',
         'thuoc' : 'Thuốc'
     }
+    
     form_columns = ['ngayNhap', 'hanSuDung', 'ngaySanXuat', 'thuoc_id']
+    with app.app_context():
+        count = Thuoc.query.count()
+
+    form_extra_fields = {
+        'thuoc_id': IntegerField(
+            'Mã thuốc',
+            validators=[NumberRange(min=1,max=count, message="Mã thuốc phải là số dương.")],
+        )
+    }
+
 
 class MedicineView(MyModelView):
     column_list = ['id','ten','nhaCungCap','xuatXu','donVi','danhMucThuoc_id','loHang_id']
@@ -127,7 +142,15 @@ class MedicineView(MyModelView):
         'danhMucThuoc_id': 'Mã danh mục',
     }
     form_columns = ['ten', 'nhaCungCap', 'xuatXu', 'donVi', 'danhMucThuoc_id']
+    with app.app_context():
+        count = DanhMucThuoc.query.count()
 
+    form_extra_fields = {
+        'danhMucThuoc_id': IntegerField(
+            'Mã danh mục',
+            validators=[NumberRange(min=1,max=count, message="Mã danh mục phải là số dương.")],
+        )
+    }
 class MedicineCategoryView(MyModelView):
     column_list = ['id', 'ten']
     column_labels = {
