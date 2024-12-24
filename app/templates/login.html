@@ -1,43 +1,42 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-
-
-    <div class="container mt-4">
+<div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+    <div class="" style="min-width: 350px; width: 40%;">
         {% if msg %}
             <div class="alert alert-danger">
-                <h4>{{ msg }}</h4>
+                <p>{{ msg }}</p>
             </div>
         {% endif %}
 
-        <div class="appointment-form col-md-8 m-4">
+        <div class="appointment-form col-md-8 my-4">
             <h1>Đăng nhập</h1>
         </div>
 
         <form method="POST" class="row g-3" enctype="multipart/form-data">
-            <div class="row mb-3 h-50">
-                <div class="col-md-10">
-                    <input class="form-control" name="info" id="info" required style="height: 65px;" type="text"
-                           placeholder="Nhập SĐT hoặc email">
+            <div class="d-flex gap-2 align-items-stretch">
+                <div class="form-floating flex-grow-1">
+                    <input class="form-control" name="info" id="info" required  type="text" placeholder="Nhập SĐT hoặc email">
+                    <label for="info">Email hoặc Số điện thoại</label>
                 </div>
-                <div class="col-md-2">
-                    <button class="btn btn-primary w-100" id="getOtpButton" style="height: 65px;background-color: #a0c4ff;border: none;color: #333" type="button"
-                            onclick="sendOtp()">Lấy mã OTP
+                <div class="" style="width: 130px;">
+                    <button class="btn btn-primary w-100" id="getOtpButton" style="background-color: #a0c4ff;border: none;color: #333;height: 100%; display: block;" type="button" >Lấy mã OTP
                     </button>
                 </div>
             </div>
 
-            <div class="row h-50">
-                <div class="col-md-10">
-                    <input class="form-control" required name="otp" type="text" style="height: 65px"
-                           placeholder="Nhập mã OTP">
+            <div class="d-flex gap-2" style="align-items: stretch;" id="otpInput">
+                <div class="form-floating flex-grow-1">
+                    <input class="form-control" required name="otp" type="text" placeholder="Nhập mã OTP" id="otp" value="">
+                    <label for="otp">Mã OTP</label>
                 </div>
-                <div class="col-md-2">
-                    <input type="submit" class="btn btn-primary w-100" style="height: 65px;background-color: #a0c4ff;border: none;color: #333" value="Xác nhận">
+                <div class="" style="width: 130px;">
+                    <input type="submit" class="btn btn-primary w-100" style="background-color: #a0c4ff;border: none;color: #333; height: 100%; display: block;" value="Xác nhận">
                 </div>
             </div>
         </form>
     </div>
+</div>
 {% endblock %}
 
 {% block scripts %}

@@ -1,18 +1,18 @@
-.container1 {
-    width: 100%;
-    margin: 30px auto;
-    background-color: #f8f9fa;
+.bg-white {
+    background-color: #ffffff;
+    border-radius: 1rem;
     color: #333;
+    padding: 1rem;
 }
 
 .search-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #e6e6e6;
     border-radius: 8px;
-    padding: 10px 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    padding-right: 10px;
+    gap: 1rem;
 }
 
 .search-bar input {
@@ -24,6 +24,12 @@
     color: #666;
 }
 
+#appointment-history>p{
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
 .search-bar button {
     background-color: #a0c4ff;
     color: #333;
@@ -33,6 +39,7 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 14px;
+    width: 100px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 

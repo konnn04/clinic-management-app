@@ -1,18 +1,13 @@
 {% extends 'admin/base_admin.html' %}
 
 {% block content %}
-
-    <div class="box w-100">
-        <h5>THỐNG KẾ DOANH THU THÁNG <b>{{ month }}</b> : {{ total }} VND </h5>
-        <div style="width: 100%;">
-            <canvas id="revenueChart"></canvas>
-        </div>
+    <div class="box ">
+        <h5>THỐNG KẾ THUỐC THÁNG {{ month }}</h5>
+        <canvas id="medicineChart"></canvas>
     </div>
-
-
     <!-- Form chứa selectbox và nút -->
     <div class="box mt-3">
-        <form method="GET" action="{{ url_for('revenue_stats.index') }}" class="d-flex">
+        <form method="GET" action="{{ url_for('medicine_stats.index') }}" class="d-flex">
             <select name="month" class="form-select me-2" aria-label="Chọn tháng">
                 <option value="1" {% if month == 1 %} selected {% endif %}>Tháng 1</option>
                 <option value="2" {% if month == 2 %} selected {% endif %}>Tháng 2</option>
@@ -30,7 +25,7 @@
             <button type="submit" class="btn btn-primary m-1">Xem</button>
         </form>
 
-        <form method="POST" action="{{ url_for('revenue_stats.print_report') }}" target="_blank">
+        <form method="POST" action="{{ url_for('medicine_stats.print_report') }}" target="_blank" class="mt-3">
             <input type="hidden" name="month" value="{{ month }}">
             <button type="submit" class="btn btn-primary mt-1">In báo cáo</button>
         </form>
@@ -40,22 +35,21 @@
     <div class="box mt-3">
         <table id="myTable" class="table table-hover">
             <thead>
-            <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Ngày</th>
-                <th scope="col">Số bệnh nhân</th>
-                <th scope="col">Doanh thu</th>
-                <th scope="col">Tỷ lệ</th>
-            </tr>
+            <th scope="col">STT</th>
+            <th scope="col">Thuốc</th>
+            <th scope="col">Đơn vị tính</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Số lần dùng</th>
             </thead>
+
             <tbody>
-            {% for day, patient_count, daily_revenue, daily_ratio in data_specific_month %}
+            {% for ten, donVi, so_lan_dung,soLuong in stats %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ day }}</td>
-                    <td>{{ patient_count }}</td>
-                    <td>{{ daily_revenue }} VND</td>
-                    <td>{{ daily_ratio }}</td>
+                    <td>{{ ten }}</td>
+                    <td>{{ donVi }}</td>
+                    <td>{{ soLuong }} </td>
+                    <td> {{ so_lan_dung }} lần</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -79,19 +73,23 @@
             });
         });
 
+
+        const ctx = document.getElementById('medicineChart');
+
         data = []
         labels = []
-        label = 'DOANH THU THÁNG ' + {{ month }}
-        {% for day, patient_count, daily_revenue, daily_ratio in data_specific_month %}
-            labels.push(`{{ day }}`);
-            data.push({{ daily_revenue }});
+        label = 'THỐNG KÊ DỮ LIỆU THUỐC THÁNG ' + {{ month }}
+
+        {% for ten, donVi, tong_so_luong, soLuong in stats %}
+            data.push({{ tong_so_luong }})
+            labels.push(`{{ ten }}`);
         {% endfor %}
-        console.log("Revenue values:", data);
+
+        console.log(data)
         console.log(labels)
 
-        const ctx = document.getElementById('revenueChart');
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
@@ -101,24 +99,8 @@
                 }]
             },
             options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    }
-                },
                 scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Ngày',
-                        }
-                    },
                     y: {
-                        title: {
-                            display: true,
-                            text: 'Doanh Thu (VNĐ)'
-                        },
                         beginAtZero: true
                     }
                 }

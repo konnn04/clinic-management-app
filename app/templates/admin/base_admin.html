@@ -82,7 +82,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="avt">
-                        <img src="https://png.pngtree.com/png-vector/20220709/ourmid/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_5809521.png" alt="" class="w">
+                        <img src="{{current_user.avatar}}" alt="" class="w">
                     </div>
 
                     <div class="info">
@@ -123,8 +123,8 @@
                 Bạn có chắc chắn muốn đăng xuất?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="{{url_for('logout')}}" class="btn btn-danger">Logout</a>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+              <a href="{{url_for('logout')}}" class="btn btn-danger">Đăng xuất</a>
             </div>
           </div>
         </div>

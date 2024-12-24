@@ -3,5 +3,49 @@
 
 
 {% block content %}
-    <h1>TEST</h1>
+<div class="row p-0 justify-content-between stat">
+    <div class="box col-lg-4 col-md-4 col-12">
+        <h5>SỐ LIỆU BỆNH NHÂN</h5>
+        <canvas id="patiens_chart"></canvas>
+    </div>
+    <div class="box col-lg-4 col-md-4 col-12">
+        <h5>LƯỢT KHÁM</h5>
+        <canvas id="healing_chart"></canvas>
+    </div>
+    <div class="box col-lg-4 col-md-4 col-12">
+        <h5>CÁC DẤU HIỆU THƯỜNG GẶP</h5>
+        <canvas id="disease_chart"></canvas>
+    </div>
+</div>
+<div class="patiens_stat-box mt-4">
+    <table id="patient_table" class="display">
+        <thead>
+            <tr>
+                <th>Mã bệnh nhân</th>
+                <th>Họ lót</th>
+                <th>Tên</th>
+                <th>Giới tính</th>
+                <th>Ngày sinh</th>
+                <th>Số điện thoại</th>
+                <th>Ngày hẹn gần nhất</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Auto fill -->
+        </tbody>
+    </table>
+</div> 
+
+<script src="{{url_for('static', filename='js/loading.js')}}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.dataTables.min.css">
+    <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.min.js"></script>
+
+<script src="{{url_for('static', filename='js/staff/nurse/index.js')}}"></script>
 {% endblock %}

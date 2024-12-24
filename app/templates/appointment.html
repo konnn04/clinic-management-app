@@ -1,7 +1,6 @@
 {% extends 'layouts/base.html' %}
 
 {% block style %}
-    <link rel="stylesheet" href="css/appointment.css">
 {% endblock %}
 
 {% block content %}
@@ -11,42 +10,21 @@
     </div>
     <div class="row">
         <div class="appointment-form col-md-8">
+            {% if msg %}
+                <div class="alert alert-danger">
+                    <p>{{ msg }}</p>
+                </div>
+            {% endif %}
             <form action="/appointment" method="POST" class="row g-3">
                 <div class="form-floating mb-3 col-md-6">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" required>
-                    <label for="name">Họ và tên</label>
-                </div>
-                <div class="form-floating mb-3 col-md-6">
-                    <select name="gender" id="gender" value="1" class="form-select" required>
-                        <option value="1">Nam</option>
-                        <option value="0">Nữ</option>
-                    </select>
-                    <label for="gender">Giới tính</label>
-                </div>
-                <div class="form-floating mb-3 col-md-6">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                    <label for="email">Email</label>
-                </div>
-                <div class="form-floating mb-3 col-md-6">
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" required>
-                    <label for="phone">Số điện thoại</label>
-                </div>
-                <div class="form-floating mb-3 col-md-6">
-                    <select class="form-select" name="date" id="date" required>
-                        <option value="2021-10-01">2021-10-01</option>
-                        <option value="2021-10-02">2021-10-02</option>
-                        <option value="2021-10-03">2021-10-03</option>
-                        <option value="2021-10-04">2021-10-04</option>
-                        <option value="2021-10-05">2021-10-05</option>
-                    </select>
+                    <input class="form-select" type="date" name="date_inp" id="date_inp" required min="" max="">
                     <label for="date">Ngày khám</label>
                 </div>
                 <div class="form-floating mb-3 col-md-6">
                     <select class="form-select" name="time" id="time" required>
-                        <option value="08:00">08:00</option>
-                        <option value="09:00">09:00</option>
-                        <option value="10:00">10:00</option>
-                        <option value="11:00">11:00</option>
+                        <option value="SANG" selected>Ca 1 (07:00 - 11:00h)</option>
+                        <option value="CHIEU">Ca 2 (13:00 - 17:00h)</option>
+                        <option value="TOI">Ca 3 (18:00 - 22:00h)</option>
                     </select>
                     <label for="time">Giờ khám</label>
                 </div>
@@ -60,17 +38,61 @@
                 </div>
             </form>
         </div>
-        <div class="doctor-info col-md-4">
-            <img src="https://thuvienmeme.com/wp-content/uploads/2024/04/ca-nay-nang-meme-anh-da-den-bac-si.jpg" alt="" srcset="">
-            <h3>Bác sĩ A</h3>
-            <p>Chuyên khoa: Nội khoa</p>
-            <p>Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM</p>
-            <p>Điện thoại: 0123 456 789</p>
+        <div id="carouselExampleDark" class="carousel carousel-dark slide col-md-4 bg-light rounded" data-bs-ride="carousel"
+             style="height: 400px;">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="{{ url_for('static', filename='/images/logo.png') }}" class="d-block w-100" alt="...">
+                    <div class="caption-container">
+                        <h5>Chất lượng xây dựng uy tín</h5>
+                        <p>Nền tảng hoạt động trong lĩnh vực lâu năm với nhiều kinh nghiệm.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="{{ url_for('static', filename='/images/img.png') }}" class="d-block w-100" alt="...">
+                    <div class="caption-container">
+                        <h5>Chất lượng xây dựng uy tín</h5>
+                        <p>Nền tảng hoạt động trong lĩnh vực lâu năm với nhiều kinh nghiệm.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='/images/medical.gif') }}" class="d-block w-100" alt="...">
+                    <div class="caption-container">
+                        <h5>Chất lượng xây dựng uy tín</h5>
+                        <p>Nền tảng hoạt động trong lĩnh vực lâu năm với nhiều kinh nghiệm.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
 
     <div class="shedule">
-        
+
     </div>
-            
+
+    <script>
+        const today = new Date();
+        const todayISO = today.toISOString().split('T')[0];
+
+        const maxDate = new Date();
+        maxDate.setDate(today.getDate() + 7);
+        const maxDateISO = maxDate.toISOString().split('T')[0];
+
+        const dateInput = document.getElementById('date_inp');
+        dateInput.min = todayISO;
+        dateInput.max = maxDateISO;
+
+        dateInput.value = todayISO;
+    </script>
+
 {% endblock %}

@@ -1,9 +1,9 @@
 from . import app, admin, db
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from app.models import NguoiDung, VaiTro, Thuoc, LoHang, DanhMucThuoc
+from app.models import NguoiDung, VaiTro, Thuoc, LoHang, DanhMucThuoc, QuyDinh
 from flask_admin import BaseView,expose, AdminIndexView
-from app import dao
+from app import utils,dao
 from flask_admin.model.template import EndpointLinkRowAction
 from flask_login import current_user, login_required, logout_user
 from flask import redirect, url_for, request,render_template,flash,send_file
@@ -20,7 +20,6 @@ class MyModelView(ModelView):
     create_template = 'admin/create.html'
     edit_template = 'admin/edit.html'
     details_template = 'admin/details.html'
-    profile_template = 'admin/profile.html'
 
 class MyBaseView(BaseView):
     def is_accessible(self):
@@ -54,7 +53,7 @@ class CreateStaffView(MyBaseView):
                         avatar = avatar['url']
                     else:
                         avatar = ""
-                    dao.addUser(ho=ho, ten=ten, ngaySinh=ngaySinh, soDienThoai=soDienThoai, email=email, taiKhoan=taiKhoan, matKhau=matKhau, role=role, avatar=avatar)
+                    utils.addUser(ho=ho, ten=ten, ngaySinh=ngaySinh, soDienThoai=soDienThoai, email=email, taiKhoan=taiKhoan, matKhau=matKhau, role=role, avatar=avatar)
                     return redirect(url_for('admin.index'))
                 else:
                     err_msg = "Password not match"
@@ -86,6 +85,24 @@ class UserView(MyModelView):
         'role': 'Quyền truy cập'
     }
 
+# Quản lý quy định
+class ConfigView(MyModelView):
+    column_list = ['id','key','value','description']
+    column_labels = {
+        'id': 'Mã',
+        'key': "Tên",
+        'value':"Giá trị",
+        'description':"Mô tả"
+    }
+
+    form_labels = {
+        'key': "Tên",
+        'value':"Giá trị",
+        'description':"Mô tả"
+    }
+    form_edit_rules = ('value',)
+    can_delete = False
+    can_create = False
 
 # Quản lý thuốc
 class ConsignmentView(MyModelView):
@@ -122,30 +139,64 @@ class MedicineCategoryView(MyModelView):
 class RevenueStats(MyBaseView):
     @expose('/', methods=['GET', 'POST'])
     def index(self, *args, **kwargs):
-        revenue_data = dao.revenueStats()
         month = request.args.get('month', default=1, type=int)
-        print(month)
-        stats = dao.revenueStatsDetail(month = month)
-        print(revenue_data)
-        values = list(revenue_data.values()) # Danh sách tổng doanh thu tương ứng
-        print(values)
-        return self.render('admin/revenue_stats.html', data = values,stats = stats,month = month)
+        data_specific_month,total = dao.revenue_stats_details(month = month)
+
+        total = total if total else 0
+
+        return self.render('admin/revenue_stats.html',data_specific_month = data_specific_month,month = month,total = total)
 
     @expose('/print-reports', methods=['POST'])
     def print_report(self):
         month = request.form.get('month', default=1, type=int)
-        stats = dao.revenueStatsDetail(month=month)
+        stats, total_revenue_month = dao.revenue_stats_details(month=month)
+
+        data = []
+        for stat in stats:
+            date = stat[0]
+            patient_count = stat[1]
+            daily_revenue = stat[2]
+            daily_ratio = stat[3]
+            data.append([date, patient_count, daily_revenue, daily_ratio])
+
+        # Thêm tổng doanh thu vào hàng cuối cùng
+        data.append(['Tổng', '', total_revenue_month, ''])
+
+        # Xuất dữ liệu ra Excel
+        df = pd.DataFrame(data, columns=['Ngày', 'Số bệnh nhân', 'Doanh thu', 'Tỷ lệ % so với tổng'])
+        file_name = os.path.join(app.root_path, f'static/temp/bao_cao_thang_{month}.xlsx')
+        df.to_excel(file_name, index=False)
+        return send_file(file_name, as_attachment=True)
+
+
+
+class MedicineStats(MyBaseView):
+    @expose('/', methods=['GET', 'POST'])
+    def index(self, *args, **kwargs):
+        month = request.args.get('month', default=1, type=int)
+        stats = dao.medicine_stats_details(month = month)
+
+
+        return self.render('admin/medicine_stats.html',stats = stats,month = month)
+
+    @expose('/print-reports', methods=['POST'])
+    def print_report(self):
+        month = request.form.get('month', default=1, type=int)
+        stats = dao.medicine_stats_details(month = month)
 
         data = []
         for s in stats:
-            date = list(s.keys())[0]
-            data.append([date, s[date]['soBenhNhan'], s[date]['doanhThu']])
+            ten = s[0]
+            donVi = s[1]
+            soLanDung = s[2]
+            soLuong = s[3]
+            data.append([ten,donVi,soLuong,soLanDung])
 
-        df = pd.DataFrame(data, columns=['Ngày', 'Số bệnh nhân', 'Doanh thu'])
-        file_name = os.path.join(app.root_path, f'static/temp/bao_cao_thang_{month}.xlsx')
-        df.to_excel(file_name, index=True)  
+            # Xuất dữ liệu ra Excel
+        df = pd.DataFrame(data, columns=['Thuốc', 'Đơn vị', 'Số lượng', 'Số lần dùng'])
+        file_name = os.path.join(app.root_path, f'static/temp/bao_cao_thuoc_thang_{month}.xlsx')
+        df.to_excel(file_name, index=False)
         return send_file(file_name, as_attachment=True)
-
 
 class MyAdminIndexView(AdminIndexView):
     @expose('/')
@@ -201,13 +252,29 @@ admin.add_view(MedicineCategoryView(
     menu_icon_type='fa', 
     menu_icon_value='fa-solid fa-th-list me-3'
 ))
-
 admin.add_view(RevenueStats(
     name='Thống kê doanh thu',
     endpoint='revenue_stats',
     menu_icon_type='fa',
     menu_icon_value='fa-solid fa-chart-line me-3'
 ))
+admin.add_view(MedicineStats(
+    name='Thống kê thuốc',
+    endpoint='medicine_stats',
+    menu_icon_type='fa',
+    menu_icon_value='fa-solid fa-chart-bar me-3'
+))
+
+admin.add_view(ConfigView(
+    QuyDinh,
+    db.session,
+    name= "Quản lý quy định",
+    endpoint='config',
+    menu_icon_type='fa',
+    menu_icon_value='fa-solid fa-cogs me-3'
+))
+
+
 
 
 

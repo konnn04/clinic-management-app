@@ -16,7 +16,15 @@
 header {
     background-color: #fff;
     color: var(--primary-text-color);
-    padding: 10px 0;
+    padding-top: 10px;
+}
+
+body{
+    background-color: #e8e8e8;
+}
+
+main{
+    min-height: 50vh;
 }
 
 nav{
@@ -90,8 +98,4 @@ nav .order{
     color:var(--primary-text-color);
     margin: 0 10px;
     font-size: 20px;
-}
-
-main{
-    min-height: 90vh;
 }

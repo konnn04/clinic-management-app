@@ -82,7 +82,7 @@
                     </h1>
                 </div>
                 <div class="action">
-                    <h4>{{current_user.role.name}}</h4>
+                    <h4>{{current_user.role.value[1]}}</h4>
                     <div class="action-box">
                         {% block actions %}
                         {% endblock %}
@@ -93,8 +93,8 @@
                         <img src="{{current_user.avatar}}" alt="Avatar" class="w">
                     </div>
                     <div class="info">
-                        <h5>{{current_user.taiKhoan}}</h5>
-                        <h6>{{current_user.role.name}}</h6>
+                        <h5>{{current_user.ho}} {{current_user.ten}}</h5>
+                        <h6>{{current_user.role.value[1]}} </h6>
                     </div>
                 </div>
             </div>

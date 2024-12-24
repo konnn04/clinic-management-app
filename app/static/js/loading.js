@@ -55,8 +55,15 @@ function showToast(title, description, type, timeout,img="", time="Now") {
     toast.querySelector('.btn-close').addEventListener('click', function() {
         toast.remove();
     });
-
+    toast.style.opacity = '0';
+    toast.style.transform = 'scale(0.5) translateX(100%)';
+    toast.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+    requestAnimationFrame(() => {
+        toast.style.opacity = '1';
+        toast.style.transform = 'scale(1) translateX(0%)';
+    });
     overlay.appendChild(toast);
+
     setTimeout(function() {
         toast.remove();
     }, timeout);

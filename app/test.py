@@ -1,7 +1,7 @@
 from sqlalchemy import Integer,String,Float,ForeignKey,Boolean,Column,DateTime,Enum,Text, Time
 from app import app,db
 from enum import Enum as RoleEnum
-from app.models import NguoiBenh, NguoiDung, PhieuKhamBenh, PhieuLichDat, HoaDonThanhToan
+from app.models import NguoiBenh, NguoiDung, PhieuKhamBenh, PhieuLichDat, HoaDonThanhToan, CaHen
 from datetime import datetime
 import random
 
@@ -34,8 +34,7 @@ if __name__ == "__main__":
             
             schedule = PhieuLichDat(
                 ngayHen = datetime.now(),
-                caHen = random.choice(["sang", "chieu", "toi"]),
-                trangThai = False,
+                caHen = random.choice([CaHen.SANG, CaHen.CHIEU, CaHen.TOI]),
                 benhNhan_id = i+1
             )
 

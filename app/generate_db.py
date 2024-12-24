@@ -1,5 +1,5 @@
 from app import app, db
-from app.models import NguoiDung, VaiTro, NguoiBenh, PhieuLichDat, PhieuKhamBenh, PhieuDichVu, LoaiDichVu, DanhMucThuoc, Thuoc, LoHang, DonThuoc, HoaDonThanhToan, CaLamViecBacSi
+from app.models import NguoiDung, VaiTro, NguoiBenh, PhieuLichDat, PhieuKhamBenh, PhieuDichVu, LoaiDichVu, DanhMucThuoc, Thuoc, LoHang, DonThuoc, HoaDonThanhToan, CaLamViecBacSi, CaHen, TrangThaiLichDat
 
 from werkzeug.security import generate_password_hash
 from datetime import datetime
@@ -79,16 +79,16 @@ def initNguoiBenh():
 
 
 def initPhieuLichDat():
-    p1 = PhieuLichDat(ngayHen=datetime.now(), trangThai=False, benhNhan_id=1, caHen='sang')
-    p2 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, benhNhan_id=2, caHen='chieu')
-    p3 = PhieuLichDat(ngayHen=datetime(2025, 1, 16), trangThai=False, benhNhan_id=3, caHen='sang')
-    p4 = PhieuLichDat(ngayHen=datetime(2025, 1, 16), trangThai=False, benhNhan_id=4, caHen='chieu')
-    p5 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, benhNhan_id=1, caHen='chieu')
-    p6 = PhieuLichDat(ngayHen=datetime(2025, 1, 15), trangThai=False, benhNhan_id=2, caHen='chieu')
-    p7 = PhieuLichDat(ngayHen=datetime(2025, 1, 13), trangThai=False, benhNhan_id=3, caHen='sang')
-    p8 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), trangThai=False, benhNhan_id=4, caHen='chieu')
-    p9 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), trangThai=False, benhNhan_id=5, caHen='sang')
-    p10 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), trangThai=False, benhNhan_id=5, caHen='chieu')
+    p1 = PhieuLichDat(ngayHen=datetime.now(), benhNhan_id=1, caHen=CaHen.SANG    )
+    p2 = PhieuLichDat(ngayHen=datetime(2025, 1, 12),benhNhan_id=2, caHen=CaHen.CHIEU)
+    p3 = PhieuLichDat(ngayHen=datetime(2025, 1, 16), benhNhan_id=3, caHen=CaHen.SANG)
+    p4 = PhieuLichDat(ngayHen=datetime(2025, 1, 16),benhNhan_id=4, caHen=CaHen.CHIEU)
+    p5 = PhieuLichDat(ngayHen=datetime(2025, 1, 12), benhNhan_id=1, caHen=CaHen.TOI)
+    p6 = PhieuLichDat(ngayHen=datetime(2025, 1, 15),  benhNhan_id=2, caHen=CaHen.SANG)
+    p7 = PhieuLichDat(ngayHen=datetime(2025, 1, 13),  benhNhan_id=3, caHen=CaHen.CHIEU)
+    p8 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), benhNhan_id=4, caHen=CaHen.TOI)
+    p9 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), benhNhan_id=5, caHen=CaHen.SANG)
+    p10 = PhieuLichDat(ngayHen=datetime(2025, 1, 12),  benhNhan_id=5, caHen=CaHen.TOI)
     db.session.add(p1)
     db.session.add(p2)
     db.session.add(p3)
@@ -153,13 +153,15 @@ def initPhieuKhamBenh():
 
 def initPhieuDichVu_LoaiDichVu_ChiTietDichVu():
     # Dữ liệu mẫu
-    dv1 = LoaiDichVu(tenDichVu="Xét nghiệm máu", giaDichVu=150000, moTa="Dịch vụ 1")
-    dv2 = LoaiDichVu(tenDichVu="Châm huyết", giaDichVu=50000, moTa="Dịch vụ 2")
-    dv3 = LoaiDichVu(tenDichVu="Nội soi", giaDichVu=200000, moTa="Dịch vụ 3")
-    dv4 = LoaiDichVu(tenDichVu="Xét nghiệm khác", giaDichVu=30000, moTa="Dịch vụ 4")
-    dv5 = LoaiDichVu(tenDichVu="Tiểu phẫu", giaDichVu=40000, moTa="Dịch vụ 4")
+    dv1 = LoaiDichVu(tenDichVu="Xét nghiệm máu", giaDichVu=150000, moTa="Xét nghiệm máu")
+    dv2 = LoaiDichVu(tenDichVu="Châm cứu", giaDichVu=50000, moTa="Châm cứu huyết")
+    dv3 = LoaiDichVu(tenDichVu="Nội soi", giaDichVu=200000, moTa="Mổ nội soi")
+    dv4 = LoaiDichVu(tenDichVu="Xét nghiệm khác", giaDichVu=30000, moTa="Xét nghiệm khác")
+    dv5 = LoaiDichVu(tenDichVu="Tiểu phẫu", giaDichVu=40000, moTa="Tiểu phẫu")
+    dv6 = LoaiDichVu(tenDichVu="Xét nghiệm nước tiểu", giaDichVu=50000, moTa="Xét nghiệm nước tiểu")
+    dv7 = LoaiDichVu(tenDichVu="Tiêm phòng", giaDichVu=50000, moTa="Tiêm phòng")
 
-    db.session.add_all([dv1, dv2, dv3, dv4, dv5])
+    db.session.add_all([dv1, dv2, dv3, dv4, dv5, dv6])
     db.session.commit()
 
     #
@@ -167,8 +169,8 @@ def initPhieuDichVu_LoaiDichVu_ChiTietDichVu():
     pk1 = PhieuKhamBenh.query.get(1)
     pk2 = PhieuKhamBenh.query.get(2)
 
-    pdv1 = PhieuDichVu(phieukham_id=pk1.id, id_dich_vu=1, giaDichVu=150000, ghiChu="Kiểm tra huyết áp và xét nghiệm máu")
-    pdv2 = PhieuDichVu(phieukham_id=pk2.id, id_dich_vu=1, giaDichVu=150000, ghiChu="Kiểm tra huyết áp và xét nghiệm máu")
+    pdv1 = PhieuDichVu(phieukham_id=pk1.id, dichVu_id=1, giaDichVu=150000, ghiChu="Kiểm tra huyết áp và xét nghiệm máu")
+    pdv2 = PhieuDichVu(phieukham_id=pk2.id, dichVu_id=1, giaDichVu=150000, ghiChu="Kiểm tra huyết áp và xét nghiệm máu")
     
 
     db.session.add(pdv1)

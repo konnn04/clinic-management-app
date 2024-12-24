@@ -5,18 +5,27 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container1">
+<div class="d-flex w-100 justify-content-center gap-2">
+    <div class="col-8 bg-white " background-color="white">
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Nhập thông tin tra cứu" oninput="filterAppointments()">
+            <div class="form-floating w-100">
+                <input type="text" id="search-input" placeholder="Nhập thông tin tra cứu" class="form-control" oninput="filterAppointments()">
+                <label for="search-input">Nhập thông tin tra cứu</label>
+            </div>
             <button onclick="filterAppointments()">Tra cứu</button>
         </div>
-
         <div class="history" id="appointment-history">
-
+                   
         </div>
     </div>
+    <div class="col-4  bg-white ">
+        <h3 class="text-center border-bottom py-2">Lịch hẹn sắp tới</h3>
+        <ul class="list-group list-group-flushp-1" id="appointment-list">
+           <p class="p-3">Chưa có lịch hẹn</p>
+        </ul> 
+    </div>
+</div>
+
     <script src="{{ url_for('static', filename='js/appointment_history.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', getAppointmentHistory);
-    </script>
+
 {% endblock %}

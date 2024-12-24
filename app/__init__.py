@@ -1,11 +1,11 @@
 import os
 from dotenv import load_dotenv 
-from flask import Flask, redirect, url_for
-from flask_cors import CORS
+from flask import Flask, redirect, url_for, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
 from functools import wraps
 import cloudinary
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -38,10 +38,18 @@ def roles_required(roles):
         @wraps(func)
         def wrapper(*args, **kwargs):
             if 'role' not in current_user.__dict__ or current_user.role not in roles:
-                return "You don't have permission to access this page"
+                return render_template('/layouts/403.html')
             return func(*args, **kwargs)
         return wrapper
     return decorator
+
+def login_patient_required(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if 'current_user' not in session or session['current_user'] is None:
+            return redirect(url_for('patient_login'))
+        return func(*args, **kwargs)
+    return wrapper
 
 def upload_file(file):
     if file:

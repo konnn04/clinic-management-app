@@ -27,6 +27,7 @@ class ThongTin(db.Model):
     soDienThoai = Column(String(15), nullable=True, unique=True)
     email = Column(String(50), nullable=True, unique=True)
     ghiChu = Column(String(255), nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
 
     def hoTen(self):
         return f"{self.ho} {self.ten}"
@@ -94,7 +95,7 @@ class NguoiBenh(ThongTin):
         return {
             **super().to_dict(),
             'diaChi': self.diaChi,
-            # 'phieuLichDat': self.phieuLichDat,
+            'phieuLichDat': self.phieuLichDat,
         }
 
 class QuyDinh(db.Model):
@@ -104,6 +105,7 @@ class QuyDinh(db.Model):
     description = Column(String(255), nullable=True)
     # Người lần cuối sửa
     nguoiQuanTri_id = Column(Integer, ForeignKey(NguoiDung.id), nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
 
 
 class HoaDonThanhToan(db.Model):
@@ -117,6 +119,7 @@ class HoaDonThanhToan(db.Model):
     # Bac Si
     phieuKham_id = Column(Integer, ForeignKey("phieuKham.id"), unique=True)
     payUrl = Column(String(255), nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
 
     @property
     def hashed_id(self):
@@ -155,6 +158,7 @@ class PhieuKhamBenh(db.Model):
     phieuDichVu = relationship('PhieuDichVu', backref=backref('phieuKham', uselist=False))
     hoaDonThanhToan = relationship('HoaDonThanhToan', backref=backref('phieuKham', uselist=False))
     ghiChu = Column(Text, nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
 
     def to_dict(self):
         return {
@@ -167,7 +171,8 @@ class PhieuKhamBenh(db.Model):
             'bacSi': self.bacSi.to_dict(),
             'benhNhan': self.benhNhan.to_dict(),
             'phieuDichVu': [dich_vu.to_dict() for dich_vu in self.phieuDichVu] if self.phieuDichVu else [],
-            'hoaDonThanhToan': [hoa_don.to_dict() for hoa_don in self.hoaDonThanhToan] if self.hoaDonThanhToan else []
+            'hoaDonThanhToan': [hoa_don.to_dict() for hoa_don in self.hoaDonThanhToan] if self.hoaDonThanhToan else [],
+            'ghiChu': self.ghiChu
         }
 
 # class ChiTietDichVu(db.Model):
@@ -192,16 +197,18 @@ class LoaiDichVu(db.Model):
     giaDichVu = Column(Float, default=0, nullable=False)
     moTa = Column(Text, nullable=True)
     # cacPhieuDichVu = relationship(ChiTietDichVu, back_populates='loaiDichVu')
+    active = Column(Boolean, nullable=False, default=True)
 
 class PhieuDichVu(db.Model):
     __tablename__ = 'phieudichvu'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    ngayLap = Column(DateTime, default=datetime.utcnow)
-    ghiChu = Column(Text, nullable=True)
     phieukham_id = Column(Integer, ForeignKey("phieuKham.id"), unique=False)
     # cacLoaiDichVu = relationship(ChiTietDichVu, back_populates='phieuDichVu')
-    id_dich_vu = Column(Integer, ForeignKey(LoaiDichVu.id), nullable=False)
+    dichVu_id = Column(Integer, ForeignKey(LoaiDichVu.id), nullable=False)
     giaDichVu = Column(Float, nullable=False)
+    ngayLap = Column(DateTime, default=datetime.utcnow)
+    ghiChu = Column(Text, nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
 
     def to_dict(self):
         return {
@@ -215,6 +222,7 @@ class DanhMucThuoc(db.Model):
     __tablename__ = 'danhMucThuoc'
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     ten = Column(String(100), nullable=False, unique=True)
+    active = Column(Boolean, nullable=False, default=True)
     thuoc = relationship('Thuoc', backref='danhMucThuoc', lazy=True)
 
 class Thuoc(db.Model):
@@ -225,11 +233,33 @@ class Thuoc(db.Model):
     donVi = Column(String(100), nullable=False)
     danhMucThuoc_id = Column(Integer, ForeignKey(DanhMucThuoc.id), nullable=False)
     loHang = relationship('LoHang',backref='thuoc',lazy=True)
+    active = Column(Boolean, nullable=False, default=True)
     gia = Column(Float, nullable=False)
 
     def __str__(self):
         return self.ten
 
+class TrangThaiLichDat(RoleEnum):
+    CHUA_DUYET = 1, "Chưa duyệt"
+    DA_DUYET = 2, "Đã duyệt"
+    DA_CHECKIN = 3, "Đã đến khám"
+    DA_GIAI_QUYET = 4, "Đã giải quyết"
+
+    
+
+class CaHen(RoleEnum):
+    SANG = 1, "Sáng"
+    CHIEU = 2, "Chiều"
+    TOI = 3, "Tối"
+
+    @property
+    def description(self):
+        descriptions = {
+            CaHen.SANG: "Sáng (07h - 11:00h)",
+            CaHen.CHIEU: "Chiều (13h - 17:00h)",
+            CaHen.TOI: "Tối (18h - 22:00h)",
+        }
+        return descriptions[self]
 
 class LoHang(db.Model):
     __tablename__ = 'loHang'
@@ -239,24 +269,26 @@ class LoHang(db.Model):
     ngaySanXuat = Column(DateTime, nullable=False)
     soLuong = Column(Integer,nullable=False)
     thuoc_id = Column(Integer,ForeignKey(Thuoc.id))
+    active = Column(Boolean, nullable=False, default=True)
 
 
 class PhieuLichDat(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     ngayDat = Column(DateTime, nullable=False, default=datetime.now())
     ngayHen = Column(DateTime, nullable=False)
-    trangThai = Column(Boolean, nullable=False, default=False)
-    caHen = Column(String(10), nullable=False)  # sang, chieu, toi
-    hoanThanh = Column(Boolean, nullable=False, default=False)
+    trangThai = Column(Enum(TrangThaiLichDat), nullable=False, default=TrangThaiLichDat.CHUA_DUYET)
+    caHen = Column(Enum(CaHen), nullable=False)
     # Nguoi benh dat lich
     benhNhan_id= Column(Integer, ForeignKey(NguoiBenh.id), nullable=False)
+
+    active = Column(Boolean, nullable=False, default=True)
 
     def to_dict(self):
         return {
             'id': self.id,
             'ngayDat': self.ngayDat.isoformat() if isinstance(self.ngayDat, datetime) else self.ngayDat,
             'ngayHen': self.ngayHen.isoformat() if isinstance(self.ngayHen, datetime) else self.ngayHen,
-            'trangThai': self.trangThai,
+            'trangThai': self.trangThai.name,
             'caHen': self.caHen,
             'benhNhan_id': self.benhNhan_id
         }
@@ -267,11 +299,13 @@ class DonThuoc(db.Model):
     thuoc_id = Column(Integer, ForeignKey(Thuoc.id), nullable=False)
     cachDung = Column(String(255), nullable=False)
     soLuong = Column(Integer, nullable=False, default=0)
+    active = Column(Boolean, nullable=False, default=True)
 
 class CaLamViecBacSi(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     bacSi_id = Column(Integer, ForeignKey(NguoiDung.id), nullable=False)
     caSang = Column(Boolean, nullable=False, default=False)
     caChieu = Column(Boolean, nullable=False, default=False)
+    active = Column(Boolean, nullable=False, default=True)
     caToi = Column(Boolean, nullable=False, default=False)
 

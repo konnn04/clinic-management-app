@@ -1,10 +1,10 @@
 import json
 import os
 from app import app, db
-from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat, PhieuKhamBenh, NguoiDung, VaiTro, Thuoc, LoHang, LoaiDichVu, PhieuDichVu, DonThuoc, QuyDinh
+from app.models import HoaDonThanhToan, NguoiBenh, PhieuLichDat, PhieuKhamBenh, NguoiDung, VaiTro, Thuoc, LoHang, LoaiDichVu, PhieuDichVu, DonThuoc, QuyDinh, TrangThaiLichDat, CaHen
 from sqlalchemy import text
 from sqlalchemy.orm import joinedload, subqueryload
-from flask import jsonify
+from flask import jsonify, session
 from datetime import datetime
 import random
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -23,15 +23,35 @@ def load_revenue():
 def get_appointment_history_detail(user_id, order_id):
     phieukham = PhieuKhamBenh.query.filter(
         PhieuKhamBenh.benhNhan_id == user_id,
-        PhieuKhamBenh.id == order_id
+        PhieuKhamBenh.id == order_id,
+        PhieuKhamBenh.active == True
     ).first()
     print(phieukham.to_dict())
     return phieukham.to_dict()
 
+def update_profile(data):
+    try:
+        user = NguoiDung.query.get(current_user.id)
+        user.ho = data.get('ho')
+        user.ten = data.get('ten')
+        user.ngaySinh = datetime.strptime(data.get('ngaySinh'), "%Y-%m-%d")
+        user.soDienThoai = data.get('soDienThoai')
+        user.avatar = data.get('avatar')    
+        db.session.commit()
+        return {
+            "status": "success",
+            "message": "Cập nhật thông tin thành công"
+        }
+    except:
+        return {
+            "status": "error",
+            "message": "Cập nhật thông tin thất bại"
+        }
+        
 
 def get_appointment_history(user_id):
     # Chỉ truy vấn các cột cần thiết để giảm áp lực cho db
-    phieukhams = PhieuKhamBenh.query.filter(PhieuKhamBenh.benhNhan_id == user_id) \
+    phieukhams = PhieuKhamBenh.query.filter(PhieuKhamBenh.benhNhan_id == user_id and PhieuKhamBenh.active == True)\
         .with_entities(PhieuKhamBenh.id, PhieuKhamBenh.ngayKham, HoaDonThanhToan) \
         .join(HoaDonThanhToan, HoaDonThanhToan.phieuKham_id == PhieuKhamBenh.id, isouter=True) \
         .all()
@@ -68,6 +88,8 @@ def load_invoices(draw, length, start, search, sort, order):
             (NguoiDung.ho + " " + NguoiDung.ten).like(f"%{search}%")
             )
         )
+    
+    query = query.filter(HoaDonThanhToan.active == True)
 
     total = query.count()
     query = query.order_by(text(f"{sort} {order}"))
@@ -124,8 +146,7 @@ def patient_stat():
     }
 
 
-def load_schedule_list(date, type, draw, length, start, search, sort_column, sort_order):
-    query = PhieuLichDat.query.filter(PhieuLichDat.ngay == date, PhieuLichDat.loai == type)
+
     
 def load_schedule_list(date,status, draw, length, start, search, sort_column, sort_order):
     query = db.session.query(
@@ -141,7 +162,7 @@ def load_schedule_list(date,status, draw, length, start, search, sort_column, so
         NguoiBenh.gioiTinh
     ).join(NguoiBenh, PhieuLichDat.benhNhan_id == NguoiBenh.id)
 
-    query = query.filter(db.func.date(PhieuLichDat.ngayHen) == date, PhieuLichDat.trangThai == status)
+    query = query.filter(db.func.date(PhieuLichDat.ngayHen) == date, PhieuLichDat.trangThai == status, PhieuLichDat.active == True)
     if search:
         query = query.filter(
             db.or_(
@@ -159,7 +180,7 @@ def load_schedule_list(date,status, draw, length, start, search, sort_column, so
         'ten': schedule.ten,
         'ngaySinh': schedule.ngaySinh.strftime('%Y-%m-%d'),
         'gioiTinh': 'Nam' if schedule.gioiTinh else 'Nữ',
-        'caHen': {"sang": "Sáng", "chieu": "Chiều", "toi":"Tối"}[schedule.caHen],
+        'caHen': schedule.caHen.value[1]
     } for schedule in schedules]
     
     return {
@@ -170,7 +191,23 @@ def load_schedule_list(date,status, draw, length, start, search, sort_column, so
     }
 
 def get_patients(draw, length, start, search_value, sort_column, sort_direction):
-    patients = NguoiBenh.query
+    patients = db.session.query(
+        NguoiBenh.id.label('id'),
+        NguoiBenh.ho,
+        NguoiBenh.ten,
+        NguoiBenh.gioiTinh,
+        NguoiBenh.ngaySinh,
+        NguoiBenh.soDienThoai,
+        db.func.coalesce(db.func.max(PhieuKhamBenh.ngayKham), datetime(1970, 1, 1)).label('lanCuoiGhe')
+    ).join(PhieuKhamBenh, PhieuKhamBenh.benhNhan_id == NguoiBenh.id, isouter=True).group_by(
+        NguoiBenh.id.label('id'),
+        NguoiBenh.ho,
+        NguoiBenh.ten,
+        NguoiBenh.gioiTinh,
+        NguoiBenh.ngaySinh,
+        NguoiBenh.soDienThoai
+    )
+
     if search_value:
         patients = patients.filter(
             db.or_(
@@ -182,10 +219,7 @@ def get_patients(draw, length, start, search_value, sort_column, sort_direction)
     # sort_direction: 'asc' or 'desc'
     # sort_column_name: Tên cột cần sắp xếp
 
-    if sort_direction == 'asc':
-        patients = patients.order_by(getattr(NguoiBenh, sort_column).asc())
-    else:
-        patients = patients.order_by(getattr(NguoiBenh, sort_column).desc())
+    patients = patients.order_by(text(f"{sort_column} {sort_direction}"))
     
     patients = patients.offset(start).limit(length).all()
 
@@ -196,7 +230,7 @@ def get_patients(draw, length, start, search_value, sort_column, sort_direction)
         'gioiTinh': "Nam" if patient.gioiTinh else "Nữ",
         'ngaySinh': patient.ngaySinh.strftime('%Y-%m-%d'),
         'soDienThoai': patient.soDienThoai,
-        'lanCuoiGhe': patient.lanCuoiGhe().strftime('%Y-%m-%d') if patient.lanCuoiGhe() is not None else ""
+        'lanCuoiGhe': patient.lanCuoiGhe.strftime('%Y-%m-%d') if patient.lanCuoiGhe else None
     } for patient in patients]
     return {
         'draw': draw,
@@ -216,7 +250,7 @@ def load_examination_list(draw, length, start, search, sort_column, sort_order):
         NguoiBenh.soDienThoai.label('soDienThoai'),
         NguoiBenh.ngaySinh,
         NguoiBenh.gioiTinh,
-    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.benhNhan_id == NguoiBenh.id)
+    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.benhNhan_id == NguoiBenh.id).filter(PhieuKhamBenh.active == True)
 
     if search:
         query = query.filter(
@@ -258,7 +292,8 @@ def get_examination_list_v1(sort_column, sort_order, page_index):
         NguoiBenh.soDienThoai.label('so_dien_thoai'),
         NguoiBenh.ngaySinh.label('ngay_sinh'),
         NguoiBenh.gioiTinh.label('gioi_tinh')
-    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.benhNhan_id == NguoiBenh.id)
+    ).join(NguoiDung, PhieuKhamBenh.bacSi_id == NguoiDung.id).join(NguoiBenh, PhieuKhamBenh.benhNhan_id == NguoiBenh.id).filter(PhieuKhamBenh.active == True)
+
     total = query.count()
     if (page_index < 1):
         page_index = 1
@@ -293,7 +328,7 @@ def cancel_schedule(id):
     schedule = PhieuLichDat.query.get(id)
     if schedule is None:
         return False
-    schedule.trangThai = False
+    schedule.trangThai = TrangThaiLichDat.CHUA_DUYET
     db.session.commit()
     return True
 
@@ -301,7 +336,7 @@ def accept_schedule(id):
     schedule = PhieuLichDat.query.get(id)
     if schedule is None:
         return False
-    schedule.trangThai = True
+    schedule.trangThai = TrangThaiLichDat.DA_DUYET
     db.session.commit()
     return True
 
@@ -317,8 +352,7 @@ def get_schedules_overview(q):
         NguoiBenh.soDienThoai,
         NguoiBenh.ngaySinh,
         NguoiBenh.gioiTinh,
-        PhieuLichDat.hoanThanh,
-    ).join(NguoiBenh, PhieuLichDat.benhNhan_id == NguoiBenh.id).filter(PhieuLichDat.trangThai == True, PhieuLichDat.hoanThanh == False, db.func.date(PhieuLichDat.ngayHen) == datetime.now().date())
+    ).join(NguoiBenh, PhieuLichDat.benhNhan_id == NguoiBenh.id).filter(PhieuLichDat.trangThai == TrangThaiLichDat.DA_DUYET, db.func.date(PhieuLichDat.ngayHen) == datetime.now().date(), PhieuLichDat.active == True)
 
     query = query.filter(
             db.or_(
@@ -349,21 +383,28 @@ def check_account(username,password):
         return None
     
 
-def add_appointments(ngayDat, hoTen):
-    p = PhieuLichDat(hoTen = hoTen,
-                     ngayDat = datetime.strptime(ngayDat, "%Y-%m-%d"),
-                     trangThai = True,
-                     nguoiDung_id = 1)
+def add_appointments(cur_id, ngayHen, gioKham ):
+    o = PhieuLichDat.query.filter_by(benhNhan_id = cur_id, ngayHen = datetime.strptime(ngayHen, "%Y-%m-%d"), active = True).first()
+    if o:
+        return {
+            "status": "error",
+            "message": "Đã có lịch hẹn trùng với ngày và ca hẹn đã chọn"
+        }
+
+    p = PhieuLichDat(benhNhan_id = cur_id,
+                     ngayHen = datetime.strptime(ngayHen, "%Y-%m-%d"),
+                     trangThai = TrangThaiLichDat.CHUA_DUYET,
+                     caHen = CaHen.SANG if gioKham == "SANG" else CaHen.CHIEU if gioKham == "CHIEU" else CaHen.TOI)
     db.session.add(p)
     db.session.commit()
 
-def check_user(info):
-    if info.__contains__("@"):
-        q = NguoiBenh.query.filter_by(email=info).first()
-    else:
-        q = NguoiBenh.query.filter_by(soDienThoai=info).first()
+    return {
+        "status": "success",
+        "message": "Đã thêm lịch hẹn"
+    }
 
-    return q
+def check_user(info):
+    return NguoiBenh.query.filter_by(soDienThoai=info).first() or NguoiBenh.query.filter_by(email=info).first()
     # q sẽ trả về None khi không tồn tại nên không cần
     # if q_email or q_phone:# Nếu đã tồn tại email hay số điện thoại
     #     return q_email if q_email else q_phone
@@ -407,7 +448,7 @@ def get_medicine(q, exists = ""):
         db.func.sum(LoHang.soLuong).label('so_luong')
     ).join(LoHang, Thuoc.id == LoHang.thuoc_id).group_by(Thuoc.id)
 
-    query = query.filter(Thuoc.ten.like(f"%{q}%" if q else "%"))
+    query = query.filter(Thuoc.ten.like(f"%{q}%" if q else "%"), LoHang.soLuong > 0, Thuoc.active == True)
     # query = query.filter
     for e in exists.split(","):
         query = query.filter(Thuoc.id != e)
@@ -457,7 +498,7 @@ def get_services(q, exists):
         LoaiDichVu.giaDichVu.label('gia_dich_vu'),
     )
 
-    query = query.filter(LoaiDichVu.tenDichVu.like(f"%{q}%" if q else "%"))
+    query = query.filter(LoaiDichVu.tenDichVu.like(f"%{q}%" if q else "%"), LoaiDichVu.active == True)
 
     for e in exists.split(","):
         query = query.filter(LoaiDichVu.id != e.strip())
@@ -540,7 +581,7 @@ def save_patient(data):
                 }
             p = PhieuDichVu(
                 phieukham_id = phieuKham.id,
-                id_dich_vu = loaiDichVu.id,
+                dichVu_id = loaiDichVu.id,
                 giaDichVu = loaiDichVu.giaDichVu
             )
             db.session.add(p)
@@ -607,4 +648,108 @@ def init_varaibles():
         db.session.add(q)
     db.session.commit()
 
+def get_appointment_list(id):
+    print(id)
+    try:
+        phieulichdat = PhieuLichDat.query.filter(PhieuLichDat.benhNhan_id == id, PhieuLichDat.active == True, PhieuLichDat.ngayHen >= datetime.now().date()).all()
+        
+        return [{
+            'id': e.id,
+            'ngayHen': e.ngayHen.strftime('%Y-%m-%d'),
+            'caHen': e.caHen.value[1],
+            'trangThai': e.trangThai.value[1],
+            'coTheHuy': True if e.trangThai == TrangThaiLichDat.CHUA_DUYET else False
+        } for e in phieulichdat]
+    except:
+        return []
     
+def cancel_appointment(lichKham_id):
+    try:
+        print(session['current_user'].get("id"))
+        phieulichdat = PhieuLichDat.query.get(int(lichKham_id))
+        if phieulichdat is None:
+            return {'status': 'error', 'message': 'Không tìm thấy lịch khám'}
+        if phieulichdat.benhNhan_id != session['current_user'].get("id"):
+            return {'status': 'error', 'message': 'Không tìm thấy lịch khám'}
+        if phieulichdat.trangThai != TrangThaiLichDat.CHUA_DUYET:
+            return {'status': 'error', 'message': 'Lịch khám đã được duyệt hoặc hủy'}
+        if phieulichdat.ngayHen.date() < datetime.now().date():
+            return {'status': 'error', 'message': 'Không thể hủy lịch khám đã qua'}
+        phieulichdat.active = False
+        db.session.commit()
+        return {'status': 'success', 'message': 'Hủy lịch khám thành công'}
+    except:
+        return {'status': 'error', 'message': 'Hủy lịch kham thất bại'}
+        
+def medicine_stats_details(month):
+    year = datetime.now().year
+    lo_hang_subquery = (
+        db.session.query(
+            LoHang.thuoc_id,
+            db.func.sum(
+                db.case(
+                    (
+                        db.or_(
+                            db.extract('year', LoHang.hanSuDung) > year,
+                            db.and_(
+                                db.extract('year', LoHang.hanSuDung) == year,
+                                db.extract('month', LoHang.hanSuDung) >= month
+                            )
+                        ),
+                        LoHang.soLuong
+                    ),
+                    else_=0
+                )
+            ).label('tong_so_luong')
+        )
+        .group_by(LoHang.thuoc_id)  # Nhóm theo thuốc
+        .subquery()  # Truy vấn con
+    )
+
+    query = (
+        db.session.query(
+            Thuoc.ten,
+            Thuoc.donVi,
+            db.func.sum(DonThuoc.soLuong).label('so_luong'),
+            lo_hang_subquery.c.tong_so_luong.label('tong')
+        )
+        .join(DonThuoc, Thuoc.id == DonThuoc.thuoc_id)
+        .join(PhieuKhamBenh, PhieuKhamBenh.id == DonThuoc.phieu_id)
+        .outerjoin(lo_hang_subquery, Thuoc.id == lo_hang_subquery.c.thuoc_id)  # Kết hợp với subquery
+        .filter(
+            db.extract('month', PhieuKhamBenh.ngayKham) == month,
+            db.extract('year', PhieuKhamBenh.ngayKham) == year
+        )
+        .group_by(Thuoc.id, Thuoc.donVi, lo_hang_subquery.c.tong_so_luong)  # Nhóm theo thuốc và kết quả subquery
+    )
+    return query.all()
+
+def revenue_stats_details(month):
+    # Tổng doanh thu của tháng chỉ định
+    total_revenue_month = (
+        db.session.query(db.func.sum(HoaDonThanhToan.tongTien))
+        .filter(
+            db.extract('month', HoaDonThanhToan.ngayLapHoaDon) == month
+        )
+        .scalar()  # Lấy giá trị đơn
+    )
+
+    daily_stats = (
+        db.session.query(
+            db.func.date(HoaDonThanhToan.ngayLapHoaDon).label('day'),  # Ngày
+            db.func.count(HoaDonThanhToan.id).label('patient_count'),  # Số lượng hóa đơn
+            db.func.sum(HoaDonThanhToan.tongTien).label('daily_revenue'),  # Doanh thu trong ngày
+            db.func.round((db.func.sum(HoaDonThanhToan.tongTien) / total_revenue_month), 3).label('daily_ratio')
+        )
+        .filter(
+            HoaDonThanhToan.trangThai == 1,
+            db.extract('month', HoaDonThanhToan.ngayLapHoaDon) == month
+        )
+        .group_by(db.func.date(HoaDonThanhToan.ngayLapHoaDon))  # Nhóm theo ngày
+        .order_by(db.func.date(HoaDonThanhToan.ngayLapHoaDon))  # Sắp xếp theo ngày
+        .all()
+    )
+
+    # Thống kê theo từng ngày
+
+    return daily_stats, total_revenue_month

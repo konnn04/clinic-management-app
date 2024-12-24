@@ -72,4 +72,11 @@
 
 {% block scripts %}
     <script src="{{ url_for('static', filename='js/patient_login.js') }}"></script>
+    <script>
+        const args = new URLSearchParams(window.location.search);
+        const msg = args.get('need-register');
+        if (msg) {
+            showToast("Thông tin", "Vui lòng đăng ký thông tin trước khi đặt lịch khám", "warning", 8000);
+        }
+    </script>
 {% endblock %}
