@@ -51,7 +51,7 @@ function renderAppointmentHistory(appointments) {
             appointmentElement.innerHTML = `
                         <div class="info">
                             <span class="id-value"><strong>Mã khám bệnh:</strong> #${appointment.id}</span>
-                            <span class="date-value"><strong>Ngày khám:</strong> ${appointment.ngayKham}</span>
+<!--                            <span class="date-value"><strong>Ngày khám:</strong> ${appointment.ngayKham}</span>-->
                             <span class="total-value"><strong>Tổng tiền:</strong> ${tongTien} VNĐ</span>
                         </div>
                         <div style=" display: flex; flex-direction: column; align-items: center">
@@ -67,9 +67,10 @@ function renderAppointmentHistory(appointments) {
 function filterAppointments() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     const filteredAppointments = appointmentHistories.filter(appointment => {
+        console.log(appointment.hoaDonThanhToan)
         return appointment.id.toString().includes(searchTerm) ||
-            appointment.ngayKham.includes(searchTerm) ||
-            appointment.hoaDonThanhToan[0].tongTien.toString().includes(searchTerm);
+            // appointment.ngayKham.includes(searchTerm) ||
+            appointment.hoaDonThanhToan.tongTien.toString().includes(searchTerm);
     });
 
     renderAppointmentHistory(filteredAppointments);
@@ -155,4 +156,3 @@ async function cancelAppointment(lichKham_id) {
         showToast('Thông báo', 'Không thể hủy lịch khám bệnh. Vui lòng thử lại sau!', 'error', 5000)
     }
 }
-
