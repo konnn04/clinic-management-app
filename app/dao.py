@@ -26,8 +26,10 @@ def get_appointment_history_detail(user_id, order_id):
         PhieuKhamBenh.id == order_id,
         PhieuKhamBenh.active == True
     ).first()
-    print(phieukham.to_dict())
-    return phieukham.to_dict()
+    p = phieukham.to_dict()
+    p.meds = []
+    # print(phieukham.to_dict())
+    return p
 
 def update_profile(data):
     try:
@@ -389,6 +391,14 @@ def add_appointments(cur_id, ngayHen, gioKham ):
         return {
             "status": "error",
             "message": "Đã có lịch hẹn trùng với ngày và ca hẹn đã chọn"
+        }
+    
+    # Đếm số phiếu có trong ngày, biết ngày hẹn là datetime
+    q = PhieuLichDat.query.filter_by(ngayHen = datetime.strptime(ngayHen, "%Y-%m-%d"), active = True).count()
+    if q >= QuyDinh.query.filter_by(key="MAX_APPOINTMENT").first().value:
+        return {
+            "status": "error",
+            "message": "Đã đủ số lượng lịch hẹn trong ngày"
         }
 
     p = PhieuLichDat(benhNhan_id = cur_id,
