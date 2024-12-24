@@ -39,6 +39,7 @@ class CreateStaffView(MyBaseView):
             ho = request.form.get('ho')
             ten = request.form.get('ten')
             ngaySinh = request.form.get('ngaySinh')
+            gioiTinh = bool(request.form.get('gioiTinh'))
             soDienThoai = request.form.get('soDienThoai')
             email = request.form.get('email')
             taiKhoan = request.form.get('tenTK')
@@ -46,18 +47,23 @@ class CreateStaffView(MyBaseView):
             xacNhanMK = request.form.get('xacNhanMK')
             avatar = request.files.get('avatar', None)
             roleValue = request.form.get('vaiTro')
+            ghiChu = request.form.get('note')
 
             try:
                 if not roleValue:
                     raise ValueError("Vai trò không được để trống!")
-                role = VaiTro(int(roleValue))
+                role_id, role_name = roleValue.split('|')
+                role_id = int(role_id)
+                role = VaiTro((role_id, role_name))
                 if matKhau.strip().__eq__(xacNhanMK.strip()):
                     if avatar:
                         avatar = cloudinary.uploader.upload(avatar)
                         avatar = avatar['url']
                     else:
                         avatar = ""
-                    utils.addUser(ho=ho, ten=ten, ngaySinh=ngaySinh, soDienThoai=soDienThoai, email=email, taiKhoan=taiKhoan, matKhau=matKhau, role=role, avatar=avatar)
+                    dao.addUser(ho=ho, ten=ten, ngaySinh=ngaySinh, gioiTinh=gioiTinh, soDienThoai=soDienThoai,
+                                email=email, taiKhoan=taiKhoan, matKhau=matKhau, role=role, avatar=avatar,
+                                ghiChu=ghiChu)
                     return redirect(url_for('admin.index'))
                 else:
                     err_msg = "Password not match"
@@ -66,7 +72,8 @@ class CreateStaffView(MyBaseView):
                 err_msg = "Đã xảy ra lỗi: " + str(ex)
                 # In traceback chi tiết ra console
                 traceback.print_exc()
-        return self.render('admin/create_employee.html',VaiTro = VaiTro,err_msg = err_msg)
+        return self.render('admin/create_employee.html', VaiTro=VaiTro, err_msg=err_msg)
+
 
 class UserView(MyModelView):
     can_create = False
@@ -110,7 +117,7 @@ class ConfigView(MyModelView):
 
 # Quản lý thuốc
 class ConsignmentView(MyModelView):
-    column_list = ['id','ngayNhap','hanSuDung','ngaySanXuat','thuoc_id']
+    column_list = ['id','ngayNhap','hanSuDung','ngaySanXuat','thuoc']
     column_labels = {
         'id': 'ID',
         'ngayNhap' : 'Ngày nhập',
@@ -118,8 +125,8 @@ class ConsignmentView(MyModelView):
         'ngaySanXuat' : 'Ngày sản xuất',
         'thuoc' : 'Thuốc'
     }
-    
     form_columns = ['ngayNhap', 'hanSuDung', 'ngaySanXuat', 'thuoc_id']
+
     with app.app_context():
         count = Thuoc.query.count()
 
@@ -132,16 +139,17 @@ class ConsignmentView(MyModelView):
 
 
 class MedicineView(MyModelView):
-    column_list = ['id','ten','nhaCungCap','xuatXu','donVi','danhMucThuoc_id','loHang_id']
+    column_list = ['id','ten','nhaCungCap','xuatXu','donVi','danhMucThuoc_id','gia']
     column_labels = {
         'id': 'ID',
         'ten': 'Tên',
         'nhaCungCap': 'Nhà cung cấp',
         'xuatXu': 'Xuất xứ',
         'donVi' : 'Đơn vị',
+        'gia' : 'Giá',
         'danhMucThuoc_id': 'Mã danh mục',
     }
-    form_columns = ['ten', 'nhaCungCap', 'xuatXu', 'donVi', 'danhMucThuoc_id']
+    form_columns = ['ten', 'nhaCungCap', 'xuatXu', 'donVi', 'danhMucThuoc_id', 'loHang']
     with app.app_context():
         count = DanhMucThuoc.query.count()
 

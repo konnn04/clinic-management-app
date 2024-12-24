@@ -86,6 +86,40 @@
                     </tr>
                 {% endif %}
             </table>
+
+            <h2>Chi tiết toa thuốc</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên thuốc</th>
+                        <th>Số lượng</th>
+                        <th>Cách dùng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% if data.medicines %}
+                        {% for m in data.medicines %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ m.ten }}</td>
+                                <td>{{ m.soLuong }} {{ m.donVi }}</td>
+                                <td>{{ m.cachDung }}</td>
+                                <td>{{ m.donGia | format_money }}</td>
+                                <td>{{ m.thanhTien | format_money }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6" class="text-center">Không có toa thuốc.</td>
+                        </tr>
+                    {% endif %}
+
+            </table>
+
             <h2>Hóa đơn thanh toán</h2>
             <table class="table table-bordered">
                 {% if data.hoaDonThanhToan %}

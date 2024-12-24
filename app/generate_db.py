@@ -349,35 +349,45 @@ def initDonThuoc():
         phieu_id=1,  # Giả sử phiếu khám bệnh có id=1
         thuoc_id=1,  # Giả sử thuốc có id=1 (Paracetamol)
         cachDung="Uống 2 viên sau bữa ăn sáng và tối",
-        soLuong=10
+        soLuong=10,
+        thanhTien = Thuoc.query.get(1).gia * 10,
+        donGia = Thuoc.query.get(1).gia
     )
 
     don_thuoc2 = DonThuoc(
         phieu_id=1,  # Cùng phiếu khám bệnh id=1
         thuoc_id=2,  # Thuốc có id=2 (Amoxicillin)
         cachDung="Uống 1 viên mỗi 8 giờ",
-        soLuong=15
+        soLuong=15,
+        thanhTien = Thuoc.query.get(2).gia * 15,
+        donGia = Thuoc.query.get(2).gia
     )
 
     don_thuoc3 = DonThuoc(
         phieu_id=2,  # Phiếu khám bệnh id=2
         thuoc_id=3,  # Thuốc có id=3 (Acetaminophen)
         cachDung="Uống 1 viên mỗi 6 giờ",
-        soLuong=12
+        soLuong=12,
+        thanhTien = Thuoc.query.get(3).gia * 12,
+        donGia = Thuoc.query.get(3).gia
     )
 
     don_thuoc4 = DonThuoc(
         phieu_id=3,  # Phiếu khám bệnh id=3
         thuoc_id=4,  # Thuốc có id=4 (Cough Syrup)
         cachDung="Uống 2 muỗng sau mỗi bữa ăn",
-        soLuong=3
+        soLuong=3,
+        thanhTien = Thuoc.query.get(4).gia * 3,
+        donGia = Thuoc.query.get(4).gia
     )
 
     don_thuoc5 = DonThuoc(
         phieu_id=4,  # Phiếu khám bệnh id=4
         thuoc_id=5,  # Thuốc có id=5 (Cetirizine)
         cachDung="Uống 1 viên trước khi ngủ",
-        soLuong=7
+        soLuong=7,
+        thanhTien = Thuoc.query.get(5).gia * 7,
+        donGia = Thuoc.query.get(5).gia
     )
 
     # Thêm các bản ghi vào phiên làm việc

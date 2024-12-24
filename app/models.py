@@ -300,6 +300,8 @@ class DonThuoc(db.Model):
     cachDung = Column(String(255), nullable=False)
     soLuong = Column(Integer, nullable=False, default=0)
     active = Column(Boolean, nullable=False, default=True)
+    donGia = Column(Float, nullable=False, default=0)
+    thanhTien = Column(Float, nullable=False, default=0)
 
 class CaLamViecBacSi(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)

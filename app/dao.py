@@ -26,9 +26,21 @@ def get_appointment_history_detail(user_id, order_id):
         PhieuKhamBenh.id == order_id,
         PhieuKhamBenh.active == True
     ).first()
+    if phieukham is None:
+        return None
+
     p = phieukham.to_dict()
-    p.meds = []
-    # print(phieukham.to_dict())
+    m = db.session.query(Thuoc, DonThuoc).join(DonThuoc, Thuoc.id == DonThuoc.thuoc_id).filter(DonThuoc.phieu_id == order_id).all()
+    p['medicines'] = [{
+        'id': thuoc.id,
+        'ten': thuoc.ten,
+        'soLuong': donthuoc.soLuong,
+        'cachDung': donthuoc.cachDung,
+        'donVi': thuoc.donVi,
+        'thanhTien': donthuoc.thanhTien,
+        'donGia': donthuoc.donGia
+    } for thuoc, donthuoc in m]
+    print(p)
     return p
 
 def update_profile(data):
@@ -522,14 +534,15 @@ def get_services(q, exists):
 
 def create_invoice(phieuKham):
     dichVuKham = PhieuDichVu.query.filter(PhieuDichVu.phieukham_id == phieuKham.id).all()
-    tienDichVu = sum([dv.giaDichVu for dv in dichVuKham])
+    tienDichVu = sum([dv.giaDichVu for dv in dichVuKham]) + QuyDinh.query.filter_by(key="EXAMINATION_COST").first().value
     donThuoc = DonThuoc.query.filter(DonThuoc.phieu_id == phieuKham.id).all()
     tienThuoc = 0
+    tienKham = QuyDinh.query.filter_by(key="EXAMINATION_COST").first().value
     for thuoc in donThuoc:
-        tienThuoc += thuoc.soLuong * Thuoc.query.get(thuoc.thuoc_id).gia
+        tienThuoc += DonThuoc.query.get(thuoc.id).thanhTien
     hoaDon = HoaDonThanhToan(
         benhNhan_id = phieuKham.benhNhan_id,
-        tienKham = QuyDinh.query.filter_by(key="EXAMINATION_COST").first().value,
+        tienKham = tienKham,
         tienThuoc = tienThuoc,
         phieuKham_id = phieuKham.id,
         tongTien = tienDichVu + tienThuoc,
@@ -630,13 +643,16 @@ def save_patient(data):
             phieu_id = phieuKham.id,
             thuoc_id = medicine.get('medicine'),
             soLuong = medicine.get('value'),
-            cachDung = cachDung
+            cachDung = cachDung,
+            donGia = thuoc.gia,
+            thanhTien = thuoc.gia * int(medicine.get('value'))
         )
         db.session.add(p)
 
         db.session.commit()
 
     create_invoice(phieuKham)
+    PhieuLichDat.query.filter(PhieuLichDat.benhNhan_id == patient.id, PhieuLichDat.active == True).update({PhieuLichDat.trangThai: TrangThaiLichDat.DA_GIAI_QUYET})
 
     return {
         "status": "success",

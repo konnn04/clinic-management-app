@@ -110,10 +110,10 @@ async function getAppointmentList() {
             $("#appointment-list").append(`
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="fw-bold">Mã hẹn: ${appointment.id}</div>
-                            <div>Ngày hẹn: ${appointment.ngayHen}</div>
-                            <div>Ca hẹn: ${appointment.caHen}</div>
-                            <div>Trạng thái: ${appointment.trangThai} </div>
+                            <div class="fw-bold">Mã hẹn: <b>${appointment.id}</b></div>
+                            <div>Ngày hẹn: <b>${appointment.ngayHen}</b></div>
+                            <div>Ca hẹn: <b>${appointment.caHen}</b></div>
+                            <div>Trạng thái: <b style="color:${appointment.coTheHuy? "#FFD700;": "#32CD32;"} "  >${appointment.trangThai}</b> </div>
                         </div>
                         ${appointment.coTheHuy == true ? `<button class="btn btn-danger" onclick="cancelAppointment(${appointment.id})">Hủy</button>` : ''}
                     </li>

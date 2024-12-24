@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block content %}
+
+{% if msg %}
+    <div class="alert alert-danger">
+        {{ msg }}
+    </div>
+{% endif %}
+
 <div class="d-flex w-100 justify-content-center gap-2">
     <div class="col-8 bg-white " background-color="white">
         <div class="search-bar">

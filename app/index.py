@@ -89,6 +89,8 @@ def appointment_history_detail(order_id):
         return redirect(url_for('guest_login'))
 
     data = dao.get_appointment_history_detail(u['id'], order_id)
+    if not data:
+        return render_template('appointment_history.html', msg='Không tìm thấy đơn tra cứu')
     return render_template('appointment_history_detail.html', data=data)
 
 
