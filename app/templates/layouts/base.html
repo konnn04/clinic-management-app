@@ -22,7 +22,7 @@
     {% block styles %} {% endblock %}
 </head>
 <body>
-    <script src="{{ url_for("static", filename="/js/loading.js") }}"></script>
+    <script src="{{ url_for("static", filename="js/loading.js") }}"></script>
     {% include 'layouts/header.html' %}
     <main class="container my-4">
         {% block content %}{% endblock %}

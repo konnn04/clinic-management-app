@@ -79,7 +79,10 @@ class NguoiDung(ThongTin, UserMixin):
 class NguoiBenh(ThongTin):
     diaChi = Column(String(255), nullable=False)
     phieuLichDat = relationship('PhieuLichDat', backref='nguoiBenh', lazy=True)
-    phieuKhamBenh = relationship('PhieuKhamBenh',backref = 'nguoiBenh',lazy = True)
+
+        #Bị "SAWarning: relationship 'NguoiBenh.phieuKham' will copy column nguoi_benh.id to column phieuKham.benhNhan_id,
+        # which conflicts with relationship(s):" mà không thấy dùng nên tạm thời tắt đi
+    # phieuKhamBenh = relationship('PhieuKhamBenh',backref = 'nguoiBenh',lazy = True)
 
     def getAge(self):
         return datetime.now().year - self.ngaySinh.year
@@ -141,7 +144,8 @@ class HoaDonThanhToan(db.Model):
             'ngayLapHoaDon': self.ngayLapHoaDon.isoformat() if self.ngayLapHoaDon else None,
             'trangThai': self.trangThai,
             'phieuKham_id': self.phieuKham_id,
-            'phieuKham': self.phieuKham.to_dict(include_hoa_don=False) if include_phieu_kham and self.phieuKham else None
+            'phieuKham': self.phieuKham.to_dict(include_hoa_don=False) if include_phieu_kham and self.phieuKham else None,
+            "payUrl": self.payUrl,
         }
 
 
