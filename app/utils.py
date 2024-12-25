@@ -171,3 +171,21 @@ def convert_to_international_format(phone_number, country_code="VN"):
 
     except phonenumbers.NumberParseException as e:
         return f"Invalid phone number: {e}"
+
+
+def get_common_parameters(request):
+    draw = request.args.get('draw', type=int, default=1)
+    start = request.args.get('start', type=int, default=0)
+    length = request.args.get('length', type=int, default=10)
+    sort_column = request.args.get('sort', default='id')
+    sort_direction = request.args.get('order', default='asc')
+    search_value = request.args.get('search[value]', default='')
+
+    return {
+        'draw': draw,
+        'start': start,
+        'length': length,
+        'search_value': search_value,
+        'sort_column': sort_column,
+        'sort_direction': sort_direction
+    }

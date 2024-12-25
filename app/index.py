@@ -1,16 +1,16 @@
 import json
-from datetime import datetime
-from flask import render_template, request, jsonify, session
-from app import app, utils, login_manager, roles_required, dao, login_patient_required
-from flask_login import current_user, login_required, logout_user, login_user
 import os
-import cloudinary
-# from cloudinary.uploader import upload
 import random
-from app.models import NguoiDung, VaiTro, NguoiBenh, TrangThaiLichDat
+
+import cloudinary
+from flask import jsonify, session
+from flask_login import login_required, login_user
+
+from app import app, login_manager, roles_required, login_patient_required
+from app.models import HoaDonThanhToan
+from app.models import VaiTro, TrangThaiLichDat
 from app.momo_payment import utils as momo_utils
 from app.twilio_service import utils as twilio_utils
-from app.models import HoaDonThanhToan
 
 host = '0.0.0.0'
 port = os.getenv('DEV_PORT', 5000)
@@ -50,10 +50,10 @@ def appointment():
     cur_user = session.get('current_user')
 
     if request.method.__eq__('POST'):
-        ngayHen = request.form.get('date_inp')
-        gioKham = request.form.get('time')
+        ngay_hen = request.form.get('date_inp')
+        gio_kham = request.form.get('time')
 
-        status = dao.add_appointments(cur_id=cur_user["id"], ngayHen=ngayHen, gioKham=gioKham)
+        status = dao.add_appointments(cur_id=cur_user["id"], ngayHen=ngay_hen, gioKham=gio_kham)
         if status['status'] == 'success':
             return redirect(url_for('appointment_history', success='1'))
         else:
@@ -115,14 +115,14 @@ def staff_profile():
     }
     current_data = current_user.to_dict()
     avatar_file = request.files.get('avatar')
-    if request.method == 'POST' and (current_data != data or avatar_file != None):
+    if request.method == 'POST' and (current_data != data or avatar_file is not None):
         data['ngaySinh'] = datetime.strptime(request.form['ngaySinh'],'%Y-%m-%d')
-        if ( avatar_file.headers[0][1] != 'form-data; name="avatar"; filename=""'):
+        if avatar_file.headers[0][1] != 'form-data; name="avatar"; filename=""':
             data['avatar'] = cloudinary.uploader.upload(avatar_file).get('secure_url')
             print(data['avatar'])
         # Ràng buộc lại dữ liệu
         status = dao.update_profile(data)
-        if (status['status'] == 'success'):
+        if status['status'] == 'success':
             return redirect(url_for('staff_profile'))
         else:
             return render_template('staff/profile.html', msg=status['message'])
@@ -150,16 +150,16 @@ def patient_register():
         ho = request.form.get('lastName')
         ten = request.form.get('firstName')
         email = request.form.get('email')
-        soDienThoai = request.form.get('phone')
-        gioiTinh = int(request.form.get('gender'))
-        ghiChu = request.form.get('note')
-        diaChi = request.form.get('address')
-        ngaySinh = request.form.get('birthday')
+        so_dien_thoai = request.form.get('phone')
+        gioi_tinh = int(request.form.get('gender'))
+        ghi_chu = request.form.get('note')
+        dia_chi = request.form.get('address')
+        ngay_sinh = request.form.get('birthday')
 
-        if not soDienThoai and not email:
+        if not so_dien_thoai and not email:
             msg = "Phải nhập 1 trong 2 thông tin email hoặc số điện thoại"
         else:
-            dao.add_patients(ho=ho,ten=ten,email=email,soDienThoai=soDienThoai,ngaySinh=ngaySinh,gioiTinh=gioiTinh,diaChi=diaChi,ghiChu=ghiChu)
+            dao.add_patients(ho=ho,ten=ten,email=email,soDienThoai=so_dien_thoai,ngaySinh=ngay_sinh,gioiTinh=gioi_tinh,diaChi=dia_chi,ghiChu=ghi_chu)
             return redirect(url_for('patient_login'))
     return render_template('register.html',msg=msg)
 
@@ -168,17 +168,17 @@ def send_otp():
     data = request.json
     info = data.get('info') # Lấy thông tin có thể là số điện thoại hoặc email
 
-    current_user = dao.check_user(info)
+    cur_user = dao.check_user(info)
 
-    if current_user:
-        # print(current_user.to_dict())
+    if cur_user:
+        # print(cur_user.to_dict())
         if '@' in info: # Nếu như là email
             otp = str(random.randint(100000, 999999))
             session['otp']=otp # Thêm trường otp để kiểm tra
-            return utils.send_otp_to_email(current_user.email,otp)
+            return utils.send_otp_to_email(cur_user.email,otp)
         else: # Nếu như là số điện thoại
-            current_user.soDienThoai = utils.convert_to_international_format(info)
-            return twilio_utils.send_sms_otp(current_user.soDienThoai)
+            cur_user.soDienThoai = utils.convert_to_international_format(info)
+            return twilio_utils.send_sms_otp(cur_user.soDienThoai)
     else:
         return jsonify({"status": "failed",
                         "message": "Authentication failed"}),401
@@ -278,8 +278,8 @@ def schedule_list():
 @login_required
 @roles_required([VaiTro.Y_TA])
 def accpect_schedule():
-    id = request.form.get('id')
-    res = dao.accept_schedule(id=id)
+    schedule_id = request.form.get('id')
+    res = dao.accept_schedule(id=schedule_id)
     if res:
         return jsonify({'status': 'success', 'message': 'Đã chấp nhận lịch hẹn'})
     return jsonify({'status': 'error', 'message': 'Đã có lỗi xảy ra'})
@@ -289,8 +289,8 @@ def accpect_schedule():
 @login_required
 @roles_required([VaiTro.Y_TA])
 def cancel_schedule():
-    id = request.form.get('id')
-    res = dao.cancel_schedule(id=id)
+    schedule_id = request.form.get('id')
+    res = dao.cancel_schedule(id=schedule_id)
     if res:
         return jsonify({'status': 'success', 'message': 'Đã hủy lịch hẹn'})
     return jsonify({'status': 'error', 'message': 'Đã có lỗi xảy ra'})
@@ -318,11 +318,11 @@ def payment():
 def pay(order_hashed):
     order_id = HoaDonThanhToan.decode_hashed_id(hashed_id=order_hashed)
     hoa_don = HoaDonThanhToan.query.filter(HoaDonThanhToan.id==order_id).first()
-    msg=""
+    # msg=""
 
 
     if hoa_don:
-        if hoa_don.trangThai == True:
+        if hoa_don.trangThai:
             msg = "Hoa don da thanh toan"
         else:
             if hoa_don.payUrl:
@@ -347,7 +347,7 @@ def pay(order_hashed):
 def invoice_detail(order_hashed):
     order_id = HoaDonThanhToan.decode_hashed_id(hashed_id=order_hashed)
     hoa_don = HoaDonThanhToan.query.filter(HoaDonThanhToan.id==order_id).first()
-    msg=""
+    # msg=""
 
 
     if hoa_don:
@@ -435,47 +435,42 @@ def patient_stat():
 @app.route('/api/patient-list', methods=['GET'])
 @roles_required([VaiTro.BAC_SI, VaiTro.Y_TA, VaiTro.THU_NGAN, VaiTro.ADMIN])
 def get_patients():
-    draw = request.args.get('draw', type=int, default=1)
-    start = request.args.get('start', type=int, default=0)
-    length = request.args.get('length', type=int, default=10)
-    sort_column = request.args.get('sort', default='id')
-    sort_direction = request.args.get('order', default='asc')
-    search_value = request.args.get('search[value]', default='')
+    params = utils.get_common_parameters(request)
 
     return jsonify(dao.get_patients(
-        draw=draw, 
-        length=length,
-        start= start, 
-        search_value=search_value, 
-        sort_column=sort_column, 
-        sort_direction=sort_direction))
+        draw=params['draw'],
+        length=params['length'],
+        start=params['start'],
+        search_value=params['search_value'],
+        sort_column=params['sort_column'],
+        sort_direction=params['sort_direction']
+    ))
 
 @app.route('/api/schedule-list', methods=['GET'])
 @roles_required([VaiTro.Y_TA])
 def get_schedule_list():
-    draw = int(request.args.get('draw', 1))
-    start = int(request.args.get('start', 0))
-    length = int(request.args.get('length', 10))
-    search_value = request.args.get('search[value]', '')
-    order_column = request.args.get('sort', 'id')
-    order_dir = request.args.get('order', 'asc')
+    params = utils.get_common_parameters(request)
+
     status = request.args.get('schedule_status', 'false')
     if status == 'true':
         status = TrangThaiLichDat.DA_DUYET
     else:
         status = TrangThaiLichDat.CHUA_DUYET
+
     date = request.args.get('date', datetime.now().strftime('%Y-%m-%d'))
 
     return jsonify(
         dao.load_schedule_list(
-            date=date, status=status, 
-            draw=draw, length=length, 
-            start=start, 
-            search=search_value,
-            sort_column=order_column, 
-            sort_order=order_dir
-            )
+            date=date,
+            status=status,
+            draw=params['draw'],
+            length=params['length'],
+            start=params['start'],
+            search=params['search_value'],
+            sort_column=params['sort_column'],
+            sort_order=params['sort_direction']
         )
+    )
 
 @app.route('/api/examination-list-overview', methods=['GET'])
 @login_required
@@ -551,8 +546,8 @@ def get_appointment_list():
 @app.route('/api/cancel-appointment', methods=['POST'])
 @login_patient_required
 def cancel_appointment():
-    lichKham_id = request.json['lichKham_id']
-    return jsonify(dao.cancel_appointment(lichKham_id))
+    lich_kham_id = request.json['lichKham_id']
+    return jsonify(dao.cancel_appointment(lich_kham_id))
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -566,8 +561,6 @@ def page_not_found(e):
 if __name__ == '__main__':
     with app.app_context():
         from app.admin import *
-        db.create_all()
-        dao.init_varaibles()
         app.run(host=host, port=port, debug=True)
         # app.run(host=host, port=port)
 

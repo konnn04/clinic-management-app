@@ -3,6 +3,7 @@ from app.models import NguoiDung, VaiTro, NguoiBenh, PhieuLichDat, PhieuKhamBenh
 
 from werkzeug.security import generate_password_hash
 from datetime import datetime
+from app import dao
 # , ChiTietDichVu
 
 def initUser():
@@ -471,6 +472,7 @@ def initHoaDonThanhToan():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        dao.init_varaibles()
         initUser()
         initNguoiBenh()
         initPhieuLichDat()
