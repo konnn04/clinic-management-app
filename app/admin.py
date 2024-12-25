@@ -1,7 +1,7 @@
 from . import app, admin, db
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from app.models import NguoiDung, VaiTro, Thuoc, LoHang, DanhMucThuoc, QuyDinh
+from app.models import NguoiDung, VaiTro, Thuoc, LoHang, DanhMucThuoc, QuyDinh, NguoiBenh
 from flask_admin import BaseView,expose, AdminIndexView
 from app import utils,dao
 from flask_admin.model.template import EndpointLinkRowAction
@@ -276,6 +276,15 @@ admin.add_view(CreateStaffView(
     name='Tạo nhân viên', 
     endpoint='create_employee', 
     menu_icon_type='fa', 
+    menu_icon_value='fa-solid fa-user-plus me-3'
+))
+
+admin.add_view(MyModelView(
+    NguoiBenh,
+    db.session,
+    name='Quản lý bệnh nhân',
+    endpoint='quanlybenhnhan',
+    menu_icon_type='fa',
     menu_icon_value='fa-solid fa-user-plus me-3'
 ))
 

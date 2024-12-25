@@ -244,7 +244,7 @@ def get_patients(draw, length, start, search_value, sort_column, sort_direction)
         'gioiTinh': "Nam" if patient.gioiTinh else "Nữ",
         'ngaySinh': patient.ngaySinh.strftime('%Y-%m-%d'),
         'soDienThoai': patient.soDienThoai,
-        'lanCuoiGhe': patient.lanCuoiGhe.strftime('%Y-%m-%d') if patient.lanCuoiGhe else None
+        'lanCuoiGhe': patient.lanCuoiGhe if patient.lanCuoiGhe else None
     } for patient in patients]
     return {
         'draw': draw,
@@ -407,7 +407,9 @@ def add_appointments(cur_id, ngayHen, gioKham ):
     
     # Đếm số phiếu có trong ngày, biết ngày hẹn là datetime
     q = PhieuLichDat.query.filter_by(ngayHen = datetime.strptime(ngayHen, "%Y-%m-%d"), active = True).count()
-    if q >= QuyDinh.query.filter_by(key="MAX_APPOINTMENT").first().value:
+    print(q)
+    print(datetime.strptime(ngayHen, "%Y-%m-%d"))
+    if q >= int(QuyDinh.query.filter_by(key="MAX_APPOINTMENT").first().value):
         return {
             "status": "error",
             "message": "Đã đủ số lượng lịch hẹn trong ngày"
@@ -424,6 +426,9 @@ def add_appointments(cur_id, ngayHen, gioKham ):
         "status": "success",
         "message": "Đã thêm lịch hẹn"
     }
+
+def get_benh_nhan(id):
+    return NguoiBenh.query.get(id)
 
 def check_user(info):
     return NguoiBenh.query.filter_by(soDienThoai=info).first() or NguoiBenh.query.filter_by(email=info).first()
@@ -604,8 +609,11 @@ def save_patient(data):
                     "status": "error",
                     "message": "Không tìm thấy dịch vụ"
                 }
+
+            pk = PhieuKhamBenh.query.filter(PhieuKhamBenh.benhNhan_id == examination.benhNhan_id).order_by(PhieuKhamBenh.ngayKham.desc()).first()
+
             p = PhieuDichVu(
-                phieukham_id = phieuKham.id,
+                phieukham_id = pk.id,
                 dichVu_id = loaiDichVu.id,
                 giaDichVu = loaiDichVu.giaDichVu
             )

@@ -361,7 +361,7 @@ def invoice_detail(order_hashed):
 @app.route('/payment/result/<string:order_hashed>', methods=['POST'])
 def payment_result(order_hashed):
     if request.method.__eq__('POST'):
-        # print("Momo goi")
+        print("Momo goi")
         data = request.data
 
         response_str = data.decode('utf-8')
@@ -566,6 +566,7 @@ def page_not_found(e):
 if __name__ == '__main__':
     with app.app_context():
         from app.admin import *
+        db.create_all()
         dao.init_varaibles()
         app.run(host=host, port=port, debug=True)
         # app.run(host=host, port=port)

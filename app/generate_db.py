@@ -55,6 +55,7 @@ def initUser():
     db.session.add(bs2)
     db.session.add(yt)
     db.session.add(c)
+    db.session.commit()
     db.session.add(caBS1)
     db.session.add(caBS2)
     db.session.commit()
@@ -79,7 +80,7 @@ def initNguoiBenh():
 
 
 def initPhieuLichDat():
-    p1 = PhieuLichDat(ngayHen=datetime.now(), benhNhan_id=1, caHen=CaHen.SANG    )
+    # p1 = PhieuLichDat(ngayHen=datetime.now(), benhNhan_id=1, caHen=CaHen.SANG    )
     p2 = PhieuLichDat(ngayHen=datetime(2025, 1, 12),benhNhan_id=2, caHen=CaHen.CHIEU)
     p3 = PhieuLichDat(ngayHen=datetime(2025, 1, 16), benhNhan_id=3, caHen=CaHen.SANG)
     p4 = PhieuLichDat(ngayHen=datetime(2025, 1, 16),benhNhan_id=4, caHen=CaHen.CHIEU)
@@ -89,7 +90,7 @@ def initPhieuLichDat():
     p8 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), benhNhan_id=4, caHen=CaHen.TOI)
     p9 = PhieuLichDat(ngayHen=datetime(2025, 1, 14), benhNhan_id=5, caHen=CaHen.SANG)
     p10 = PhieuLichDat(ngayHen=datetime(2025, 1, 12),  benhNhan_id=5, caHen=CaHen.TOI)
-    db.session.add(p1)
+    # db.session.add(p1)
     db.session.add(p2)
     db.session.add(p3)
     db.session.add(p4)
