@@ -11,5 +11,5 @@ instance/
 .code
 .vscode
 */__pycache__
-
+.DS_Store
 *.zip
