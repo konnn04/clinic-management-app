@@ -8,17 +8,19 @@ Thầy Dương Hữu Thành
 
 ### Thành viên:
 
-- 2251012121 - Phí Minh Quang
+- 2251012121 - Phí Minh Quang | ✉️ [Email](mailto:2251012121quang@ou.edu.vn)
 
-- 2251012046 - Hoàng Anh Duy
+- 2251012046 - Hoàng Anh Duy | ✉️ [Email](mailto:2251012046duy@ou.edu.vn)
 
-- 2251052127 - NguyễnThanh Triều
+- 2251052127 - Nguyễn Thanh Triều | ✉️ [Email](mailto:2251052127trieu@ou.edu.vn)
 
 ## Giới thiệu:
 
 Hệ thống Quản lý Phòng khám là một ứng dụng web được phát triển để hỗ trợ quản lý các hoạt động trong một phòng khám, bao gồm quản lý lịch hẹn, thông tin bệnh nhân, hóa đơn thanh toán và các dịch vụ y tế khác. Hệ thống này giúp cải thiện quy trình làm việc của nhân viên y tế và nâng cao trải nghiệm của bệnh nhân.
 
-## Tính năng
+(Chưa là phiên bản cuối cùng, nếu bạn muốn cải thiện hệ thống, hãy tạo một nhánh mới và tạo một pull request)
+
+## Tính năng chính:
 
 - **Quản lý lịch hẹn**: Bệnh nhân có thể đặt lịch hẹn với bác sĩ và xem lịch sử hẹn của mình.
 - **Quản lý thông tin bệnh nhân**: Nhân viên y tế có thể xem và cập nhật thông tin bệnh nhân, bao gồm hồ sơ y tế và thông tin liên lạc.
@@ -54,10 +56,6 @@ Hệ thống Quản lý Phòng khám là một ứng dụng web được phát t
    pip install -r requirements.txt
    ```
 
-   ```bash
-   python test.py
-   ```
-
 5. **Cấu hình file `.env`**: Đổi tên file `.env-template` thành `.env` và chỉnh sửa các thông tin cần thiết để ứng dụng hoạt động.
 6. **Cấu hình database**: Chỉnh sửa thông tin kết nối database trong file `app/__init__.py`.
 7. **Chạy file tạo dữ liệu mẫu**:
@@ -76,3 +74,13 @@ Hệ thống Quản lý Phòng khám là một ứng dụng web được phát t
 - **API cho lịch hẹn**: `/api/appointment/history`
 - **API cho hóa đơn**: `/api/invoices`
 - **API cho thông tin bệnh nhân**: `/api/patient-list`
+
+## Các vai trò chính và nhiệm vụ
+
+- **Admin**: Quản lý người dùng, xem báo cáo thống kê,...
+- **Nhân viên y tế**: Quản lý lịch hẹn, thông tin bệnh nhân, tạo hóa đơn,...
+- **Bác sĩ**: Xem thông tin bệnh nhân, tạo đơn thuốc,...
+- **Thu ngân**: Tạo hóa đơn thanh toán cho bệnh nhân.
+- **Bệnh nhân**: Đặt lịch hẹn, xem thông tin cá nhân,...
+
+
